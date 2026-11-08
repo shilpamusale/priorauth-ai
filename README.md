@@ -98,7 +98,8 @@ tests/            unit tests for the rule, the schemas and every check
 - [ ] Gold set v2: held-out cases, conflicting documentation, multiple diagnoses, more injection styles
 - [ ] Human-review queue and audit-trail export
 - [ ] Results and error analysis
-- [ ] FHIR R4 input: map Patient, Coverage, Condition, ServiceRequest and DocumentReference bundles to the request schema; gold cases as FHIR bundles (Synthea patient context)
+- [ ] FHIR R4 input: map Patient, Coverage, Condition, ServiceRequest and DocumentReference bundles to the request schema; gold cases as FHIR bundles (Synthea patient context) 
+
 
 ## Out of scope
 
