@@ -6,18 +6,18 @@ or ungrounded result fails loudly instead of flowing downstream.
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 from pydantic import BaseModel, Field, model_validator
 
 
-class CriterionStatus(str, Enum):
+class CriterionStatus(StrEnum):
     MET = "met"
     NOT_MET = "not_met"
     INSUFFICIENT_EVIDENCE = "insufficient_evidence"
 
 
-class Decision(str, Enum):
+class Decision(StrEnum):
     READY_TO_SUBMIT = "ready_to_submit"  # every required criterion is met and cited
     NEEDS_DOCUMENTATION = "needs_documentation"  # nothing contradicts the policy, but evidence is missing
     ESCALATE = "escalate"  # a required criterion is not met, or the case is ambiguous: a human decides

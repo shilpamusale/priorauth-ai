@@ -7,24 +7,21 @@ name = "priorauth-ai"
 version = "0.1.0"
 description = "Agentic prior-authorization workflow with an evaluation harness"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = ["pydantic>=2.6", "pyyaml>=6.0"]
 
 [project.optional-dependencies]
-agents = ["anthropic>=0.40", "chromadb>=0.5"]
 dev = ["pytest>=8.0", "ruff>=0.5"]
 
 [tool.setuptools.packages.find]
-where = ["src", "."]
-include = ["priorauth*", "evals*"]
+where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src", "."]
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 120
-target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
