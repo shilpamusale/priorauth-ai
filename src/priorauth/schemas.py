@@ -1,72 +1,74 @@
-"""Typed contracts for every stage of the prior-authorization pipeline.
+"""Typed contracts for every stage of the prior-authorization pipline.
 
-The model's structured output is validated against these schemas at each handoff, so a malformed
-or ungrounded result fails loudly instead of flowing downstream.
+Every handoff is validated against these models, so a malformed result fails 
+loudly instead of flowing downstream.
 """
 
-from __future__ import annotations
-
 from enum import StrEnum
+from typing import Annotated, Self
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StringConstraints,
+    model_validator,
+)
 
+ICD10Code = Annotated[str, StringConstraints(pattern=r"^[A-Z]\d[0-9A-Z](\.[0-9A-Z]{1,4})?$")]
+Quote = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
+
+class Contract(BaseModel):
+    """Base for every contract: an unknown field is an error, 
+    not something to ignore."""
+    model_config = ConfigDict(extra="forbid")
 
 class CriterionStatus(StrEnum):
     MET = "met"
     NOT_MET = "not_met"
     INSUFFICIENT_EVIDENCE = "insufficient_evidence"
 
-
 class Decision(StrEnum):
-    READY_TO_SUBMIT = "ready_to_submit"  # every required criterion is met and cited
-    NEEDS_DOCUMENTATION = "needs_documentation"  # nothing contradicts the policy, but evidence is missing
-    ESCALATE = "escalate"  # a required criterion is not met, or the case is ambiguous: a human decides
+    READY_TO_SUBMIT = "ready_to_submit" # every required criterion is met and cited.
+    NEEDS_DOCUMENTATION = "needs_documentation" # nothing contradicts the policy, but evidence is missing.
+    ESCALATE = "escalate" # a required criterion is not met or was not checked: a human decision needed.
 
-
-class PARequest(BaseModel):
-    """A provider-side request: the ordered service and the patient's clinical summary."""
+class PARequest(Contract):
+    """What the provider wants to submit: the ordered service 
+    and the patient's clinical record."""
 
     case_id: str
     payer: str
     cpt_code: str = Field(pattern=r"^\d{4}[0-9A-Z]$")
-    icd10_codes: list[str] = Field(min_length=1)
+    icd10_codes: list[ICD10Code] = Field(min_length=1)
     clinical_summary: str
 
-    @model_validator(mode="after")
-    def _icd10_format(self) -> PARequest:
-        for code in self.icd10_codes:
-            if not (len(code) >= 3 and code[0].isalpha() and code[1:3].isdigit()):
-                raise ValueError(f"not an ICD-10-CM code: {code!r}")
-        return self
-
-
-class PolicyCriterion(BaseModel):
+class PolicyCriterion(Contract):
     criterion_id: str
     text: str
-    required: bool = True
+    required: bool = True   # safe default: a criterion only stops counting if a policy says so
 
-
-class Policy(BaseModel):
+class Policy(Contract):
     policy_id: str
     title: str
-    source: str  # URL of the coverage document, or "illustrative" for test fixtures
+    source: str # URL of the coverage document, or "illustrative" for text fixtures
     criteria: list[PolicyCriterion] = Field(min_length=1)
 
+class CriterionResult(Contract):
+    """The matcher's judgement on one criterion."""
 
-class CriterionResult(BaseModel):
     criterion_id: str
     status: CriterionStatus
-    evidence: list[str] = Field(default_factory=list)  # verbatim quotes from the clinical summary
-    note: str = ""
+    evidence: list[Quote] = Field(default_factory=list) # verbatim quotes from the clinical record
+    reasoning: str = ""
 
     @model_validator(mode="after")
-    def _met_needs_evidence(self) -> CriterionResult:
+    def _met_needs_evidence(self) -> Self:
         if self.status is CriterionStatus.MET and not self.evidence:
-            raise ValueError(f"{self.criterion_id}: a criterion marked met must cite evidence")
+            raise ValueError(f"{self.criterion_id}: a criterion marked met must cite evidence.")
         return self
 
-
-class Determination(BaseModel):
+class Determination(Contract):
     """Final pipeline output, written to the audit trail."""
 
     case_id: str
@@ -77,7 +79,7 @@ class Determination(BaseModel):
     rationale: str
 
     @model_validator(mode="after")
-    def _gaps_listed(self) -> Determination:
+    def _gap_listed(self) -> Self:
         if self.decision is Decision.NEEDS_DOCUMENTATION and not self.missing_documentation:
             raise ValueError("needs_documentation must list the missing documentation")
         return self
