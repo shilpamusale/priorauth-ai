@@ -1,10 +1,10 @@
 .PHONY: install lint test
 
-install: ## Install the package with dev tools
+install:
 	pip install -e ".[dev]"
 
-lint: ## Ruff lint
+lint:
 	ruff check .
 
-test: ## Unit tests and gold-set consistency checks (no API calls)
+test:
 	pytest -q
