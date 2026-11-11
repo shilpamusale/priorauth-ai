@@ -19,7 +19,7 @@ def decide(policy: Policy, results: list[CriterionResult]) -> Decision:
     if len(ids) != len(set(ids)): # a criterion was judged twice, possibly with conflicting answers
         return Decision.ESCALATE
 
-    if not set(ids) <= {c.criterion_id for c in policy.criteria}: # results belong to a different policy
+    if not set(ids) <= {c.criterion_id for c in policy.criteria}:  # a result names a criterion this policy lacks
         return Decision.ESCALATE
 
     status = {r.criterion_id: r.status for r in results}
