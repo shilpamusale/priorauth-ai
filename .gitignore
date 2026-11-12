@@ -14,3 +14,6 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# Source PDFs: LCD PDFs carry AMA and AHA copyright notices, so only extracted text is committed
+*.pdf
