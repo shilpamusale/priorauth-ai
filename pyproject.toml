@@ -11,7 +11,8 @@ requires-python = ">=3.12"
 dependencies = ["pydantic>=2.6", "pyyaml>=6.0"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0", "ruff>=0.5"]
+dev = ["pytest>=8.0", "ruff>=0.5", "fpdf2>=2.7"]
+ingest = ["pdfplumber>=0.11"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
