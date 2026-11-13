@@ -18,7 +18,14 @@ from priorauth.schemas import (
 )
 
 NOTE = {"note_id": "n1", "date": "2026-08-14", "note_type": "progress note", "text": "Axial low back pain, NRS 7/10."}
-REQUEST = {"case_id": "c", "payer": "x", "service_code": "64493", "icd10_codes": ["M47.816"], "notes": [NOTE]}
+REQUEST = {
+    "case_id": "c",
+    "payer": "x",
+    "request_date": "2026-09-01",
+    "service_code": "64493",
+    "icd10_codes": ["M47.816"],
+    "notes": [NOTE],
+}
 
 
 @pytest.mark.parametrize("code", ["M54.16", "M47.816", "M1A.00X0", "Z3A.20", "C7A.00", "O9A.211", "S72.001A", "E11"])
@@ -42,6 +49,7 @@ def test_cpt_and_hcpcs_codes_are_accepted(code):
         ("icd10_codes", ["m54.16"]),
         ("icd10_codes", ["M54.12345"]),
         ("notes", []),
+        ("request_date", "2026-02-30"),
     ],
 )
 def test_malformed_requests_are_rejected(field, value):
@@ -67,6 +75,13 @@ def test_malformed_notes_are_rejected(field, value):
     with pytest.raises(ValidationError):
         ClinicalNote(**{**NOTE, field: value})
 
+def test_note_dated_after_the_request_is_rejected():
+    with pytest.raises(ValidationError, match="after the request"):
+        PARequest(**{**REQUEST, "notes": [NOTE | {"date": "2026-09-02"}]})
+
+
+def test_note_on_the_request_date_is_accepted():
+    assert PARequest(**{**REQUEST, "notes": [NOTE | {"date": "2026-09-01"}]}).notes[0].date == datetime.date(2026, 9, 1)
 
 def test_duplicate_note_ids_are_rejected():
     with pytest.raises(ValidationError, match="unique"):

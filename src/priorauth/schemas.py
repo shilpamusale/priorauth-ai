@@ -57,6 +57,7 @@ class PARequest(Contract):
 
     case_id: str
     payer: str
+    request_date: datetime.date  # durations such as "pain for 3 months" are measured up to this date
     service_code: ServiceCode
     icd10_codes: list[ICD10Code] = Field(min_length=1)
     notes: list[ClinicalNote] = Field(min_length=1)
@@ -66,6 +67,12 @@ class PARequest(Contract):
         ids = [note.note_id for note in self.notes]
         if len(ids) != len(set(ids)):
             raise ValueError("note IDs must be unique within a chart")
+        return self
+    
+    @model_validator(mode="after")
+    def _no_note_after_the_request(self) -> Self:
+        if late := [note.note_id for note in self.notes if note.date > self.request_date]:
+            raise ValueError(f"notes dated after the request: {late}")
         return self
 
 
