@@ -1,9 +1,10 @@
 """The decision rule: whenever the results are incomplete or inconsistent, the safest outcome wins."""
 
 from priorauth.decision import decide
-from priorauth.schemas import CriterionResult, CriterionStatus, Decision, Policy, PolicyCriterion
+from priorauth.schemas import CriterionResult, CriterionStatus, Decision, Evidence, Policy, PolicyCriterion
 
 MET, NOT_MET, GAP = CriterionStatus.MET, CriterionStatus.NOT_MET, CriterionStatus.INSUFFICIENT_EVIDENCE
+EVIDENCE = [Evidence(note_id="n1", quote="quote")]
 
 POLICY = Policy(
     policy_id = "p",
@@ -17,7 +18,7 @@ POLICY = Policy(
 )
 
 def result(cid, status):
-    return CriterionResult(criterion_id=cid, status=status, evidence=["quote"] if status is MET else [])
+    return CriterionResult(criterion_id=cid, status=status, evidence=EVIDENCE if status is MET else [])
 
 def test_all_required_met_is_ready():
     assert decide(POLICY, [result("a", MET), result("b", MET)]) is Decision.READY_TO_SUBMIT
