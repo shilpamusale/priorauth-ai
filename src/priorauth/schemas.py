@@ -47,6 +47,7 @@ class PolicyCriterion(Contract):
     criterion_id: str
     text: str
     required: bool = True   # safe default: a criterion only stops counting if a policy says so
+    source_quotes: list[Quote] = Field(default_factory=list)  # verbatim from the coverage document; see policies.py
 
 class Policy(Contract):
     policy_id: str

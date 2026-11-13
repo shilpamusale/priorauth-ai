@@ -61,4 +61,6 @@ def test_needs_documentation_must_list_gaps():
     with pytest.raises(ValidationError, match="missing documentation"):
         Determination(case_id="c", policy_id="p", decision=Decision.NEEDS_DOCUMENTATION, criteria=[], rationale="r")
 
-
+def test_blank_source_quote_is_rejected():
+    with pytest.raises(ValidationError):
+        PolicyCriterion(criterion_id="a", text="A", source_quotes=["  "])
