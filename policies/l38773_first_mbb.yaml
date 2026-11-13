@@ -1,0 +1,73 @@
+# First diagnostic lumbar medial branch block, Traditional Medicare hospital outpatient prior
+# authorization, CGS Administrators (Jurisdiction 15: Kentucky and Ohio).
+#
+# Source: LCD L38773 "Facet Joint Interventions for Pain Management", version 32. Its coverage text is
+# extracted to sources/l38773_v32.txt, and every source quote below must appear there (checked on load).
+#
+# Choices made here (reviewed Nov 12, 2026):
+# - The LCD's four indications are split into seven criteria, so each gap names one thing to document.
+# - Lumbar only: the LCD says "neck or low back", but this policy covers the lumbar block.
+# - The LCD gives no number for "moderate to severe", so none is added here.
+# - The two exclusions must be documented, for example by a neurological exam or imaging: a chart that
+#   says nothing about them is insufficient evidence, not met.
+# - Not covered: the 1-2 level limit, session limits and same-day blocks (they need request details
+#   this version does not collect), repeat blocks and radiofrequency ablation.
+
+policy_id: l38773_first_mbb
+title: "Facet joint interventions (LCD L38773 v32, CGS J15): first diagnostic lumbar medial branch block"
+source: https://www.cms.gov/medicare-coverage-database/view/lcd.aspx?lcdid=38773&ver=32
+
+criteria:
+  # LCD indication 1
+  - criterion_id: l38773_first_mbb.pain_severity
+    text: Moderate to severe low back pain, rated on a pain scale such as NRS or VAS.
+    source_quotes:
+      - Moderate to severe chronic neck or low back pain
+      - Pain assessment must be performed and documented at baseline
+      - Numerical Rating Scale (NRS) and Visual Analog Scale (VAS) for pain assessment
+  - criterion_id: l38773_first_mbb.axial_pain
+    text: The pain is predominantly axial, centered in the low back rather than mainly radiating into the legs.
+    source_quotes:
+      - neck or low back pain, predominantly axial
+      - Relating to or situated in the central part of the body
+  - criterion_id: l38773_first_mbb.functional_deficit
+    text: The pain causes a functional deficit, measured on a pain or disability scale such as the Oswestry Disability Index.
+    source_quotes:
+      - that causes functional deficit measured on pain or disability scale
+      - Oswestry Disability Index (ODI)
+
+  # LCD indication 2
+  - criterion_id: l38773_first_mbb.duration
+    text: The pain has been present for at least 3 months.
+    source_quotes:
+      - Pain present for minimum of 3 months
+  - criterion_id: l38773_first_mbb.conservative_care_failed
+    text: >-
+      Documented failure to respond to noninvasive conservative management, as tolerated, such as
+      NSAIDs, acetaminophen, physical therapy, acupuncture or spinal manipulation.
+    source_quotes:
+      - documented failure to respond to noninvasive conservative management (as tolerated)
+      - >-
+        The use of nonsteroidal anti-inflammatory drugs (NSAIDs), acetaminophen, physical therapy,
+        acupuncture (applies to only chronic low back pain), or spinal manipulation
+
+  # LCD indication 3
+  - criterion_id: l38773_first_mbb.no_untreated_radiculopathy
+    text: >-
+      The chart documents no untreated radiculopathy or neurogenic claudication, for example in a
+      neurological exam. Radiculopathy caused by a facet joint synovial cyst is the exception.
+    source_quotes:
+      - >-
+        Absence of untreated radiculopathy or neurogenic claudication (except for radiculopathy caused
+        by facet joint synovial cyst)
+
+  # LCD indication 4
+  - criterion_id: l38773_first_mbb.no_other_pathology
+    text: >-
+      The chart documents no non-facet pathology, on clinical assessment or imaging, that could explain
+      the pain, such as fracture, tumor, infection or significant deformity.
+    source_quotes:
+      - >-
+        There is no non-facet pathology per clinical assessment or radiology studies that could explain
+        the source of the patient's pain, including but not limited to fracture, tumor, infection, or
+        significant deformity.
