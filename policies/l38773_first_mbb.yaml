@@ -4,8 +4,10 @@
 # Source: LCD L38773 "Facet Joint Interventions for Pain Management", version 32. Its coverage text is
 # extracted to sources/l38773_v32.txt, and every source quote below must appear there (checked on load).
 #
-# Choices made here (reviewed Nov 12, 2026):
+# Choices made here (reviewed Nov 12, 2026; baseline disability scale added Nov 13):
 # - The LCD's four indications are split into seven criteria, so each gap names one thing to document.
+# - The footnote's baseline disability scale is an eighth criterion: it must be recorded before the first
+#   block, or a later treatment request has no baseline to measure functional improvement against.
 # - Lumbar only: the LCD says "neck or low back", but this policy covers the lumbar block.
 # - The LCD gives no number for "moderate to severe", so none is added here.
 # - The two exclusions must be documented, for example by a neurological exam or imaging: a chart that
@@ -36,6 +38,15 @@ criteria:
       - that causes functional deficit measured on pain or disability scale
       - Oswestry Disability Index (ODI)
 
+  # LCD indication 1, footnote
+  - criterion_id: l38773_first_mbb.baseline_disability_scale
+    text: >-
+      A disability scale, such as the Oswestry Disability Index, is documented at baseline, before the
+      first diagnostic block.
+    source_quotes:
+      - A disability scale must also be obtained at baseline to be used for functional assessment
+      - Oswestry Disability Index (ODI)
+      
   # LCD indication 2
   - criterion_id: l38773_first_mbb.duration
     text: The pain has been present for at least 3 months.

@@ -1,7 +1,7 @@
-# Needs documentation: nothing in the chart describes how the pain limits function, and no disability
-# scale was recorded. Every other criterion is documented.
+# Needs documentation, two gaps: nothing in the chart describes how the pain limits function, and no
+# baseline disability scale was recorded. Every other criterion is documented.
 policy_id: l38773_first_mbb
-tags: [needs-documentation, gap-function]
+tags: [needs-documentation, gap-function, gap-disability-scale, two-gaps]
 request:
   case_id: dev_003
   payer: Medicare
@@ -39,6 +39,7 @@ labels:
   l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
   l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
   l38773_first_mbb.functional_deficit: {status: insufficient_evidence}
+  l38773_first_mbb.baseline_disability_scale: {status: insufficient_evidence}
   l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
   l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n2, n4]}
   l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n4]}

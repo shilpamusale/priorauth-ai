@@ -15,7 +15,7 @@ def test_every_policy_cites_a_public_source():
         assert policy.source.startswith("https://"), f"{policy.policy_id} must cite its coverage document"
 
 
-def test_facet_policy_keeps_the_seven_reviewed_criteria():
+def test_facet_policy_keeps_the_eight_reviewed_criteria():
     """Changing the reviewed criteria should be a deliberate edit to this test, not an accident."""
     policy = load_policies(POLICY_DIR)["l38773_first_mbb"]
-    assert len(policy.criteria) == 7 and all(c.required for c in policy.criteria)
+    assert len(policy.criteria) == 8 and all(c.required for c in policy.criteria)
