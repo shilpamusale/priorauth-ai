@@ -1,0 +1,6 @@
+# Public demo: hide the developer toolbar and do not send usage statistics.
+[client]
+toolbarMode = "viewer"
+
+[browser]
+gatherUsageStats = false
