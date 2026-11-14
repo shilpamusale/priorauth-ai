@@ -9,7 +9,7 @@ import pytest
 from priorauth.decision import decide
 from priorauth.llm.base import ModelResponse, StopReason, ToolCall, Usage
 from priorauth.llm.scripted import ScriptedClient
-from priorauth.matcher import DEFAULT_MODEL, PROMPT_VERSION, StopCause, load_prompt, match
+from priorauth.matcher import DEFAULT_MODEL, MAX_TOKENS, PROMPT_VERSION, StopCause, load_prompt, match
 from priorauth.policies import load_policies
 from priorauth.schemas import ClinicalNote, CriterionStatus, Decision, PARequest, Policy, PolicyCriterion
 
@@ -88,6 +88,7 @@ def test_first_request_carries_the_case_but_not_the_note_text():
     _, client = run(reply(("submit_finding", DURATION), ("submit_finding", SCALE)))
     request = client.requests[0]
     assert request.model == DEFAULT_MODEL
+    assert request.max_tokens == MAX_TOKENS
     assert request.system == load_prompt()
     assert [t.name for t in request.tools] == ["read_note", "search_chart", "submit_finding"]
     message = request.turns[0].text
