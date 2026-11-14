@@ -43,6 +43,7 @@ labels:
   l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
   l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
   l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n4]}
   l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
   l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n2, n4]}
   l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n4]}
