@@ -115,3 +115,11 @@ def test_scripted_client_fails_loudly_when_out_of_responses():
 
 def test_scripted_client_satisfies_the_interface():
     assert isinstance(ScriptedClient([]), ModelClient)
+
+
+def test_provider_blocks_belong_to_the_assistant_and_survive_as_turn():
+    blocks = [{"type": "thinking", "thinking": "", "signature": "sig"}, {"type": "text", "text": "Hi."}]
+    with pytest.raises(ValidationError, match="only the assistant"):
+        Turn(role="user", text="hello", provider_blocks=blocks)
+    response = ModelResponse(text="Hi.", stop_reason=StopReason.END_TURN, provider_blocks=blocks)
+    assert response.as_turn().provider_blocks == blocks

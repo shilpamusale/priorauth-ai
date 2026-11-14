@@ -41,11 +41,14 @@ class Turn(Contract):
     text: str = ""
     tool_calls: list[ToolCall] = Field(default_factory=list)
     tool_results: list[ToolResult] = Field(default_factory=list)
+    # The provider's own content blocks for an assistant turn, in order, sent back unchanged. Some models
+    # return reasoning (Claude's thinking blocks) that must be replayed exactly in a tool-use loop.
+    provider_blocks: list[dict[str, Any]] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def _parts_match_the_role(self) -> Self:
-        if self.role == "user" and self.tool_calls:
-            raise ValueError("only the assistant makes tool calls")
+        if self.role == "user" and (self.tool_calls or self.provider_blocks):
+            raise ValueError("only the assistant makes tool calls or returns provider blocks")
         if self.role == "assistant" and self.tool_results:
             raise ValueError("only the user side returns tool results")
         if not (self.text or self.tool_calls or self.tool_results):
@@ -98,10 +101,11 @@ class ModelResponse(Contract):
     tool_calls: list[ToolCall] = Field(default_factory=list)
     stop_reason: StopReason
     usage: Usage = Field(default_factory=Usage)
+    provider_blocks: list[dict[str, Any]] = Field(default_factory=list)  # see Turn.provider_blocks
 
     def as_turn(self) -> Turn:
         """The reply as the assistant's turn, ready to append to the conversation."""
-        return Turn(role="assistant", text=self.text, tool_calls=self.tool_calls)
+        return Turn(role="assistant", text=self.text, tool_calls=self.tool_calls, provider_blocks=self.provider_blocks)
 
 
 @runtime_checkable

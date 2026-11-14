@@ -15,6 +15,7 @@ from priorauth.tools import ChartTools
 DEFAULT_MODEL = "claude-sonnet-5-5"
 PROMPT_VERSION = "matcher_v1"
 MAX_STEPS = 20  # model calls per case; bounds the cost of a model that never finishes
+MAX_TOKENS = 16_000  # per reply: room for the model's thinking as well as its tool calls
 
 
 class StopCause(StrEnum):
@@ -63,7 +64,10 @@ def match(
     steps, stop = 0, StopCause.STEP_LIMIT
     while steps < max_steps:
         steps += 1
-        response = client.complete(ModelRequest(model=model, system=system, turns=turns, tools=tools.specs()))
+        model_request = ModelRequest(
+            model=model, system=system, turns=turns, tools=tools.specs(), max_tokens=MAX_TOKENS
+        )
+        response = client.complete(model_request)
         usage = Usage(
             input_tokens=usage.input_tokens + response.usage.input_tokens,
             output_tokens=usage.output_tokens + response.usage.output_tokens,

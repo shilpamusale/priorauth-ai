@@ -140,9 +140,42 @@ def test_stop_reasons_are_mapped(claude_reason, ours):
 
 
 def test_unsupported_block_fails_loudly():
-    reply = message([{"type": "thinking", "thinking": "Let me think.", "signature": "sig"}], stop_reason="end_turn")
+    reply = message([{"type": "server_tool_use", "id": "srvtoolu_1", "name": "web_search", "input": {}}])
     with pytest.raises(ValueError, match="unsupported content blocks"):
         ClaudeClient(FakeSDK(reply)).complete(REQUEST)
+
+
+THINKING_REPLY = [
+    {"type": "thinking", "thinking": "", "signature": "sig_1"},
+    {"type": "text", "text": "Checking the PT note."},
+    {"type": "tool_use", "id": "toolu_2", "name": "read_note", "input": {"note_id": "n2"}},
+    {"type": "redacted_thinking", "data": "opaque"},
+]
+
+
+def test_thinking_blocks_are_kept_but_not_read_as_text():
+    response = ClaudeClient(FakeSDK(message(THINKING_REPLY))).complete(REQUEST)
+    assert response.text == "Checking the PT note."
+    assert [c.id for c in response.tool_calls] == ["toolu_2"]
+    assert response.provider_blocks == THINKING_REPLY
+
+
+def test_a_claude_turn_is_sent_back_exactly_as_received():
+    """Sonnet 5.5 thinks by default; the API expects its thinking blocks back unchanged, in order."""
+    sdk = FakeSDK(message(THINKING_REPLY))
+    response = ClaudeClient(sdk).complete(REQUEST)
+    answer = Turn(role="user", tool_results=[ToolResult(tool_call_id="toolu_2", content="ODI 44%")])
+    follow_up = REQUEST.model_copy(update={"turns": [*REQUEST.turns, response.as_turn(), answer]})
+    ClaudeClient(sdk).complete(follow_up)
+    assert sdk.sent[1]["messages"][3] == {"role": "assistant", "content": THINKING_REPLY}
+    for block in THINKING_REPLY:
+        param = {
+            "thinking": anthropic.types.ThinkingBlockParam,
+            "redacted_thinking": anthropic.types.RedactedThinkingBlockParam,
+            "text": anthropic.types.TextBlockParam,
+            "tool_use": anthropic.types.ToolUseBlockParam,
+        }[block["type"]]
+        assert set(block) <= set(typing.get_type_hints(param)), block
 
 
 def test_reply_can_continue_the_conversation():
