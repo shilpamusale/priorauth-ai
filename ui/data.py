@@ -13,6 +13,7 @@ from evals.checks import run_checks
 from evals.gold import GoldCase
 from evals.runner import GOLD, POLICIES, RECORDINGS, TrialResult, recording_path, replay_trial
 from priorauth.ingest import normalize
+from priorauth.llm.base import ToolResult
 from priorauth.llm.replay import StaleRecording
 from priorauth.matcher import DEFAULT_MODEL
 from priorauth.schemas import Policy
@@ -47,6 +48,28 @@ def replay(case: GoldCase, policy: Policy, recordings: Path, trial: int) -> Tria
     except StaleRecording as error:
         return TrialResult(case_id=case.case_id, trial=trial, error=str(error))
     return TrialResult(case_id=case.case_id, trial=trial, checks=run_checks(case, policy, record), record=record)
+
+
+def replay_all(
+    policies: dict[str, Policy], cases: dict[str, GoldCase], recordings: Path
+) -> dict[tuple[str, int], TrialResult]:
+    """Every recorded trial, replayed and scored, keyed by (case ID, trial number) in case order."""
+    return {
+        (case_id, trial): replay(cases[case_id], policies[cases[case_id].policy_id], recordings, trial)
+        for case_id, trials in recorded_trials(recordings, list(cases)).items()
+        for trial in trials
+    }
+
+
+def brief(result: ToolResult) -> str:
+    """A tool result shortened for the run log: errors in full, anything else to its first line and sentence.
+
+    The note text a read_note call returned is already shown in the chart, and a submit_finding reply repeats
+    the list of criteria still open, so the log keeps only what identifies the step.
+    """
+    if result.is_error:
+        return f"Error: {result.content}"
+    return result.content.splitlines()[0].split(". ")[0] if result.content else ""
 
 
 def highlight(text: str, quotes: list[str]) -> str:

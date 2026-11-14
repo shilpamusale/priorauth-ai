@@ -7,11 +7,11 @@ from streamlit.testing.v1 import AppTest
 
 from evals.gold import load_split
 from evals.runner import record_trial, recording_path
-from priorauth.llm.base import ModelResponse, StopReason, ToolCall
+from priorauth.llm.base import ModelResponse, StopReason, ToolCall, ToolResult
 from priorauth.llm.scripted import ScriptedClient
 from priorauth.matcher import DEFAULT_MODEL
 from priorauth.policies import load_policies
-from ui.data import SPLIT, highlight, recorded_trials, replay
+from ui.data import SPLIT, brief, highlight, recorded_trials, replay, replay_all
 
 APP = Path(__file__).resolve().parents[1] / "ui" / "app.py"
 
@@ -42,6 +42,27 @@ def test_overlapping_quotes_become_one_mark():
 
 def test_no_quotes_leaves_the_note_unmarked():
     assert highlight("No leg pain.", []) == "No leg pain."
+
+
+@pytest.mark.parametrize(
+    "content,error,shown",
+    [
+        (
+            "n1 | 2026-03-10 | primary care visit\n\nLow back pain since March.",
+            False,
+            "n1 | 2026-03-10 | primary care visit",
+        ),
+        ("Recorded demo.duration. Still to submit: demo.scale.", False, "Recorded demo.duration"),
+        (
+            "quote 'ODI 48%' is not in n2. Copy each quote exactly.",
+            True,
+            "Error: quote 'ODI 48%' is not in n2. Copy each quote exactly.",
+        ),
+        ("", False, ""),
+    ],
+)
+def test_brief_keeps_what_identifies_the_step(content, error, shown):
+    assert brief(ToolResult(tool_call_id="toolu_1", content=content, is_error=error)) == shown
 
 
 def test_recorded_trials_sorts_numerically_and_skips_cases_without_recordings(tmp_path):
@@ -92,6 +113,14 @@ def test_replay_scores_a_recorded_trial(real, tmp_path):
     assert {c.name: c.passed for c in result.checks}["decision_correct"] is False  # gold says ready
 
 
+def test_replay_all_scores_every_recorded_trial(real, tmp_path):
+    policies, cases = real
+    record_dev_001(policies, cases, tmp_path)
+    results = replay_all(policies, cases, tmp_path)
+    assert list(results) == [("dev_001", 1)]
+    assert results[("dev_001", 1)].record.determination.decision == "needs_documentation"
+
+
 def test_replay_reports_a_missing_recording(real, tmp_path):
     policies, cases = real
     case = cases["dev_002"]
@@ -120,6 +149,17 @@ def test_page_shows_a_recorded_trial(real, monkeypatch, tmp_path):
     assert any("<mark>Pain NRS 7/10</mark>" in h.proto.body for h in app.get("html"))
     assert "Expected **ready_to_submit**; this trial differs from it." in text
     assert any(e.label.startswith("✅ pain severity: met (matches the gold label)") for e in app.expander)
+    assert [(m.label, m.value) for m in app.metric] == [
+        ("Runs with the expected decision", "0 of 1"),
+        ("Hard-gate failures", "0"),
+        ("Model cost per run", "$0.00"),
+    ]
+    policy = real[0]["l38773_first_mbb"]
+    assert f"]({policy.source})" in app.markdown[0].value
+    assert any('"Moderate to severe chronic neck or low back pain"' in t.value for t in app.text)
+    log = [t.value for t in app.text]
+    assert "Recorded l38773_first_mbb.pain_severity" in log
+    assert not any("Still to submit" in line for line in log)  # the run log is shortened
 
 
 def test_model_text_is_never_rendered_as_markdown(real, monkeypatch, tmp_path):
