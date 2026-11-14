@@ -1,0 +1,20 @@
+{
+ "cases": 14,
+ "trials": 42,
+ "errors": 0,
+ "decision_accuracy": 1.0,
+ "criterion_accuracy": 0.9940476190476191,
+ "check_pass_rates": {
+  "decision_correct": 1.0,
+  "criteria_correct": 0.9523809523809523,
+  "evidence_notes_match": 1.0,
+  "evidence_grounded": 1.0,
+  "ready_requires_all_met": 1.0,
+  "decision_follows_criteria": 1.0
+ },
+ "hard_gate_failures": [],
+ "unstable_cases": [],
+ "input_tokens": 223944,
+ "output_tokens": 80487,
+ "cost_usd": 1.2528
+}

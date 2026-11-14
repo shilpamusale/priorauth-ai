@@ -1,0 +1,457 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "d86ef5a1d5a3bef1",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01TwVi1nxtDVTnEwV4Yh3xEb",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01V4s5KniCaSioGQYXjiRpN5",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_013sSeQZU1vH7dY9yCJNSbky",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_016HDyfsVXG2KPtoCSFszfc5",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     },
+     {
+      "id": "toolu_01WWsFT9PAsUmcprH6MUGVbi",
+      "name": "read_note",
+      "input": {
+       "note_id": "n5"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2347,
+     "output_tokens": 238
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01TwVi1nxtDVTnEwV4Yh3xEb",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01V4s5KniCaSioGQYXjiRpN5",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_013sSeQZU1vH7dY9yCJNSbky",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_016HDyfsVXG2KPtoCSFszfc5",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01WWsFT9PAsUmcprH6MUGVbi",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n5"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "68dc0c29e2bed97a",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01LchbC8aP7yH4QA354D1FsL",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.pain_severity",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n5",
+         "quote": "NRS 6/10"
+        }
+       ],
+       "reasoning": "NRS 6/10 is moderate to severe low back pain."
+      }
+     },
+     {
+      "id": "toolu_01FqJWU8n5j1kAvQSxDALcaN",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.axial_pain",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "Axial, no radiation to LE."
+        },
+        {
+         "note_id": "n5",
+         "quote": "LBP x 5 mo, axial"
+        }
+       ],
+       "reasoning": "Pain is documented as axial without leg radiation."
+      }
+     },
+     {
+      "id": "toolu_016F6Kyj6JQzEj4c8qLPKZA4",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.functional_deficit",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "ODI 38%"
+        },
+        {
+         "note_id": "n2",
+         "quote": "difficulty w/ prolonged standing and lifting >10 lb"
+        }
+       ],
+       "reasoning": "ODI 38% with specific functional limitations."
+      }
+     },
+     {
+      "id": "toolu_01MzZikPdd3KNUstDHYiVz1x",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "ODI 38%"
+        },
+        {
+         "note_id": "n3",
+         "quote": "ODI 40% at d/c"
+        }
+       ],
+       "reasoning": "ODI was documented at PT evaluation, before any block."
+      }
+     },
+     {
+      "id": "toolu_01VDMfL1xK9fLZQFjMZvWMu3",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.duration",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "LBP since 4/1/26"
+        },
+        {
+         "note_id": "n5",
+         "quote": "LBP x 5 mo"
+        }
+       ],
+       "reasoning": "Pain since 4/1/26 is about 6 months at the request date."
+      }
+     },
+     {
+      "id": "toolu_01FJMD4Abq2GFwKaBuYBaMe9",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.conservative_care_failed",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n5",
+         "quote": "Failed ibuprofen/APAP x 3 mo + 8 wks PT."
+        },
+        {
+         "note_id": "n3",
+         "quote": "No meaningful change; ODI 40% at d/c."
+        }
+       ],
+       "reasoning": "NSAID/APAP and PT failed, with no ODI improvement after PT."
+      }
+     },
+     {
+      "id": "toolu_01D4kQe4XBQMfVkctWsouvYd",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_untreated_radiculopathy",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n5",
+         "quote": "No radic sx, no claudication."
+        },
+        {
+         "note_id": "n5",
+         "quote": "SLR neg bilat"
+        }
+       ],
+       "reasoning": "Normal neuro exam, negative SLR, no radicular symptoms or claudication."
+      }
+     },
+     {
+      "id": "toolu_01AF9G1UeeMSXqKsE2c2zj3b",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_other_pathology",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "No fx, no listhesis, no destructive lesion."
+        },
+        {
+         "note_id": "n5",
+         "quote": "Red flags neg"
+        }
+       ],
+       "reasoning": "Imaging shows no fracture, listhesis or destructive lesion, and red flags are negative."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 3197,
+     "output_tokens": 1723
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS1wUKEAgTGAI4AUIIdGhpbmtpbmcSDGG1InLKE55rs+VmtxoM3Nj1dnE8Dq+kugZlIjAoJmYAqZSnqkcXq4Q9rA3Z9PPZS6MNr7/jpDD6gvuAEmRzTmgZlGf5htf28bdiNuoq9AR2FrZ6Ubarz/avz3THcZc4CIkjZNnQBxzBbNucPCpVSf9RI5fkjm4YVaYaXXtfvKcP3vvZvTISXCkpg6V+4tffG+Hl5So8YQ1EDdcJHAX0vd6nDoxbZYGLRn1x7gf4wbSZvSrPq5WIzgGL0OLNBKf/+/UpcarC8o/bQMsQFJXPhRkSlgIxVT0dxpjNdw2wB/XF57Ef/rJEcPpY2we7h6wTmE6I+gUMjnmy70MJDWAhllkKYeiZIIcHFUICndAZ79YfNp4Nzd5m8fmwk1g1EHfJ0EyD7jg+qTpBYctS9ZEwcasVZH1RSMnjfRc5pufJP6YwOJZ12K3nGSuOsfkcixOFe+GJLCvBa2Nx5jW+9FAPjaSpepZGJpUF9y5x+8zdA0KCneWgC7VVrsvYrONmaFKgLCOPtxSHn3c1NjGbsnGeLcdUxKWonNQDA7fNhIbuTNh1tUFJvez2qx8ls5rvqph4HuPxzvR84G5Rs5lSvnX9Ud1kbG2AsgYtMxJwQRZ8NokiFw9oqLAuuUWfq05iDUN8K4B8FD4G4hF14tMvpc7BgIY3wCFc3m7NLhljy9YnwAThGZMRp7ydab+MkkXcu/4G/1QRzEjB9h8eHMitg/yOIXHjHU7QPbVQEuGz4lI9fZ2JB/PYfO9TA5cj7iqTcARt/5tv9pkYHQvkVop4ho1UrdwX9iWbwSVYFlYVXM3rDYJfkvsZi5zK2M7b8bjFypdL4mA7UhRMylp4x59mxeuluRwSWRFJBCBUbTNbwoSWDf2VOwr9COEjz+4lLIU+QygR700dsFVToVi0ltuRp7Mgq0s70JLxS6TEdM6AD17NsVjz8EAnGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01LchbC8aP7yH4QA354D1FsL",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.pain_severity",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n5",
+         "quote": "NRS 6/10"
+        }
+       ],
+       "reasoning": "NRS 6/10 is moderate to severe low back pain."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01FqJWU8n5j1kAvQSxDALcaN",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.axial_pain",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "Axial, no radiation to LE."
+        },
+        {
+         "note_id": "n5",
+         "quote": "LBP x 5 mo, axial"
+        }
+       ],
+       "reasoning": "Pain is documented as axial without leg radiation."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_016F6Kyj6JQzEj4c8qLPKZA4",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.functional_deficit",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "ODI 38%"
+        },
+        {
+         "note_id": "n2",
+         "quote": "difficulty w/ prolonged standing and lifting >10 lb"
+        }
+       ],
+       "reasoning": "ODI 38% with specific functional limitations."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01MzZikPdd3KNUstDHYiVz1x",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "ODI 38%"
+        },
+        {
+         "note_id": "n3",
+         "quote": "ODI 40% at d/c"
+        }
+       ],
+       "reasoning": "ODI was documented at PT evaluation, before any block."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01VDMfL1xK9fLZQFjMZvWMu3",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.duration",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "LBP since 4/1/26"
+        },
+        {
+         "note_id": "n5",
+         "quote": "LBP x 5 mo"
+        }
+       ],
+       "reasoning": "Pain since 4/1/26 is about 6 months at the request date."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01FJMD4Abq2GFwKaBuYBaMe9",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.conservative_care_failed",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n5",
+         "quote": "Failed ibuprofen/APAP x 3 mo + 8 wks PT."
+        },
+        {
+         "note_id": "n3",
+         "quote": "No meaningful change; ODI 40% at d/c."
+        }
+       ],
+       "reasoning": "NSAID/APAP and PT failed, with no ODI improvement after PT."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01D4kQe4XBQMfVkctWsouvYd",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_untreated_radiculopathy",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n5",
+         "quote": "No radic sx, no claudication."
+        },
+        {
+         "note_id": "n5",
+         "quote": "SLR neg bilat"
+        }
+       ],
+       "reasoning": "Normal neuro exam, negative SLR, no radicular symptoms or claudication."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01AF9G1UeeMSXqKsE2c2zj3b",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_other_pathology",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "No fx, no listhesis, no destructive lesion."
+        },
+        {
+         "note_id": "n5",
+         "quote": "Red flags neg"
+        }
+       ],
+       "reasoning": "Imaging shows no fracture, listhesis or destructive lesion, and red flags are negative."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}
