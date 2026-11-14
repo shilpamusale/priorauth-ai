@@ -12,3 +12,4 @@ tests
 .env.*
 *.pdf
 mlruns
+mlflow.db

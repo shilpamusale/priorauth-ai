@@ -1,7 +1,7 @@
 .PHONY: install lint test
 
 install:
-	pip install -e ".[dev,ingest,agent,ui]"
+	pip install -e ".[dev,ingest,agent,ui,track]"
 
 lint:
 	ruff check .

@@ -108,6 +108,7 @@ python -m venv .venv && source .venv/bin/activate
 make install
 make test                                      # unit tests, no API key needed
 python -m evals.runner replay                  # score the committed recordings, no API key needed
+python -m evals.runner replay --track          # ...and log the run to MLflow (local mlflow.db)
 python -m streamlit run ui/app.py              # the demo, locally
 
 # live runs need ANTHROPIC_API_KEY
@@ -135,6 +136,7 @@ evals/
   gold/           dev and held-out cases
   recordings/     recorded live runs, replayed in CI and in the demo
   checks.py, runner.py, scoring.py   checks, record/replay runner, metrics and the CI gate
+  tracking.py     MLflow logging of each evaluation run
 ui/               Streamlit demo
 tests/            unit tests for every module, policy and gold case
 ```
@@ -147,7 +149,8 @@ tests/            unit tests for every module, policy and gold case
 - [x] Criteria-matching agent (Claude API, strict tool use) with quote checks and an audit record
 - [x] Record-and-replay evaluation runner, checks with hard gates, metrics and a CI eval gate
 - [x] Public demo on Cloud Run (Docker, Streamlit) showing recorded runs
-- [ ] MLflow tracking; live demo runs with a daily spending cap; FastAPI service
+- [x] MLflow tracking of evaluation runs (params, metrics, fingerprints of the policy, prompt and gold set)
+- [ ] Live demo runs with a daily spending cap; FastAPI service
 - [ ] Multi-agent orchestration: one evidence agent per criterion, compared with the single agent
 - [ ] LLM-as-judge grading, calibrated against human labels
 - [ ] Policy retrieval with ChromaDB, and a second policy added with no code changes
