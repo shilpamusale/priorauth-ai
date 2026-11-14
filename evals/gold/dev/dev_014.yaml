@@ -1,0 +1,51 @@
+# Ready to submit, adversarial: the January note documents a left L5 radiculopathy, but it was treated
+# and resolved by April, and the current neuro exam is normal. An agent that stops at the old note would
+# wrongly escalate.
+policy_id: l38773_first_mbb
+tags: [ready, adversarial, resolved-radiculopathy]
+request:
+  case_id: dev_014
+  payer: Medicare
+  request_date: 2026-10-13
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-01-20
+      note_type: primary care visit
+      text: >-
+        Low back pain since early January 2026 with pain shooting down the left leg to the foot. Positive
+        straight-leg raise on the left. Impression: left L5 radiculopathy. Started a 6-day oral steroid
+        taper and naproxen 500 mg twice daily; referred to physical therapy.
+    - note_id: n2
+      date: 2026-04-24
+      note_type: physical therapy discharge summary
+      text: >-
+        10 weeks of physical therapy completed. Leg pain resolved by week 6. Low back pain persists,
+        unchanged. Oswestry Disability Index 36% at intake and 38% at discharge.
+    - note_id: n3
+      date: 2026-07-14
+      note_type: lumbar MRI report
+      text: >-
+        Facet arthropathy at L4-L5 and L5-S1. No disc herniation or nerve root compression. No fracture. No
+        findings to suggest tumor or infection. Normal alignment.
+    - note_id: n4
+      date: 2026-09-29
+      note_type: pain management consult
+      text: >-
+        Low back pain since January 2026. The left leg pain resolved in April after the steroid taper and
+        physical therapy and has not returned. Current pain is axial, over the lower lumbar facets, without
+        radiation. Pain NRS 6/10, ODI 38%; cannot stand through a church service. Failed naproxen and 10
+        weeks of physical therapy for the back pain. Neuro exam: strength 5/5, sensation intact, reflexes
+        symmetric, straight-leg raise negative on both sides. No current radicular symptoms. Plan: L4-L5 and
+        L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n3]}
+expected_decision: ready_to_submit
