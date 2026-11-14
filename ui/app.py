@@ -12,10 +12,10 @@ from pathlib import Path
 import streamlit as st
 
 from evals.gold import load_split
-from evals.scoring import cost_usd
+from evals.scoring import cost_usd, summarize
 from priorauth.policies import load_policies
 from priorauth.schemas import CriterionStatus, Decision
-from ui.data import SPLIT, folders, highlight, recorded_trials, replay
+from ui.data import SPLIT, brief, folders, highlight, replay_all
 
 REPO = "https://github.com/shilpamusale/priorauth-ai"
 DECISION_BOX = {
@@ -31,27 +31,45 @@ STATUS_ICON = {
 
 
 @st.cache_resource
-def load(gold: Path, policy_dir: Path):
-    """Policies and gold cases, loaded once per server and checked as they load."""
+def load(gold: Path, policy_dir: Path, recordings: Path):
+    """Policies, gold cases and every recorded trial replayed and scored, once per server."""
     policies = load_policies(policy_dir)
-    return policies, load_split(gold, SPLIT, policies)
+    cases = load_split(gold, SPLIT, policies)
+    return policies, cases, replay_all(policies, cases, recordings)
 
 
 st.set_page_config(page_title="PriorAuth-AI", page_icon="🩺", layout="wide")
+gold, recordings, policy_dir = folders()
+policies, cases, results = load(gold, policy_dir, recordings)
+sources = " · ".join(f"[{p.title}]({p.source})" for p in policies.values())
+
 st.title("PriorAuth-AI")
 st.markdown(
     "Is this prior authorization request **ready to submit** to the payer? An agent reads the patient's chart "
     "with tools and checks each criterion of the coverage policy, quoting the chart as evidence. The decision "
-    "is then computed in code, never by the model. Patients are synthetic; the policy is the public Medicare "
-    f"coverage document LCD L38773. [Source code]({REPO})"
+    "is then computed in code, never by the model. Patients are synthetic; the policy is a public Medicare "
+    f"coverage document: {sources}. [Source code]({REPO})"
 )
-
-gold, recordings, policy_dir = folders()
-policies, cases = load(gold, policy_dir)
-trials = recorded_trials(recordings, list(cases))
-if not trials:
+if not results:
     st.info("No recorded runs yet. Record one with: `python -m evals.runner record --cases dev_001 --trials 1`")
     st.stop()
+
+summary = summarize(list(results.values()), cases)
+ran = summary.trials - summary.errors
+cost_per_run = "unknown" if summary.cost_usd is None else f"${summary.cost_usd / max(ran, 1):.2f}"
+runs, gates, cost = st.columns(3)
+runs.metric("Runs with the expected decision", f"{round(summary.decision_accuracy * ran)} of {ran}")
+gates.metric("Hard-gate failures", len(summary.hard_gate_failures))
+cost.metric("Model cost per run", cost_per_run)
+st.caption(
+    f"{summary.cases} synthetic dev cases, {summary.trials} recorded runs of the live model. "
+    "Held-out cases stay unseen until the final evaluation."
+)
+if summary.errors:
+    st.warning(f"{summary.errors} recordings no longer match the code and are not counted.")
+trials = {}
+for case_id, trial in results:
+    trials.setdefault(case_id, []).append(trial)
 
 pick_case, pick_trial = st.columns([3, 1])
 case_id = pick_case.selectbox("Synthetic case", list(trials), format_func=lambda c: f"{c} ({', '.join(cases[c].tags)})")
@@ -63,7 +81,7 @@ st.caption(
 
 case = cases[case_id]
 policy = policies[case.policy_id]
-result = replay(case, policy, recordings, trial)
+result = results[(case_id, trial)]
 if result.error:
     st.error(f"This recording no longer matches the code: {result.error}")
     st.stop()
@@ -92,6 +110,9 @@ with left:
         name = criterion.criterion_id.split(".", 1)[1].replace("_", " ")
         with st.expander(f"{STATUS_ICON.get(status, '⚠️')} {name}: {status or 'no finding'} ({agrees})"):
             st.markdown(f"**Policy:** {criterion.text}")
+            if criterion.source_quotes:
+                st.caption("From the LCD")
+                st.text("\n".join(f'"{quote}"' for quote in criterion.source_quotes))
             if not finding:
                 st.markdown("No grounded finding, so this criterion counts as unchecked and the case escalates.")
                 continue
@@ -150,7 +171,6 @@ with st.expander("Every tool call in this run"):
             st.markdown(f"**{number}. {call.name}**")
             st.code(json.dumps(call.input), language="json", wrap_lines=True)
             if answer := answers.get(call.id):
-                text = answer.content if len(answer.content) <= 400 else answer.content[:400] + " …"
-                st.text(("Error: " if answer.is_error else "") + text)
+                st.text(brief(answer))
 
 st.caption("Synthetic data for demonstration only. Not for clinical or billing use.")
