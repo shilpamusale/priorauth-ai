@@ -1,0 +1,49 @@
+# Ready to submit: clinic shorthand, with the evidence spread across five notes.
+policy_id: l38773_first_mbb
+tags: [ready, shorthand, scattered]
+request:
+  case_id: dev_002
+  payer: Medicare
+  request_date: 2026-10-01
+  service_code: "64493"
+  icd10_codes: [M47.816, M54.50]
+  notes:
+    - note_id: n1
+      date: 2026-04-14
+      note_type: primary care visit
+      text: >-
+        LBP since 4/1/26, no injury. Axial, no radiation to LE. Start ibuprofen 600 mg TID + APAP prn.
+        Refer PT.
+    - note_id: n2
+      date: 2026-05-02
+      note_type: physical therapy evaluation
+      text: >-
+        Dx: lumbar facet-mediated pain. ODI 38%. Pt reports difficulty w/ prolonged standing and lifting
+        >10 lb. Plan PT 2x/wk x 8 wks.
+    - note_id: n3
+      date: 2026-07-03
+      note_type: physical therapy discharge summary
+      text: >-
+        16 visits completed. No meaningful change; ODI 40% at d/c. Pt adherent w/ HEP. D/C back to MD.
+    - note_id: n4
+      date: 2026-08-11
+      note_type: lumbar X-ray report
+      text: >-
+        Mild facet hypertrophy L4-S1. Disc spaces maintained. No fx, no listhesis, no destructive lesion.
+        Alignment nl.
+    - note_id: n5
+      date: 2026-09-22
+      note_type: pain management follow-up
+      text: >-
+        LBP x 5 mo, axial, NRS 6/10, worse w/ extension. Failed ibuprofen/APAP x 3 mo + 8 wks PT. Neuro:
+        5/5 BLE, SILT, DTR 2+ sym, SLR neg bilat. No radic sx, no claudication. Red flags neg (no fever,
+        wt loss, hx CA, trauma). Plan L4-5, L5-S1 MBB.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n5]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n5]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n2, n3]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n5]}
+  l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n3, n5]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n5]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n4, n5]}
+expected_decision: ready_to_submit

@@ -1,0 +1,45 @@
+# Needs documentation: no neurological exam and no mention of leg symptoms anywhere, so the absence of
+# radiculopathy is not documented. Every other criterion is documented.
+policy_id: l38773_first_mbb
+tags: [needs-documentation, gap-neuro-exam]
+request:
+  case_id: dev_004
+  payer: Medicare
+  request_date: 2026-09-29
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-03-03
+      note_type: primary care visit
+      text: >-
+        Axial low back pain since mid-February 2026. Tried acetaminophen without relief; starting naproxen
+        500 mg twice daily. Referred to physical therapy.
+    - note_id: n2
+      date: 2026-06-12
+      note_type: physical therapy discharge summary
+      text: >-
+        8 weeks of physical therapy completed. Oswestry Disability Index 36% at intake and 36% at
+        discharge. No change in pain. Home exercise program continued.
+    - note_id: n3
+      date: 2026-08-04
+      note_type: lumbar MRI report
+      text: >-
+        Bilateral facet hypertrophy at L4-L5 and L5-S1. No fracture. No marrow abnormality to suggest tumor
+        or infection. Normal alignment.
+    - note_id: n4
+      date: 2026-09-15
+      note_type: pain management consult
+      text: >-
+        Axial low back pain since February 2026, centered over the lower lumbar facets. Pain NRS 6/10; ODI
+        36%, cannot stand longer than 20 minutes. Failed acetaminophen, naproxen and 8 weeks of physical
+        therapy. Facet loading positive on both sides. Plan: L4-L5 and L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n1, n2, n4]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: insufficient_evidence}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n3]}
+expected_decision: needs_documentation
