@@ -1,0 +1,41 @@
+# Escalate: no conservative care of any kind; the patient was sent straight from primary care for
+# injections. Every other criterion is documented.
+policy_id: l38773_first_mbb
+tags: [escalate, no-conservative-care]
+request:
+  case_id: heldout_005
+  payer: Medicare
+  request_date: 2026-09-24
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-05-04
+      note_type: primary care visit
+      text: >-
+        Axial low back pain since April 2026, no radiation into the legs. No treatment started; referred to
+        pain management for injections at the patient's request.
+    - note_id: n2
+      date: 2026-07-15
+      note_type: lumbar MRI report
+      text: >-
+        MRI lumbar spine: bilateral facet degeneration at L4-L5 and L5-S1 with small effusions. No compression
+        deformity. Bone marrow signal normal. No epidural or paraspinal abnormality. Normal lordosis.
+    - note_id: n3
+      date: 2026-09-10
+      note_type: pain management consult
+      text: >-
+        Axial low back pain since April 2026 over the lower lumbar facets, no radiation. Pain NRS 8/10, ODI
+        48%; unable to work. No medications, physical therapy or other treatment so far. Neuro exam:
+        strength, sensation and reflexes normal; straight-leg raise negative. No radicular symptoms. Plan:
+        L4-L5 and L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n3]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n3]}
+  l38773_first_mbb.conservative_care_failed: {status: not_met, evidence_notes: [n1, n3]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n2]}
+expected_decision: escalate

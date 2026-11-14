@@ -1,0 +1,50 @@
+# Ready to submit, the policy's exception: there is an untreated left L5 radiculopathy, but it is caused by
+# a facet joint synovial cyst, which the LCD allows. The back pain is still predominantly axial.
+policy_id: l38773_first_mbb
+tags: [ready, synovial-cyst-exception]
+request:
+  case_id: heldout_002
+  payer: Medicare
+  request_date: 2026-10-14
+  service_code: "64493"
+  icd10_codes: [M47.816, M71.38]
+  notes:
+    - note_id: n1
+      date: 2026-03-09
+      note_type: primary care visit
+      text: >-
+        Low back pain since February 2026, mostly central, with occasional aching into the left calf. Started
+        meloxicam 15 mg daily and referred to physical therapy.
+    - note_id: n2
+      date: 2026-06-12
+      note_type: physical therapy discharge summary
+      text: >-
+        8 weeks of physical therapy completed. Back pain unchanged; the left calf aching comes and goes.
+        Oswestry Disability Index 40% at intake and 40% at discharge.
+    - note_id: n3
+      date: 2026-07-20
+      note_type: lumbar MRI report
+      text: >-
+        8 mm synovial cyst arising from the left L4-L5 facet joint, contacting the traversing left L5 nerve
+        root. Facet arthropathy at L4-L5 and L5-S1. No fracture. No findings to suggest tumor or infection.
+        Normal alignment.
+    - note_id: n4
+      date: 2026-09-30
+      note_type: pain management consult
+      text: >-
+        Low back pain since February 2026, predominantly axial over the lower lumbar facets (about 75% of her
+        pain), with intermittent aching into the left calf. Pain NRS 7/10, ODI 40%; cannot stand long enough
+        to cook a meal. Failed meloxicam for 4 months and 8 weeks of physical therapy. Neuro exam: strength
+        5/5, mildly reduced sensation over the top of the left foot, reflexes symmetric, straight-leg raise
+        positive on the left at 60 degrees. Impression: left L5 radiculopathy caused by the L4-L5 facet
+        synovial cyst, and axial facet-mediated pain. Plan: L4-L5 and L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n3, n4]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n3]}
+expected_decision: ready_to_submit

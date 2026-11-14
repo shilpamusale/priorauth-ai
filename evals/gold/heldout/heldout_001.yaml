@@ -1,0 +1,50 @@
+# Ready to submit: a spine clinic chart in a different style, with chiropractic manipulation and
+# acetaminophen as the conservative care.
+policy_id: l38773_first_mbb
+tags: [ready, spine-clinic]
+request:
+  case_id: heldout_001
+  payer: Medicare
+  request_date: 2026-10-20
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-02-16
+      note_type: primary care visit
+      text: >-
+        Axial low back pain since late January 2026 after shoveling snow. No leg symptoms. Acetaminophen 1 g
+        three times daily; referred for chiropractic care.
+    - note_id: n2
+      date: 2026-05-08
+      note_type: chiropractic discharge note
+      text: >-
+        12 sessions of spinal manipulation over 8 weeks with home stretching. No lasting relief; the pain
+        returns within a day of each session. Discharged.
+    - note_id: n3
+      date: 2026-07-22
+      note_type: lumbar MRI report
+      text: >-
+        Facet arthropathy at L4-L5 and L5-S1 with small joint effusions. No fracture. No findings to suggest
+        tumor or infection. Normal alignment.
+    - note_id: n4
+      date: 2026-10-07
+      note_type: spine clinic note
+      text: >-
+        64-year-old man with axial low back pain since January 2026, worse with extension and rotation, not
+        radiating into the legs. VAS 7/10. Oswestry 46%: cannot walk more than 10 minutes and has to lie
+        down after household chores. Conservative care: acetaminophen for 8 months and 12 chiropractic
+        sessions without lasting benefit. Exam: tenderness over the L4-S1 facets, pain with extension and
+        rotation. Neuro: motor 5/5 in both legs, sensation intact, knee and ankle reflexes 2+ and symmetric,
+        straight-leg raise negative on both sides. No radicular symptoms or claudication. Red flags: none.
+        Plan: bilateral L4-L5 and L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n3]}
+expected_decision: ready_to_submit

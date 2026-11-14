@@ -1,0 +1,48 @@
+# Needs documentation: the pain is described ("bad most days") but never rated on a pain scale. Every
+# other criterion is documented.
+policy_id: l38773_first_mbb
+tags: [needs-documentation, gap-pain-score]
+request:
+  case_id: heldout_003
+  payer: Medicare
+  request_date: 2026-09-28
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-02-26
+      note_type: primary care visit
+      text: >-
+        Axial low back pain since early February 2026, no radiation into the legs. Started naproxen 500 mg
+        twice daily and referred to physical therapy.
+    - note_id: n2
+      date: 2026-06-05
+      note_type: physical therapy discharge summary
+      text: >-
+        8 weeks of physical therapy completed. Oswestry Disability Index 44% at intake and 44% at discharge.
+        No change in pain.
+    - note_id: n3
+      date: 2026-08-10
+      note_type: lumbar MRI report
+      text: >-
+        Lumbar MRI without contrast. Degenerative facet changes with mild hypertrophy at L4-L5 and L5-S1.
+        Vertebral body heights maintained. Normal marrow signal. No paraspinal collection. Alignment
+        preserved.
+    - note_id: n4
+      date: 2026-09-14
+      note_type: pain management consult
+      text: >-
+        Axial low back pain since February 2026 over the lower lumbar facets, no radiation. She describes the
+        pain as "bad most days". ODI 44%; cannot sit through a movie. Failed naproxen for 3 months and 8 weeks
+        of physical therapy. Neuro exam: strength, sensation and reflexes normal; straight-leg raise negative.
+        No radicular symptoms or claudication. Plan: L4-L5 and L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: insufficient_evidence, evidence_notes: [n4]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n3]}
+expected_decision: needs_documentation
