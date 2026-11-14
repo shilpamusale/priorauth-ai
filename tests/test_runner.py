@@ -173,6 +173,22 @@ def test_held_out_cases_need_an_explicit_flag(gold, tmp_path):
     assert [r.case_id for r in results] == ["heldout_900"]
 
 
+def test_each_trial_is_reported_as_soon_as_it_ends(gold, tmp_path):
+    seen = []
+    results = run_split(
+        "dev",
+        Mode.RECORD,
+        POLICIES,
+        client=ScriptedClient(live_replies(2)),
+        gold=gold,
+        recordings=tmp_path / "rec",
+        trials=1,
+        on_result=lambda result: seen.append((result.case_id, len(list((tmp_path / "rec").rglob("*.json"))))),
+    )
+    assert seen == [("dev_900", 1), ("dev_901", 2)]  # each reported right after its own recording was saved
+    assert len(results) == 2
+
+
 def test_bad_arguments_are_refused(gold, tmp_path):
     with pytest.raises(ValueError, match="no such cases in dev"):
         run_split("dev", Mode.REPLAY, POLICIES, gold=gold, recordings=tmp_path, cases=["dev_999"])
