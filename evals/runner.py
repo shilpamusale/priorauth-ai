@@ -7,7 +7,7 @@ Each trial gives a TrialResult: its checks and audit record, or the error that s
 stale recording is an error for that trial, not a crash, so one run reports every problem at once.
 
     python -m evals.runner record --cases dev_001 --trials 1    # needs ANTHROPIC_API_KEY
-    python -m evals.runner replay
+    python -m evals.runner replay --summary results.json
 """
 
 import argparse
@@ -133,16 +133,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--gold", type=Path, default=GOLD)
     parser.add_argument("--recordings", type=Path, default=RECORDINGS)
     parser.add_argument("--policies", type=Path, default=POLICIES)
+    parser.add_argument("--min-decision-accuracy", type=float, default=0.0, help="CI gate threshold")
+    parser.add_argument("--summary", type=Path, help="also write the summary as JSON to this file")
     args = parser.parse_args(argv)
     client = None
     if args.mode == Mode.RECORD:
         from priorauth.llm.claude import ClaudeClient  # needs the agent extra and ANTHROPIC_API_KEY
 
         client = ClaudeClient()
+    policies = load_policies(args.policies)
     results = run_split(
         args.split,
         Mode(args.mode),
-        load_policies(args.policies),
+        policies,
         client=client,
         gold=args.gold,
         recordings=args.recordings,
@@ -153,7 +156,15 @@ def main(argv: list[str] | None = None) -> int:
     )
     for result in results:
         print(summary_line(result))
-    return 1 if any(result.error for result in results) else 0
+    from evals.scoring import format_summary, gate, summarize  # scoring imports TrialResult from this module
+
+    summary = summarize(results, load_split(args.gold, args.split, policies))
+    print(format_summary(summary))
+    if args.summary:
+        args.summary.write_text(summary.model_dump_json(indent=1) + "\n", encoding="utf-8")
+    failures = gate(summary, args.min_decision_accuracy)
+    print("gate failed: " + "; ".join(failures) if failures else "gate passed")
+    return 1 if failures else 0
 
 
 if __name__ == "__main__":
