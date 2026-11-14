@@ -1,0 +1,42 @@
+# Needs documentation: the patient reports past physical therapy and "some pills", but the chart records
+# no dates, medications or response, so a failure of conservative care is not documented.
+policy_id: l38773_first_mbb
+tags: [needs-documentation, gap-conservative-care]
+request:
+  case_id: dev_007
+  payer: Medicare
+  request_date: 2026-09-21
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-01-12
+      note_type: primary care visit
+      text: >-
+        Low back pain since November 2025, across the lower back, no leg symptoms. No injury. Advised to
+        stay active and use heat.
+    - note_id: n2
+      date: 2026-08-03
+      note_type: lumbar MRI report
+      text: >-
+        Facet arthropathy at L4-L5 and L5-S1. No fracture. No marrow abnormality to suggest tumor or
+        infection. Normal alignment.
+    - note_id: n3
+      date: 2026-09-09
+      note_type: pain management consult
+      text: >-
+        Axial low back pain since November 2025 over the lower lumbar facets, no radiation. Pain NRS 7/10.
+        Oswestry Disability Index 42%; unable to sit through a workday. Patient says she "did PT a while
+        back" and "tried some pills"; she does not recall which medications, when, or whether they helped.
+        Neuro exam: strength, sensation and reflexes normal in both legs; straight-leg raise negative. No
+        radicular symptoms or claudication. Plan: L4-L5 and L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n3]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n3]}
+  l38773_first_mbb.conservative_care_failed: {status: insufficient_evidence, evidence_notes: [n3]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n2]}
+expected_decision: needs_documentation

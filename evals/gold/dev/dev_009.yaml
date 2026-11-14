@@ -1,0 +1,49 @@
+# Escalate: the back pain is still mostly axial, but a new left S1 radiculopathy (shooting leg pain,
+# positive straight-leg raise, reduced ankle reflex) has not been treated.
+policy_id: l38773_first_mbb
+tags: [escalate, untreated-radiculopathy]
+request:
+  case_id: dev_009
+  payer: Medicare
+  request_date: 2026-10-02
+  service_code: "64493"
+  icd10_codes: [M47.816, M54.17]
+  notes:
+    - note_id: n1
+      date: 2026-02-10
+      note_type: primary care visit
+      text: >-
+        Axial low back pain since January 2026, no leg symptoms. Started naproxen 500 mg twice daily and
+        referred to physical therapy.
+    - note_id: n2
+      date: 2026-05-22
+      note_type: physical therapy discharge summary
+      text: >-
+        8 weeks of physical therapy completed. Oswestry Disability Index 38% at intake and 38% at discharge.
+        No change in back pain.
+    - note_id: n3
+      date: 2026-07-30
+      note_type: lumbar MRI report
+      text: >-
+        Facet arthropathy at L4-L5 and L5-S1. No fracture. No findings to suggest tumor or infection. Normal
+        alignment. No significant canal stenosis.
+    - note_id: n4
+      date: 2026-09-18
+      note_type: pain management consult
+      text: >-
+        Low back pain since January 2026, still mostly axial over the lower lumbar facets. Pain NRS 7/10, ODI
+        40%. For the past 6 weeks she also has shooting pain down the left leg below the knee to the outer
+        foot, with numbness. Exam: positive straight-leg raise on the left at 40 degrees, reduced left ankle
+        reflex, decreased sensation over the outer left foot, strength 5/5. Impression: left S1
+        radiculopathy, not yet treated, and axial facet-mediated pain. Failed naproxen and 8 weeks of
+        physical therapy for the back pain. Plan: L4-L5 and L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: not_met, evidence_notes: [n4]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n3]}
+expected_decision: escalate
