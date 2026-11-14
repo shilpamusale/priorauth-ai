@@ -1,0 +1,49 @@
+# Escalate, adversarial: the latest note copies forward the March history ("NRS 8/10, Oswestry 44%"), but
+# today's findings show she improved with physical therapy: pain 2/10, ODI 12%, walking 2 miles a day.
+# Pain severity, functional deficit and failed conservative care are all not met now.
+policy_id: l38773_first_mbb
+tags: [escalate, adversarial, stale-note]
+request:
+  case_id: heldout_006
+  payer: Medicare
+  request_date: 2026-10-09
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-03-12
+      note_type: pain management consult
+      text: >-
+        Axial low back pain since January 2026 over the lower lumbar facets, no radiation. Pain NRS 8/10.
+        Oswestry 44%. Started naproxen 500 mg twice daily and referred to physical therapy.
+    - note_id: n2
+      date: 2026-06-26
+      note_type: physical therapy discharge summary
+      text: >-
+        10 weeks of physical therapy completed. Marked improvement: pain now 2/10, Oswestry Disability Index
+        12% at discharge, back to walking 2 miles a day.
+    - note_id: n3
+      date: 2026-08-05
+      note_type: lumbar MRI report
+      text: >-
+        Lumbar MRI: moderate facet arthropathy at L4-L5, mild at L5-S1. No acute osseous abnormality. No marrow
+        replacement or signs of infection. Alignment normal.
+    - note_id: n4
+      date: 2026-09-30
+      note_type: pain management follow-up
+      text: >-
+        History (copied from the 3/12/2026 visit): Axial low back pain since January 2026 over the lower
+        lumbar facets, no radiation. Pain NRS 8/10. Oswestry 44%. Interval: completed physical therapy. Today
+        she rates her pain 2/10 and is walking 2 miles a day; ODI today 12%. Neuro exam: strength, sensation
+        and reflexes normal; straight-leg raise negative. No radicular symptoms. Plan: L4-L5 and L5-S1 medial
+        branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: not_met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.functional_deficit: {status: not_met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n1]}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.conservative_care_failed: {status: not_met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n3]}
+expected_decision: escalate
