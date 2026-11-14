@@ -11,6 +11,7 @@ stale recording is an error for that trial, not a crash, so one run reports ever
 """
 
 import argparse
+from collections.abc import Callable
 from enum import StrEnum
 from pathlib import Path
 from typing import Self
@@ -83,8 +84,9 @@ def run_split(
     cases: list[str] | None = None,
     model: str = DEFAULT_MODEL,
     allow_heldout: bool = False,
+    on_result: Callable[[TrialResult], None] | None = None,
 ) -> list[TrialResult]:
-    """Every trial of every selected case, in case order."""
+    """Every trial of every selected case, in case order. on_result sees each trial as soon as it ends."""
     if split == "heldout" and not allow_heldout:
         raise ValueError("held-out cases run only in the final evaluation; pass allow_heldout=True for that run")
     if mode is Mode.RECORD and client is None:
@@ -105,11 +107,14 @@ def run_split(
                 else:
                     record = replay_trial(case, policy, path, model)
             except StaleRecording as error:
-                results.append(TrialResult(case_id=case_id, trial=trial, error=str(error)))
-                continue
-            results.append(
-                TrialResult(case_id=case_id, trial=trial, checks=run_checks(case, policy, record), record=record)
-            )
+                result = TrialResult(case_id=case_id, trial=trial, error=str(error))
+            else:
+                result = TrialResult(
+                    case_id=case_id, trial=trial, checks=run_checks(case, policy, record), record=record
+                )
+            results.append(result)
+            if on_result:
+                on_result(result)
     return results
 
 
@@ -153,9 +158,8 @@ def main(argv: list[str] | None = None) -> int:
         cases=args.cases,
         model=args.model,
         allow_heldout=args.allow_heldout,
+        on_result=lambda result: print(summary_line(result), flush=True),  # live progress during long runs
     )
-    for result in results:
-        print(summary_line(result))
     from evals.scoring import format_summary, gate, summarize  # scoring imports TrialResult from this module
 
     summary = summarize(results, load_split(args.gold, args.split, policies))
