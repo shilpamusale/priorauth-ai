@@ -22,8 +22,8 @@ from priorauth.schemas import (
     PARequest,
     Policy,
 )
+from priorauth.verify import quote_problem
 
-MIN_QUOTE_WORDS = 2  # one word ("pain", "PT") cannot show a criterion is met; two can ("ODI 44%", "NRS 7/10")
 MAX_SEARCH_HITS = 10
 SNIPPET_CHARS = 80  # text shown on each side of a search match
 
@@ -151,14 +151,8 @@ class ChartTools:
             raise ToolError(f"{finding.criterion_id!r} is not a criterion of this policy")
         if finding.criterion_id in self.findings:
             raise ToolError(f"{finding.criterion_id} already has a finding, and findings cannot be changed")
-        problems = []
-        for item in finding.evidence:
-            if len(item.quote.split()) < MIN_QUOTE_WORDS:
-                problems.append(f"quote {item.quote!r} is too short; quote at least {MIN_QUOTE_WORDS} words")
-            elif normalize(item.quote) not in normalize(self._note(item.note_id).text):
-                problems.append(f"quote {item.quote!r} is not in {item.note_id}; copy the text exactly from the note")
-        if problems:
-            raise ToolError("; ".join(problems))
+        if problems := [problem for item in finding.evidence if (problem := quote_problem(item, self.notes))]:
+            raise ToolError("; ".join(problems) + ". Copy each quote exactly from the note it names.")
         self.findings[finding.criterion_id] = finding
         left = self.remaining()
         return f"Recorded {finding.criterion_id}. " + (
