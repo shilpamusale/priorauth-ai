@@ -1,0 +1,42 @@
+# Escalate, a gap plus a failure: no baseline disability scale (a gap), and the patient declined all
+# conservative care (not met). The failure must win: escalate, not needs documentation.
+policy_id: l38773_first_mbb
+tags: [escalate, no-conservative-care, gap-disability-scale, gap-plus-failure]
+request:
+  case_id: dev_012
+  payer: Medicare
+  request_date: 2026-09-17
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-04-07
+      note_type: primary care visit
+      text: >-
+        Axial low back pain since early March 2026, no radiation into the legs. Discussed anti-inflammatory
+        medication and physical therapy; the patient declined both and prefers to wait.
+    - note_id: n2
+      date: 2026-07-29
+      note_type: lumbar MRI report
+      text: >-
+        Facet arthropathy at L4-L5 and L5-S1. No fracture. No findings to suggest tumor or infection. Normal
+        alignment.
+    - note_id: n3
+      date: 2026-09-03
+      note_type: pain management consult
+      text: >-
+        Axial low back pain since March 2026 over the lower lumbar facets, no radiation. Pain NRS 7/10;
+        cannot stand for more than 15 minutes and has stopped driving long distances. Has not tried any
+        medication or physical therapy; declined both again today and is asking for an injection first.
+        Neuro exam: strength, sensation and reflexes normal; straight-leg raise negative. No radicular
+        symptoms or claudication. Plan: L4-L5 and L5-S1 medial branch blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n3]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.baseline_disability_scale: {status: insufficient_evidence}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n3]}
+  l38773_first_mbb.conservative_care_failed: {status: not_met, evidence_notes: [n1, n3]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n3]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n2]}
+expected_decision: escalate
