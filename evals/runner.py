@@ -140,6 +140,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--policies", type=Path, default=POLICIES)
     parser.add_argument("--min-decision-accuracy", type=float, default=0.0, help="CI gate threshold")
     parser.add_argument("--summary", type=Path, help="also write the summary as JSON to this file")
+    parser.add_argument("--track", action="store_true", help="log the run to MLflow (needs the track extra)")
     args = parser.parse_args(argv)
     client = None
     if args.mode == Mode.RECORD:
@@ -162,10 +163,15 @@ def main(argv: list[str] | None = None) -> int:
     )
     from evals.scoring import format_summary, gate, summarize  # scoring imports TrialResult from this module
 
-    summary = summarize(results, load_split(args.gold, args.split, policies))
+    cases = load_split(args.gold, args.split, policies)
+    summary = summarize(results, cases)
     print(format_summary(summary))
     if args.summary:
         args.summary.write_text(summary.model_dump_json(indent=1) + "\n", encoding="utf-8")
+    if args.track:
+        from evals.tracking import log_run  # tracking imports this module too
+
+        print(f"MLflow run {log_run(summary, results, cases, policies, split=args.split, mode=args.mode)}")
     failures = gate(summary, args.min_decision_accuracy)
     print("gate failed: " + "; ".join(failures) if failures else "gate passed")
     return 1 if failures else 0

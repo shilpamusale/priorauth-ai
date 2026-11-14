@@ -12,6 +12,10 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+# Local MLflow tracking (see evals/tracking.py)
+mlflow.db
+mlruns/
+
 # macOS
 .DS_Store
 
