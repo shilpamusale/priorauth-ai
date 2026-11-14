@@ -9,6 +9,7 @@ import yaml
 
 from evals.gold import GoldCase, Label
 from evals.runner import Mode, TrialResult, main, recording_path, run_split, summary_line
+from evals.scoring import Summary
 from priorauth.llm.base import ModelResponse, StopReason, ToolCall, Usage
 from priorauth.llm.scripted import ScriptedClient
 from priorauth.policies import load_policies
@@ -197,13 +198,35 @@ def test_summary_lines(gold, tmp_path):
     )
 
 
-def test_command_line_replay_exits_non_zero_when_trials_are_missing(gold, tmp_path, capsys, monkeypatch):
+def test_command_line_prints_the_summary_and_applies_the_gate(gold, tmp_path, capsys, monkeypatch):
     monkeypatch.setattr("evals.runner.load_policies", lambda directory: POLICIES)
     record(gold, tmp_path / "rec", trials=1)
     args = ["replay", "--gold", str(gold), "--recordings", str(tmp_path / "rec")]
-    assert main([*args, "--trials", "1"]) == 0
+    summary_file = tmp_path / "summary.json"
+    assert main([*args, "--trials", "1", "--min-decision-accuracy", "1.0", "--summary", str(summary_file)]) == 0
+    out = capsys.readouterr().out
+    assert "dev_900 trial 1: ready_to_submit, all checks passed" in out
+    assert "decision accuracy 1.00" in out and out.rstrip().endswith("gate passed")
+    assert Summary.model_validate_json(summary_file.read_text()).trials == 2
     assert main([*args, "--trials", "2", "--cases", "dev_901"]) == 1
-    assert "dev_901 trial 2: ERROR no recording" in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert "dev_901 trial 2: ERROR no recording" in out
+    assert out.rstrip().endswith("gate failed: 1 trials have no record")
+
+
+def test_command_line_applies_the_accuracy_threshold(gold, tmp_path, capsys, monkeypatch):
+    monkeypatch.setattr("evals.runner.load_policies", lambda directory: POLICIES)
+    record(gold, tmp_path / "rec", trials=1)
+    # Relabel one case. Labels are not sent to the model, so its recording still replays.
+    path = gold / "dev" / "dev_901.yaml"
+    data = yaml.safe_load(path.read_text())
+    data["labels"]["demo.scale"] = {"status": "insufficient_evidence", "evidence_notes": []}
+    data["expected_decision"] = "needs_documentation"
+    path.write_text(yaml.safe_dump(data))
+    args = ["replay", "--gold", str(gold), "--recordings", str(tmp_path / "rec"), "--trials", "1"]
+    assert main([*args, "--min-decision-accuracy", "0.5"]) == 0
+    assert main([*args, "--min-decision-accuracy", "0.6"]) == 1
+    assert capsys.readouterr().out.rstrip().endswith("gate failed: decision accuracy 0.50 is below 0.60")
 
 
 def test_the_real_dev_split_loads(tmp_path):
