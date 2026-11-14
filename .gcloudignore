@@ -1,0 +1,7 @@
+# What `gcloud run deploy --source .` uploads to Cloud Build. Secrets and local environments never leave the Mac.
+.gcloudignore
+.git
+.venv
+.env
+.env.*
+#!include:.gitignore

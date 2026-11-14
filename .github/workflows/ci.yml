@@ -22,3 +22,20 @@ jobs:
       - run: make install
       - run: make lint
       - run: make test
+
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker build -t priorauth-ai .
+      - name: The image has no model SDK, and the app's imports and prompt load
+        run: |
+          docker run --rm priorauth-ai python -c "import importlib.util as u; assert u.find_spec('anthropic') is None"
+          docker run --rm priorauth-ai python -c "import ui.data, evals.runner; from priorauth.matcher import load_prompt; load_prompt()"
+      - name: The demo starts and answers
+        run: |
+          docker run -d -p 8080:8080 --name demo priorauth-ai
+          for i in $(seq 1 30); do curl -sf localhost:8080/_stcore/health && exit 0; sleep 2; done
+          docker logs demo
+          exit 1
