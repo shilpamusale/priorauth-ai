@@ -1,0 +1,14 @@
+# Keep the image to what the demo needs, and keep secrets and local files out of it.
+.git
+.github
+.venv
+**/__pycache__
+**/*.py[cod]
+*.egg-info
+.pytest_cache
+.ruff_cache
+tests
+.env
+.env.*
+*.pdf
+mlruns
