@@ -1,0 +1,50 @@
+# Needs documentation, one gap: functional limits are described and the pain is scored, but no
+# disability scale was recorded at baseline. Every other criterion is documented.
+policy_id: l38773_first_mbb
+tags: [needs-documentation, gap-disability-scale]
+request:
+  case_id: dev_006
+  payer: Medicare
+  request_date: 2026-10-06
+  service_code: "64493"
+  icd10_codes: [M47.816]
+  notes:
+    - note_id: n1
+      date: 2026-03-18
+      note_type: primary care visit
+      text: >-
+        Axial low back pain since early March 2026, no radiation into the legs. No injury. Started naproxen
+        500 mg twice daily and referred to physical therapy.
+    - note_id: n2
+      date: 2026-07-10
+      note_type: physical therapy discharge summary
+      text: >-
+        Completed 10 weeks of physical therapy (18 visits): core strengthening, mobility work and a home
+        program. Pain unchanged. Still unable to stand at the stove for more than 10 minutes. Discharged
+        with the home program.
+    - note_id: n3
+      date: 2026-08-21
+      note_type: lumbar MRI report
+      text: >-
+        Facet arthropathy at L4-L5 and L5-S1. No fracture. No findings to suggest tumor or infection.
+        Normal alignment.
+    - note_id: n4
+      date: 2026-09-24
+      note_type: pain management consult
+      text: >-
+        Axial low back pain since March 2026, over the lower lumbar facets, no radiation to the legs. Pain
+        NRS 7/10. Cannot stand for more than 10 minutes or walk more than a block; has stopped gardening and
+        needs help carrying groceries. Failed naproxen for 4 months and 10 weeks of physical therapy. Neuro
+        exam: strength 5/5 in both legs, sensation intact, reflexes symmetric, straight-leg raise negative on
+        both sides. No radicular symptoms or neurogenic claudication. Plan: L4-L5 and L5-S1 medial branch
+        blocks.
+labels:
+  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.axial_pain: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.baseline_disability_scale: {status: insufficient_evidence}
+  l38773_first_mbb.duration: {status: met, evidence_notes: [n1, n4]}
+  l38773_first_mbb.conservative_care_failed: {status: met, evidence_notes: [n2, n4]}
+  l38773_first_mbb.no_untreated_radiculopathy: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.no_other_pathology: {status: met, evidence_notes: [n3]}
+expected_decision: needs_documentation
