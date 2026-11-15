@@ -1,0 +1,1193 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "1b9b14374864ec0a",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_011G1ETLBPx8dVPLHUipqZh4",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     },
+     {
+      "id": "toolu_01EUGMS82An5yuQo6mgLAe9S",
+      "name": "search_chart",
+      "input": {
+       "query": "/10"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1740,
+     "output_tokens": 96
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_011G1ETLBPx8dVPLHUipqZh4",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01EUGMS82An5yuQo6mgLAe9S",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "query": "/10"
+      },
+      "name": "search_chart",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "6ec1832569e6dc00",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_0134DnX9hdvKYvrvpPNP38wv",
+      "name": "search_chart",
+      "input": {
+       "query": "Oswestry"
+      }
+     },
+     {
+      "id": "toolu_01K6FNZjZFekDacUVTaqFnHu",
+      "name": "search_chart",
+      "input": {
+       "query": "disability"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1756,
+     "output_tokens": 98
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_0134DnX9hdvKYvrvpPNP38wv",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "query": "Oswestry"
+      },
+      "name": "search_chart",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01K6FNZjZFekDacUVTaqFnHu",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "query": "disability"
+      },
+      "name": "search_chart",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "e1f7bf5687185ccc",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01CQuUuoHnhbmrvoU73YPwVS",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01HvuhZTEojHp99xMrw8R9Kj",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01HuVocSeCTCsNa52vkE2F9d",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1718,
+     "output_tokens": 144
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01CQuUuoHnhbmrvoU73YPwVS",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01HvuhZTEojHp99xMrw8R9Kj",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01HuVocSeCTCsNa52vkE2F9d",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "0282e2d158ee4cfb",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01PcbEyynpy48C6U2GLEHAFB",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01M379ZjPt1oYM2C9Dt8HKFE",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01SriyhntiS33oZheAyxCkav",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_01TmoC7Xqsnc2NmQ2MXcikEE",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1749,
+     "output_tokens": 191
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01PcbEyynpy48C6U2GLEHAFB",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01M379ZjPt1oYM2C9Dt8HKFE",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01SriyhntiS33oZheAyxCkav",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01TmoC7Xqsnc2NmQ2MXcikEE",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "2a68c5224231adea",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01FxJnuzn7fDRR3SAxqcadLr",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01W4DknJ4UMLsJe3vbt3FkWo",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01Qes59XY1CRvwebcu3iyt4P",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_01PDgvhEF5Q35SjsssD6hErE",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1767,
+     "output_tokens": 191
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01FxJnuzn7fDRR3SAxqcadLr",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01W4DknJ4UMLsJe3vbt3FkWo",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01Qes59XY1CRvwebcu3iyt4P",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01PDgvhEF5Q35SjsssD6hErE",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "bb6402ea21852fe4",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01DD8ytTE18zZaTN2DwEUyKi",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01R7jHhPfjvuer1cq4ceVz7Z",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01Lma8hXFwLuwUAnN4daPVww",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_01Fza1YEAo67aB1qephPCL42",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1741,
+     "output_tokens": 191
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01DD8ytTE18zZaTN2DwEUyKi",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01R7jHhPfjvuer1cq4ceVz7Z",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01Lma8hXFwLuwUAnN4daPVww",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01Fza1YEAo67aB1qephPCL42",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "5bfbc28ce741ef37",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01YLj7adhrE9gzRFpBG6mdwU",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01H8Xy5ZhKvv2BtvAP9AcW3K",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01GuqxiNnz3ZZSBZGReeRA3E",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_01FanTuMtVQRkRdjfx84tMJT",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1785,
+     "output_tokens": 191
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01YLj7adhrE9gzRFpBG6mdwU",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01H8Xy5ZhKvv2BtvAP9AcW3K",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01GuqxiNnz3ZZSBZGReeRA3E",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01FanTuMtVQRkRdjfx84tMJT",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "d599b8af68229145",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01B5MDcRNDPsWjHuk5XFfXmz",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01SQwtJA6MDGWugaLGQhWEKc",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_015smgt4KfnhqvxgXhYfh65f",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_01FHFsUg82Nrv6QrpwgvfDcA",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1777,
+     "output_tokens": 191
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01B5MDcRNDPsWjHuk5XFfXmz",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01SQwtJA6MDGWugaLGQhWEKc",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_015smgt4KfnhqvxgXhYfh65f",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01FHFsUg82Nrv6QrpwgvfDcA",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "cea8fdc590038868",
+   "response": {
+    "text": "Let me read the notes.",
+    "tool_calls": [
+     {
+      "id": "toolu_01NicwcwfPC3isXUZ9GVrEy6",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01SsypCj5ze7ttXr6nf3p9JG",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     },
+     {
+      "id": "toolu_01RDtrKzLGzmS4o37td5f5nx",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1933,
+     "output_tokens": 153
+    },
+    "provider_blocks": [
+     {
+      "text": "Let me read the notes.",
+      "type": "text"
+     },
+     {
+      "id": "toolu_01NicwcwfPC3isXUZ9GVrEy6",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01SsypCj5ze7ttXr6nf3p9JG",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01RDtrKzLGzmS4o37td5f5nx",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "6b9d8c64d7f257e2",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01VKZ84ABX6t3b8cZoxdPg7G",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.pain_severity",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "Pain NRS 7/10."
+        },
+        {
+         "note_id": "n4",
+         "quote": "Axial low back pain since March 2026"
+        }
+       ],
+       "reasoning": "The 2026-09-24 pain consult documents axial low back pain rated NRS 7/10, which is moderate to severe, with functional limitations."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2185,
+     "output_tokens": 236
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01VKZ84ABX6t3b8cZoxdPg7G",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.pain_severity",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "Pain NRS 7/10."
+        },
+        {
+         "note_id": "n4",
+         "quote": "Axial low back pain since March 2026"
+        }
+       ],
+       "reasoning": "The 2026-09-24 pain consult documents axial low back pain rated NRS 7/10, which is moderate to severe, with functional limitations."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "6ef40a3e6c0d0c53",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_017tePWu3xUXQQSf5iazNpwx",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.duration",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "Axial low back pain since early March 2026"
+        },
+        {
+         "note_id": "n4",
+         "quote": "Axial low back pain since March 2026"
+        }
+       ],
+       "reasoning": "Pain began in early March 2026 and was still present on 2026-09-24, so about 7 months by the 2026-10-06 request date, which is over 3 months."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2333,
+     "output_tokens": 240
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_017tePWu3xUXQQSf5iazNpwx",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.duration",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "Axial low back pain since early March 2026"
+        },
+        {
+         "note_id": "n4",
+         "quote": "Axial low back pain since March 2026"
+        }
+       ],
+       "reasoning": "Pain began in early March 2026 and was still present on 2026-09-24, so about 7 months by the 2026-10-06 request date, which is over 3 months."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "1a62bf19a0fbaf80",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_014KWA5otZqZgHboHviz3Pwt",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_other_pathology",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "No fracture. No findings to suggest tumor or infection. Normal alignment."
+        },
+        {
+         "note_id": "n4",
+         "quote": "No radicular symptoms or neurogenic claudication."
+        }
+       ],
+       "reasoning": "MRI shows only facet arthropathy with no fracture, tumor, infection or deformity (normal alignment); the neuro exam is normal with no radicular or claudication features."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2524,
+     "output_tokens": 267
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_014KWA5otZqZgHboHviz3Pwt",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_other_pathology",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "No fracture. No findings to suggest tumor or infection. Normal alignment."
+        },
+        {
+         "note_id": "n4",
+         "quote": "No radicular symptoms or neurogenic claudication."
+        }
+       ],
+       "reasoning": "MRI shows only facet arthropathy with no fracture, tumor, infection or deformity (normal alignment); the neuro exam is normal with no radicular or claudication features."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "bb70266903262374",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01BXicgSnd8MRCjjxU3zuqeZ",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_untreated_radiculopathy",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "No radicular symptoms or neurogenic claudication."
+        },
+        {
+         "note_id": "n4",
+         "quote": "strength 5/5 in both legs, sensation intact, reflexes symmetric, straight-leg raise negative on both sides"
+        }
+       ],
+       "reasoning": "The 2026-09-24 pain management neuro exam is normal and explicitly documents no radicular symptoms or neurogenic claudication."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2542,
+     "output_tokens": 276
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01BXicgSnd8MRCjjxU3zuqeZ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_untreated_radiculopathy",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "No radicular symptoms or neurogenic claudication."
+        },
+        {
+         "note_id": "n4",
+         "quote": "strength 5/5 in both legs, sensation intact, reflexes symmetric, straight-leg raise negative on both sides"
+        }
+       ],
+       "reasoning": "The 2026-09-24 pain management neuro exam is normal and explicitly documents no radicular symptoms or neurogenic claudication."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "f4bbd992c78a49b3",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01MbtwCqwnNBUPphiY2QuK4q",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.axial_pain",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "Axial low back pain since March 2026, over the lower lumbar facets, no radiation to the legs."
+        },
+        {
+         "note_id": "n1",
+         "quote": "Axial low back pain since early March 2026, no radiation into the legs."
+        }
+       ],
+       "reasoning": "Pain management consult and primary care note both document axial low back pain over the lumbar facets with no leg radiation; neuro exam has no radicular signs."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2498,
+     "output_tokens": 269
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01MbtwCqwnNBUPphiY2QuK4q",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.axial_pain",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "Axial low back pain since March 2026, over the lower lumbar facets, no radiation to the legs."
+        },
+        {
+         "note_id": "n1",
+         "quote": "Axial low back pain since early March 2026, no radiation into the legs."
+        }
+       ],
+       "reasoning": "Pain management consult and primary care note both document axial low back pain over the lumbar facets with no leg radiation; neuro exam has no radicular signs."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "74acb38f9a19ebfc",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01GduYz6bCNYBN63NzSnXFhk",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.conservative_care_failed",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "Failed naproxen for 4 months and 10 weeks of physical therapy."
+        },
+        {
+         "note_id": "n2",
+         "quote": "Pain unchanged."
+        },
+        {
+         "note_id": "n1",
+         "quote": "Started naproxen 500 mg twice daily and referred to physical therapy."
+        }
+       ],
+       "reasoning": "Naproxen (NSAID) for 4 months and 10 weeks of PT (18 visits) documented, with pain unchanged at PT discharge and persistent 7/10 pain at the pain consult."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2534,
+     "output_tokens": 308
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01GduYz6bCNYBN63NzSnXFhk",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.conservative_care_failed",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "Failed naproxen for 4 months and 10 weeks of physical therapy."
+        },
+        {
+         "note_id": "n2",
+         "quote": "Pain unchanged."
+        },
+        {
+         "note_id": "n1",
+         "quote": "Started naproxen 500 mg twice daily and referred to physical therapy."
+        }
+       ],
+       "reasoning": "Naproxen (NSAID) for 4 months and 10 weeks of PT (18 visits) documented, with pain unchanged at PT discharge and persistent 7/10 pain at the pain consult."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "5b183d2da180643c",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_014L3jzmFgN4ULMfvU9Z6uZL",
+      "name": "search_chart",
+      "input": {
+       "query": "ODI"
+      }
+     },
+     {
+      "id": "toolu_012taC7DxPMj4BfxexSNR3wD",
+      "name": "search_chart",
+      "input": {
+       "query": "questionnaire"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2557,
+     "output_tokens": 99
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_014L3jzmFgN4ULMfvU9Z6uZL",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "query": "ODI"
+      },
+      "name": "search_chart",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_012taC7DxPMj4BfxexSNR3wD",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "query": "questionnaire"
+      },
+      "name": "search_chart",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "d11521a347071384",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01DrbT9M3chudXGQjjbXQFYE",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.functional_deficit",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "Pain NRS 7/10."
+        },
+        {
+         "note_id": "n4",
+         "quote": "Cannot stand for more than 10 minutes or walk more than a block"
+        },
+        {
+         "note_id": "n2",
+         "quote": "Still unable to stand at the stove for more than 10 minutes."
+        }
+       ],
+       "reasoning": "Pain is scored 7/10 on an NRS, and specific functional limits are documented (standing, walking, gardening, carrying groceries). No ODI is recorded, but the NRS is a pain scale."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2506,
+     "output_tokens": 478
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSwAgKEAgTGAI4AUIIdGhpbmtpbmcSDBIYjnQ0RP3bhNC8dxoMmsxlMj0TBxp79unlIjCDUdC7n/csSNJrV8uvPULDPr3mekaQcSF9trU4nCN7xIdSzfzCV2fdd2n9sD5o09Iq3QcqAGTlm5yb/pjBYpjIqDIKHfuOE9AWAQnBE0HZCMchgCCP7BcgRt+ShbMS8jL6Q9ifq/m8b/kvCuexvlD8y8d/r55XyOuYSz6UGimxabgMCU2cxeaxsiDEU6EOJQA0Rz3a+xDvx4mH+T3SyiMd9jq97V9YR+U0NJk+djydoCd0u6T80ghgJXvrHco8+r/veXsrQ75TPw/JwSN32v5BcOkfigvGCtLdEAqVNlFL80uxRkxESbauQqJfXAxZilaeqad8BtVHXAJgNm0bemSlYRQ4+xhInkhnW6qh/g2TAMR0C++eVNw625aJ/08R5DVYFH1eKl9FVuEoZr8g7tUgUsduUjDncYVoYdOOynq/vE4rqFU/wGpF/lzh3vmq1Ute9uIM+GwqC32R6JfdPe7eyzi0HvGYM+yJ5nF31vyCXB3kKI82c5yBhpNZ553nMp3AsrihOBlGSR/oU4NOzcYyqpJ13MXy/ePUOCRIw5R2ebp3UUDE98qfjdAU/vKhZKxXPtwtkBjobNHq6faLaGyPseGaOWYKV+FilOdt7SRcq9u3lOt0pDb0QzqFwJ6VHasW/3HumCCddExdCWMQnvZfd2VIS/9RlAlYA7tFa4/uds85p6XxGFBGZYjMM6AdB9hWfFyyLcdY1Q4Zwgub6gfiFC+AhbUUv5IvrCR3g0GspRJcq4RoOcLMASFxM17k6G8t5FMkFawPCkgaMeUCFmBoLf3HbWglKqSHe9irfOHBttCsgLjcbetvE/kgw5zQA0Yq7A8XTVv/PsU8vicV/hCja5+jvNDP5nlOBdVU1hp45h2EkFJBveTn0XQB38EC3Jqunap8Ddc2ht3nXvb5DtwSL28ObyHq+CdwMcdFhMO7Y1gMAwaCeGIx+SB8jHTAfrPD8gsbbU0DgBCBpz4He8s9M3d1xtq9FDJ+jUI+7CRoWvLOgDfIFHqKZGu2SCa5RjyJlaJq99GZ6m4PNMmhNm2KSyl6s2xh7KE1zKfxotq8hvTOe24ZwaGAIAWr2pYBdqGOcwuGdMgXvmGQ4LlLO1yRXjOm/Ga7x4vl4AnSOoTzqpz6buFyluWJjZjYULd/H9ld14CAlUuLZKePkd2+ozLWU6om7Yjh6B8w98NNooTOIO7Y/zQTabeeIGwT3BbB07fxY+8bME8Pku++o+9+4kD8q8DZgGf28ajZw/6MohAosMRbB7UL5zlDMvIV6ntwzoPF953WJz99hu8Be3o3z+18dDhJkw56srdt+/6l5ltYhp61ccIWyrISO/Na7kzw1cD2Pb5gdIRQUZNNVQ9uvHA1wvLvK4cOezuaolUtELyVdhgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01DrbT9M3chudXGQjjbXQFYE",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.functional_deficit",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n4",
+         "quote": "Pain NRS 7/10."
+        },
+        {
+         "note_id": "n4",
+         "quote": "Cannot stand for more than 10 minutes or walk more than a block"
+        },
+        {
+         "note_id": "n2",
+         "quote": "Still unable to stand at the stove for more than 10 minutes."
+        }
+       ],
+       "reasoning": "Pain is scored 7/10 on an NRS, and specific functional limits are documented (standing, walking, gardening, carrying groceries). No ODI is recorded, but the NRS is a pain scale."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "5dac098672fc3ff2",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01HybsJQgWqgEnBUppGcVWpt",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+       "status": "insufficient_evidence",
+       "evidence": [],
+       "reasoning": "The chart describes functional limits (for example, can't stand more than 10 minutes) and a pain NRS. It documents no validated disability scale, such as an Oswestry Disability Index score, taken before the block."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2736,
+     "output_tokens": 212
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01HybsJQgWqgEnBUppGcVWpt",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+       "status": "insufficient_evidence",
+       "evidence": [],
+       "reasoning": "The chart describes functional limits (for example, can't stand more than 10 minutes) and a pain NRS. It documents no validated disability scale, such as an Oswestry Disability Index score, taken before the block."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}
