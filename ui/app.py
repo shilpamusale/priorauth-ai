@@ -11,7 +11,10 @@ from pathlib import Path
 
 import streamlit as st
 
+from evals.gaps import TRIAL as DOCUMENTED_TRIAL
+from evals.gaps import run_gaps
 from evals.gold import load_split
+from evals.runner import Mode
 from evals.scoring import cost_usd, summarize
 from priorauth.pipeline import Pipeline
 from priorauth.policies import load_policies
@@ -41,7 +44,8 @@ def load(gold: Path, policy_dir: Path, recordings: Path):
     policies = load_policies(policy_dir)
     cases = load_split(gold, SPLIT, policies)
     replays = {pipeline: replay_all(policies, cases, recordings, pipeline) for pipeline in Pipeline}
-    return policies, cases, {pipeline: results for pipeline, results in replays.items() if results}
+    requests = {r.case_id: r.run for r in run_gaps(Mode.REPLAY, policies, gold=gold, recordings=recordings) if r.run}
+    return policies, cases, {pipeline: results for pipeline, results in replays.items() if results}, requests
 
 
 def cost_per_run(summary) -> float | None:
@@ -51,7 +55,7 @@ def cost_per_run(summary) -> float | None:
 
 st.set_page_config(page_title="PriorAuth-AI", page_icon="🩺", layout="wide")
 gold, recordings, policy_dir = folders()
-policies, cases, by_pipeline = load(gold, policy_dir, recordings)
+policies, cases, by_pipeline, requests = load(gold, policy_dir, recordings)
 sources = " · ".join(f"[{p.title}]({p.source})" for p in policies.values())
 
 st.title("PriorAuth-AI")
@@ -115,7 +119,14 @@ st.caption(
     f"Request date {request.request_date} · {request.payer} · {len(request.notes)} notes in the chart"
 )
 DECISION_BOX[determination.decision](determination.rationale)
-if determination.missing_documentation:
+documented = requests.get(case_id) if pipeline is Pipeline.SINGLE_AGENT and trial == DOCUMENTED_TRIAL else None
+if documented and documented.requests:
+    st.markdown("**Requests to the clinic before submitting**")
+    st.caption("Written by the documentation agent from this trial's gaps and the chart.")
+    for written in documented.requests:
+        name = written.criterion_id.split(".", 1)[-1].replace("_", " ")
+        st.text(f"{name} · {written.note_type}\n{written.request}")
+elif determination.missing_documentation:
     st.markdown("**Documentation to add before submitting**")
     st.text("\n".join(f"• {gap}" for gap in determination.missing_documentation))
 
