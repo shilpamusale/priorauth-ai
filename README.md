@@ -8,9 +8,10 @@ An agentic prior-authorization workflow with an evaluation harness, built from t
 an ordered service and a patient's clinical notes, decide whether the request is ready to submit to the
 payer, which documentation is missing, or whether a human needs to look at it.
 
-> **Status: in progress.** The agent, its verification and decision steps, the evaluation harness and a
-> public demo are live and tested in CI. Multi-agent orchestration, LLM-as-judge grading and policy
-> retrieval come next (see [Roadmap](#roadmap)). All patients are synthetic; no PHI is used anywhere.
+> **Status: in progress.** The agent, its verification and decision steps, the evaluation harness, a
+> multi-agent comparison, a public demo and a private API are live and tested in CI. A documentation agent,
+> LLM-as-judge grading and policy retrieval come next (see [Roadmap](#roadmap)). All patients are
+> synthetic; no PHI is used anywhere.
 
 ## Why provider-side
 
@@ -101,6 +102,26 @@ although radiculopathy has its own criterion. Neither changed a decision.
 CI replays these recordings on every pull request and fails below 0.95 decision accuracy or on any
 hard-gate failure.
 
+**Single agent vs. multi-agent** (the same 14 dev cases; multi-agent recorded once per case, Nov 14, 2026):
+
+| | Single agent | Multi-agent: one evidence agent per criterion, in parallel |
+|---|---|---|
+| Decisions correct | 42 of 42 (14 of 14 on trial 1) | 14 of 14 |
+| Cases with every criterion right | 40 of 42 (14 of 14 on trial 1) | 12 of 14 |
+| Hard-gate failures | 0 | 0 |
+| Model calls per case | 2 | 16 to 19 |
+| Tokens per case | about 5.3k in, 1.9k out | about 36k in, 3.8k out |
+| Cost per case | $0.03 | $0.11 |
+
+Splitting the work cost 3.7 times as much and was not more accurate, so the single agent is the one
+deployed. Each evidence agent uses the single agent's prompt and tools on a one-criterion view of the
+policy, so the comparison measures the orchestration alone. The multi-agent pipeline repeated the single
+agent's radiculopathy slip on dev_009 (counting it against "no other pathology", which has its own
+criterion), which points to how the criteria are worded rather than to one agent handling eight criteria.
+Its other miss is a judgment call worth a second look: on dev_011 the only pain score covers pain that is
+mostly in the buttock and thigh, and the agent would not treat it as a low-back score. Both recordings
+replay in CI, and the demo can show either pipeline.
+
 ## Demo and API
 
 - **Public demo** ([link](https://priorauth-ai-140535548045.us-central1.run.app)): replays recorded runs and
@@ -142,6 +163,7 @@ src/priorauth/
   matcher.py      bounded tool loop; prompts/ holds the versioned prompt
   verify.py       final grounding check
   decision.py     deterministic decision rule
+  orchestrator.py multi-agent matching: one evidence agent per criterion, in parallel
   pipeline.py     match, verify, decide, and the audit record
   api.py          FastAPI service with a daily run limit
 policies/         LCD L38773 policy and the extracted LCD text its criteria quote
@@ -164,7 +186,8 @@ tests/            unit tests for every module, policy and gold case
 - [x] Public demo on Cloud Run (Docker, Streamlit) showing recorded runs
 - [x] MLflow tracking of evaluation runs (params, metrics, fingerprints of the policy, prompt and gold set)
 - [x] FastAPI service, deployed privately, with a daily run limit and the key in Secret Manager
-- [ ] Multi-agent orchestration: one evidence agent per criterion, compared with the single agent
+- [x] Multi-agent orchestration: one evidence agent per criterion, compared with the single agent
+- [ ] Documentation agent: a request to the clinic for each documentation gap
 - [ ] LLM-as-judge grading, calibrated against human labels
 - [ ] Policy retrieval with ChromaDB, and a second policy added with no code changes
 - [ ] Reviewer screen with overrides feeding the gold set

@@ -24,6 +24,8 @@ jobs:
       - run: make test
       - name: Eval gate (replays the recorded runs, no API key)
         run: python -m evals.runner replay --min-decision-accuracy 0.95
+      - name: Eval gate on the multi-agent recordings
+        run: python -m evals.runner replay --pipeline multi_agent --trials 1 --min-decision-accuracy 0.95
 
   image:
     runs-on: ubuntu-latest

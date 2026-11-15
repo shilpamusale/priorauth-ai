@@ -13,6 +13,7 @@ import streamlit as st
 
 from evals.gold import load_split
 from evals.scoring import cost_usd, summarize
+from priorauth.pipeline import Pipeline
 from priorauth.policies import load_policies
 from priorauth.schemas import CriterionStatus, Decision
 from ui.data import SPLIT, brief, folders, highlight, replay_all
@@ -23,6 +24,10 @@ DECISION_BOX = {
     Decision.NEEDS_DOCUMENTATION: st.warning,
     Decision.ESCALATE: st.error,
 }
+PIPELINE_LABEL = {
+    Pipeline.SINGLE_AGENT: "Single agent (deployed)",
+    Pipeline.MULTI_AGENT: "Multi-agent: one agent per criterion",
+}
 STATUS_ICON = {
     CriterionStatus.MET: "✅",
     CriterionStatus.NOT_MET: "❌",
@@ -32,15 +37,21 @@ STATUS_ICON = {
 
 @st.cache_resource
 def load(gold: Path, policy_dir: Path, recordings: Path):
-    """Policies, gold cases and every recorded trial replayed and scored, once per server."""
+    """Policies, gold cases and every recorded trial of each pipeline replayed and scored, once per server."""
     policies = load_policies(policy_dir)
     cases = load_split(gold, SPLIT, policies)
-    return policies, cases, replay_all(policies, cases, recordings)
+    replays = {pipeline: replay_all(policies, cases, recordings, pipeline) for pipeline in Pipeline}
+    return policies, cases, {pipeline: results for pipeline, results in replays.items() if results}
+
+
+def cost_per_run(summary) -> float | None:
+    ran = summary.trials - summary.errors
+    return None if summary.cost_usd is None or not ran else summary.cost_usd / ran
 
 
 st.set_page_config(page_title="PriorAuth-AI", page_icon="🩺", layout="wide")
 gold, recordings, policy_dir = folders()
-policies, cases, results = load(gold, policy_dir, recordings)
+policies, cases, by_pipeline = load(gold, policy_dir, recordings)
 sources = " · ".join(f"[{p.title}]({p.source})" for p in policies.values())
 
 st.title("PriorAuth-AI")
@@ -50,21 +61,31 @@ st.markdown(
     "is then computed in code, never by the model. Patients are synthetic; the policy is a public Medicare "
     f"coverage document: {sources}. [Source code]({REPO})"
 )
-if not results:
+if not by_pipeline:
     st.info("No recorded runs yet. Record one with: `python -m evals.runner record --cases dev_001 --trials 1`")
     st.stop()
 
-summary = summarize(list(results.values()), cases)
+summaries = {pipeline: summarize(list(results.values()), cases) for pipeline, results in by_pipeline.items()}
+pipeline = st.radio(
+    "Pipeline", list(by_pipeline), format_func=PIPELINE_LABEL.get, horizontal=True, label_visibility="collapsed"
+)
+results, summary = by_pipeline[pipeline], summaries[pipeline]
 ran = summary.trials - summary.errors
-cost_per_run = "unknown" if summary.cost_usd is None else f"${summary.cost_usd / max(ran, 1):.2f}"
-runs, gates, cost = st.columns(3)
+cost = cost_per_run(summary)
+runs, gates, spend = st.columns(3)
 runs.metric("Runs with the expected decision", f"{round(summary.decision_accuracy * ran)} of {ran}")
 gates.metric("Hard-gate failures", len(summary.hard_gate_failures))
-cost.metric("Model cost per run", cost_per_run)
-st.caption(
-    f"{summary.cases} synthetic dev cases, {summary.trials} recorded runs of the live model. "
-    "Held-out cases stay unseen until the final evaluation."
-)
+spend.metric("Model cost per run", "unknown" if cost is None else f"${cost:.2f}")
+note = f"{summary.cases} synthetic dev cases, {summary.trials} recorded runs of the live model."
+single, multi = (cost_per_run(summaries[p]) if p in summaries else None for p in Pipeline)
+if single and multi:
+    accuracy = {p: f"{summaries[p].decision_accuracy:.0%}" for p in Pipeline}
+    note += (
+        f" Decision accuracy: single agent {accuracy[Pipeline.SINGLE_AGENT]}, multi-agent "
+        f"{accuracy[Pipeline.MULTI_AGENT]} at {multi / single:.1f} times the cost per run. "
+        "The single agent is the one deployed."
+    )
+st.caption(note + " Held-out cases stay unseen until the final evaluation.")
 if summary.errors:
     st.warning(f"{summary.errors} recordings no longer match the code and are not counted.")
 trials = {}
@@ -75,7 +96,7 @@ pick_case, pick_trial = st.columns([3, 1])
 case_id = pick_case.selectbox("Synthetic case", list(trials), format_func=lambda c: f"{c} ({', '.join(cases[c].tags)})")
 trial = pick_trial.selectbox("Trial", trials[case_id], format_func=lambda t: f"Trial {t}")
 st.caption(
-    "Each case was run several times, because the model's answers can vary. Every trial is a recording of a live "
+    "A case can have several trials, because the model's answers can vary. Every trial is a recording of a live "
     "run, replayed here through the same code that CI tests. No model is called on this page."
 )
 
