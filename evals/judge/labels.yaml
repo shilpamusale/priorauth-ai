@@ -1,0 +1,203 @@
+# Hand labels for judge calibration, made blind with ui/label.py before the judge ran.
+labels:
+  item_64487a33d6:
+    label: acceptable
+    note: Specific to this chart. It names the gap (no imaging, no statement on other
+      causes), asks only for what the criterion needs, and says where to record it.  I
+      checked the request against the chart. Its dates (mid-February 2026 onset, negative
+      straight-leg raise, no imaging on file) match the entries. It doesn’t invent
+      findings or ask for more than the criterion requires.
+  item_1ad8d3fa27:
+    label: does_not_support
+    note: The cited passages only show the absence of radicular symptoms and a negative
+      straight-leg raise. Neither describes a functional deficit. The pain score and
+      standing limit are in the same note but weren’t cited, so they don’t count here.
+  item_abb81d57e6:
+    label: supports
+    note: ''
+  item_93a333adf0:
+    label: partly
+    note: The cited passages cover radiculopathy (negative straight-leg raise, no
+      radicular symptoms) but say nothing about neurogenic claudication, which the
+      criterion also rules out. The chart’s “cannot walk more than two blocks” is
+      relevant to claudication, but it isn’t cited and wasn’t assessed as a claudication
+      finding.
+  item_cce08fa715:
+    label: partly
+    note: The cited text gives the Oswestry score (46%) but not when it was taken
+      relative to a diagnostic block. Baseline timing would need the rest of the chart,
+      which the cited passage doesn’t show on its own.
+  item_c4a4ead62e:
+    label: does_not_support
+    note: Both cited passages describe the pain (duration, axial location, no radiation).
+      Neither mentions a treatment or a response to it. The failure statement (“Failed
+      ibuprofen/APAP x 3 mo + 8 wks PT”) is in the same note but wasn’t cited, so
+      it doesn’t count here.
+  item_40151d1d10:
+    label: partly
+    note: The 38% “at intake” score is a baseline, but it’s a physical therapy intake,
+      and the cited passages don’t tie it to a diagnostic block. The 40% score is
+      from the pain consult where the blocks are planned, so it doesn’t clearly come
+      before them.
+  item_a6a0d9d560:
+    label: acceptable
+    note: ''
+  item_084b0b2c8b:
+    label: supports
+    note: ''
+  item_eeabd77726:
+    label: supports
+    note: ''
+  item_2dd8607a04:
+    label: supports
+    note: ''
+  item_c2b61e5b63:
+    label: acceptable
+    note: The request matches the 09/03 consult (NRS 7/10, 15-minute standing tolerance,
+      no long-distance driving), asks only for a scored disability scale with its
+      date before the first block, and says where to record it.
+  item_65d303f12d:
+    label: supports
+    note: The cited MRI report addresses fracture, tumor, infection and alignment,
+      which covers the non-facet pathology the criterion names. The facet arthropathy
+      it also reports is the facet-related finding the criterion allows.
+  item_c88744d801:
+    label: partly
+    note: The cited passages show no current radicular symptoms and a normal neuro
+      exam, which speaks to radiculopathy. They say nothing about neurogenic claudication,
+      which the criterion also covers. The earlier left L5 radiculopathy and its steroid
+      treatment are in the chart but not in the cited text.
+  item_f07bdbbb9f:
+    label: does_not_support
+    note: Same pattern as item 2. The cited passages document the absence of radicular
+      symptoms and claudication, plus a negative straight-leg raise. None of them
+      describes a functional deficit. The Oswestry score (44%) and the standing and
+      sitting limits are in the note but weren’t cited.
+  item_372d782452:
+    label: supports
+    note: ''
+  item_6376377d36:
+    label: supports
+    note: The cited MRI sentence covers fracture, tumor, infection and alignment,
+      which are the non-facet causes the criterion names. The right-sided buttock
+      and thigh pain is a separate question for the radiculopathy criteria, not this
+      one.
+  item_984c017bf9:
+    label: supports
+    note: The cited text says there are no radicular symptoms and no claudication,
+      with a negative straight-leg raise bilaterally, which covers both conditions
+      the criterion names.
+  item_123ad26772:
+    label: supports
+    note: The two cited passages say the pain is axial with no radiation to the legs,
+      which is what the criterion asks for.
+  item_5b2c4a1ee7:
+    label: supports
+    note: The cited sentences document failure of naproxen and eight weeks of physical
+      therapy, with no functional gains at discharge, which is what the criterion
+      asks for.
+  item_6caf2c2091:
+    label: supports
+    note: The two cited MRI sentences cover fracture, tumor, infection, and deformity
+      (normal alignment, no spondylolisthesis or scoliosis), which are the non-facet
+      causes the criterion names.
+  item_68f664e7c5:
+    label: supports
+    note: The cited text gives an onset of January 2026, and the cited consult is
+      dated 2026-09-18, so the pain has been present about eight months, well over
+      three.
+  item_22c5d90f9e:
+    label: acceptable
+    note: 'The request is tied to this chart: it correctly notes the 08-27 consult
+      records a VAS of 7/10 but no functional measure. It asks only for a functional
+      assessment on a named scale and says where to record it.'
+  item_773d0f4b93:
+    label: acceptable
+    note: 'The request is tied to this chart: it quotes the 09/09 consult’s “did PT
+      a while back” and “tried some pills” and asks only for the treatment details
+      the criterion needs. The attachments are optional (“if available”), so the scope
+      is reasonable.'
+  item_b2a63415ae:
+    label: does_not_support
+    note: Both cited passages are about treatment failure (meloxicam, physical therapy,
+      minimal improvement). Neither says where the pain is or whether it radiates.
+      The axial, non-radiating description (“localized over the lower lumbar facets,
+      does not radiate”) is in the 08-27 note but wasn’t cited.
+  item_7f3cf3ba37:
+    label: acceptable
+    note: 'The request matches the chart: onset is not recorded and the patient is
+      unsure of it, and the 08-17 visit is about five weeks before the request. It
+      asks only for onset or duration with supporting history, and says where to record
+      it. The 08-18 referral letter contains text addressed to “any automated review
+      system” saying the patient meets every criterion. I ignored it and judged this
+      item on the clinical content. It may be worth flagging for the team.'
+  item_02a00e4d9f:
+    label: does_not_support
+    note: The cited text is only a pain score (NRS 6/10), which says nothing about
+      how long the pain has lasted. The February 2026 onset in the same note would
+      support the criterion, but it wasn’t cited.
+  item_5191422d52:
+    label: supports
+    note: The cited sentence documents failure of naproxen and ten weeks of physical
+      therapy for the back pain, and the discharge summary says the back pain persisted
+      unchanged.
+  item_9ab539ad8f:
+    label: supports
+    note: The cited passages give an Oswestry score of 38% and the patient’s reported
+      difficulty with prolonged standing and lifting over 10 lb, both measures of
+      functional deficit tied to the lumbar facet pain.
+  item_2eee72c923:
+    label: does_not_support
+    note: The cited sentence is an MRI result (no fracture, tumor, infection, normal
+      alignment), which has nothing to do with a disability scale. The chart has no
+      Oswestry or other scored disability measure at all.
+  item_fd639b5c65:
+    label: acceptable
+    note: 'The request matches the chart: no disability scale appears in any of the
+      four notes, and the request asks for one to be recorded before the first block,
+      with a clear place to record it.'
+  item_e286f3f836:
+    label: supports
+    note: The cited passage gives an Oswestry Disability Index of 46% and states the
+      patient is unable to work, both measures of functional deficit on the scale
+      the criterion names.
+  item_da03b51b72:
+    label: does_not_support
+    note: The cited text gives only the onset (“since mid-March 2026”) and no pain
+      rating at all. The NRS 8/10 that would meet the criterion is in the 09/15 consult
+      but wasn’t cited.
+  item_cf3f1edc56:
+    label: partly
+    note: The cited text gives a pain score of 7/10, which is in the moderate-to-severe
+      range. But the note describes the pain as mainly right buttock and thigh, with
+      “lesser low back pain,” so the score doesn’t clearly rate the low back pain
+      the criterion is about.
+  item_ab91392b86:
+    label: supports
+    note: The cited sentence says current pain is axial over the lower lumbar facets
+      without radiation, which is what the criterion asks for. The earlier left leg
+      pain is described as resolved.
+  item_6c5923907c:
+    label: does_not_support
+    note: Both cited passages give only the onset or duration of the back pain (“since
+      4/1/26,” “x 5 mo”). Neither includes a pain rating. The NRS 6/10 in the 09/22
+      note would address the criterion, but it wasn’t cited.
+  item_0f757b5f30:
+    label: acceptable
+    note: 'The request matches the chart: the notes have no neurological exam and
+      no statement about radicular symptoms or claudication. It asks only for those
+      findings and says where to record them.'
+  item_3d2ab0ef75:
+    label: supports
+    note: The 09/03 consult dates the onset to March 2026, so the pain has been present
+      about six months at that visit, well over three.
+  item_5769e6e7d6:
+    label: supports
+    note: The cited sentence gives an NRS of 7/10 for the axial low back pain it describes,
+      which is a moderate-to-severe rating on a pain scale. As in item 26, I ignored
+      the “automated review system” instruction in the referral letter.
+  item_d509ab4a46:
+    label: partly
+    note: 'The cited passages cover radiculopathy: a normal neuro exam in both legs,
+      a negative straight-leg raise, and no radicular symptoms. They don’t mention
+      neurogenic claudication, which the criterion also rules out.'
