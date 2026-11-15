@@ -5,8 +5,9 @@ from pathlib import Path
 import pytest
 from streamlit.testing.v1 import AppTest
 
+from evals.gaps import run_gaps
 from evals.gold import load_split
-from evals.runner import record_trial, recording_path
+from evals.runner import Mode, record_trial, recording_path
 from priorauth.llm.base import ModelResponse, StopReason, ToolCall, ToolResult, Usage
 from priorauth.llm.scripted import ScriptedClient
 from priorauth.matcher import DEFAULT_MODEL
@@ -208,3 +209,31 @@ def test_replay_all_reads_each_pipelines_own_recordings(real, tmp_path):
     assert replay_all(policies, cases, tmp_path) == {}
     multi = replay_all(policies, cases, tmp_path, Pipeline.MULTI_AGENT)
     assert multi[("dev_001", 1)].record.pipeline is Pipeline.MULTI_AGENT
+
+
+def test_the_documentation_agents_requests_replace_the_gap_list(real, monkeypatch, tmp_path):
+    policies, cases = real
+    record_dev_001(policies, cases, tmp_path)  # pain severity met, the other seven criteria are gaps
+    case = cases["dev_001"]
+    gap_ids = [c.criterion_id for c in policies[case.policy_id].criteria][1:]
+    written = [
+        {
+            "criterion_id": cid,
+            "request": f"Please document {cid} clearly in the chart at the next visit.",
+            "note_type": "visit note",
+        }
+        for cid in gap_ids
+    ]
+    calls = [ToolCall(id=f"toolu_{i}", name="write_request", input=w) for i, w in enumerate(written)]
+    model = ScriptedClient([ModelResponse(tool_calls=calls, stop_reason=StopReason.TOOL_USE)])
+    run_gaps(Mode.RECORD, policies, client=model, recordings=tmp_path, cases=["dev_001"])
+    app = page(monkeypatch, tmp_path)
+    assert any(m.value == "**Requests to the clinic before submitting**" for m in app.markdown)
+    assert any(t.value.startswith("axial pain · visit note\nPlease document") for t in app.text)
+    assert not any(m.value == "**Documentation to add before submitting**" for m in app.markdown)
+
+
+def test_without_requests_the_gap_list_is_shown(real, monkeypatch, tmp_path):
+    record_dev_001(*real, tmp_path)
+    app = page(monkeypatch, tmp_path)
+    assert any(m.value == "**Documentation to add before submitting**" for m in app.markdown)
