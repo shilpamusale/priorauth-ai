@@ -2,16 +2,20 @@
 
 The demo never calls a model. Each page replays a recording of a live run through the same match, verify
 and decide code that CI tests, so what it shows is what the code does with those model replies. Only dev
-cases appear; held-out cases stay unseen until the final evaluation.
+cases appear; held-out cases stay unseen until the final evaluation. The LLM judge's grades are replayed
+from its recordings in the same way.
 """
 
 import html
 import os
 from pathlib import Path
 
+from evals.calibration import CalibrationReport
 from evals.checks import run_checks
 from evals.gold import GoldCase
-from evals.runner import GOLD, POLICIES, RECORDINGS, TrialResult, pipeline_root, recording_path, replay_trial
+from evals.judge import Grade, run_judge
+from evals.judge_items import ItemKind, build_items
+from evals.runner import GOLD, POLICIES, RECORDINGS, Mode, TrialResult, pipeline_root, recording_path, replay_trial
 from priorauth.ingest import normalize
 from priorauth.llm.base import ToolResult
 from priorauth.llm.replay import StaleRecording
@@ -20,6 +24,7 @@ from priorauth.pipeline import Pipeline
 from priorauth.schemas import Policy
 
 SPLIT = "dev"
+CALIBRATION = Path("evals/results/judge_calibration.json")
 
 
 def folders() -> tuple[Path, Path, Path]:
@@ -65,6 +70,48 @@ def replay_all(
         for case_id, trials in recorded_trials(pipeline_root(recordings, pipeline), list(cases)).items()
         for trial in trials
     }
+
+
+def judge_grades(policies: dict[str, Policy], gold: Path, recordings: Path) -> dict[tuple[ItemKind, str, str], Grade]:
+    """The judge's recorded grades, keyed by (kind, case ID, criterion ID): evidence items and requests only.
+
+    The judge graded the single agent's first trial and the documentation agent's requests. If those runs
+    no longer replay, there is nothing to attach grades to and the page shows none; a missing or stale judge
+    recording leaves out that one grade.
+    """
+    try:
+        items, cases = build_items(policies, gold, recordings)
+    except ValueError:
+        return {}
+    graded = {i.item_id: i for i in items if i.kind is not ItemKind.PLANTED}
+    return {
+        (graded[j.item_id].kind, graded[j.item_id].case_id, graded[j.item_id].criterion_id): j.grade
+        for j in run_judge(Mode.REPLAY, list(graded.values()), cases, recordings=recordings)
+        if j.grade
+    }
+
+
+def calibration(path: Path = CALIBRATION) -> CalibrationReport | None:
+    """The committed report of the judge's agreement with the hand labels, if there is one."""
+    try:
+        return CalibrationReport.model_validate_json(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def judge_note(report: CalibrationReport | None, model: str) -> str:
+    """What the judge is, how far it agreed with a person, and where it is known to be wrong."""
+    note = f"An LLM judge ({model}) graded the evidence for each met criterion in this trial."
+    if report and report.evidence.kappa is not None:
+        agreed = report.evidence
+        note += (
+            f" Against blind hand labels it agreed on {agreed.agreed} of {agreed.items} items "
+            f"(Cohen's kappa {agreed.kappa:.2f})."
+        )
+    return note + (
+        " It is more lenient than a person on partial evidence, and it is not given the request date, so its "
+        "grades for pain duration can be wrong."
+    )
 
 
 def brief(result: ToolResult) -> str:

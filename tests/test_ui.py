@@ -1,5 +1,6 @@
 """The demo's data helpers, and the page itself rendered headlessly with Streamlit's test runner."""
 
+import shutil
 from pathlib import Path
 
 import pytest
@@ -7,13 +8,15 @@ from streamlit.testing.v1 import AppTest
 
 from evals.gaps import run_gaps
 from evals.gold import load_split
-from evals.runner import Mode, record_trial, recording_path
+from evals.judge import REQUEST_CHECKS, run_judge
+from evals.judge_items import ItemKind, build_items
+from evals.runner import GOLD, RECORDINGS, Mode, record_trial, recording_path
 from priorauth.llm.base import ModelResponse, StopReason, ToolCall, ToolResult, Usage
 from priorauth.llm.scripted import ScriptedClient
 from priorauth.matcher import DEFAULT_MODEL
 from priorauth.pipeline import Pipeline
 from priorauth.policies import load_policies
-from ui.data import SPLIT, brief, highlight, recorded_trials, replay, replay_all
+from ui.data import SPLIT, brief, calibration, highlight, judge_grades, recorded_trials, replay, replay_all
 
 APP = Path(__file__).resolve().parents[1] / "ui" / "app.py"
 
@@ -237,3 +240,85 @@ def test_without_requests_the_gap_list_is_shown(real, monkeypatch, tmp_path):
     record_dev_001(*real, tmp_path)
     app = page(monkeypatch, tmp_path)
     assert any(m.value == "**Documentation to add before submitting**" for m in app.markdown)
+
+
+class FakeJudge:
+    """Grades evidence 'partly' with markdown in its reasoning, and fails requests on one check."""
+
+    def complete(self, request):
+        [tool] = request.tools
+        if tool.name == "grade_evidence":
+            args = {"grade": "partly", "reasoning": "Shown in part. ![tracker](https://example.com/judge.png)"}
+        else:
+            args = {**{name: name != "says_where" for name in REQUEST_CHECKS}, "reasoning": "No place named."}
+        call = ToolCall(id="toolu_1", name=tool.name, input=args)
+        return ModelResponse(
+            tool_calls=[call], stop_reason=StopReason.TOOL_USE, usage=Usage(input_tokens=1, output_tokens=1)
+        )
+
+
+@pytest.fixture(scope="module")
+def judged(tmp_path_factory):
+    """The committed agent recordings, with made-up judge grades for dev_001 and dev_004 in place of the real ones,
+    planted items included.
+
+    The page tests never depend on the judge's committed recordings: the judge is not a merge gate.
+    """
+    recordings = tmp_path_factory.mktemp("recordings")
+    shutil.copytree(RECORDINGS, recordings, dirs_exist_ok=True, ignore=shutil.ignore_patterns("judge"))
+    items, cases = build_items(load_policies(Path("policies")), GOLD, recordings)
+    chosen = [i for i in items if i.case_id in ("dev_001", "dev_004")]
+    run_judge(Mode.RECORD, chosen, cases, client=FakeJudge(), recordings=recordings)
+    return recordings
+
+
+def test_judge_grades_are_keyed_by_kind_case_and_criterion(judged):
+    grades = judge_grades(load_policies(Path("policies")), GOLD, judged)
+    assert {case for _, case, _ in grades} == {"dev_001", "dev_004"}
+    assert {kind for kind, _, _ in grades} == {ItemKind.EVIDENCE, ItemKind.REQUEST}  # planted items are not shown
+    assert {g.grade for (kind, _, _), g in grades.items() if kind is ItemKind.EVIDENCE} == {"partly"}
+    assert {g.grade for (kind, _, _), g in grades.items() if kind is ItemKind.REQUEST} == {"needs_revision"}
+
+
+def test_no_judge_grades_without_the_runs_it_graded(real, tmp_path):
+    record_dev_001(*real, tmp_path)  # the other dev cases have no first trial, so nothing to attach grades to
+    assert judge_grades(real[0], GOLD, tmp_path) == {}
+
+
+def test_calibration_is_none_without_a_report(tmp_path):
+    assert calibration(tmp_path / "missing.json") is None
+    assert calibration().evidence.items == 32
+
+
+def test_the_judges_grade_shows_on_each_met_criterion_of_the_first_trial(judged, monkeypatch):
+    app = page(monkeypatch, judged)
+    assert app.selectbox[0].value == "dev_001" and app.selectbox[1].value == 1
+    labels = [e.label for e in app.expander]
+    assert any(label.startswith("✅ pain severity: met") and label.endswith(" · judge: partly") for label in labels)
+    assert any(m.value == "**LLM judge: partly**" for m in app.markdown)
+    report = calibration()
+    agreed = f"agreed on {report.evidence.agreed} of {report.evidence.items} items"
+    assert any(agreed in c.value and "pain duration can be wrong" in c.value for c in app.caption)
+
+
+def test_the_judges_reasoning_is_never_rendered_as_markdown(judged, monkeypatch):
+    app = page(monkeypatch, judged)
+    assert any(t.value == "Shown in part. ![tracker](https://example.com/judge.png)" for t in app.text)
+    assert not any("example.com" in m.value for m in [*app.markdown, *app.caption])
+
+
+def test_other_trials_point_to_the_judged_one(judged, monkeypatch):
+    app = page(monkeypatch, judged)
+    app.selectbox[1].set_value(2).run()
+    assert not any("judge:" in e.label for e in app.expander)
+    assert any(c.value.startswith("Pick trial 1 of the single agent") for c in app.caption)
+    app.selectbox[1].set_value(1).run()
+    app.radio[0].set_value(Pipeline.MULTI_AGENT).run()
+    assert not any("judge:" in e.label for e in app.expander)
+
+
+def test_the_judges_grade_shows_under_each_request(judged, monkeypatch):
+    app = page(monkeypatch, judged)
+    app.selectbox[0].set_value("dev_004").run()
+    shown = [t.value for t in app.text if "\nJudge: " in t.value]
+    assert shown and all(t.endswith("\nJudge: needs revision (fails: says where)") for t in shown)
