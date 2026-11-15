@@ -11,7 +11,10 @@ from evals.runner import TrialResult
 from priorauth.pipeline import AuditRecord
 from priorauth.schemas import Contract
 
-PRICES = {"claude-sonnet-5-5": (2.00, 10.00)}  # US$ per million input and output tokens
+PRICES = {  # US$ per million input and output tokens
+    "claude-sonnet-5-5": (2.00, 10.00),
+    "claude-opus-5-5": (4.00, 20.00),
+}
 
 
 class Summary(Contract):
