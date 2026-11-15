@@ -7,9 +7,10 @@ from streamlit.testing.v1 import AppTest
 
 from evals.gold import load_split
 from evals.runner import record_trial, recording_path
-from priorauth.llm.base import ModelResponse, StopReason, ToolCall, ToolResult
+from priorauth.llm.base import ModelResponse, StopReason, ToolCall, ToolResult, Usage
 from priorauth.llm.scripted import ScriptedClient
 from priorauth.matcher import DEFAULT_MODEL
+from priorauth.pipeline import Pipeline
 from priorauth.policies import load_policies
 from ui.data import SPLIT, brief, highlight, recorded_trials, replay, replay_all
 
@@ -99,7 +100,8 @@ def record_dev_001(policies, cases, recordings):
         "reasoning": "NRS 7/10 at the consult. ![tracker](https://example.com/pixel.png)",
     }
     calls = [ToolCall(id=f"toolu_{i}", name="submit_finding", input=f) for i, f in enumerate(findings)]
-    client = ScriptedClient([ModelResponse(tool_calls=calls, stop_reason=StopReason.TOOL_USE)])
+    usage = Usage(input_tokens=2000, output_tokens=200)
+    client = ScriptedClient([ModelResponse(tool_calls=calls, stop_reason=StopReason.TOOL_USE, usage=usage)])
     path = recording_path(recordings, SPLIT, "dev_001", 1)
     record_trial(case, policy, client, path, DEFAULT_MODEL)
     return case, policy
@@ -152,7 +154,7 @@ def test_page_shows_a_recorded_trial(real, monkeypatch, tmp_path):
     assert [(m.label, m.value) for m in app.metric] == [
         ("Runs with the expected decision", "0 of 1"),
         ("Hard-gate failures", "0"),
-        ("Model cost per run", "$0.00"),
+        ("Model cost per run", "$0.01"),
     ]
     policy = real[0]["l38773_first_mbb"]
     assert f"]({policy.source})" in app.markdown[0].value
@@ -168,3 +170,41 @@ def test_model_text_is_never_rendered_as_markdown(real, monkeypatch, tmp_path):
     app = page(monkeypatch, tmp_path)
     assert any("![tracker](https://example.com/pixel.png)" in t.value for t in app.text)
     assert not any("example.com" in m.value for m in app.markdown)
+
+
+class GapModel:
+    """Answers each evidence agent with insufficient evidence for its one criterion, in any call order."""
+
+    def complete(self, request):
+        tool = next(t for t in request.tools if t.name == "submit_finding")
+        [criterion_id] = tool.input_schema["properties"]["criterion_id"]["enum"]
+        finding = {"criterion_id": criterion_id, "status": "insufficient_evidence", "evidence": [], "reasoning": "Gap."}
+        call = ToolCall(id=f"toolu_{criterion_id}", name="submit_finding", input=finding)
+        usage = Usage(input_tokens=1000, output_tokens=100)
+        return ModelResponse(tool_calls=[call], stop_reason=StopReason.TOOL_USE, usage=usage)
+
+
+def record_multi_dev_001(policies, cases, recordings):
+    case = cases["dev_001"]
+    path = recording_path(recordings / "multi_agent", SPLIT, "dev_001", 1)
+    record_trial(case, policies[case.policy_id], GapModel(), path, DEFAULT_MODEL, Pipeline.MULTI_AGENT)
+
+
+def test_the_page_switches_between_pipelines(real, monkeypatch, tmp_path):
+    record_dev_001(*real, tmp_path)
+    record_multi_dev_001(*real, tmp_path)
+    app = page(monkeypatch, tmp_path)
+    assert app.radio[0].options == ["Single agent (deployed)", "Multi-agent: one agent per criterion"]
+    assert "Decision accuracy: single agent 0%, multi-agent 0% at" in app.caption[0].value
+    app.radio[0].set_value(Pipeline.MULTI_AGENT).run()
+    assert not app.exception
+    assert [m.value for m in app.metric][2] == "$0.02"  # eight agents x (1,000 in at $2/M + 100 out at $10/M)
+    assert sum(1 for e in app.expander if e.label.startswith("❔")) == 8
+
+
+def test_replay_all_reads_each_pipelines_own_recordings(real, tmp_path):
+    policies, cases = real
+    record_multi_dev_001(policies, cases, tmp_path)
+    assert replay_all(policies, cases, tmp_path) == {}
+    multi = replay_all(policies, cases, tmp_path, Pipeline.MULTI_AGENT)
+    assert multi[("dev_001", 1)].record.pipeline is Pipeline.MULTI_AGENT

@@ -11,11 +11,12 @@ from pathlib import Path
 
 from evals.checks import run_checks
 from evals.gold import GoldCase
-from evals.runner import GOLD, POLICIES, RECORDINGS, TrialResult, recording_path, replay_trial
+from evals.runner import GOLD, POLICIES, RECORDINGS, TrialResult, pipeline_root, recording_path, replay_trial
 from priorauth.ingest import normalize
 from priorauth.llm.base import ToolResult
 from priorauth.llm.replay import StaleRecording
 from priorauth.matcher import DEFAULT_MODEL
+from priorauth.pipeline import Pipeline
 from priorauth.schemas import Policy
 
 SPLIT = "dev"
@@ -40,23 +41,28 @@ def recorded_trials(recordings: Path, case_ids: list[str]) -> dict[str, list[int
     return found
 
 
-def replay(case: GoldCase, policy: Policy, recordings: Path, trial: int) -> TrialResult:
-    """One recorded trial through the pipeline, scored against its gold case."""
-    path = recording_path(recordings, SPLIT, case.case_id, trial)
+def replay(
+    case: GoldCase, policy: Policy, recordings: Path, trial: int, pipeline: Pipeline = Pipeline.SINGLE_AGENT
+) -> TrialResult:
+    """One recorded trial through the pipeline that made it, scored against its gold case."""
+    path = recording_path(pipeline_root(recordings, pipeline), SPLIT, case.case_id, trial)
     try:
-        record = replay_trial(case, policy, path, DEFAULT_MODEL)
+        record = replay_trial(case, policy, path, DEFAULT_MODEL, pipeline)
     except StaleRecording as error:
         return TrialResult(case_id=case.case_id, trial=trial, error=str(error))
     return TrialResult(case_id=case.case_id, trial=trial, checks=run_checks(case, policy, record), record=record)
 
 
 def replay_all(
-    policies: dict[str, Policy], cases: dict[str, GoldCase], recordings: Path
+    policies: dict[str, Policy],
+    cases: dict[str, GoldCase],
+    recordings: Path,
+    pipeline: Pipeline = Pipeline.SINGLE_AGENT,
 ) -> dict[tuple[str, int], TrialResult]:
-    """Every recorded trial, replayed and scored, keyed by (case ID, trial number) in case order."""
+    """Every recorded trial of one pipeline, replayed and scored, keyed by (case ID, trial number) in case order."""
     return {
-        (case_id, trial): replay(cases[case_id], policies[cases[case_id].policy_id], recordings, trial)
-        for case_id, trials in recorded_trials(recordings, list(cases)).items()
+        (case_id, trial): replay(cases[case_id], policies[cases[case_id].policy_id], recordings, trial, pipeline)
+        for case_id, trials in recorded_trials(pipeline_root(recordings, pipeline), list(cases)).items()
         for trial in trials
     }
 
