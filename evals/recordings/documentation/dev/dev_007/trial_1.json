@@ -1,0 +1,41 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "41d42a0837fbe111",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01DDeqc6PwJgGxKV7aNjojZs",
+      "name": "write_request",
+      "input": {
+       "criterion_id": "l38773_first_mbb.conservative_care_failed",
+       "request": "The 2026-09-09 pain consult records only that the patient \"did PT a while back\" and \"tried some pills,\" with no recall of which medications, when, or whether they helped. Please document each noninvasive treatment tried for the low back pain that began in November 2025 (for example NSAIDs, acetaminophen, physical therapy, acupuncture, spinal manipulation). For each one, record the name or type, dose or frequency where applicable, dates and duration, and the response or reason it was stopped. Please attach PT records, a pharmacy or prescribing history, or a therapy discharge summary if available.",
+       "note_type": "Next pain management visit note, with PT discharge summary and medication history attached"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1358,
+     "output_tokens": 324
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01DDeqc6PwJgGxKV7aNjojZs",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.conservative_care_failed",
+       "request": "The 2026-09-09 pain consult records only that the patient \"did PT a while back\" and \"tried some pills,\" with no recall of which medications, when, or whether they helped. Please document each noninvasive treatment tried for the low back pain that began in November 2025 (for example NSAIDs, acetaminophen, physical therapy, acupuncture, spinal manipulation). For each one, record the name or type, dose or frequency where applicable, dates and duration, and the response or reason it was stopped. Please attach PT records, a pharmacy or prescribing history, or a therapy discharge summary if available.",
+       "note_type": "Next pain management visit note, with PT discharge summary and medication history attached"
+      },
+      "name": "write_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "c7208a5bdf6ff9c4",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01T8WdVcX8ypKPP31rRQnMdp",
+      "name": "write_request",
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_other_pathology",
+       "request": "The chart records axial low back pain over the lower lumbar facets since February 2026, with a normal neuro exam and negative straight-leg raise. It has no imaging on file and no statement addressing other causes of the pain. Please document either lumbar imaging results or a clinical assessment stating whether fracture, tumor, infection or significant spinal deformity was considered and whether any was found.",
+       "note_type": "Next pain management visit note (or imaging report, if imaging is obtained)"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1372,
+     "output_tokens": 255
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01T8WdVcX8ypKPP31rRQnMdp",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_other_pathology",
+       "request": "The chart records axial low back pain over the lower lumbar facets since February 2026, with a normal neuro exam and negative straight-leg raise. It has no imaging on file and no statement addressing other causes of the pain. Please document either lumbar imaging results or a clinical assessment stating whether fracture, tumor, infection or significant spinal deformity was considered and whether any was found.",
+       "note_type": "Next pain management visit note (or imaging report, if imaging is obtained)"
+      },
+      "name": "write_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}
