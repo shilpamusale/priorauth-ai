@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "c89a802efb885724",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01MbppT5teirX5Nx36CCn7Ki",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "In note n5, \"NRS 6/10\" rates the patient's low back pain (\"LBP x 5 mo, axial\") on a numeric rating scale. A score of 6/10 is in the moderate range, so the cited passage shows every part of the criterion."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1186,
+     "output_tokens": 254
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQStwYKEAgTGAI4AUIIdGhpbmtpbmcSDGnuiqb+xOLeewR0nBoMnOvfnVTvDqf542kqIjCww9ZULr8rHl9nLGjnuOuPaGdqVbpzPop4gZyusto8D7b32se/ZBgQ7IHBUapYBKQq1AWrHGAp4JUdJlkAxIAnxjbq2i+JxZP3v0bEXpg9scMgL6KmmGULm5t12ANmB382Puvo6P2QKv+I9XhTY7dtUFOqRczIq3aTg4bkqrxlOcLAkJgJt8/CpEWZHjzyqqFXX/QIIpXjAJXdk/xMHWTTI24d06TRhvNZZd8vjuwLNHu2ya1Hw00VaABOEuO0NEF8Cqc30QM7c0dddPv1i7tFrFe+64nL8YUVlUL6O/8rfB6KVqyl+5Bu2w6kebUpIAl4lCyWQFVSGFW7dy3ojCwtZsxouEoPRoAGXmEyxaVWRgDdhTNOA7IP1KzynHAmelc/V++hKhFzkJ2/OF4fGx4sBgYxiQ/12WM0k4OlFNpXnSCZI3Cx3EYRjXGsPmhyydDzbZLYf5g4r2ybCFsJNdq8JscOA4YbbFznu1K2pKyjWlNXUnbPCJ8p0O4/twS8L9rMtBhusIV9HJi4M9sxf54GdbcqTAly24I5TGG5rj0TWj16u23yo549hbHcWpuV32+AC879kSj/GQEcb1t+yPyjxzrdLe06DrDY3rY6EPM16PcYT1NUpIrV1OWFgHEkerT3/fu4DbClt7bkhKc7/zh6WJiPiTchd13Id9qgrNPQ6U67cO99taO+ienWfkBpvEZNPPNujZD/q4wnZC1VNVYvwxqTKKbjo7wIsdcvjz2OFsGtV21riATEUju8CzU/EfzQ5rsOLZjjUFO4hrYGLUFUMi4kC9eybPxKjFgfdt4AKYyUlABTMF3LNYvQscCtodlw8x0sdqDQNnlFBvNQn0lR7uggoUT9g4ISLr3zp+ZPTKzX4/CdziHyalBUPeRF5HBcHVWnd6aofXvs4g40gpsKNV0fpn1dLVtCRxLghA3JTjerouDaQ2XbVrGJo/QWK7CH6gA1+SHydSUmExObYJcTrvlpU6ehmcxtMIIMuAkYiKCGkijTw2wmtVxYfaJCrn4m/siBQzvCGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01MbppT5teirX5Nx36CCn7Ki",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "In note n5, \"NRS 6/10\" rates the patient's low back pain (\"LBP x 5 mo, axial\") on a numeric rating scale. A score of 6/10 is in the moderate range, so the cited passage shows every part of the criterion."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

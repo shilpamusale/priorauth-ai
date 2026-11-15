@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "67c2d904dfbb59c5",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_018LZamQeLQJicHGRq8abXvA",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The n4 pain management consult (2026-09-29) records ODI 38% in the same note that plans the first medial branch blocks, so a disability scale is documented at baseline before any block. The n2 PT discharge summary (2026-04-24) also records ODI scores, and these are earlier still."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1371,
+     "output_tokens": 280
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSiAcKEAgTGAI4AUIIdGhpbmtpbmcSDHckXtL/x3Sm+gd4sRoMporNeQpWKNjtTnawIjBQWxdu94Has9Pf/olPqx7/Xq7qH7XMiafvFRdXQa7PwwYxg7dbyAcCdqeGcHS7v9gqpQYfVmfrQy1dioOPA1CAw0+as2RCpScr4ENaU9id8nGk0ON4ZoYVvPJWEZgVpKipd9jFAnjrZM/5rJLaaqS9jNz6zT5/E5cWss+bOfO5kyAzrVG5XhpKsJwb17EtKL+tvtPRgipGOBxAZLiF4zy4q2QabC+nBIbhonBJQ4HrYNPNhwMbhVIC9YyFdInUi1Tio061u3w2hd2fJJFzyynNFkJHkDJkw/COmOTHPNWyb+Sseoa77XOxh9zvmBexMZ6daWIU7Vs94N1Gn4eDG0CnKf9fXxB0Erm2nEBE7fHc3AlI6/mv2Q9Tgy90yzII7pmUCahreT8p/k7O9T5QLkEdRjf8n+284tcv0yieXcpugUGy4kKR+U6I1aGPrJCNG0dnX435fR8mogKBC+6dMAb5UM/Qb+/Qfygwz+OJe5xD/nWp41Oxi5CVRnP3AEERPhsDHd9RMzmfK1cq6VfddNOMLbMZzLJtKvtIIDxxmOk8Mno2ipAsfiS3Jm/9G0VmSPXvzCRRI29gJIgPASAP3AhgOIRl+rBce++RqdanpoQuSDTBRN1vQCaz9WD/MszHpgo2NuQahLsTsEmGPFvND3HSzlZdQhhUgj/MICZ31vWABG9i1dRlL1Zy9cir5e2IBIRmYDeDjs77rEX6yEU+ClHO91XircxNItXrKopnrBoKkXjn4Acs0f0BvTGm+EslgAOYI9jQltGQB9tcNJNiC8tfx0MG0KG4thJmimtNDchXhyJjSntIg69gJEHCwgLFSSbhMBrOtVMj0IdCBBZ29a10VxKgNh8GVcF62aiHrmcRWJLaxhCrl63CUinsS55m0NNWI5FV0FZYm7k51Rpm4BDzTip+Pyo+qnzIrTbuXiv7jdjgIDHcLTvrZ2+w+9+ipCsJIHt+LYtAwe3XJMJe58uvvyFgjrx+oeSxqs4+x0gPp1/VpVdhTkH8jrX2X0bQRZUZlR1J8BWTPqbibBC4kzCijIVgh0t7reiCHE4JwfORiy7drZ+pKWrm7wVNtyob8SarLroqOi2US2TPyBp4zcikQzRXofvNerODllzNz+vCu+HKMWAo7hJRGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_018LZamQeLQJicHGRq8abXvA",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The n4 pain management consult (2026-09-29) records ODI 38% in the same note that plans the first medial branch blocks, so a disability scale is documented at baseline before any block. The n2 PT discharge summary (2026-04-24) also records ODI scores, and these are earlier still."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

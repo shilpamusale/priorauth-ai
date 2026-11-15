@@ -1,0 +1,50 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "a6671118eabfd68e",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01BQkFGr1b6eyV3XChPa9SxA",
+      "name": "grade_request",
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request correctly cites the 09/03/2026 consult (NRS 7/10, 15-minute standing tolerance, no long-distance driving) and notes that no standardized disability scale is on file. It asks only for a scored, dated validated scale before the first medial branch block, suggests no result, and names the pre-procedure visit note or an attached questionnaire as the place to record it."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1558,
+     "output_tokens": 398
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSrwcKEAgTGAI4AUIIdGhpbmtpbmcSDJ760IFTcb8biJwOcxoMBL+2Qeaa3wdQspubIjDUdST2E5hYhPp/X1b+5BgwOlNJVMx6xnD10m0Htvqh5Q4aGaCg7CglDm9STmtYhq0qzAa2yThZIwwylN7AKLpefk2BL5KTKEiI1tPie2XN5VHKLjhs+RglM4zma0slhgIVHvrLxmEzRU0If/GtuyLRyPXzKWrVtiLhlDoWLlwCSA/U2BC2EtUYLWWY+DEfBc1J9Ptdj2R7S3bOt5bO2FHe+GomzkQJxtluagcQgMuGK/AKz4EbF+0VyqfVw+s7syEfbEaim5UPVwk0t6aD3CH7yBba1BqICFSUsDUrd0T4x5+lxb2bXZeUeB/AZ7wr/9Jdyr3STCjtDaPbWqhTfq680O9iHzBvjCxEIxzHLEec3+1hNRQ42v6xh9k77wGkUV7oqTN+ciT9Nx2BxYBWiQbARiyzAhFyQYnuitV6yEr1mxyDhqTYmtO3EBdTaWpuxcbZ1rUYx/6QvOFEaBvSzdJqsmbXOuE1DwS/wrhatVM9+RxFQw1HSZ0iu2Qxe0r+ywuq2zP+5fMBAPEHhJV+fD09FfElzikcpIIggTCzzRd3mb5bAlvVwZsJH92s+UkMIRATtshVeSaGuXhWoFneQTHONcK1BpaIooHvi6nJViGcnDjZCKf0Ir4exsQZ3WT6+iDPUfyP9zpizvMyGy9evZiwDqQp0emVLYZ6ldAGNF39DHzXqf+vRjk1sV+67RWNuEWmhQujgLeW0CBPMFIgbibZn5zhCySNNzAbQT+Y4xz5ky8W1dwPVJ5Br7l90g4vEloHYiKVYek3Wc3ig5e9Bm2qzzfJajPAI1+WerpX7tOD6CENqv26BzFJOAMyp1DllbvmiA2C2Nm7Eech/iLyVVXxXOXLZJGsEI8r7nMbFoZ7GAr4ZSFccll45e8DvuuJKBwQVb2dm8vojk3Ev5DnOu7XUuAfr1JaZv/6oOQj6YnTA1XES6Xag7tByg0eDwIwKkHiAHeNnFMtm59VWUICKu6fqXXIacE/jruqKUdLopuPWULnE4+3hcd0FMpYL/F4VKVfgC0nu/3ut9D/PBgBKY6WbryFxCSZR6u777+2naQXrX58HmpTZuRJFUa7hADCiPc9QMUW8wB37JcOW2iQiAe2++NJqTQJ7Ri9qcF0AcDPAS7Wkc/bdVLQwJ6JdsSbqSqZMQzTTyMEU8QF8ErkA26RZlzHeXvYF/r2VKX4brhbGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01BQkFGr1b6eyV3XChPa9SxA",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request correctly cites the 09/03/2026 consult (NRS 7/10, 15-minute standing tolerance, no long-distance driving) and notes that no standardized disability scale is on file. It asks only for a scored, dated validated scale before the first medial branch block, suggests no result, and names the pre-procedure visit note or an attached questionnaire as the place to record it."
+      },
+      "name": "grade_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

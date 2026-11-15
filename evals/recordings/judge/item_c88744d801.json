@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "594428f44f2f42c8",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01Y7LA35enDKS9Kt1x11qMav",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited neuro exam is normal: full strength, intact sensation, symmetric reflexes and a negative straight-leg raise on both sides. The note also states there are no current radicular symptoms. The note mentions no neurogenic claudication, and the earlier leg pain was treated and has resolved, so the chart records no untreated radiculopathy or claudication."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1315,
+     "output_tokens": 463
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS2goKEAgTGAI4AUIIdGhpbmtpbmcSDD5ZNSOZwGK05NYE8xoMmc8aJjfEIdj/iSF3IjCuV9Od5sKCda8ps0zuWBrZt53tRTD8b44r+r9BeSmSxX5Ld2bRWGVifez0/NyBsD8q9wlmqX0K2UJ3eubKLgVIfvWhzY9o2byw/Dz5wa89Fq8zjQccGwX2BPn6xoOGn7FxwgqT5KrU0I8/dT21scVz2SytgnEmcJPjw6QyQ3Lou3hqsSr7Ip9M6v4kYl7gYljA6B5Hn0Ej5D+RQvFnPtbKkzyKAqry4QfkWuAtOHY7ivcs3f6GN3gUBzfplsgQj4NWsxFvb4nDObl4LgLcQ0hdoVCo36+uYNwtTVXiC+/6OwAbW8IP9TfQXcBJdn2DpTrDozkgXZ/aImwfxFq7X/+2TWhTMEpDuPFhixjZHI4CcXxveJhUKNvY1dJN7qiHLzCORwc9lj4rznwWOe+X2V6JAQr0sGRHkRnlC52IC/dNRmtJMeTJZs477sN/mKXsjMQCtEUHbm3+sO3TcY32psPK7hI6b9/UunrPPCQ7u8Rourgp2dajp9K1AokLtkk8Hic1dUx7DKJPBAmK22kr1i1tLFeRjgdq7lq7JIqqhjOH2/FWKXntHV9bVfmw51Kit0Nj8mEu6hVfrfpkIDXDNAabdev5uxsczB9P4M3bwgS96xQumMjUgMcNXJnXimio9ERk+mZD78CcEcOLb9IKLDd4n2a5HQuRAAw9Sz2ur83ELHj634GGhg6kunVNSF2NNUlbdbbSyW6hkR0iRoI7Pe0sOpRZQxeJB0OkwwycmtjqBqFpCT4SbeSnp24/1R93gBOv5jB7pGB/YXpkvij6ydcdCwBhjBvSh5V65CM+FQMBxtqmM631ChbtjCiMxJskqFHchoxst160lCvgKf6fJSUzqxWhMzDGX4QAJZqvjd0AcdVUe4pYqN8crYbe+03001x1zLD1RVrizwU07F1w9yJ5lLlzJ8Pf45Qoaw/6gIik09qbY8s1Z1MwbIQnxM2n1w6/uHfefymutelWgzeAIskgtYLBmODuJUWWohtKCtlT4ru9UqFxDsWeIrwo+cgBekm30GIDpkfUcaNa9blmj7+e2t+JDScMR28vV4Q8fIxCF6j7ZOYhX8MQYbAY70yyuMd7KOOmCOeQ8+24cKBq6nLuMXsj9GSZd2qOP16ESyL8KB0pJiBZ1r09Xp5p1ZzrQZMIZ7nYSuTPd+DkuPj4frWpIJ7mxm/8cbsevrkTR77+JkCv8eSWS92sMSAMYBKnMHr5GwsHaJPxqOsuKWtTq5HYMCVA7Pd6M1cq/4HNVtqDwr5jAROLmjzZHOwQAHu1mLBau3J973ne3ZKwro5doK9eUibJPePhw2kWmnEbi6XhRJZkC580Y/L84VvKxnaf5RchUqghiE4+nE+GgIf4EjQWjXUIlemDJ0yrALGvOeRoPZeKt6/LQ9J+6mAkMsjz/CtJSRXXotigTWyg8oYHGiy+VLh2o9XaFN0Xs7GD6We4GQ0u3yRfiQaLanPRLDQ8RHohqNeX/b4ug2Ul1ood4h8B/DgG1P5yBIEf/vtEoAsMQx5KUtG66V9Khy8Cyh02zIZOQ/69bLOhlirV1E4pW2OCWnC4wRCxJQkJE1+if9wdWUEPLBvP1pWyMcC07QxXPPUw7q1FE4ihle3FOonIT493aeIz/3NjL8nkO+5+B2avUyfdPB238Slz9iiaaUbCDw0W4GMP5T7UKVlmuFnqTIhLkdvBZhkGSEnwHtZ66+itJZ38jDc00R/iTFhdKXxV71tbpvN8Uk1qfgOhJjBLExZw00KjIRSKb35+5BgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01Y7LA35enDKS9Kt1x11qMav",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited neuro exam is normal: full strength, intact sensation, symmetric reflexes and a negative straight-leg raise on both sides. The note also states there are no current radicular symptoms. The note mentions no neurogenic claudication, and the earlier leg pain was treated and has resolved, so the chart records no untreated radiculopathy or claudication."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

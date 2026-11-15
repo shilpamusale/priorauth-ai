@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "95ab633156bf11a0",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01VhPgW27EPy64ZEamp7VxGU",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "The cited note is dated 2026-03-05 and gives onset in mid-February 2026, so it shows only about 3 weeks of pain. Nothing cited shows the pain lasting 3 months or more."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1080,
+     "output_tokens": 252
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS7QYKEAgTGAI4AUIIdGhpbmtpbmcSDJh6FZumF25vRc/n4RoMltlLv51LpbuEFSu0IjCLzjjpEY0dGGjlCbBiBBBd47JsLhJ4KKac5Q2R8HBbowigZbfS+xBp5s1P0zCub+oqigbADd8qPN6wChczxeFnKoRf3U8dI2mHpkJm/U11QEdTefXFUtNbwwxVF414z9/9Z/1bKInTFR1FuYgLkE5Xk5xpJHh6pYD0E6HGfCdD6Wz04lLQ2xG971Dx+mRJiyUGn8QYq1Xu/gIQbr1UKcKYujl+DHVCYKf6utq811Z2f/dX6AudusXY7KxNKvEpkFtGkCtX0+MS1CjrDgUZ7yF6nbgHU449pIA5N0kXanzjjxI/V84HR8im/8WBDgKsocSoWDaDMP/ieE6ssQiJ8kKOaIh/j/tKOuLlp1X8QP/afBCdoCJvkI8w6/Xe1bwOR3LJZQGQuIWMUDILQTMjC9ao+V6AyKRAZCszJLn3yDPIX/XhRgORZZ/vfoEuugekF0fgj7jy0UL3e48aUG4HBXmsQkhytgxUt9mWjsvBnS0vzDFbwLqvnt5tTPzE9nEIJEktzZLdVp4OrCbn/TZRSMRzDtmTfcJllTk+4loudKf4ktEAmFdXyT22pt0W0XsCyjHSFuLfygqiAMRWZX69GbYJw5gnMlYZIEq27YUef0vzNRLaqAYGGppqO27yJpu5XUNgZzdWC6do8zmg9YsNoGfhi+TmUoROzB0QXRlZEbO1YPkFatxUMhypzVecUh84b0YnscX4iqa3tbHITXl/VGk1eIGnLvjgvw+Lr5LxI1YwWv7TImLtpjd8pVOiJ/hvuBpz97Zw78bWdHBlR3TIVPCe+QSeK+gXzoUdb1qzbNPFxbShtEWPGcvrBm/hMhxupnIChZxhtGCJG0CBJYOjikLuJ3xuA0AQdgQIIIdAGBvIMXUl5IadcmNEJJr6FcxLmmk7LRLvmYvkLDhZn88mKmzRzA2FQKL1ohwvATCqVL2dKpbkBWuwNAvTjzrS+WPxD/a4PFdXfWiCz0H4coKVOf9BzWy2mq4Oco0GYhg5PMMdFcxLCx1UV6RIh9KDF6MUh410jeqWb/s8YAN1ERojrQZuzMpSKPL0h/MmxmWPQ/jeDODymRaUDV4Oe8yn8Mneoexh0FvWGjsIFExj3aumGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01VhPgW27EPy64ZEamp7VxGU",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "The cited note is dated 2026-03-05 and gives onset in mid-February 2026, so it shows only about 3 weeks of pain. Nothing cited shows the pain lasting 3 months or more."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

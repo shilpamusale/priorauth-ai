@@ -1,0 +1,50 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "0a3568f697c57bb3",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_018uZPV1gM6UJ6pjiQd4LHeF",
+      "name": "grade_request",
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "Every fact in the request matches n3: axial pain over the lower lumbar facets since February 2026, a normal neuro exam, negative straight-leg raise and no imaging on file. It asks only for imaging results or a clinical assessment of fracture, tumor, infection or deformity, without suggesting what the answer should be, and names the next pain management note or the imaging report as the place to record it."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1591,
+     "output_tokens": 416
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS8wcKEAgTGAI4AUIIdGhpbmtpbmcSDO+N/tHmbQiLwoDYzxoMCK4mae4nfSoEHHrgIjCYtkMC9a7/i1vN5MHLz3EUnvCaCleq6zD5a58/6KD3wL09k0WzQ11OqGRBrQbS0JcqkAcixnWZMoqFVml/mWUWWmlGJhwc9ln7pvbwjDWDC9k1y+8ugcOS67izK48NCrg1Vu6UR7XpfUY//iAb+cZsGOJqbZtKn7iRFzh6JP+f2GTAecTi6WDc/ukrI80n4cJp6Em1TNnEWupZtm+0urW1T9jGTuYVUv2+182PpokY9jQc+ykXKIN+CLsHYQnghA0WIh0OQEgPoQLkCBtmn8AP68XuG2ljlvpEPsWwZNCDak9Ezkvr8PsgsvJObx1EEJKNIC9qSRL/Lr6mwF/aI34qm3wcoGK4KhstOHxoTBTbYzhNg20BUlNXeu8S9j+TWwUadSaZHjpZuikDH/Xdv7ne5aqu8l5kOLdFIV3ZwWo+NRpnKERvbEDpCYG6AuWuwB+5RigIu2H5mK7GM6B0frfJiq6YWg/kJKU3qOsIz+el4CRv/JOF/ipxhUrclQCegKOF6RoJsKN1KrPBQf47Re6mICWNNWOSHUaibC/Pw02qW4LlQ5Cs/npWoMVIFW/jLP6QNHWSJDAQk6PAUXrmQlpbVXUBqvf8XbGGkwDZpfOp0uxIh245yFT9RewKQjR1BpWYBxyIY6jTLDICY7rF7NhPshRvBk1pQLzZxCQ7gdbI6MmATiKjwAf/iCdPDBkTC0WK7emOs7fqXnNBoLRZYDa1gVQlzRBt5vkKjM8/U/hijSLOHrbO/+2JQqSt0HWi0XVZh35UOcj6GsPYYeoXEQ2yKzXRKkVqhbN1ZzwW08hJBKF321HVfVW0/uNvshH6cOXQA2Z8INRybiWT/Oy0B59gJQ0d1A9laBNMJfM7oy5F1mogcUF0FgbiZG9RfrVQFl+uJji1fwgYLhb/nyr3crAAxbE8K1rCa9/FVkm3PdjJ41e/NBATJLtVNZ2QzvG7CO/JcC9efaNgeTvUWHWU/Y72WEjMr8sxKbwSQn9az2JuzWgwEJrI7K2MSaTaPlBzYfo5xh24F36/1BRFr/F01MRX5UdfqOiMj9SiAmwyyr+unbZZ0/mJ7fG+Odahw7OLgwQMcviPH9mqe5D08ob/kl8jil6noFoSwNLo4R+2xoiWZSkV1Qmwhe8AdemAgqHjalzjEYsuLT31ULkIH5FFFEJMJzInA/xDBQ3iivZqtm3Onk/JGe3Rz1+yaPvLxCS9tjSaCq6icP9UJMyYmLkiAJGHicxYJY+ct0ERtzc7O/otadnYkbUgZTEA2/B5J8j+bxjVNtAYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_018uZPV1gM6UJ6pjiQd4LHeF",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "Every fact in the request matches n3: axial pain over the lower lumbar facets since February 2026, a normal neuro exam, negative straight-leg raise and no imaging on file. It asks only for imaging results or a clinical assessment of fracture, tumor, infection or deformity, without suggesting what the answer should be, and names the next pain management note or the imaging report as the place to record it."
+      },
+      "name": "grade_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

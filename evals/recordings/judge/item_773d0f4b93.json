@@ -1,0 +1,50 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "3e243cc0d6812854",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_016esBydHiWsGgtsfqF6Fa2o",
+      "name": "grade_request",
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request quotes the patient's vague recall from the 2026-09-09 consult and asks only for which noninvasive treatments she tried, when, and how she responded or why she stopped, which the criterion's \"failure\" and \"as tolerated\" wording requires. It adds no facts beyond the chart (the November 2025 onset is documented) and names the next pain management visit note, with PT and medication records attached, as the place for the documentation."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1652,
+     "output_tokens": 436
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSiggKEAgTGAI4AUIIdGhpbmtpbmcSDLD7huZxrSF2EJf9zBoMfSR+wza8TNvwGLemIjBumPwcKFOKFbsqqOvz2GXCRmnzQVoSeTa+poiGCqWyNPe0ZaFDh1mzg3hbtubBwxgqpweBHjARdNRtIHmVKLTX2JCBq5NqQyfPUWHdZcqncnendU/XaQaaCjN+FiQuHtOVjCjzo0TnQ/oH0aoHUYRFqXlSFDy7JjzJiDc/VIDPUU4EInsma7ScZCOEstQdWftL5fIVbsyHMoexwQPvejh9Znw++RN8/wGSiLZRta8vqRhoddtleFaMs0CxProd34ubdP3CTPp9JNamNCkev0dH6WvRfrlWWPzdRpPG4zfeg+TtI3HPzYLBd0z/nYnsaH3lorPVNr04zrozmiWAg5gjO1k69lyzSLqYHDAx9t27CwepKGXw45poGRmgQXpuMAZWKBINQ4QNsfLtnP2dfg/nX4Za3vh8mo0KI/H4CWtc60NtaDCuWXaHiCvayHdnQaR2U/l/lCnV+fHxJXmbMqCo6h53+Qur2PX9oV5DiB2b8O/G31ib9xIwRUPktxVsffqnDi5DO/OvXHS+ePFJvsG4WG3aVMtYmOlfKWDeln+5RALokfy64f1PGzzYTYcvAtOYjETj+QBax+FsGpEqi5CgkgSQIx9z40sTGXBQdYwXH2sO+Ff2ckZp1Tqp7AhMqT77i8ws092WtpwHjUpRrRMTmtJN4gJcam7/rK7goXpNi/L8RZX62/IV0gUY/oBXCNTF48pNdHytwnfmhSY2wlt+5m/4rRLqxrkjPgdhsnNN+D6vrwwhCLy8q1A3F7OAXhHkiRnzmreg0gKZtXl7/hzWvAEWk4e6R/tyGCex5x6MZ1RW9+zXaxze1OjRNSSr+FkILXB18NAt/Gz9n+mVy+r5R0+ku1K6rB6a2oURa6xJNmIU2zNxLRzNhvetTBmBtBTyhCYUFJVr5tP0n7aH7Vt6jmt224qpCA2Qboe2O5BKqB1im5IecaJOxQjSGyhUOUMpudp5VUUEJs9QYmOnGcofS1iguoqpCQ6ottugFkhA7621GprpBiqyJd6UVuljwZY91i0k0wQ4H/jQuy7h19vNnNP3ZQ4XFrZsH0xXisUOI/LOIE2h+bGLgN2bBzz/V0TpG3/29GTOMKEXUBFSUJpuCpgLDQM+9I7OI8GWN2R7d8eWNT2ASqOaZTR9PvH9LrvVgvdyWFcl1q/tDWe26GFVvZhd+jpua5ytj7RPIIZovxoSUpwg6uv1ItX4j0ID6mZMqgRzI/aTvv4bCRmjP89IHu1GGEGayfsd7YOHcGC1exzUGPq/CrbmhSlip5KeL75jRIUKDiOV/fvUNXQJQ3AIxkH1pKp5aZZ5qhgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_016esBydHiWsGgtsfqF6Fa2o",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request quotes the patient's vague recall from the 2026-09-09 consult and asks only for which noninvasive treatments she tried, when, and how she responded or why she stopped, which the criterion's \"failure\" and \"as tolerated\" wording requires. It adds no facts beyond the chart (the November 2025 onset is documented) and names the next pain management visit note, with PT and medication records attached, as the place for the documentation."
+      },
+      "name": "grade_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

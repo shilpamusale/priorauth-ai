@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "b69e8875bb2b2f27",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01PJ8kaZfNM6yzwebFFvxdD8",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "n4 is the initial pain management consult and records an Oswestry Disability Index of 46%. No block has been done yet at this visit, so the score is a baseline taken before the first diagnostic block."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1221,
+     "output_tokens": 275
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS8QcKEAgTGAI4AUIIdGhpbmtpbmcSDN6e6xnKLn7v7dgdlBoMMQkLSVNH3m1fQMKoIjAWGVta8awIxWu20ypZruNEL5xq5l4fD8VrJ6AWSkfcac8dhstdMwKT4XKnIT+hRTwqjgfgDVdVT1p8NNw5WvSRkisa5eAUbpLPIjH9SSLNAjAWwRt1OESjhdISlBBNDtBUCfnC2cmP4mz0UFzT9gNMhtcRIfkaw/J/vzoQOuL2fKn9iVTNYrnHFr4JMJzXWPSNoteHZ/yf5W7neCPYQE+VE526Um6iSr84J5lwsGfVvc5MRKvzBN7SmmLRjb/VCIfNqfvTo5zapN3c6Vw9RLpznqqyZIODOIp9eBibQQMFMPDUMXwpfCPTpu4KS3EhjgKCbV/ayGaFWnlRS3QiQt7/HgKeNzwxlGpNW2TEVXoGQmpOjvrHcZIESziqfpwPRtImHqCHfz7DZNH+VaRyJxL5bkcjkmXR5D9tZ2tRXwNcM4nqgkCW2jhJ3tbjHUl2t/C7uhyOuA7kl/kmEhdKOq3rmCZPu9U/OB5ukOb3rypK98cpcE/vIjcW8DeI4ShBU9tFAGHWuwApWKf6WnfCuVp3opYcii2rjgnoC2WXr4XQUa5+GENGblfylBkbBussSvVtsK6YRWMkrHIFgABRCy+aiYHlCG67n1vNYbLhjmejYmfArQ6gUjQLwEV8pKBaKDXH7rFI1hTxgDjibgmUGSg6QWQWNNp1NYYao0bXnsJbJy68dCsTkNJ5KTFwuttQdJEdwfGslbR2+shjg+Jv7/DhLpxAneNyi0iJGNjRv0y4DW44tsyRDuSoeMnVj6GP8o5ggmXevIfD7DrSlpM3zfl/fm0j5GEu0oNkTT5AEfGcPzCrsZgJOaYO74jwcC5IDnrAYJSNqzVbrgcutQmQOwMlHKK69sBYQ056RpR24xZkj062Hp6gAgSueay4b9QLmnAedcwzHAyxK0JGDqMciyTuMrSrSqJlQS1ZFiu8XV8ZQHQ07fLyfmIEVQPyR16YjJoJdhGtU/73oVxrr9rr44xcaa5elLELJLCtTB7wN3K8fh5C+rIMK1H9TZMNrhx35XsZGmeQUp7SsAUPA9F3lCE76/m62+qbPT4i9+ScRexxQyrVRQQakCawtXIMP+1kwjHLKA1d9teH3iprXlsP3ftIKQzVR4m2rgin2Hv/jYNmF6hR5FHd5iDldEINWrO8tIhEUP+oprgX1DJgZslYNuQesizRglAo/i2b9VLvog2xriqmq/umjxMqjycvE3SB6Q16gVtWI9STO6TPx2Lg9l1PPxTZQqjOtcDaI8l9trtw4j6KQcr0fjmUJT637YiFa/29GAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01PJ8kaZfNM6yzwebFFvxdD8",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "n4 is the initial pain management consult and records an Oswestry Disability Index of 46%. No block has been done yet at this visit, so the score is a baseline taken before the first diagnostic block."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

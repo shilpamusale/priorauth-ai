@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "6a60e7d73d959f65",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_0123eC3C9SLKYFQqwQFB7KVp",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The MRI report explicitly rules out fracture, tumor and infection, and its \"Normal alignment\" finding rules out significant deformity. The only finding it records is facet arthropathy, so the cited passage shows that no non-facet pathology is documented."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1138,
+     "output_tokens": 404
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSugoKEAgTGAI4AUIIdGhpbmtpbmcSDGl1mYIS8BIwr3bsMhoMpBq6xxtSoecGXhcOIjDgdFC+jkTww26mrcHWeDsJMQX38QCZOAyWF2lXn3fTu247rI3DASWr7/Q1Lt8YK5wq1wnEtl98vx7xnWQsMyMRvBjiQOupo7uTlGll/SKgyeLJykQ62oTdPqpbduVBUTN3B3WxYWBUs5q0gW180Siu4O4v/0A0lcFBjKOzUPdu+JM0A5wkWkvtLAt4i10iNWOuywWUzyB68q1Vy8BQygIYTIWheznNrJuayEVeFkpcJ0iTlYpRGGKVec555KETE+BvHzD2TwICMpNi1iSU06jAPrfC0bLDW2h3jrwBRlmTpm6EFlWO9b8qqf8yBKGnna0XjN2oAY2vtmzSrTUkayJvpbh/kQnHA5eVp2jmZFUqhR9aPHXPBJdobuj7Efn9/tPcNLekyg4u9vZbskC2CwiRW4WLNcN4BW60f5hifKz1nPSCuGJ7oB/KQ8vZg8hd/2b42eKK8MrE07oAOv6YwKTePRgFuxiKBs21ZhfWVPLzFUcsjZhLGVlo+gmWixbpeVGK1hOK3FjVbbI+WJSBciKftydrqqv9IE4I2wSd0zTjoUrBjph+chHJuJl34E23t2XBsewVwSaW+asK0KcvD/tFfyyPPB+VnYKTAE9eUYN0mYEbutThAgRyMubt9aqNYjNQRJ8B0y+G3hT1ANoJZ/fOIv7F01ut84GsKCjVHaNu4KBa+bDtx28DGNo5h/43Kj0jXTJaiqHFjlB9POqV643m6EeP0lWEBP2Sk4sjyuVkygCPsD6PZWRjCYqNa9JWixAurGhsMU9BZsFW26HyUVqIkEeTTgxNpgDPmcVz0xVtV1xgYI3lxiNdtNn8fJk4tKBggFnHeKaOoS7FLAelt147iUJGBxr/RzgfrICYS/U0Dl7CerGcfB1i2fedjlvrO4TiohjKytcHJKbGfbU83iHi+TKNzrebnIU+BpC2zveM8MkXcFdrl8nVK1FHIGzhcJBthUqqZ9kT+RwhVlmeO9X8He9elnwcrewYRlpOf/1TBL7q58k4uYwv+06MdGq7oRCp1YOStl8cfjTZ7HAYP28n+a2xcCqpW1Lq8U85M0yoF93L87jo0Nnl7AGlvOlvp1ZRzGRGVbRMv6mWICLKNqDroQJu3uehTioFX7FZp0s7v8oM8uGzh9qdUWWXr8J/hsFy3+Dw0D4WqAlOFLzq9oXWHRQ5taIQouYPO4hyeny1eUnAv5/Wtk40e1KqKyM8KaNjptQEMokCnExKTKNkhLV73QGpbkneC5WZitRCgJHAzktVOm4eOYP9uO5eQ/Q5AJDGzK91WQFJsWR9CwkD3Hd1qcZAle1k28skY6QyOvvbEhGDvdJRi64MC1LlwPoedQVJCC3fXaqB5wN8i1VddVKbst4WscHanmc3YHDg0qiBMLpXkafLPePIrVB/HWqlL/7T7vnmHaQGL1PWkD2nm/XWoBzeoBEdhOQuZDon/dVDLC0tHwj3g/aU8EuKu8K6AJ7NfHxthzvPYvIZeVzGnmcJ5r2REyHF2LpzrnnmN5ZgAzhgifsxhDDXJeYfJrndVZHylxglF6buSf8bwH27ZQ8LSWQFsQ9otiExMaYECPNeEMadab8kXBON9Zf6pfHZQkHQQY3W4AE69r/iuQLFS9aXoaZpY04QWO1ekgRemxmc6KIO3Fitfp66v5xOm3vGPBMKnRAX6CE3pMku6n8p7SF/q2pkKyFVuPfDjgIFMFUnhSzU2o4ceUJs4mQYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_0123eC3C9SLKYFQqwQFB7KVp",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The MRI report explicitly rules out fracture, tumor and infection, and its \"Normal alignment\" finding rules out significant deformity. The only finding it records is facet arthropathy, so the cited passage shows that no non-facet pathology is documented."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

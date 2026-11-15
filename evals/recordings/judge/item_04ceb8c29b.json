@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "9e6d877fcee646a6",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01J2PVwwSVDQ95dTqoEn2tut",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "Note n3 records a functional deficit: the patient cannot stand for more than 15 minutes. It also gives a score on a pain scale (NRS 7/10), and the criterion explicitly accepts a pain scale as well as a disability scale."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1231,
+     "output_tokens": 427
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS0goKEAgTGAI4AUIIdGhpbmtpbmcSDOQ92p3hly1kjjFk6hoMHeNOZm9w2Ygm5h+IIjAQhk6nUflylrz1Fj089fXdJH/E3IN5RZ2Yam9VwYypzw2KQ8ifKtpH2oi4UwdfOh4q7wmg8Nfb1Cno+qoHB1UWbkg4uUmSQrMu/VJHR9A0rdCVmM0C04FfMbxO4HXuWn7nQtt8OYK723TO0JAsXLP2mFzCy3JYfLBSZVYeOGMHg9asyVTO8c7SR3mBYr1FIrR4+DjX+h4riXOkjtETbjqpzbk7O5XjAtzpwaaHfKgdZ380FTt1to3obnXObpALdpOSwZOYBuyY2ZPEb2dI+IWy+XZNzm4a/zH6YyZOePibS4eKV+z4ffXDhGJmnpz9+vS9SRtU4V/+HY550xsNK7ND/eSYrLXh8IvNfs0lPinDtKknJ6GmnKnO35wtYgQefSmOrkZAOwz2VxGBHcwu74jS/UEFDkBkQ9v2RvbRReFnYri74Juigmn3+jZA6gH2dK9yDOm1jkZJ4rEUsyMjG1WRcKAvkXZvLLDHD3kJesrC0U91/c1WIlPZvd/su16CFlSRBuxASn1pkOs+SobUYgUx4CXSLkGI0YI7nG1w4XMVd9o+8SfffnDVVMzjdqZFX73Pzf4N3DSMrQ5vO/dt4X5t5+01B/OD5v5nNUxCAJu3vFzeho2xytdqeL9vougmcZlV1EmfB3n+PY7+wyU2qNnPFaXCLHA5m4aMHGEKmaohuLxli/MwRpAB3NatwqnTBq/pbrPDGHHFQ20EpgTjR2tvAUlLeZ5dptn6mb08UuPwRznFgcr93HYcvdv4hVTKVIk+1bJ8Kde5pjQnJbOPRm2p6gReV/4ODQWTxvsMk87gzZsS9reDI5RBD8CzeSH+yMBUyXNh+/Rzc2WCHDfciE/Rg6kNASUJ+SMTjEgQJo3RoeX+C3U7OD2BvMuLkwT+0Pxzm/Weghi9w+p/AXRFfRF35FtvDdu1h/nLdUGoB4h2R4fYizVwNK2N6lMn/lfTlH/spPs+iTtVnC38OLL4teIGLhigIf8XW0X9/LNHpaR4yg3rZ3bAb39qz9cMq3S0mfJvWukWQ86bBjDFKKdCOIngdxRfv4wq12ztsa5bJoKQBcsUFW92r8JELdj5UqtlAURWrA2Pytxwe9PT/MORzViUKxW8Ah/PdaCjfAVKnv87vdIh49F/6IfBfP+QVIqyDfH7y65Ba5XakXGPiYjbwd8Yep6a6mq/Rw5BQJWksSLrCZvv9gIErBjLfpvrYP3uiAmM9tdiL6nzXdmBBzdhBsFQSvlOukMysleUwz2NAbVRIIEtHpDAhn/SLcBKJtrvrWBCjGsuXYGxS0D5X3c9toCcqIWNOatboGyABlt38tLfR01rWUCW8ewU/wH8V54rr6/BoimTgmm6XBarSKEY0VG8l+2/PuWnqIng6y8we/xDbpb6LFumYXB66/QdBuMzErvQTUpPpDlHGjWX6dPukPzLHsyGYvVj1pShcyblKZQ4GjsZ/uCAv7THmxEQ/MocecWf39HKhGPa06RCdYx2Zs7zoMzDOrKcHucAX5pTOKs4SDikXSgLIhooslLbFjnYP3LGWlvCEPb2lDuEEGDfqTKP01LOggJrm5GHrECBDUuEC4nzXPVmfGFiE8AOIxSNhvINJQlSDo0Zbb+32HqS8JjucoYbN89BDnZ+LasRk7vQo3GcFIyiwRRtioFnbmpv8sO3zv6F11MUYZ8ue6lwppkbETu0eprDd+bN6sdX/UZ+/D8/lTQElnMz63+Gh3t2oEF52voSW9mUHL3f7SrkvTduC4QYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01J2PVwwSVDQ95dTqoEn2tut",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "Note n3 records a functional deficit: the patient cannot stand for more than 15 minutes. It also gives a score on a pain scale (NRS 7/10), and the criterion explicitly accepts a pain scale as well as a disability scale."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

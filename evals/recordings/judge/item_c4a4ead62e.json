@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "8ab2848a3c62a113",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01QoPUdmhmGW1nPi1uWZn6Dd",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "The cited passages show only how long the pain has lasted and that it is axial, which bears on other criteria. Neither shows that conservative treatment was tried and failed. The statement about failed ibuprofen/APAP and PT appears in n5, but the assistant did not cite it."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1325,
+     "output_tokens": 215
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS6AUKEAgTGAI4AUIIdGhpbmtpbmcSDGCBMwm2HgKWxyagcBoMQrweOjBYBCf/UnitIjDj1ac6QPnNxtKAk+eNBnLBw4INRTnZmtD0/edIqcvsoPYFQWK8276XOlnwjNa4sZ0qhQWEEUaxVMSBeZ4MA99cwBpNR94XIFkk9kxpc8lqiE3jHVWOiorH1xek/59s+ftt5bz626rsn/PfbgwUH7aJS6ZvAuQ04Y8YalT9Vfz0gp9SzYCE2deKF5VKOVGP2kxQBbPpzuPBaNN8W34n0240qxOrTBAwN5Fk9nVwasQzcgOmzyH4Pm/+hVa5xCYHMoJqPSyAt89oD0ZOBBIpL6LxKuoAPOajEGP9vUotfJzAY6Y9sy55m5mto+7pF2uyA8z4cRgqsk2B40bEXCndfe7SzG++KcyiKiBZDGuQKeLAEKSlYw86BU/NKwNfItRm6eqKes+mlVydlZeweXaiK3pcdNjn1RWBTONcvk5moSkXwQGceEpSB61zjn9/2un7zmQwhzRSbWLQDfLc+xzMBDcATXw6M5Bq41NIJKTP3yOGXZYX0cZF+NIpdAAv4W533YhBrDUPVmkFgpv6rdLy5dbJEaW4PjfYQvnVpWMLKD9pUDlKLbvHpafOjERZ4GI+jPMx7F4asXCYstVKPwBGwZ5ms4dFahKraEzcRhxsu4rJs3Fy4Nbpj6ivDPY3fHUeiXgYN5fIiQ2FqTBfLdJBTXm+r2lQiPfWQb2jPuFKsAIwa4HzzSXuTEIgLOqwZoyhZDLnB+X+FGw/rxbs3rqAdJN4DMvVWYo37LKV+HyTCrZIccX/HfzR18n2ddv6dCD4T6mG7S0woz0kY6Nz8JlUJkB0bODq1U3IflIhtwBU0KRtlQ3FjBn6Ru+0yNUpLBlFfmxtnuNqCzG/XR5r/frXKIaB9l1X9SceWI7jhL0W70SU42Bb/Ka8aOQeLthfLzukrwzMuPy3js1s99xKFlQJHE9hUWYM0JqSLDUYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01QoPUdmhmGW1nPi1uWZn6Dd",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "The cited passages show only how long the pain has lasted and that it is axial, which bears on other criteria. Neither shows that conservative treatment was tried and failed. The statement about failed ibuprofen/APAP and PT appears in n5, but the assistant did not cite it."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

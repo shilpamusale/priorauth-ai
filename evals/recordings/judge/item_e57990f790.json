@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "64f07fc52bca4c68",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_0186N5KpyGrjjekBzUUWz4bf",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "Note n4 records an Oswestry Disability Index of 44% at the pain management consult. The plan in that same note is to do the medial branch blocks, so the score was taken at baseline, before the first diagnostic block."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1273,
+     "output_tokens": 195
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSzQUKEAgTGAI4AUIIdGhpbmtpbmcSDNLNA72yKT9oOngmsBoMtkWZTQ00/O4qrVYUIjBukl6USxmcqaMAHQGZ97lzcxxNCOmE8nKHbp/eCdwRWfucBrjBPmfP5WAesMG1yYoq6gSzIgGAYKE2nKiQgC8Dm3mZJwij3/r8FgmQOsfS2pEeJktFnXrYGw/6iJD/QoURKReFxIbWNlTfZghNMapORHtc9h6m+GM9636BdC7RUd6wkIeBDW9EPLgsSTSn4IGKM1AqXf51BJZ+Jfb9+/8ETv71ZdOm0pN8w/BD2Zxcezd1OVxFnDQH9aK8alb60UI2TkH8MSob1QF5wVyecZytc9NQd35mM3c4BGjYaKlD2q8HN7csIyPhjfBcyI/cqCE86vMmOZBXOC0gdLWhun56NwFaOYW3gt3A2qD+9on1D9IN8eaIbj7YPxsVsJVne/4uizyvj1EpXNibNqW6Fh+8LUsJ2RIT70SZk5V2ki903oc0mo9V4aFeTgV2Hj1iYJiXxfB3h4EoL2YUIKgoRLLw3Tq6PZc4VXZJIxmSOGkfXXMSufViJAOTY2jsNswU4Z14xxTBn25P3WrPZWBf7zF8PiBqJqwTyVLLaqtYlMNraS6C4U74mS3QUJi8NaAooiQzli/JA+Fy2gdJMg3+RrGU0xMMDvVAREhlaBLIYp15z2WBpMGYdsAbhYbVhVit8NSh4jqfKvLCuitV2TF0EyU4nT0nTzOC0bOWDBIYrJ8kqKh97ynObtjsazbbkI5OaDTDAGE9b2jKG2AVOXTRCOYM7My1PLwzSeDIqsqF4wLvnw60uEPSwjyVANyvd0WqtPbAgySbG5YYGWZOzM3OHzfz9TAFaf6CVMvGWJuq4I2r4IFl3qujdGlCu1sQAZjhBJZiLsWRSinMkTzgVPgnMUmBNCCr9uJqBR9sS4JvmZs2vYul6YjNOsuiU8yqHOIYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_0186N5KpyGrjjekBzUUWz4bf",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "Note n4 records an Oswestry Disability Index of 44% at the pain management consult. The plan in that same note is to do the medial branch blocks, so the score was taken at baseline, before the first diagnostic block."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

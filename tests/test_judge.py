@@ -179,7 +179,8 @@ def test_cost_at_opus_prices(built, tmp_path):
 def test_command_line_measures_a_few_items_first(built, tmp_path, capsys):
     items, cases = built
     recordings = tmp_path / "rec"
-    shutil.copytree("evals/recordings", recordings)  # the agent's recordings, which the items are built from
+    # the agent's recordings, which the items are built from, without the committed judge recordings
+    shutil.copytree("evals/recordings", recordings, ignore=shutil.ignore_patterns("judge"))
     chosen = judged_items(items, load_sample())[:2]
     run_judge(Mode.RECORD, chosen, cases, client=RuleJudge(), recordings=recordings)
     assert main(["replay", "--limit", "2", "--recordings", str(recordings)]) == 0

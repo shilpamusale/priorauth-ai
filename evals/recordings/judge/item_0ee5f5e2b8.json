@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "f0bac33094cad10c",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01BDPy19jXFENHyaCStjXXBD",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited passage dates the pain onset to late January 2026. Note n4 is dated 2026-08-27, so the pain had lasted about 7 months by then, which is more than the required 3 months."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1170,
+     "output_tokens": 167
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSkgUKEAgTGAI4AUIIdGhpbmtpbmcSDFOL5SeuOul0RVKZ1xoMGwns4QquQFRp9RJ3IjCORpVCW2EUPS6JfyM3gxRbigd3V2CsVagJpyp6k+OsG4GtsgwG9ILIefwHAKriHg4qrwRJQxzch5G3lb5/YaR8CSoWrO1EwNHAMLJU0EIFVaQyRSQySVnDhlVCdDj1O/odR9+m9agiQYXx8YhQbUs8VttwcEGpHD+a4kLqI87HqSmQtN0RzQ8q9bKF3HzrWPDUxvtgKsk306oLbq16iS5vQMCwZehBWiTAtw+NEzAUVdsMVrWcS5EBB2hxwrqzwjR4bey4z87JnvGt7qZAIP4khQAY9fCDKvQDJe63X2jOpbow74AJVj45FXpLBRAhIndRDC6u1N1KDbdiKUqJtZlMTbENPR2a42vQZGfkarChW1vP9PfUDgj6X78BxUO7SmECLlctv2lxlMdnsyYFjFaN0t02DHkiA9Zc9KfDW5uehIR7zKvtOkReijvJHLBdypzwhcN3nYnDLFZ2AaY6AAvixbU7N0hrAhKpuohr/fKeY2+id0yzsEGUx14oTgP+G+ZY7+Xp/LgBlpCtFaVCQFR2sUvyIKFAyqa6RtBaeeHzsPTdpAINd/OpBMimdQw4/vOyC3rWWFe4p7M+aFvcEOGmQHvaqG77HzBzoc3WHbi0eVh32/OHQ4S/RYL1ETp0nBXMuckSOL4B4kWcvKkkciIakA3370gpMbSdtJ4x6+nqvP8JmKUj/gMtf7azbKCMKmTkigp5haPvH4xTm64Welos/ld7lTXcqbIyd916rvhG5Se5Ux2oZTj2z7Ik2MTHWvsp+ZitmXL9BIv1srDf/207EE/d4ti4c1rv2A8fewI/2MqLGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01BDPy19jXFENHyaCStjXXBD",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited passage dates the pain onset to late January 2026. Note n4 is dated 2026-08-27, so the pain had lasted about 7 months by then, which is more than the required 3 months."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

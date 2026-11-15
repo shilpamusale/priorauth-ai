@@ -1,0 +1,50 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "38266420ed19bc8d",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01LU9ZSyJJKmH4PCLzz3dqRW",
+      "name": "grade_request",
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request cites the 9/24 consult's actual findings (NRS 7/10, 10-minute standing limit, one-block walking limit, help with groceries) and correctly notes that no disability scale score is recorded. It asks only for a scored, dated scale completed before the first medial branch block, suggests no result, and names the target record (a pre-procedure note or a standalone ODI form)."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1731,
+     "output_tokens": 445
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS2AgKEAgTGAI4AUIIdGhpbmtpbmcSDOh3qd1mGWjBUjFd+RoMhswrRrIKUz/YUYsxIjBSkQs8gHptUHJUJEJ9PFElvEeyVOcPAYXoq7BYKGMVqZuzHerwW0UPV6fWtFoBtQgq9Qfq2rxG5xRU4uIqEGeg8VnXrFEF3zMPy6PB05m5ImT+JBD/0ek7IAJBprmDfr18Y23Cv++04ZLgL2PH3YU6Rc6RGS6PrTI3wJBPpKfvlysyh1Q11w9QHmyXDRda5uTX9KWMGaz8A5Qp0N/BuoNqmNGWL8+EFSWzufZskGvKNYyC/ewE0fxfi3RJEj2mTIgXP0k6h56D+70dkPxYCsIMDknAZb6lBSGSyT5XpjPzcJlaZoTpQhJBkXES+lOICH3JGusbYfbJPgAySWJtE/ZbIyfjC/5tBhO2OycGLRevfc9ChuBomsdDQjfRqxS+UCojL9AcmFKhviQXMlVME2q04at+gwwl6JNpZ5MQ6GOSWzSBpW1V/GAiKLDPkuTWdJ3gTF1rqEemGCH1rAJgF9TpxQqAsJcWu5gJjOxJCLkGIEjb6Nik83BcoIGzRSxq1/W7tt1U6esHqpzgc0deMoLCmkrUGzPoumfmDLw8vAkG6ucnZCTlcxV06nMWQHEZ4BZaZCIhZ8PDaI2MfBWaLyGovwFmrN5sOvmcGt2bVM9YHg65Y4WKF5BUttZbhZx+ufd/07+DE54kfm6XgQnnE849LUNB+lq2tVgbthSJVlsGusTWfIunuvnO8Habf4P8KEFXqZr79dBy6MT6cczPE4RMGelG4IWbQxKQoTzbUq7SGCO0WRbiZfP5utA+R7WruYHTMBtLmjFg+tJOE0qiCtc1ttttAXesiLrzLo6u1qddIKJvu8hpo93l5DOFZc8R600AehUx8A22nGI0OuLtjg+tKjDzlaNW68YSmJJeQAh0lNrGZZSNNl+COQvVD3CSyGkd4QQeajOQ43ARW2EnEjBkS4mW7DZTWtISCkiLlKtHFDcHc+K4PkjBldyXu2+0UPIUiyBRtQgQxZ5xzwFtCWRzFRuOjstVwDiJ/3Ik+8zh+OlVgck6DmwRNU1ZByxfblafwBT8DQAl5cIhwUe5zjqHrS3AxaxKA5zMS78isjOg/n7SdnXa7IRXthzpVejAKd+CDqFFUGbX4bl708rdqLhMbHLC/O8Ix22AUYSy4JEtfef14HADmvoi5jJxfdhly+Tu1R2o2yPRz+yHfiFiGvZASHYaUmvzijPKD17YOKdZSGB3BxPbpekFRJvv1k5j0THIZjwqOAGoNertWIWV/ItUbhY0LZdxZQiqxhchuZoUgqS+5emVLcEeHdyxyJwUutx3cOX7pXVk6xXcj3LKIUtKl/CYkzaqiEMmW4f96vq55Hc+01qTnQ85R50hsi2mzmqPcKTwzdakmn42P4QcRgcuPVxLIwXy/wcdzp7mHpA2dLdtr5nrX0wd690DL1/LISh1oLnPbSOSWBgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01LU9ZSyJJKmH4PCLzz3dqRW",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request cites the 9/24 consult's actual findings (NRS 7/10, 10-minute standing limit, one-block walking limit, help with groceries) and correctly notes that no disability scale score is recorded. It asks only for a scored, dated scale completed before the first medial branch block, suggests no result, and names the target record (a pre-procedure note or a standalone ODI form)."
+      },
+      "name": "grade_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

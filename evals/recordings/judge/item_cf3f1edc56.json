@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "da7fb58da8ab61bd",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01HA9fLnDN9tdRTHCQBRCZPW",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited NRS 7/10 is a moderate-to-severe score on a standard scale. But n4 says about 80% of her pain is in the right buttock and posterior thigh, with \"lesser low back pain,\" so the 7/10 doesn't show that the low back pain itself is moderate to severe."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1227,
+     "output_tokens": 337
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSiwgKEAgTGAI4AUIIdGhpbmtpbmcSDFCHsentP7ewonK9FhoM2+ATNSwI/AuO6nOBIjCEsHNgqzBNNdqrogBLiCFmcczPH4LuhxG3A329JpDkosHCa20R40qm78WbfqKbgpAqqAeYF2cdsquJ2/XJIsBijzmwlYkT5KqOpV/HTWGWYpWfUk1SfQyIGBiHleL8/tqv9iCSrsd1mOEJvrKpbnsXJKfq2m4vsoTiJrLRrEZZJl4CGD/eVQ+p7f5mrPj342MkokKXHILysu1iGfZfGAN8gJx+vJ0wfsMU8V9BtJGCARs7sJAwG36uczo3oiHC5gbOQyx5MSgCGUJmleaeuIQkqnTmchfNneqdau7AFMxhTwrckOCsCUDIJ0U0IZNg4eREmF351ZMzZX5DFdFaaI4xmpNZcOb1ewEddpQ4yxjtxjhWZTJV+0zjHerPl9dYlFsFFtdYP0CQzqYvgBE+lA+zjHPtm8XwlHzUvjqSeMlewH3Dw0uzjJTjwmCxo5dNu0kiA2Fr3AS+LgPuuJPR7cQE8AReG/PfKSjfxu3vDp3ydtzt0C9DD5CkevhhdjifjR3fyjBT7jT4n33yI67chvo6MKq75VQs3prndHxyaubHWUUM0k/ejXsPjeuSsr+7WyOHO8ss/Vq6dZ4gwIvrj56/sUmyhOi453aiARCu7fKgb/XTwJw9/iEFEr5Jt74sdz6AVAPMTMlWhfZOiIn2OdefNMfrj1w3aMGVI9O/1j6c9MB2bKjQXnpYEtTLuZ+2ssV1tj1NDbW5MTauOey7vvhOC0RUaOY1zA0cGcij1xLRoAbNhnRAPXYP23CvUrYnE+OEQLy+m/bAbOkoPWW6s81JUtZWgY2bXA/r1TTB/Sv7pg2bJFO1dHDKcXD5r15l3tuPjG6dsCqU02gbz0h730iZEmSMakO7tuH9i7Pmhr6mncoq7BrQYihEtLESX8UUmdQN62cV4UGwpTdBfa2cpOCdIFJZ8CZddA9iq3EUTaIylBCGg4R4PWfJxeSStd4J8gpqyi4OnKFF/EqzpfZfWjzPA6lu+hg+IR6x8bWrxzRwQ4XckOnHh5IvPVFC8KdNamjnag4TTVAjPZI3UYlhcSkHolATHlLCUe2n5piiZy221UKzRNySnVohKio2BKOXGOC4gZA/yFIhkD+R69ZVFUK9u0rUy9ebYAcxNbfkysR5/ESsJYLzJ/Zv6t5zg19khRnXeHTI5XxA8wwObyL7JT4z2TNrooJeXwyrBpD41cjVph3Wf37556GYcn+G1UjpJYPxynlPLZAagM/pCXcwqj2W0jbpTwAQvMjwNLFiftZiX4Rp6CNR8NoFT/0e4DesAqwaugsTCJw2VBa3HifpbQ/5Z8lKyR4z8FRmL98YAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01HA9fLnDN9tdRTHCQBRCZPW",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited NRS 7/10 is a moderate-to-severe score on a standard scale. But n4 says about 80% of her pain is in the right buttock and posterior thigh, with \"lesser low back pain,\" so the 7/10 doesn't show that the low back pain itself is moderate to severe."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

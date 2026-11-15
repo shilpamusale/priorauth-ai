@@ -1,0 +1,39 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "06f3c3c7075fd541",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01GSkUTHVfJFyEgL2aFQG2Ns",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "Both cited passages give the Oswestry Disability Index: 40% at the pain consult and 38% at PT intake. Both scores show moderate disability tied to the back pain, which meets the criterion's requirement for a functional deficit measured on a disability scale."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1370,
+     "output_tokens": 158
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01GSkUTHVfJFyEgL2aFQG2Ns",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "Both cited passages give the Oswestry Disability Index: 40% at the pain consult and 38% at PT intake. Both scores show moderate disability tied to the back pain, which meets the criterion's requirement for a functional deficit measured on a disability scale."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "e3bc0a7c71313b03",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01GKs6xHuYVTJG5mXtHQJim1",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited MRI passages rule out fracture, tumor, infection and deformity (normal alignment, no spondylolisthesis or scoliosis), which covers every example the criterion names. The rest of the report attributes the findings to facet arthropathy."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1196,
+     "output_tokens": 380
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS7wkKEAgTGAI4AUIIdGhpbmtpbmcSDK6sbUGadGgAmIynrxoMhJVnoy74FC+ombnyIjA1YVmQ/Cz7z6l+yoMoDL4p6nGapV2iRiy7a/kNyspxHtWrct7i6kZf6jqFvcOx0m4qjAkjD1MDjocA72TBP0ie/Uk+f8+PY1m0X4JbccIsU5YTv7PV22YTI9viYwSoD63C41Ifwu0eFI7ORhs1KaI9IdxhelEg3TvTDa3KLMxT5eOKRlwyo4HQqvL7uzUtq+uFtAx8u00q1xE7giHvszBIRYkdG4aSDQKeN3g8VCPMkSsJbZC8FMF/1SHr+Z4IGQ60RlwGM5SpFdL1bOlGzccFP3/e0jE2t80kxIUj/ipuoi+/vUcqlKSB/jjNvz+d5yBfoYMUkQDGiZpd4iVBdNhmkMHn7eDxDV+8mJcFocuQKPSNvP3ZYH1sX5ADJl1zhX8OWlJsI0RgM4Aum2cvTmdEw8L9F7xmbSSYJqUmNGEg9G3xIOPiCrOp1BYbcukstdR+D0cvqpe4AhcsoWFR+4ppsTel+necJRv0C5PcQMKFmmObun47XQRh4h6yZjZEMNPFeTWUOr9G7sTxuYID7tsnEqCZ0BUFOt6UxIG6DKhpRcekI7NKMlLeIphX72U4s0C3xShC/bf4ags4uGaHS5Vti73cNxDUZOQtwCLT86nQvrWt3ZO5TyraSJMZDfJQi+y3UMsW8wv0SHT5fO+Di+MD3TuxnE1+17kIP77CXcLNmAMZdvlBDvhXzburXwYNoqZ/6tSrTvjm1x5PinCIJ3A1gd01SqS1FUbR7o+OZwUhXvK/tc8xuAgWeawPR8yX8LDHcEvnygrktWEdC1xqDkr7JCQQvL8H2taRvUwx2qf36fGXWpa+WQFQje2kmaGzlw/4Q6HRqxyvqFsefL+kuMdpiv49SiVDiYw/OStuR6Ktg4Dozc89FBWJBS35dzClhhdPCoItc0qaIy9BY8+/BEZxoTOZITCHzApw1IMw1XD0+JwaEHLwpmpFk4iLFprlCWNRyCyaNbul55xwrrxKwg8riBEWFXW0HIkoTwuglxqp2UqcNkLokcrkEQZQzCEw4tsIF7GEl1N3hM2Vke3jkv8gbTyLSsvBLTveY/jrVwsfDlp9OEY52Ngwkazm/eLxrf+E6BTkoJFWvWyTVq31lENpNMTlVKpl98K3O002Ab2eqaN0ZDIZ8ERe3wWEcNzN+rJ5rRndiWcBQ4UUbJDVS85hYjxq9kUPJZqC/YRPZdPKTc33zjusk2G6A3Z8iT4cXwMtKpgcxERr/TgdbaNe/Xc9PZNulWm3fc3ih7NS9Uwt8aE3cFlV77bbtq32UMA7eTuGAOvlsaF5H4osKTqFD9NJ587bWOxZABZt27DLCOqqz4MOoP7JelPASzRsg8DE2Lk5roJ4OdgNokdlEMdIvaWlWbEDF/IXomsGPIe2qh0LGUYe4hU69lQ1PJIyQUrngG/1vvet/gjTQouHtWnKosjlI8zrSEJ61uzc7v5iN7ea2rpZ5Tz6a97I4RipeGsanMx/jDEvnzItV5s39Jlrby1KaQiwRaYCpyV6Hr8yIuz2NjPxKeRBtnCkqyB9gu2ev3EOwJFL/n9zusfgB3hRV2E6XI7cvNw3iEDUSh6XpJ97gBycdbIlSAhxlrqMV4pGDyYc9LlNIoVAN4P2ysZk4pkYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01GKs6xHuYVTJG5mXtHQJim1",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited MRI passages rule out fracture, tumor, infection and deformity (normal alignment, no spondylolisthesis or scoliosis), which covers every example the criterion names. The rest of the report attributes the findings to facet arthropathy."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

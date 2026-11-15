@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "85de1aaec516b475",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_011tEWu9KkrpRqzVUbb4rwsi",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "partly",
+       "reasoning": "The quoted phrase says the pain is \"still mostly axial.\" However, the same note records 6 weeks of shooting pain below the knee with numbness, objective signs, and an untreated left S1 radiculopathy, so read in context it is unclear whether the pain is mainly axial rather than radiating."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1270,
+     "output_tokens": 519
+    },
+    "provider_blocks": [
+     {
+      "signature": "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",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_011tEWu9KkrpRqzVUbb4rwsi",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "partly",
+       "reasoning": "The quoted phrase says the pain is \"still mostly axial.\" However, the same note records 6 weeks of shooting pain below the knee with numbness, objective signs, and an untreated left S1 radiculopathy, so read in context it is unclear whether the pain is mainly axial rather than radiating."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "013f480ce1400dc3",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_016q9Kdfmaivn6D62jRni1jH",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "The note is dated 2026-04-02 and says the pain began in mid-March 2026. That puts the duration at about 2–3 weeks, well short of the 3 months the criterion requires."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1111,
+     "output_tokens": 187
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQStgUKEAgTGAI4AUIIdGhpbmtpbmcSDI0KdLlMhTX2jwzOGBoMMoo8//DI0tOPi5cyIjCCI5vVCkpuPjmbuZV9LBWsVNPeJgd2/OL7dNC4LSJpElLmiwKacns0eWAH+s3RMegq0wQmY8tIKcwind4OAq/SHjRcSA3G8eMjh5sYUiSBbKSlWqr87kkPpW+p+k20WlhDx8/V2TTcJHtXFdmCNDHI47nudY4BJDzT8408mTz5kyMEX8kRs1IdIJTKuhfc651zq6Lwcuwdnk9ziwpElAexX9IiDokwZ9aADnD5vuyHFS/CMWNPWe+Fu8Xm8rI+E3JK2qdx776ezFMkJvDsRuwsv3n5yTQtyCh5E7NV/82xPqIZCv3Aa45KxSeHtBPyULBXEkt9wcRfrgzKKvgUlolL16BUaDVWqK8BJ7QsbK/QmuBKDyh9SdJu410TrN/PGlr9zWKu41/4ecrJ0k5G95dIcBoMjE3dPJelJKoOhpTHq8thF4Tua24Xmhk2la56ajAPXkkgGRJq7G7IUqvwDwquc18RKUxmpRJ5u6VCRflSKBzneuTjXlPl7H1uVRE7LAVMpEvVXrKh8NjW74pYe7I8kqTZC+wR1Xdp+ixNHij9pH2+xJq54YJ5wOyeBRF4XGC5LFoiaRSl3i8YfCKtV4hnIxOxe/HcglLqdV8c2GF88mo6kFf18tLN0jFae6J1BbciV1ybkXjyW0c7FP+6H0YieXWiwWaboiaAVR5soyjZ86TCEhjyEPlzj47wxNYAoe/BYhj35grV0bc0g2DFUcKdf/o+QaPuQST9z3EBHdvHgTJPNSiDKELz7LaqnYROyMhfW7WRGOCUcCNEcc0Tlgudjg13BHH+bk5UubbFKuLrRmucEJCCaQY9R4d35NmajYRuzc5O0O+9/mkFZwfIZ/Ap+jsqDJ0bGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_016q9Kdfmaivn6D62jRni1jH",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "The note is dated 2026-04-02 and says the pain began in mid-March 2026. That puts the duration at about 2–3 weeks, well short of the 3 months the criterion requires."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

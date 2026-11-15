@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "b2ef049805114f88",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01Hss7ucPFD6W8reFSZUCNEQ",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited n4 neuro exam (normal strength, sensation and reflexes, straight-leg raise negative on both sides) and the statement \"No radicular symptoms\" show there is no radiculopathy. Pain reaching only to just above the knee fits referred facet pain, and nothing in the note describes neurogenic claudication."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1294,
+     "output_tokens": 581
+    },
+    "provider_blocks": [
+     {
+      "signature": "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",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01Hss7ucPFD6W8reFSZUCNEQ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited n4 neuro exam (normal strength, sensation and reflexes, straight-leg raise negative on both sides) and the statement \"No radicular symptoms\" show there is no radiculopathy. Pain reaching only to just above the knee fits referred facet pain, and nothing in the note describes neurogenic claudication."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

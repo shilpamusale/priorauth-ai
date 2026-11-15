@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "30a4cf05c50a012d",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_0155b7S5mNBkdRTb31TKnhSr",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The 2026-09-09 consult (n3) records low back pain since November 2025, which is about 10 months, well over the 3 months required. The n1 citation is dated 2026-01-12, only about 2 months in, so on its own it would not show the criterion, but n3 does."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1290,
+     "output_tokens": 232
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS3gUKEAgTGAI4AUIIdGhpbmtpbmcSDBxGKseh7mlyGo6H+hoMNhGSr5dAscgUqT4tIjCQ3Jucxx2ohwWzMbhHDVTxCMDqok1BgszXUa11trgFOTgZw4KStE0MVFht4XnbujUq+wSPE+DxXnxcFwOlGCJZdzVcilCIVakok/QdIrmW2hlg4WKeKySa/O0Ew6M2KGp4Z8IrEY2ZLhdiUV4t4ExNeRBXrOWer74/KiKWZ5uTWAPxRDhVKUDlBDuAbIZFELj5vPzWOqKzomSdflWiTSxU8lK+CC34OLMpKr0+Y4VlYWxVNUTXw2uuaigQ4BP+0VvGzcUgzIKl7DhQMlk/9TTFzcfymHsqMFn+nkUrA/LDhCDw4eq1NkILpJBRIg58QSOWOnC1EmCZ+RlUIWl98SiYVKeQ6IhdosemgungqNzkflkeUMXS0yzU3naxD/8TM2vbpmyTnio2utyVZK65Fvt+aTt18tJj0qqDoGE8Z3cKzD/iYBPY6aseciUCYlbb27571X62GitHkL9SB6QmPb3mUXcQBo8m+/3hC4Ea/8R1MlcU/0utueP8kWFKpQ+7s02l2rJZQmKPknoPQ08eBMksFmMEXl9vKqw5PMCeNqAzh1Gt/aawVNsa8quds6FhmUa0GxGksBcRlmdz+ol0kvO01PXLoUfLklg8HIDopC/HfrNVDLFI9SdZUDih7wUu/IEQhrUMOMLcD+QmUFKhedQ3P/GRqW3r5/kJmDA0p7AkOZwlHdFk3xzt0nGTIUyLVScgphkfRoqxiY4z0my1U3yjWRCOTM1MrHiEvDjYPy+Uj268byM1reIofMo3vXezHf83Ty+lxYMhHKHeesomAYElrgLgqvFLPb+lkCaeLcwYLUH5ZmbNidNvGJPiRQCgjxHpbtn8wPOn7uVwUwj56DMIDu8ml3ywOd1mei37O4GlLlBeywxLwiJ1oiRw9CJ4OstPcXVDyo89AL6ilU9shhgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_0155b7S5mNBkdRTb31TKnhSr",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The 2026-09-09 consult (n3) records low back pain since November 2025, which is about 10 months, well over the 3 months required. The n1 citation is dated 2026-01-12, only about 2 months in, so on its own it would not show the criterion, but n3 does."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

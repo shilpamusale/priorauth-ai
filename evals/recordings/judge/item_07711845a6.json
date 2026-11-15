@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "4fa4e40ab4711dec",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_019WPCV4j7acdfFVL4jHUyir",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited n5 neuro exam is normal: strength, sensation and reflexes are intact, straight-leg raise is negative on both sides, and the note records no radicular symptoms. The note also describes axial pain with no radiation and documents no neurogenic claudication, so the criterion's requirement that the chart record neither condition is shown."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1266,
+     "output_tokens": 429
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSmAoKEAgTGAI4AUIIdGhpbmtpbmcSDNClcNnVB6h7IL5gNxoM3+6DpSwm6AHe+EH3IjBuPBdUOc67OjP5AAr49p8wNW90SJ/54GInYQGN8zbOVy4dkE1iWM1LSJz2hAuzZ3gqtQnkViDUkFvwHqavmzH+Jz/P8mKGa/Ove0c314DwK6Isuez+f26pODQR6/Fnk2Vqrq5eFFixZ8PxvxqVyK5zE00EEsD7YoGQSKYrJ0masOgsoKX9wOmkvid0x+akl08OtrQzdAVs2epwZh+vwmjqN91GvP/iD3ayc6DqkDDOZboUJZnM+2xw230GC1VEf4rUQkAq6go9YWlo9RjwlWu+zGrJJ2ak6Vd3BbNUpknA082sYNeHafgzxtvCUZVYAD131jfW1QNqmPC4Z9VKd4mNZFDjEcRCdrCwDBa7HbvmGyHapc5oBcz+ryPk6YI2UytGRDT1tjUgXZIO6oI6+5Q2YRkY1r6wq6ovdw2zFhIp+zkQi2mKuOFnfy7CYK7Bkq6yf3E6U0JAbbtms2D+jlMGD//X9Efo1q4ibDLHfJVjExOyBiwQoXrtrTxJxKzs/DA3tC2LyBZ2klT0v9yzzJYLyxGljCqFnSkm7mLyQtCHrDCc1KFUIq4KwYMs1DJIuvIKU32SUrSjZBcpPQKdB9DjHyNzZDTUwkhyrcFTCl+FhWONifG4m0yMDrZt52XkCKxhGWjYKSgpm3S4phLxvBLd3UpTVy93lmFixUQqdoE4iteoDDSGwlLSqs2JZtneMIji22aKZpmw8TinO8NEUjkVPelRT518nvScxeLsmLFZK3d5HB0nGKB5N9ChzHapaGWK8wRHr52cpVxYDVVCp2uPkFvyHK0ApycySPvF/diXn79vcx/ocdUWAhakixvGEh/EX4s1OnyWuLymvKphOcwrybbFIiSBrEPclKoXAo/29tYZ/wradoGnjqVcy6zERo30NOuz58N5OnsdyyZrLvtKXKWKPoIlX0eaGEfWVCwR2uDKkmqF89P0cm7nluYYKSQroMD1bCVQCSCDvLUo3HB0TRBGI32/qOCAW+BkwDxIntoMwpLJLET/OObDZbUTEO5IBarEP/z83e3h//NQ2K9V/DjoJHlUcS2Y9HlmPve06cg3wZ+NP1HrYwaJ0rHMqMXRePac92fx2XMw06nCsQwfy5WDxJR5tAsi3B2qT6Y7689n3qKfC4bIeaE7K1L7fc/P6XZ9iMKkr48TEACLXr/3F0kWrIm4BkldOq8pj1G8EYW2w10pX+2YCzqtSiRNEotM663ZdidkiOYLChkLY2GAU1TQ+Y5mZ3wD3+AHqAj5vkKIyp3p2kpJqDAoH3FSIznScYLyawnGLgh6sxCOT5mVg5rfss1tPJ0Zq2FooAExAFJT4waJaz5yVKvSzYy0V69i2ZUf1qjDzYmFyS882dM5eoT2wSxx2ONs97Z8YPRnWD3oEfUtaURSASrDA/l8zODp/Qa/EYuIXcNw/qLpq/BYJ2gw/foxRQL9/49i6mMg8cIWmSVK+aMZ/rT0kSsUFyPQTgepeu2PybAzKnkvzbsyXRyZ+yj9QfIdHtQOZB5wGbPNY/nEPQeJlir/5NSx/xomBEtj6TFvlcENqfO24Te9DeHckVlzTmF+99cSjqq55wTJzTjdw1TSKNISnnFRGCtk8B6YGq//imXYnu3hx3etcafZVHWuSKNxMaAMsLmC00IjR3mRettSg+iEDnkN4TfQqVBuQ2H5+BgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_019WPCV4j7acdfFVL4jHUyir",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited n5 neuro exam is normal: strength, sensation and reflexes are intact, straight-leg raise is negative on both sides, and the note records no radicular symptoms. The note also describes axial pain with no radiation and documents no neurogenic claudication, so the criterion's requirement that the chart record neither condition is shown."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "9a982e2b854b440e",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_0181H751Rixr7F8GELaSnBfg",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The consult is dated 2026-09-28 and records right-sided pain since March 2026. That is about six months, so the 3-month minimum is met."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1213,
+     "output_tokens": 155
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSmwUKEAgTGAI4AUIIdGhpbmtpbmcSDETauO6GL3W25PwFxBoMPMxO9bFhU7dajLw1IjA9Lj9LxPYs99jsMp+kVo7IFyU4R/1MhqWW6OQOBtL5WoZdkcHVsx8dlEtKSFCp5hMquAQphr5hnpA0oGOYSJbHV/JLMaaLCVsPlg9k3CnswLE6/1kHGf0cIuGUt6Bie5M+BAj+3pjPMWEhH7Ed1wllMMEF8QzDvI63dOUhVe3wxoDrXzVZ/94OJxeXc2vUV+jFKnTjCqTzbWJj8fun2YeMUuhKAInc19wsGXR2qax7r6RBiwzRt91CwZFcqzICQFRZoRHlKiCW5u6+A6MrfAEmn6rofcsd/30LCveVGQzB8SlF1btL04qQFiYhQpb4LV2DMVwxTme5gmvMdyZtn6pM0eGOIMzh5wptGxV+A+Zc0jXI+UwHkEC/gveLqOaeq7b4g2q91CMj7qv2O7sQVvteLnC/LJPUXbYO9RQHhlGwFTg7ZzgCh1XqEjaFQk2CJYfOg+8xjpn4Q5YUBYNCtkc8Qq3ZvgkBj+IZSoXvp9lpIf+YiRMYrEd6TP1IsJvddhCNSY1yFTTxidqzF/w7S28pGccmmJxNU0A5WgHYWsB2wGierhSPFpXZ++a/5zJVUMYEZArIxcS9jo2NMkXUqwzrytCk+JcxVr/Jk5uSxEtNbq/sp1bcidx50hHb7Rflb/2636pa8BGmYQS5LqoGMdxPhtxERoLU7xORMTDLLJQzVz5OTjknMzhgenYfPoDts2xEcfRkjnkypxbt9e3RquSB2gHS+PxL3AyuRt1qeZ0HJ4vAZVWOwe8VM7nL7zeQG2LybIK/XlVwk63QDMYIcGyLY+xJoYwE4t5P7L+B9Gpa5KsUF8fjEHHBwty7GAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_0181H751Rixr7F8GELaSnBfg",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The consult is dated 2026-09-28 and records right-sided pain since March 2026. That is about six months, so the 3-month minimum is met."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

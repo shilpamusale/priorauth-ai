@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "c65b34a27a5ccda5",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01LwCZMng88Dbp4kmioTmb7m",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The 2026-09-18 consult records low back pain since January 2026, which is about 8 months and well over 3 months. This is the axial facet pain the medial branch blocks are meant to treat. The 6-week leg pain is a separate complaint."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1247,
+     "output_tokens": 239
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSsAYKEAgTGAI4AUIIdGhpbmtpbmcSDK6K2y+2ld5LEH1FuhoMVnlEj24d1t0wK2O3IjApd405YPc604kB/6FIrW/LhPCERqvrx7fIzA2pFOmHLjef26MXW+OL/9dbff5Hp38qzQW3BouvwtlEZ1wHgba3Kk+WD1Fbtw9tiFsOTGPQEpC0lUQPb3UGA0KuzpiB/Loi9cVCpl1xzUMKUAquLbS/e+IPSXWSkyVZj9PrgB+ut7tLVbAVt7iZ7xiug9hRvH5UdoRs8UR4vFx6y3ZNItxuh0zTinbsr4NH3fSKxaBbhpFBSPU45MxGA4WLjclvbJGXCPfdBcWzix+bMbSWGdVBaTaG2zaB/WwDILBS+J991LTHogZsNoIT+UUPgmG+LTcrJ54w6o4niwCqYPI9PSHJorqiK+39M8CQAWhXvyo+VqgiC/0X4CHGnRhSoUBIDtlj9YMG29PUnsYAD7mfKfoCsbXvRadU5ID2pOhV43xvAJoqZRiWmMOzQL8uouREjTkjDZIV0qYFMdVFbeemBl4FAtQ+3+rL3YRucE10x/BuVcuwyFGfUQM3C5GvRZrBcULPFgjIHvSoOT4RayDmcxVgGspqszAqpS5uiUySSjR2+LWBYOfSJB6VMKJq4CY9vp2qeObJE+t4u75n43w8YWZyv0e7sCsvSyELSL/MygbXtEAFJrA3C5VRUGwGMShM3HTp6AYg4ictxUdCdZRaogLoU1sBd022bFsSNEq/KZ7xHf4/XgHEkNHND6d7iq1nFxe0E6pwhEAdlMhGalT5CvLB0kkZGQnY9t9hcCNqViherdKNGLVpQohgmgVOVVtPf/PmnmmZit3BpvxwX9ESqrT4LtDpfjqxJEeseMysKFV4m/mJ9CoSOeT8k4qaUXFCb2TbeitgrxjPYviA9Wu3Vy4XSe7hlRpB+d7YgYw9N7Ko0qRj2n9DpYy0p31ahobnoWCJ2gyKTmn/7XHHHHKVY7+SN/sHlBm5aoeHTw6X3D0fKOX7peAu6UIM+eeXwnjVQSBlrjjgGff8rQpFumpS/OWhU7yvEPOrFwdDQ4PCguS2AoMm7/f/jK7A9aGevkG7SxwYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01LwCZMng88Dbp4kmioTmb7m",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The 2026-09-18 consult records low back pain since January 2026, which is about 8 months and well over 3 months. This is the axial facet pain the medial branch blocks are meant to treat. The 6-week leg pain is a separate complaint."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

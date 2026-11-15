@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "e12621054cf98722",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01AQv7bYpMaGWb4i8jsdvnV7",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The MRI report rules out each example the criterion lists: no fracture, no marrow abnormality suggesting tumor or infection, and normal alignment, so no deformity. The only finding it records is facet hypertrophy. Imaging alone is enough because the criterion says \"clinical assessment or imaging.\""
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1143,
+     "output_tokens": 441
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS8woKEAgTGAI4AUIIdGhpbmtpbmcSDM7E8TvSCk2U/qbzRhoMmBd3Fl9KzK1NHuOaIjCazaAlbMX/GAvG/hueVrbljw/NhCW1TYjQQN9aPlsn339zAN0CBOl43z+3nULcR/UqkApEahUuGmdzkSJt8UVUUbaRv6DQygFE4VjdFYz9i2CIQ5DBHvfGO1VkGVSxNYVnHwQ+MuVoa9yOvWeek19bh0giy54d53GZvrDy0o5/wwqmWPKFzHBPE1aO953PJV8VR2X5lFNCtqfsmSkszbVclvmAHU1rhpGJ3J2u5TZF2m4ptH1sb/upRXFg0oiBabl5o2rbJePbLV5yWMAkYra6QoUvet97YV2GXdaZcvObXWdSaAdvEiwYzkzKniOtWUbp+tCbTvepBN+JsnA/3Bv84aQKQHT/5gGmnkQGGKjjy2y9nqVOyGdz6uJP6aamsgiSQ9VuQ/MPLDNd2bTS4iVV6BBQgMbFxWdcKOChc83oWzgHG77ZSgRDp0j2SKli0GeAX5yzYYLlfoDl/P5+DXapiHv8LN+t65TCuu4ILjf4V2g1AdFp+RQ4Zq2t474ilS/NR5NBkC9O07POb+5+aieNjnM+7TuHvDRV9sWEVepHugAJD+2FfvlIaL9gP4wiwlNFyVgZ4Bd1G4K5ILZ+xRmvn8iibJiZB2yv7DOYJrN4IoZzJTxkzXYgh9us5giSYiugswWkXtT5hzxZTDz8k99hssqzKogirz6/ktTsbQw0AFFc4MMH4RZqCSGwvhqiv5pcod9h1h08zJ5+rOjsb7fEZWI7TYOR3jIdpzc3iobpjWnYahQsDg7wvDLTeG7mKlkD9y55C5TdZo77rekcitNfQS6EKhE/Hn1c/9hlfUMOzfayXk6rKKhvbOdsW6ZxzbhaHKfLvh6+qsmG3IRwbTije9K0/hMyR7tLjl8+ST+XibXPmhD6/5zhn+8YAc42xS94afmqLdGD4kyngH0FRR62QGsRahqM+W2hsej3KOHbbMrnKiGUu2rWXHZRhqBBd17ti50LodbfmzNFQUlaJYwPKcW8di3znMt8EJhVpBtoFngZ5z1tfiwfm0zqj3hS/ezR0pLUoOxMxd6usF/44/9JmY+F0QBUc0WXODsPf4zggnrnyqI50P2KcymUlelHHtMnmowHoxUX19dPGiwZYjZ04pJuCMv/7uuNERN09l3Tsz/lpyt9oZ52/dKrqmnEdpIjO2VjjNybNqLjERKItJvOlcJ2ORIZAl2+04VAv2JOObWr4bEZ+gxAinMOnmWXwfIMqIaF5ahOaMAIURlW8C4nU18LRtxB6ZYk+gpcCMsvrOi+ZraJULqPpqROmVz/DtkyrStfAxI/AeuQxdqS41GOiKSKMSOkAl2B0Ppm9Wjk4pLh7JC84sUP6AHAlF2s7jhbrFSCoRgCaTnAvPI/V1tq0GDBNSrvdxmwotQIn+cD+pnhm6rfukfJVErr3pD+h8BTFRT63Tmk8iaOWjKlTc22At7QHJ9iJPFYpN9GhB5cNW1UNivkp1P0Mx5fsZH13Bo8+ZIjpoKiNG/V+Ol1eLfsuRXx1ZP13nT791VxzRZQZI/sHFac3RaminYgfjXR1wuIZrO4nOdKpTeO45dFH8S1KY3uxo6hrfSlwrXv9kMDdv+QjRwKuSVvSZYNz5jeva/tGF0022hTUaWgaSSw0Kj5fG0Qo12Y+9Yb5hDX2UwQ6wbHuEEQ4is+D66F4bPo2xjAqzT+AcAFBORbY6GOuiKDvNOE0Y7CBwnO0StSsNbpkd/lvQ0rgF0GlM/YIfM0E27is1IhbDa3AKQirkdLABYY+fscFbFRBUxXeHuPLgpGKuvSseO48tRaXUwCCOJTGnZNRvwYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01AQv7bYpMaGWb4i8jsdvnV7",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The MRI report rules out each example the criterion lists: no fracture, no marrow abnormality suggesting tumor or infection, and normal alignment, so no deformity. The only finding it records is facet hypertrophy. Imaging alone is enough because the criterion says \"clinical assessment or imaging.\""
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

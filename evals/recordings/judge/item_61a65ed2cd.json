@@ -1,0 +1,39 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "1ee599d3994f3ed8",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_012gYGdUKBJi1KTvG6qNhSoz",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "Both cited passages say the low back pain is axial with no radiation, which shows the pain is centered in the low back and not mainly in the legs. Note n5 adds that the patient has no radicular symptoms."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1313,
+     "output_tokens": 140
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_012gYGdUKBJi1KTvG6qNhSoz",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "Both cited passages say the low back pain is axial with no radiation, which shows the pain is centered in the low back and not mainly in the legs. Note n5 adds that the patient has no radicular symptoms."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

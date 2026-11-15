@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "f85ac0b157088c73",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01YXbhANgxTW7D8zz2AhVvdF",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The X-ray in n4 found no fracture and normal alignment, so no fracture or significant deformity. It also found no destructive lesion, which rules out tumor or infection on imaging. The only abnormality reported is facet arthropathy, so no non-facet pathology is documented."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1241,
+     "output_tokens": 435
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSsQoKEAgTGAI4AUIIdGhpbmtpbmcSDI1NFjpv/KNRyoDkeRoMv9DaNZLZrjWOEONdIjCKEOjRjj17/DFE4gvL/LfCqEj7Vx9cJmjz+RRPuUywq3AFMS1W1p6U2OtSp+agPt0qzgmYdP2xdvHnxsiHBFGkKCOsnh1QveUdZ8+AousWmxU7DYOgDCXgOsRbXrmL7W+uKCEjcibD3/CcqSB+xTFYDoSDcgdH3r8mhRWuJmnv13qNx03OwUXKBv3rERXpqqMr+OHWDMJq2BZrEys6o20MWBoFKDG3Gm3BCC3JNtzR1uC3sL9A/42y8kETJKofkbuQRqrpcGYhn28mF23nvcXg/J97CNTz8Jp7Q3ZoryG600ki09fq27TNuzl3S9to6h45D8iqNPe3kVgtkPQxvC38mXHZUASW6hJrPQqCp+MhlGn15C4UChJX/n5oZ/lWEaLZFO3uCg5iDsLAW4txwSTfJUtvpiJXLBAwV/6Dfv9+rg3xolfNkNJ9qVWUhau8pgooGny1NULg+OQdlm+ztb7//5as9lBmeDVBt+pYwT1eba/fTN4PvPTbVgMpFkI0apXdxtDJhJbDHlX3y2dyZtJF7JXtLBr3cEnSP9greTVTbYn1jXM1stVU7WsOCyksVHPMsz64gVjAQW02HNyfKd45BKFn4UNiZd/zhnGUBzvS779Z5lqjfdxpybGkQ0lXeKVpLyCeSP+EmxUtLpXNtnRy03VGA1EgNY+Yd9OylJLgH4DKCMtrnmjKbuPNfTf9nEAFTEF7fVdoLAPUYV1VVkd9jDXMUMsyJrl1GzZj5NUZPpPmWTw5xFqh+PVq10m7zlIj3rGxpsXCKno7H1RSqje6M1//P2KOXBzU0s6pLxiaN0FsawRQxU+siIdxli6iNcMxr6nzgBouGMpr7VyE5wawvbCFvFFqXoa2oMjoi10nk9bLRKf4IFaG3yR/E4LDFuW650aZGTnyAh3nVNCkoBXLN254aP15fkPfU67TpKUKFmb0IRYqT8D/DFUHb3xAhk2ZA4/oClheQLPFQuoHkJrMbf7ctM60u4O5QSGDUnqEILDzGKhawvlBPCmoY2ptdJC2ZQiusFckKSqNmqUTSQ69T8YlbfSsEeEHxXuRVVVz+ZdXPSjqxonPfgeQDiLix64KvYkiQDtvK9I30jUhIz0LxdJArSCV6rHikaliJUf3NS1prat+yOirt3hmvhhFRtJI6Dtwc2k541QIDTgKObR6ht7/D0lW9y0f0FyMbSVd/EnykOgKimAET7UsJqctdJ4gJvkAwVu90Fszin3JEQgewERD7Ck8VVHZ6BehNshf0B/SXB02Z2ZbudDr5rL/6oaD5rHv4Io5pib0bDjIt4vWLu7KzGVuEnIoWVOte6eCIgQm2DldCPY7ACWl+bP7Z4D2jUNlHTceMLSejeP7A0Scw8BMtBEcsJXtCB/8S2d71pKGhFg+ufVhso1hC6S+VTtuyBL5rpVZIOnV3i86wZLfNSp1E6e84hzcsxOD8TZFJ+hoVBvbJrrWiMvJN9gg6B0L1ZMbm+bvAvsy7H4Y89j5SX2VjWsZpy1aARbKULXcIqBvFiAfzIXZxpc678PoBp/OoqqTOKjGH41Xf0tf6KBMISE54lfnE5e8fqA71Sbz6vfJDXbOz9Cda7XS8rs5c2W/wEeGzF6/EnIk9kJMjt4eDgUsyZwvGAhmzObznVhHJ7dKtdPqnzN4fUj9hTug8U4wF1bs9DKJUAjq2yqc/M4xMJ0IgVzg+G2z9fyT358vEloYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01YXbhANgxTW7D8zz2AhVvdF",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The X-ray in n4 found no fracture and normal alignment, so no fracture or significant deformity. It also found no destructive lesion, which rules out tumor or infection on imaging. The only abnormality reported is facet arthropathy, so no non-facet pathology is documented."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

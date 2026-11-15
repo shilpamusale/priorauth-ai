@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "44fad2f86afa32d7",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01XvrWGJetKGYGCRtFw7WprE",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "Both cited passages describe negative radicular and neurologic findings, which bear on a different criterion (no radiculopathy). Neither shows a functional deficit or any pain or disability scale score. The NRS score and activity limits elsewhere in n4 were not cited."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1275,
+     "output_tokens": 221
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS8gUKEAgTGAI4AUIIdGhpbmtpbmcSDPlnJPTV+1JAZuR0+BoMe5wLfljFUcdOPxkxIjArUMRG2kiv/a01mFFxEZrXa4tKOUOo7yTv17eL98jlcpQflcKNqHMg+0HI7rKaqesqjwWBSK8zPHL5xvGa/j5HxbR8ueXxfoUqgd6/zmFpm+1WJiwOBEaEl1RfugpFE2XIGJNAFiZszi8SS6dl+UV6vxzRc/8RTkZ2obATcOewjLPN12lWS9BifwouHLxg5c8DRFwu6mk7ky5wFJ0aCgsceLmA5xvLW5UIEEqP21Fr9QC88592Kb0RQrQ4ZOoPfql/syurqw1prVwXdkRp8a1UGWgLT+VR7XdhbkUVczJjufXVW8zLxOQqkSZMfX+n+Q/fHqMjunpAX2LexVUv5ENT/WtPtwSQpq50yrhC1aUiHVZvgE9wV4JvJ0RSOElCF99ZtB33FM01qkaOY9u8YkFjBbkiz5DaSpSg5LGOEUaghDPYNlYzRvLLJHlVDlfRNULmJVOw5MqQdegQPxToMmXlXnrfMvbf3heD6phmWj3YX+ivnJ3JI+EjSmoSt8nozXeJpeQ8kOc9BSI17GPD4xMHNqeozk4DE1uLdelX2+uL7sLJgO520UJlI5s2YGSmD/R4GdEfnMF1eL8fMxHPHilPtsiNvrzduCSbw6mrsdDfnVazoV5MNxeon5czKhirab2AyDbsOK7TJ8J4q50zn3KKon+k6LgNOOsQRo2S76v2loZEkpQp4SwHgTwXueRM/4DboB0XMSXga/3tKZsMv+fmfBLTlXhB2CfEI/uTRd8fc+h7MZ0o5nVHnqGEguqPDoAj9XbLhI5FyI952HvmtVo6U8TGguLWOjyfQqBIiv5BfpQmNsIQyQ+8K3zU9HVeC0aAM/s/fHmOrhTOuMuzpqrMDLN140UCYEcn9y5YwcVeYTGllwl3cp7D9eMZvHxHypI/fn2A5sCDuzqkvIwnKgqmz07GHFKgUraj31UWv3Js1NXyGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01XvrWGJetKGYGCRtFw7WprE",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "Both cited passages describe negative radicular and neurologic findings, which bear on a different criterion (no radiculopathy). Neither shows a functional deficit or any pain or disability scale score. The NRS score and activity limits elsewhere in n4 were not cited."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}
