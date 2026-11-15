@@ -101,6 +101,17 @@ although radiculopathy has its own criterion. Neither changed a decision.
 CI replays these recordings on every pull request and fails below 0.95 decision accuracy or on any
 hard-gate failure.
 
+## Demo and API
+
+- **Public demo** ([link](https://priorauth-ai-140535548045.us-central1.run.app)): replays recorded runs and
+  never calls a model. Every recording is a real Claude run, replayed through the same code CI tests, so a
+  visitor sees exactly what was evaluated, cannot run up a bill, and the image holds no API key or model SDK.
+- **Private API** (FastAPI on Cloud Run, Google sign-in required): runs the live pipeline.
+  `POST /determinations` takes a policy ID and a request and returns the determination with its audit
+  record; `GET /policies` lists policies with their fingerprints; interactive docs are at `/docs`. A daily
+  run limit caps spending, the Anthropic workspace's monthly limit is the hard backstop, and the API key
+  is read from Secret Manager at run time.
+
 ## Quickstart
 
 ```bash
@@ -110,6 +121,7 @@ make test                                      # unit tests, no API key needed
 python -m evals.runner replay                  # score the committed recordings, no API key needed
 python -m evals.runner replay --track          # ...and log the run to MLflow (local mlflow.db)
 python -m streamlit run ui/app.py              # the demo, locally
+uvicorn priorauth.api:app --port 8000          # the API, locally (live runs need ANTHROPIC_API_KEY)
 
 # live runs need ANTHROPIC_API_KEY
 python -m evals.runner record --cases dev_001 --trials 1
@@ -131,6 +143,7 @@ src/priorauth/
   verify.py       final grounding check
   decision.py     deterministic decision rule
   pipeline.py     match, verify, decide, and the audit record
+  api.py          FastAPI service with a daily run limit
 policies/         LCD L38773 policy and the extracted LCD text its criteria quote
 evals/
   gold/           dev and held-out cases
@@ -150,7 +163,7 @@ tests/            unit tests for every module, policy and gold case
 - [x] Record-and-replay evaluation runner, checks with hard gates, metrics and a CI eval gate
 - [x] Public demo on Cloud Run (Docker, Streamlit) showing recorded runs
 - [x] MLflow tracking of evaluation runs (params, metrics, fingerprints of the policy, prompt and gold set)
-- [ ] Live demo runs with a daily spending cap; FastAPI service
+- [x] FastAPI service, deployed privately, with a daily run limit and the key in Secret Manager
 - [ ] Multi-agent orchestration: one evidence agent per criterion, compared with the single agent
 - [ ] LLM-as-judge grading, calibrated against human labels
 - [ ] Policy retrieval with ChromaDB, and a second policy added with no code changes

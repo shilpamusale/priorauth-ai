@@ -1,0 +1,6 @@
+# Builds the private API image from Dockerfile.api. (`gcloud run deploy --source .` only reads ./Dockerfile,
+# which is the public demo.) Usage is in the README, under "Demo and API".
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "Dockerfile.api", "-t", "${_IMAGE}", "."]
+images: ["${_IMAGE}"]

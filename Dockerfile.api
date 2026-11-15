@@ -1,0 +1,22 @@
+# The private API: runs the live pipeline on request. It reads ANTHROPIC_API_KEY from Secret Manager at run
+# time; no key is ever written into the image.
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+COPY pyproject.toml README.md ./
+COPY src ./src
+RUN pip install ".[api,agent]"
+
+# Policies load and their LCD quotes are checked when the service starts.
+COPY policies ./policies
+
+RUN useradd --create-home api
+USER api
+
+# Cloud Run sets PORT, 8080 by default.
+CMD ["sh", "-c", "exec uvicorn priorauth.api:app --host 0.0.0.0 --port ${PORT:-8080}"]

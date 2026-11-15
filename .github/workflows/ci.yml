@@ -41,3 +41,9 @@ jobs:
           for i in $(seq 1 30); do curl -sf localhost:8080/_stcore/health && exit 0; sleep 2; done
           docker logs demo
           exit 1
+      - run: docker build -f Dockerfile.api -t priorauth-api .
+      - name: The API starts without a key and serves its policies
+        run: |
+          docker run -d -p 8081:8080 --name api priorauth-api
+          for i in $(seq 1 30); do curl -sf localhost:8081/health && break; sleep 2; done
+          curl -sf localhost:8081/policies | grep -q l38773_first_mbb || { docker logs api; exit 1; }
