@@ -1,0 +1,50 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "1f4721452f2cba98",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01S5VD8frBUmWCqgH7gET27v",
+      "name": "grade_request",
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request correctly says that the 2026-08-27 consult records VAS 7/10 but no measure of function. It asks only for a validated functional/disability assessment with the scale named and the result recorded, and it does not suggest a score. It names the next pain management visit note, or an ODI form attached to it, as the place to document this."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1593,
+     "output_tokens": 447
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS5QgKEAgTGAI4AUIIdGhpbmtpbmcSDLgIw7M+VSd8oeLtARoMwDSXlGLkDIVLi9b3IjBT2ycLiChqCdFxob4n/+LuI4lc0X7WWNA7W2R/WPKcZGSXV1E1jmM65+gXVevf9l8qggjXAHKqs8SCqT7u97YJrhGoJLgJaVaHY9CDrx7FQ/lps7+DuLFMmqNeRsyxkqYuisKl5V7duGKMnxjubZhQNtzvKHZOeMaNgNX6wfTU9NW5HinJ4YBlvfNOCQAYE0HWi3CoB2+/8WM7wwpEhdnbljSufZdla7jskQmc5wYP2dk3teU5aLm8/AwlkZsSUPISURK9SPdWjAg5DwIoHxhbk3z2sbXnDshYqEw5B/IxEUMDqLQKk0YH73pSvqW8VY+VYXcgVqcYptWCfJ5lEzm02H/8NKcVPDbAwpM6NTl0o8TLioT471dOKiPa5xk6BGK06NhRb7G3LynUBLGamHR7PFQf7XIAN2qaKiByxMuKEKYkBXxx8Cnu3hWiA0H95yT1UJeiPmL953Hh2ZFAau9N8W2m54vCwPD1+w0ne9Qu6V4gBYCE02sKoPbTcIOopBi+our16sPuAJdJuEDi2BMWTEuO2isNXlUsqY4iRJ8AK3wGokRLpiz5TW3tgJCX+ONYuqn//ZUo4V8IbxE74dWjhQlNyKdvq4AMcZpxm7WQ/4yr/6WrmdldBrhfuzAC3sJSTTTL0QfqCeS/xBrzQSgu4ZBPS0UtC0JazOMrsROMyCzZrdl1s85J6Ps7JO96V07J3E1P7ipnEvPjTDSJ8+Fsuzzudknt/2KukQHrGNB/uRwStHLskOX4ov9rQl06fbh734AE3FoY1w6WTVU3to47Hn7Pm/329prdtS6uyhWbLeMqIpTSiZoyWx8P7SvWTjpkR8spj0AxeYaqn25ianOFqWfSbPo30ZZI6fnspG34ngrFzv/y5pEcs+3JSFi2RafBq66LcuwpjfGJ5O9rbJySfp0vA1xEW0Iw0SOB7Yag4U4D/mJ/4inx/PwExoeBBqphHtsepzw26c6VdJjg69w3AtgX2UCfn8bx0d+x0Pdb3bRfowrZ6V9X9Tfonr9UiTGRU2Nx90GmPwZaWkFJtxreRTfkSIcLIlRioN9XUG+FryGuToH5Xj2gYvO6TbC2AOpLByBCMyc4XNjTzNdqLgZ9ogocRTiQLZI0QQwunXOXxB2lT93n8e1ZxloJIIminy7aHJ+fWudZXxtdduXFepFecbESbvu/SxxxGNT6jkOzt7wviAmYVaDFwd+iVAUcH/USUPewQhZMJEUaq8PcNBOjOFRPYB5HBwc5KYt+vbbq/2O3YZFFina2tC0zfbs3nBhHUwc3fri1ArKWjRQh0/Cn2EXItf1tEwzUtJ10JHvQ8iScHFbmPmnGU4Rbyr+vnxvTxqTu4rgNDrTokTdmhiWeA+xdr9HQT/aCf7fWEIQWoeAaud7FF4sVRuOCQIXbzudtRn7mr/OGtlIFONFYZJfUa5Fc9i4YAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01S5VD8frBUmWCqgH7gET27v",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request correctly says that the 2026-08-27 consult records VAS 7/10 but no measure of function. It asks only for a validated functional/disability assessment with the scale named and the result recorded, and it does not suggest a score. It names the next pain management visit note, or an ODI form attached to it, as the place to document this."
+      },
+      "name": "grade_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

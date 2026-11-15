@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "d158153146f0d9cf",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01KSYehywxHEq4HduEs7pe6m",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited negative straight-leg raise on both sides and \"No radicular symptoms\" show there is no radiculopathy. They say nothing about neurogenic claudication, though, and the same note records \"cannot walk more than two blocks,\" so that half of the criterion is not shown."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1258,
+     "output_tokens": 380
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSzwkKEAgTGAI4AUIIdGhpbmtpbmcSDLBDjHyapkYibqS9ZRoMhWNOpDvUcHTsmcC7IjDqTduQh1AEiEdl2RvBWGnqPwPguqhHAB5KW1gQ7e9iPYRbfofRbY4K84QysOEjP+8q7Aj7/TmRdwFh7TYsul4f3Afngbj6bFIys3+h4ee+vnPnTnGwmm3UQpMhuiv3UPeRBvQZc8v6yz4smGlI4JgmPAXB6cmiz4e7zWN7ix8pReMi2fgUFNeiZbF9k5kql3qe/ARp1shdR4S1aIuYCMyzoZEFddBLeoV56pc+4BZ7vWF+e0ywctmXAlihYkQsN3/nVocU2pmNLkXeErfv75hk55wKnSPn/7+43mTk211x4Trl/0KrGkeCJTsBHqCJXfE1LwfGOshv2J07nLDN41Mdyf+s6yVyRWf9zc4U0MYS/HBQhk4d8/NUb+EEu+nCnVhhjCjSNf3wolhQWVjcoKLR1QnhSkP4f9mLv8RKGYgu7dwldqjqhWRgNkCEqFT20zpACKau94UBiMZJPRy2QpWxCq6nHX5JxtPhymfwTMsdAdiF34GL7U527djaYBlUSGEubB861PzwGBvO32meVnBNJH7snxApHcM+yIGHFIR+rQk5QN6/T7x90Qe7VQu610gvEJxp92tyQDgv+QTjvBlRqDW2FvYFICW/7BRLP7C4CtmgaVZzot+DEI3kKxRTqNtaJ428A/jFVWpQ/w8KDpmvn3Zqvn5+PbI/E9LiKcsgXpMpCHuxksEh1g+KoRULYE9DsQqjnLglvfCDvhTXUNuY7XhPu1FTsBTbUhQ5ucliUB2M5hbwPkhGoIHr+d13vAqGGerT8dbqQjQMRW6gjVk5BV8Bi3DkgIfS/5T3CHeHgK7+Ax00AGw3TDzsl+1QNTMLXjF6PhLbjJ74NygxRb39a9AsNdltPPxgfq+DaJ3p06jmZ41akhJXOq/qxhWi2m9tgEDJ6cMRMdYxsHvSZF2FviGEe6jIIB7bM9/UFVbc5YjkGOu2z0+kXgrA6mgC79/hRkGz/ndl5bX3lWaYFdJ0Gy+YYtii7E7lbs5ZD0iwuzlhgc8gh4hoyP4rNzuFXOHIQnmTGwA/tzMk4V4/nRBeNgLiTxIZ++0As3HYVuK+Q4OjqXM6CrKK5tWdK36/Qly+uVwA2vwpGJrLMJvTb8of33Nxt+d9qEdWbvdVm+Clwo7P9Go2ZhoUeye9RxgTBctLuJa8bTAaQYXxspgZ+HaFyklUhYTYAWRPb/XDGRPy4BMiZ9AvAUydcOMyhX8+wSQtaz0fs4SnmHzumeBmRIhowdGPJ88iVBxesaRgB63LZ9+menEmTBvsWFDiVhWnRj5mEoJkKk7p8RlwjKhVNhaB8JtnZrGx5aO4wTfPu0vY64gmLppMBNzIkcKnhi+pLxV1neAiAnOCHWfUZd3AfKgLU/U+fUg9yy98xCwXnXSvkjwnuLS5flX/lNCvZLKhJG0fbEICPylmSBymNcQ1LzvAMyFWc304XgZKOHnX9HolibuJ0LIZjtGVR6c59J3gA/3HoHiL3ZRVB52x6BPTdLYaTpeAYanUd6WTVOULFxjYMvMgCu9IzdHTEEzhl/hKOD4XK+Y4QigQz4Rz+E5Isoa/Qgj2YR5KWTEV2msZurFIGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01KSYehywxHEq4HduEs7pe6m",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited negative straight-leg raise on both sides and \"No radicular symptoms\" show there is no radiculopathy. They say nothing about neurogenic claudication, though, and the same note records \"cannot walk more than two blocks,\" so that half of the criterion is not shown."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

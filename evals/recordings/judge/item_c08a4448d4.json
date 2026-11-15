@@ -1,0 +1,39 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "6a0aa45e576612d6",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01BusnmMTC5cGxodjZJyvjZg",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "Note n4 is about axial low back pain and records \"Pain NRS 8/10.\" That is severe pain measured on a named pain scale, which covers every part of the criterion."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1210,
+     "output_tokens": 129
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01BusnmMTC5cGxodjZJyvjZg",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "Note n4 is about axial low back pain and records \"Pain NRS 8/10.\" That is severe pain measured on a named pain scale, which covers every part of the criterion."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

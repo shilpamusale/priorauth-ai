@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "f5cbcd3b63d78624",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01XE7EYEKiMJxCZhsL7mWEhf",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "partly",
+       "reasoning": "The PT evaluation (n2, 2026-05-02) documents an ODI of 38%, so a disability scale was recorded. However, nothing cited gives the date of the first diagnostic block, so the passages don't show that this score came before it."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1215,
+     "output_tokens": 251
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS8AYKEAgTGAI4AUIIdGhpbmtpbmcSDCFkKtFfaT8eWhb3MBoMap7FqjnFOf2OWlVdIjDxXHDLUF8Rg9AEgISY6DT+A7XVnNVhbqREm5KcPLt7qmjkCSjyuIzS2X2lSXWmVvUqjQZ+vlYe6LsIvrHdOEYRhHuuzRlD/AOMKaylb5CZzDAdyrfJdAF5Uo/fK4sQfU/rSYReFPNyBOgEjTnN14w2+jkmBsqEcLEZ8BySClqln1syGYFH2VqhyQI2eaL9RAF8tiP1RNU9czJhQewWBk0zAEZsMMEXiP6Bhw3pd8NV8cKYUy1sf9oV35+DZLY08K6rBi9pzhAjDf4wbemG6Z/DaeMY9znFN7XkRoSDtH8OxW4YWns+fxtuhar11ZOpXznalThXWmtRX+jM1gvk6auWp37Et78gIeVSTGdlEa3OFibpGnaxus8260jzNZYb57At/b4IIIbTFpFOUu0z2bPS5hEJdWeNaNEXPm1H2cNusxl8AUfJe8zR0HZXrk++T7kVMDf8IfYjJ502XJlbxQffpSRLIHJJEBB5J1WIdKqIktLOvU+A3C8uOsmhnyMB+k+/gTV/K9KaFJR0thGrSO/wxLxJuWNid1q0BvrD+wyq8QiAXfwnMTzOS49JMBjBRct9MJidU0NyvP4LMGTTHZTlj6RL8HLJgzJ1H29HWEZLQqJAFYMsHRK4w1WZutY42SZ/Z+qsiXe8arcBoIrO1LQQltevDmskpio9HmnD0/9gQ67zAmN1WDC5ynjNrl1c7I2HXaXR17G+7PhK3SIbs1tmH5b94/jj6SNOmsSbrtD1LDlC5HdSFGw+iJAqqT2w/UlBkYFXSp/D9l7OZtbxSuuJ4sqZjbkhXDiAqeZe7x7HtpxQGKX3285qd4cqkwcTIncCPrMI0xo4rtV4wjX1UU5frMhBryhuAsswjj8GHaHYYuCwmgaMp0r027Zii/LqPn4sY5IUlxxC0w+P+Yg1wSw7xJW7qX+vgcykohkkULR4TH3LCmvgccsaFqrroyb93l1czy7/sAMvIe1+1vfCaZRQIMGkvJqAa3VNKeMSglGseamiBi0y1kWhlOZ6HLlXF++SF5zS+TZ0e76cuqo0ZPKD4wrjEMrbxE9wXb0HKulcfo9E6xBZBLqkfqIrCuxlpco1V1EjccIclksX5qy+XQG8GAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01XE7EYEKiMJxCZhsL7mWEhf",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "partly",
+       "reasoning": "The PT evaluation (n2, 2026-05-02) documents an ODI of 38%, so a disability scale was recorded. However, nothing cited gives the date of the first diagnostic block, so the passages don't show that this score came before it."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

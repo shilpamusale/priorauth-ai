@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "e367dc10a409272f",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01Q1qT2JgJzrqF3esanzHLD7",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The pain management consult (n4), which plans the first medial branch blocks, records ODI 39%. The earlier PT discharge summary (n2) records ODI 40% and 39%. Both are dated before any diagnostic block, so the cited passages document a baseline disability scale."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1358,
+     "output_tokens": 230
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS8QUKEAgTGAI4AUIIdGhpbmtpbmcSDF7eJjE3aZJ6i+fCYBoMIPncKkd6SL3xJyNUIjBlmRL7eYkjsP52841C5q98Lty1ktaevHfNSSLggY3lJqW7j+FuXK52M9eZQe+g2ZQqjgWcM4JrmGFbUjXlJhSREYZPEDoYrQdKB0oRtWpf4ncUsTcQ6d1IXoDd+x0kKs9STE7qH6xUhVp6TAVe4a7cLs7z3ymipZDHd68777sUcx6Ey7pEmGCopts9hj5id/fimIHG80VM8rLc67ZosnzB0S4jQCsjjmdxcvwM1CSTUD5qIvY7P1hpCZFk1uaWNEX478RtLpI4YVoOM6KAHrmmcutveYuT9EMwxcc4A4fPkrJKoRW8rG3iwkDVKx8lOEZcPYOW+CIgL5+vfNuB4HLDMCShbc1mAEcvKucGpxZWwWsC60h93KQzJv7WNeaoxL1HFYJXcT4sZK5Kwyp7dqSFU6kl7i+yTy6McZD+HjlPP+cPYigeqNNA+vSkz/5HLreMMoDFRBu9PFtDvLVC6fhA+6h8b2+mFvrrCNcnFDKxGzQ6HfqFr54GlDnToM/LJw7+QLSUVRH9+hREVMHVq7ZDv2RuSGv+CkP9a2CtkZkXs1tsjn1JGHXwTJqngN3s/uMRvzYlf5ELzoAYefh2YKwiOk/5swIfmYIWpJ8o4WDhtsEbvG1mCByL8t/nPta6Uy+H8hmuv98ApF27z1Q+2Mk9P5tHj9qA/Cn76PeYetSzchdXGe8ln1SWFIcMCKwqyz+38vxHSODW1D3enys2Gm2RNIL+ru63yiiMt+AS+UEwkPQ1UOUZMDBaM5aW+14sAazjkTSPq27i0H4HWk/KKHJn3Ig2F+K2QCIghYpV4WqrrgJCF2bIrsadu4uSGGeA8ioqMiyypux5Vv0vktNUHDk+NHJAsiOWnVz2G5Sifv/UemQC3alZkZHmeoF3oPduMVTT3UBugvQhM54ZRd2aY3zWg6WguzGkEQI1eTdiMZD9WSUYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01Q1qT2JgJzrqF3esanzHLD7",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The pain management consult (n4), which plans the first medial branch blocks, records ODI 39%. The earlier PT discharge summary (n2) records ODI 40% and 39%. Both are dated before any diagnostic block, so the cited passages document a baseline disability scale."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

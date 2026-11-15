@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "3dd4187b03fdcff9",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01PLeTFCeSnvJ5e4hqNkzXq9",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited passages show that the patient has low back pain and how long it has lasted. Neither passage gives a pain-scale rating or a severity level. Note n5 does record \"NRS 6/10\", but the assistant did not cite that part."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1290,
+     "output_tokens": 219
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS5AUKEAgTGAI4AUIIdGhpbmtpbmcSDDFPrsnW3ALNcu9eIhoMEl48tLT5TV4yDJZgIjBLNvTwCYmAIlUvfiQ0aQgoiHCdkdHNaXOd0gHgp1N3x89/cIdRbFeUHe5ri1RjDp4qgQU5lnPQjYuKNBa3slbW9n0hFWjs2rrdyNJww2UIoGBbn/lf/lzFCh55KIAXecoxWPYsxlpKPzaH760nZeI03lRLXmVck4Dlquz1gnwuCnIeUElmB5b72LamUpGU2Yy2fkiK7Q4Iw8qZ2wMoaqkIFgKi8wgwmd+kWsk5OAADgnEwdx8vm1i4wPulLwHY0KDG1IPoNAu4j+8pCGYVwVyQkfijjfceqUqS/1tOjSqKcqZuEpJvO9qjK22mhsMWctyDz/H5+8XqYkKQzejXp846DXJJFThl7/SGh+dWPny7WwHoKCO7S+SdQfmfJ8cDQi5kmIngBtpXA4n6uxOJd2zcwUkLrUH459eJNn1vfuYADTrLuQpUT6AK0AxyqgE7ah6+PX0ARkTdlCobWxM1GihUxeBgbowOmPas5Q9D91sj7/XR92XqzUT2jNBZ+Z5buKP3gTpXsreaLIA7720fAiHOGcL3K6idpGMR5ojVvuqWnzgxoAdcwQ0CLeMS/bbeMRa8E/nkMeSpgHz9oGvH5qCTEHGr2Vr7xVQq1yONqRaw9oal71ghmgMrF6TGj4jVIFZCw7ivT5yOlV/d/h7ZtKJvMK/BJRgAIN1bCcJKIiFXyINRE2pzjwsLLMG21TzZpHY6vCI9C/oTJvEhwyDi3aybxTOP2ifN877fc1+GN+k4DZ8RVVqcygypjdgd7dflCz8vBSnW9x/yjjnTNvhQzu0IBNoUexhss5YRySkG5o5yUK6PWpbHBUGkLCfz02N01qBlQ1YMOLediw9zIlZOFFXcrcrScYS2X83DxYByupf6Pa4ewIgCM9Rt9voXZo3QAh47ZtLR7EgaEjAIZOolhJt61YJirRgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01PLeTFCeSnvJ5e4hqNkzXq9",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited passages show that the patient has low back pain and how long it has lasted. Neither passage gives a pain-scale rating or a severity level. Note n5 does record \"NRS 6/10\", but the assistant did not cite that part."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

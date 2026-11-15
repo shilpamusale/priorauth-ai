@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "51f22f120e18cad8",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01TqvkDubJhdSyTbhtd4mvWH",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited \"Pain NRS 6/10\" comes from a consult note about axial low back pain. It gives a pain rating on a named scale (NRS), and 6/10 is in the moderate range, so every part of the criterion is shown."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1163,
+     "output_tokens": 228
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSngYKEAgTGAI4AUIIdGhpbmtpbmcSDBep4Yk0uXdriK6EFBoM38VWhpU0qpSNLKdvIjAOcQ6/+O7Jy/60d4MCfz1r1kJAZZGVCnMKbD/RwMMozVzK+JA+FThEtDy+r0qJCp8quwXT68N/+g+f2fHopwfH15wKg3FEDAzOhWS8jnN8Bg2EJHdZKB8vjtBokBw04FloYxQP0YeE7jV3UES7MAby6THwXBN/FNNcP1P1sKTElYGsdP1lAK5itnvzct2OYWwzi5e6h6bLOpAEBCWgmlASWsjRLwuJ9NuOUaceBcoVslhBDniIo5c9d5Nkk87xsfGhH88IKihAa6gh2yu4vVHitb3g5AwuhssbglD3fofaYW9QZu2mKycrwKls/fCoM0IeAQjFbJKn0UogfpWmrQbV7uNfvX9goZ40qhik8xzrgiLC07exEhOq0xINCpoR/D9bhJUyBdQBfE2xVnZ1R8C8rhg9laji/nMhl06PrkUdIojDat9Zp7ureuC8dCqCCQioWh3MuwPr3KakD+rMfisPvvZDWuCkdivXDqvyhu1ZyEUSrN/smbszJ9Am6OmeLLLNesLXn86bV6FzP/WtzmsQhxrudyreDb0ZQtHLIybiyeCrs7TBZECCtoatSG2GgX7JcKNh7i5mmzSvF52qNBFMpYeL6QJRGMUJIu+jQO+Sf/rzFRfIO2+yt3YHF6LnU1QDIwl4eMWlABkZfw5baSW9l3XATGYEbdiWOPHQ5JWD0jY8AaMV+I8UF27D9f6OuQ0ETBcBgzCj8SEx3c5IyNS40vbGRPRO7hPMPKBI65wdpsrj88DTaI0xFHGEkdcSHRqHGck2CR+k9X+ggGHu9fHVD+KqSuLmRWHExBDFrUPkEvWTpQTh+zkxYsq+627ynMp7scoYNB4nqL1CLPhvkT3oZgOifPm7Ngdm2NA3JS8JIncRQxL4nOdiETK4Z7/8+8H7ydmYRggwr2U3NMfa9VLWALquj9iRZUWTMOuL8Sy2O5E6/ZrYwXyjGdNE0oZC1lNkUk4U1tDGAkGag/fAYlJYvz0pnPq3IXs0POTpGGUYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01TqvkDubJhdSyTbhtd4mvWH",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited \"Pain NRS 6/10\" comes from a consult note about axial low back pain. It gives a pain rating on a named scale (NRS), and 6/10 is in the moderate range, so every part of the criterion is shown."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "8ffaae3f998b7ce9",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_017tY17Ys1Wx5etSvE8wPdUZ",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "Both cited passages record an ODI score (44% at the PT intake, and 46% at the 2026-09-15 pain consult). Both scores come before the medial branch blocks, which the consult only plans, so a baseline disability scale is documented before the first diagnostic block."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1320,
+     "output_tokens": 236
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQShwYKEAgTGAI4AUIIdGhpbmtpbmcSDBGxhv0A18XUnuC+YhoMrXtDx62vELXbdJERIjCfTebz/0Rg4EJ0UBHSlk5SR7UHosByK1PY21m3eJ5PWNM0Br03SmwkHK2z80diZ2QqpAUke16gERAJBGHyMvEm1qBTZ0KUQUcyOrRKDxNNok7qB2N8CAxflI7z+pr6ubgRDuQUpckzhJat7hXMt6WKEZLgUdPgHT4tQiFfGiAhpHJjb7bux6eSbDCcgKhWAKkbhUhYA4cQGnTs86oHKbI1Q8QzDuD2BmsFnw7VNAR1yBX2fgm5vKCb8UFIMAHkSky4JDUhIy1e5Nk3H/obTdxhAmo3TqTZy+wXaHPjoy/0BqLUhuhb2bqBOLVppE0DLKjUDRCKU+o3pDRkSNVJv6leRmDvdhFoRMxluiTJW9H9Qa2XAhZoU8QqRvOHhCkFI5VdBIugSlEClVJxs68bCxSXmXlohJAcQust4KlH5dXajHLQILkSy16AVzq6Myg2FYDiS+sSCdM31ptndvaXvr473rb2lZYWR10849syM1ot9V02TE0H04i607dna01BEcysL8JsPeoKmnDMubOzfuGIEFHSSz609/vmiu3Fwg5yxdZKe2DYL/E3f/34BYRao6LMuOfujFJLHN3WkLcnU/bI4gXGFlz10hcH2yfDZOHU0Ge8ZyogJrseQSgiuFNXAh/SQsEhE4vM/Plbe/BFjEo7E3hDBZfFhAJ18WrWFzBdq1c8C030d0D5XBjBdbObbqkY7B0pUDiQeUxrQJtR8Ta7sb14KwwUEiMm6VMtoEtNzJ1/Soj8AygX2s4yFWG062wHwgKkXs6CmW8c7z9C04iXaBZMbfyX7D2wnpqXRc4eHQBo/2Y6bTDka1GqMcuQ9eAR7gPWbd0lE2eAly5/fhsBZnK3ILJtLDIQ1ihoQGhSPK+bDd7Rorn4k6mvg9Dm7xNvARu14FM+MHfK9T6nHfhb2axlaHMulumisC0soIzQRYQUyaZ643r/uoeBkTV9/RzPk2KDojjqGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_017tY17Ys1Wx5etSvE8wPdUZ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "Both cited passages record an ODI score (44% at the PT intake, and 46% at the 2026-09-15 pain consult). Both scores come before the medial branch blocks, which the consult only plans, so a baseline disability scale is documented before the first diagnostic block."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "715677705e802686",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01J1YocvSoNWAFJ1JCbn52KL",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The note dated 2026-09-29 records low back pain since January 2026, which is about 8 months and well past the 3-month threshold. The current axial low back pain is the pain being treated."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1220,
+     "output_tokens": 226
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS6wYKEAgTGAI4AUIIdGhpbmtpbmcSDHnpvzbF7VOSRz95fxoM/jj/Q/3oVDBGubuGIjCZHbR3rNTsRV2uvBtswOZSdNoWCex2j7jYYykChQoJjAzdWD4qqi9jjZ9U8CDXYsUqiAYDkt28uQk018DRk6ZxqcP4NI+JImhaz/ONkhKuhDkD/qK1hnez+drfx2qMXIlkL3tt4rlBdGm/Mud9jOfOb3bZKnduACUBq3beilAmJ0D57ZGL8PnLucdyJF1NgtcafXrjtuce/Xgu5HXPjCbQJ+SPV5+SuaqqiCbKfHkMXvc4eKJUwuf4yzUjQ1uPUeVRBZb33gWEqd3ldu0Kjsdepyg1a9ekkQnotHzIQzHmIfWCf2VbDmnK57Iz8viHiaOONhWKnoqZ58xh0GCcFPPYq81ablzdx+SXD4IG/dHgH8UEItUUH2m10wLVrKqN4fadZzp0/XWz8O2TjKP8WL73YNFz/BSh0qUJ4XgJJSXg+J0YYoUdw/DWRf1SYXYxNYxX70pi54dpIO1ahEWNoJd/iI0eZVD37xhE30iHw969P2XAcYaePl+Dro642ezkIeQ/yBPgCU2Cph27fz5PAqIIv9B1OR8BFkrAn6TGKsiw5BYHANQveiRcEI0Cvg4nJlvPgaemxpJzMBNh1d4y2WuNgQhmtKrs0lzfldY0JvH9I7qF233k8qJeTKHBhhve5JcBdpkc+XO9xTUAH46PvpKpjl6mktf/z0ozDqaJ5KMzJcqhXwUIvMqc+6wPrdlm9hF68AQB1CNvz28v4dVzwLh0+oOO2Zwtisi1n3zF4Oopi4TrO0+Buabb+2b+wrxKjKh68HyaXo/q06Z0FVFeKXo0WWgqyQgbGi4TVd16fZi0GOh/p1ZpMrWOus+U0s5ywtcMfO4+vh86/xQsf+6AnFdy5QD3mPvF/q+EdCLHM6MQfSbv+P5ha0/7tl+wKQvyqJf+VHTwAafDTRxmAFqOl/qyb1O1sC0Tzwg3heLquJaqkpGJ0G7+xIz5za7edU6znMikVQ11rjleP+4IBLM3yhIajV281dilQG6Vys2Tp/Qk6e1cbJQABxRxxFT6wa/3g0qJOyoTE5UHMRQVOFFxsyfqjIAQ1Ea6/xBcI+hfh7Z7tUcds//kIEq6ymf7ukRZyHg3WOYzHqLRjn2MFhgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01J1YocvSoNWAFJ1JCbn52KL",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The note dated 2026-09-29 records low back pain since January 2026, which is about 8 months and well past the 3-month threshold. The current axial low back pain is the pain being treated."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

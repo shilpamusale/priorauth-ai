@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "8ac96be1a539e6e2",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01DXtAyeusdjawsW9LdA4CCF",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "Note n3 records an Oswestry Disability Index of 42% at the consult that planned the first medial branch blocks. That places the measurement at baseline, before any block was done."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1227,
+     "output_tokens": 198
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSkQYKEAgTGAI4AUIIdGhpbmtpbmcSDMXOhFfLZPkhSZjl6RoMM3xb8kwnkHhbbJv6IjCMJGGu+pbEDKvDLKhxAdEk6Ux6I3xha/fC65WSuYLxWHXydUPpXQWvKlwwirAliOYqrgU3leeBxDizFzfA8SupTL6+fgDQ2418jFHtq7ByS4ANZnM+Dll118kwfpBbBR8fpxROzfX78qbU9l/UGCxPTRlWln+llxZVXyeFSmi3yXWkW/2HTiSw+MxErtIgvRCEAaXFkQkS+SaYOj3n3AKj0RDElTrLZ+/3q7NUAELjj0r3/5FJSp4q50Wcvak5LGdC94lOUep3vP1HJy/BDC2DR/v466Cn1K9DGj0vL6Y+glVq2TkHcO8hfj1VJ60WZQ6VVwstriVMFL473QoXS2WQHcw1/eLjbPZWAr0iYrmj1pUsWblXJE7xt3A/7LSFnO591pbQXdSNYAvddQ6Qjwrtms8OgcHPD0SnA4raBxXOq4c6x9Y1RjD2IUerzXDc959wsPwWr1fP1Hb9GnSQST/fXteZ8jhdYGRyT1gb/Q0MYDchSk2QsvroNnMlCDq5BHuDgN9tIBXC6FavBcazZkJf/Vstk8Er8CvgYo+oZG7tiTDWROxWnad5286dySvIHQ0ELVHhY+qLOI3bBwG9lhj06QBkuSjxaUuTgYvqyNQmEaKMasaOuefcO2vUAEzsCO+OJWP8uG0C3tHwMFQIa4mFXr2AZC7GTvoVQkDrL4LxtWK9eAGCzRwclL05UCvau3uVQdClE63uQJxjHsFtPaYZt+T68TTk+4Lfou6OGm9YwmEcLr9LboLBGPt2Np8/jJ36PlXNXwPZ65S/OtY2OZq8N0FcHinrHXIGBVTnOqkZicLq6P2MWfy5CwcjNquiH6cDXp0ftRr0Yh/MAGKDOLW0p2vBrXzguSGIGvUlXiaw+qMKOm5nZx5qWccArp3GRfH5UoFLiRkJuyBDoYkxzKchvPU9FQGZhRpaDNJc5OJH2KC6QdupqGfPjspgTn4FO3c+ShZ6WhuciOrM10+CqfX4ghgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01DXtAyeusdjawsW9LdA4CCF",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "Note n3 records an Oswestry Disability Index of 42% at the consult that planned the first medial branch blocks. That places the measurement at baseline, before any block was done."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

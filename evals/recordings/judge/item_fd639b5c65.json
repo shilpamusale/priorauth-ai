@@ -1,0 +1,45 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "92f5407da5c0ccf5",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01QRhHNMo9vuHGkNChS35W2W",
+      "name": "grade_request",
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request names the notes that lack a disability scale (the PCP visit, the PT discharge and the 2026-08-27 consult). It asks only for a dated baseline scale before the first medial branch block and says where to record it: the next pain management visit note, or existing earlier documentation. Every fact it mentions is in the chart, and it does not suggest any score."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1614,
+     "output_tokens": 264
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01QRhHNMo9vuHGkNChS35W2W",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request names the notes that lack a disability scale (the PCP visit, the PT discharge and the 2026-08-27 consult). It asks only for a dated baseline scale before the first medial branch block and says where to record it: the next pain management visit note, or existing earlier documentation. Every fact it mentions is in the chart, and it does not suggest any score."
+      },
+      "name": "grade_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

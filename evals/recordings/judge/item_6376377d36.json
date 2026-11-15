@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "ad5da504fe4c0441",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01CZbi131sfHbWThnM3YEudq",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The MRI report (n3) rules out fracture, tumor and infection, and its finding of normal alignment rules out significant deformity, so it covers each example of non-facet pathology the criterion names. Imaging alone meets the criterion's \"clinical assessment or imaging\" wording."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1143,
+     "output_tokens": 287
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSoAcKEAgTGAI4AUIIdGhpbmtpbmcSDF53VICEbUJ/PM9s8BoMUEr/wTU5wJn4UK8SIjBbQeHNJRpOmDQipY5kjPBu3ugJc8ZUjPTy+wJ3RrIL4ZOKfT5oMOpkswBATOsh0W0qvQb6VtMNnW9pXHSKB8W40BbOjL/tgg2iC01QfT4ofoIx+GHj/fy0YUb1jI0FHeHQyAUfJSodf2qj0cQILFvRrQbdfh4SKhllziHgeqZUq5mTwl4vxIb+eEquhKrW1iPEa9rvCyTxjT+51DpkJHAXfTpQHktrGaC95Iuu4cDEvMb+pjHWO3hdNO94lR4QUCsL7RAFDSzweWkfThj9pxiDBuHvhFJX42Ox6LZzx6pxoEQys8hhivaj9byi80GuseI4YcGw7SZs0tjR81RfeA30gyEsCW9sHIu9oUvqLaW9/Wz4I+EOl7+3t3GOWC9NYUaJ562SEmgOoHbfhb9MQ4bXcF5c0Ykz4yWhh8Xn/mSs1/wrtQc2rEAx32rj/iHA2TAXlJL0jBAfa288x23YDQ88bUonAruoTx8MQ0lu5AYC1/wx7DC+snusPwOP//yy8NWDxGUZvFc1MtSbUnDe19xVrPuVjChE3yG+P1bj6UIB8pZDeW9BYM4OQhoTXFX04rVNR8zE9mu9BIiBmp0//8uJpziYjbqEILDRzKZrncJt8DAu5T+V6pSC1zaVXQ6TrdzYxZKGzboEYLrXpqqMyF/Oxx3kCWF0OgDuyYcT/JssWdUakmXgTQ3wV9rQo1ajPvTFzrRTntqy2Qb6YGXGAdZXvZr9wYyLnYbuBePfPmTvFfiZGsgh3Zv8QQnC7uhba/PYWJnDx5NC4YWyjZhhMRuAnYgafTlS/5Q2aaZ5kr4eJ4Fh45+yQRWbLj7yEZuHjkRTSojFnEHC+9TC63EUmUVBxqTZsxjxqTs9aOKTwEyPDkk7dT5kP9LSD2+hZXCsCARcAaLaML848z+LMnmDc0J23dz7bb6eDCKh0K81Mz3vKTaeS9f920XLmtBdoKR0hpYRn/jtxNGqhOceXY+Y/hYq0fB9eqwrPypuasS6VXqaFgAQaXgq//50F0h5VL9RTOke3KM6OK/to2tPSHJUtBewLH44S+dJ5K5sBrd+YFhLlFWOK/6/dYVvq/enTouIzL9SG2UCVgDrruh3/IrynuelFvth26sTRf89MFLWeqGfTgpNYddQlhzRi3e+3H+NE4OiGBsmkBeAV4YyAW+o4B8AGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01CZbi131sfHbWThnM3YEudq",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The MRI report (n3) rules out fracture, tumor and infection, and its finding of normal alignment rules out significant deformity, so it covers each example of non-facet pathology the criterion names. Imaging alone meets the criterion's \"clinical assessment or imaging\" wording."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

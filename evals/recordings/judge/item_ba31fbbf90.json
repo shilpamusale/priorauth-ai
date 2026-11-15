@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "32e790e4eae363ab",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01Jop1fgsQscPQQnWKQU8WiY",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited lumbar MRI report rules out fracture, tumor and infection and describes normal alignment, so there is no significant deformity. Its only finding is facet arthropathy at L4-L5 and L5-S1, so the imaging shows no non-facet pathology that could explain the pain."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1128,
+     "output_tokens": 279
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSiAcKEAgTGAI4AUIIdGhpbmtpbmcSDA77tkZnt0GORfn5rxoM55g01P6H/8YbzbGkIjAbSdH1GgGXKhxgO+B886Eelfmk0ECOVLX4isrhbfTimXzNpn8XkBp4vi136ZHTr34qpQacf0vc0dd0bMsLGrNdDIs1LfVuUiQR+thDdi6bWNvoRBlxo77W9RkHfd5cCENF10Hw8rjxvA5Tp9v2/JYz1QkS2U7jRGSAI9f3GCDOP2bpjJ1GA0HOn7U7WYq/AYZ1G5cR/71NP01VzIjmNyplwiyZbe8HBxVvtXZEE18TUXGnxl5F4BwaTAtNQUKFBu6mnHNBLCH61pgFtGFq2V4zEhv9yikmz1R+kTQAqfmFGrFrPrcWK6POfFVc7kXMqj2IpxrSyt6zxOweUM3yh096sYZzGtzD0tClk5n+J+HcWAtlFUAm979MoC3Y79/cOpEY9a8aQnaDEfndjfbTNOecbOKqphzSDcy5rbQ3CbXAmlKReKCkKbksS+KqSTiM7TZoYg3We86l6eX6ivmcg68HpIWRC0OHEA9pLvTQMKmYkaWJYXXeHgPhSm2M5rghhXow7fGP71VZRjKKFeZiYF54TDXzqfuhjBhi7DcNE/Gc9bBZEgki6zKgZhd0Rv4ZitwZrkqAgkkK9MACPVQciR5spPXHvTI9M779LjQdStIhBweYqjMkzNBzXo5w6j3VKhfZOM759Jn5C1r7l7FB0PEseHhb+7AW+y76h/tNcLyMe+4qHD8RgMNRY5xHSWGTNOONxRkA6mySFAhH2kkCSbz++DNG5SaKeGnukWzpNuQ5v6CLY+vaE4WVOJyjXjMqOh+qVv3iQlCxEV+hqQSKcZe1/EEHneUib7CPi0hFUVFcIWmJgQsxWxCdX1JzSXmapakyiaQrwRkgM93u4Z8OUxhNWRMRrgrWarVo+G4dnrBC3/m/iSA6JC39HjxJAmwGIzvdmNoahwReQzDzb2gMd4cX8yrj/hIkiAdDVQs9eoQn3uwNGAGISfaTcYZxc7TBA5jprNLx6fpr7LH7g1DudkalcMP46eiNOKmN7tIejavlrFn8zpl3LlN3UlNBd9nWB2jLRCDmiS/VZyetLKbIfTdzsP0turYP7tFrABMYuo0ZyJghnVLrtHwA4ekZZ69PciL7s0zPuo6ZY7Ug+h6ijmBVFF6OzbR/n1uRIQml465zoEn8pbFis2BPGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01Jop1fgsQscPQQnWKQU8WiY",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited lumbar MRI report rules out fracture, tumor and infection and describes normal alignment, so there is no significant deformity. Its only finding is facet arthropathy at L4-L5 and L5-S1, so the imaging shows no non-facet pathology that could explain the pain."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

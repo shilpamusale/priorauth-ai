@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "8710e4d1b8176cea",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_019rQ9eoygQiakSC7oBTZ3sy",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited MRI passage rules out each example the criterion names: fracture, tumor and infection, and \"normal alignment\" rules out significant deformity. The only pathology the report notes is facet arthropathy."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1128,
+     "output_tokens": 408
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS9woKEAgTGAI4AUIIdGhpbmtpbmcSDDx0igDpudFmYzeWvxoMUi3/8GLV6yYe6wFTIjCe65/pe+Z+UGdxkyd1DJJoaytVQNGc6m9s2jlW5vkcEtUa73iGmNc4xfX1pkj8gvgqlAoCUDsDcrFtpLo1j6Z14UjwYrvluFfd+B7vKQULxBpdk4JzeTUBPP6SblACGll39fYJzHGRAbQW29Jud6dMVpjnJthA56cAL6slcRaTIUknWQe8hFn5NlD0SdQjZoU1OY3ydQV4PohsKJAKsWyIUSTk4oGgMmpIDWfb0AJTe3tXo7M1aqqgHU51cCbsg7wYDRVbJl1gXZMK6zzmSdwCvKykIHtm2wukfoEZSTLkedM8xZcHG78mMFPkNozXYl/Tig7L1O1C3a4UNbKHMiSxXI88nxyDwJxO8IlfvhI1xu4aTMiJ3EwLo8sSTWQYR2lvXb4yiCTryYSJQJ2UCKFhfVsrgwEnp7z6TUdA1DKfymry06DK4DlgLnG0VzTC4IiUy4IquSeUckOD82JKTwCmltea1AovR/mds451MYv1ezGqRHHCX9dBPExACtFTYiPwe/cf/E/uixqN2wpnA0v3olSOBBgIZc1VvdsXuJfXSSZ9RXogeFNg8aJq88g4gOZJG7OdtQ4L3OIbX1KqTKd1TSletRwD4tUBi1Jc0/qSM4APbPBF4BRu7qSL+QRJLT1icR3c/gTQylnKCGNgtT+vpVfFSBDmnFZYBBV6497tilL6xsCuSUCrXM+4y08qOcStCTdFln0BLhq2R8r9Ae3SEzzvY2P2m35CV7tMyIlA7V6nJ8WJML3ijmIRahhkt497ZHrUWvtCcuUZF/vqTby71z3ylXBs9Hcv2j1INOYHatu5WVqqLo9mBkGQ7Da5wsGSHq6YUSmhHX2v7kADjbCK3/NflaH3QD4ZIRyn+b0+kHGO1wZmz/k2v/qGWH0Zvc+EU+zufcdLD7OarsCiZoV8yd/+raCtg5Sai8DQmAy0dQOxzLo04B6lRuJvxZpWZfrM9oWRNVkgsHCjuRRz+HyfWK7PNpn6964kQTbdVYRGjfC3T/9hVDn1Qp58C0k71YrhDEvjXMHLCjdOlrdYPwUdxDCId+48QdIR09AXHstorqU8tO1AcVL705carYwRek2RKaSLnKXrZA/xHcKJroVBK4gwOmMJpgciZmcx4UJB0LV8WHkAgwIdgjVKYycW2vPKqJZXhc0aIU6wElLi64tFhwHtU18rK9K89/Wk6kVBsdQNBG5DZWFSNDwu6lqzuEcv8yCsoaefSQggBvJxRVqOiV+TlRrWb+DWlrN+WVADVqTZpSavfWuhAEMjL9nTh18mOdcnctD7hE3mGP4TzsKBZ/baZ5wPkGAODKK6WmFWsLDUPgt4QdH2dMqXWzrqm6Wxe9d3ErJAJ6OLRNjDVX/7j5Qwc88yqerwoMWM/q3dTt8VoB0cf66TGSoHq19OMFfaCk4/mXruJugZb2Ygh0/57R6zz4/7HZUzs7EZuBzFLN9+k3xKKPflKTDpfiNbGdOY+Kcff2OYwyiX7dn4U1Wj0RubvGSgkORrnJZ4q2vdRQbPp12iUj65Uft2wcFO7GaXs7lOJoxCRPqdZF9cJAaOO/I1jntuQ6Jh7HUNCivR/8jd7ROjElaFL4yDZmN7AcT0od5uIuI42l0Tx7bZ4Obmv3X7eiA+QADjJwNjQSs/caieJL0x0rajpP3zul7KJ1z0gId+rbJbCRek33Vtz8F8+vRKYqeXxqM7HqQ9zZUWSIk7ifnEv6hQj3DB2oEK0UcMV6x5XVD0ymT2hhAcpHcRLQibJngU/3nqANLxRph3g06qn/ugPfKTKj9enzoouhQowndZ0O9ZGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_019rQ9eoygQiakSC7oBTZ3sy",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited MRI passage rules out each example the criterion names: fracture, tumor and infection, and \"normal alignment\" rules out significant deformity. The only pathology the report notes is facet arthropathy."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

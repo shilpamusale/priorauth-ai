@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "8d38f7d82fce649c",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_0158KABKTqQfvcJUEiZuWJyQ",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The 2026-09-15 consult (n4) records the pain as present since February 2026, which is about 7 months at that visit. Together with n1's onset of mid-February 2026, this shows the pain has lasted at least 3 months."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1256,
+     "output_tokens": 218
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS5QUKEAgTGAI4AUIIdGhpbmtpbmcSDIWyC+mh8mwmONPFwRoMAPhS0ZVnZVkvkvHAIjAVYvKNm25vnN+ROepNOUi7m9Au47Ao/xDSQLhZ53sNJri6pksiIlp+XdDi+iD1YDgqggWXEOixq9H3M9dE01BROjqy2FfSm8gaBEwLlR5+7ZHBuLYW45XC8OIMvfcjO3/gbUlp5glhGL8IekhYxUpY5YvrEucDOmJRXQaKNs0ZjZWCQgglPZH3jQqdLP3y7NQ0bPDj0Ebr2Idil+f8ExH0IeSFcfkV2dA/AWoecwRNfB665whhxvs4Vcf0XyL8OyWJatGrqShtMNYH5msRoCJnC2ClFZW7tBqJhwKu9JFaBB4Ard2ffBtagySeqFfQ+hV30JnZ8bQ/VCNjsIcpdZcoKY1GnYGt/hsOJ0GbwCW9OkkFhtc8KfsO399p7F8Rhf6xpc4p2qi4lWiwR0+ZZk+TOTwRYr+dbA9nRZfDWsVNKrvYOqrQihx0dYKwEYU4fLfNoC5+/sPWh4IPQ1AcdygaiF74OZBTGZyCUzBVLxghWm9qjGUwlia0el1g/Zh1N6sYCqIjOcQrJBKKGyU32RQBWEEUNmy9gy7Ze1ZBvsFBeYR+fjo7BG6w5Qdz7cep+oaAsVmNnaUhKoUaGfiHo3C0uNNRzq8cblGzp2KSSIfM6S1hiRqz0gXtIGX/DnXop+TAuBZRQtHF+ROGYYxG9NY4hRZnJiEQ9QXJzOkish9KVWqWJqFBnDVFrmECwXgfspPxqzkntMD9vhfjFTy73uMKvpgwR20ckbrGtSWy+zqNathtKwPRBjNaGkK5G9OPRWFQDCv/0Z9q6B5tIm2fMQ1+1N68koR64qSa3CV1pZTx38tFgqHAy7Wq4KobF7RXhXxaPOKskqfosXYYyylLVz2Z5BfCQdf+qFklSigwOeq0q+O8GWyetFy2esskrdj36Qgt9yYJaNsWaKj95p2TtY0qSIS5VuIYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_0158KABKTqQfvcJUEiZuWJyQ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The 2026-09-15 consult (n4) records the pain as present since February 2026, which is about 7 months at that visit. Together with n1's onset of mid-February 2026, this shows the pain has lasted at least 3 months."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "a84b33d9b1f93598",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01UqFVWDx2NhJ5jW4bEJazgE",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited passages show a functional deficit: the patient cannot stand more than 10 minutes or walk more than a block. They give no score on a pain or disability scale such as the ODI. The NRS 7/10 in n4 was not cited, so it gets no credit here."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1396,
+     "output_tokens": 266
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSiAcKEAgTGAI4AUIIdGhpbmtpbmcSDN0cPkX0NIADXiyi/BoMkloGuSpP28yawfvMIjCFc0kwdmYoQJpp+2LuV432ZaSjBhdU5/1UxIRY3A20Ir4EBE9kZY4Xh6uVX1/ZzR4qpQZ+vLxGP0kMVAduJtESZf5DmwiNSRiojxvSXEJ9tZ3S47F5UrXrbhQlr83hhPR8d3mN9JHicVwS+ZlcuJoJ5LaqOSFbhVkOSt3sJ4YRa1jeYbSicS7ZY41QlkcxIgWQb56XgipAH2OIwyvB+f49h5Heu7/zO6ftoFUlNC+GsWVVeOfvSfsY9HVGQLWaWr152OvQt5MUg+q7fqpe6SIk2poZFc6p2hPgbMlCE6zXsbtwUhNR/v0Byi7HM9pL9DBB3X31gKr0mZpNVJk52So+Bqu1upwDYr4t/B2VjuwCYa6szQstTWyW885YC3BIbGwDAEyo7At8SSiwxb1+5bu20XR+5szl04aninWBJ3BkvEwI/jD74b9a3MXh8JLWPz00jwElQyXGDf6VNz135ArbUKTLkBtpPtiE1jeD+to3BvgMoEfS2ld23Bez1wFIv2PzBPl5QsTvNQFD8K7Eua/6tM+c/RXka/34r08d6YLkJdLlpXGZLxyNUVFE8F02w/jnIBttVK8Kl3fiVyuO+nnEoIGrOW2TrtN1+60eqxg/dvf4kvO9L958fs3YR2aJioY/91m3/aHC0Q+NpNphJWs0wu8iAwLSbM6vm4DBGQS/oa+hEyS7W8kAo6mm9WXr4WcorrUywnjBDS7H7/7d69yeNX5Qp6frEqZTOOWhQfi6lz0+wsVNFaAAm8ll+6AOV72XF60eVEtoLchj+GzwqSf/F3WSDwxbW7LcqDIL+pMGwoxPiMMGkMZzBn1tghvXSRXQKN+WgtZVBe7W4wQX/HYP7zj+FMEtkrzVE2Kod54foqUnDDeJT10TlhPh2oCwjn4mFLoVXAImYuicrG7xvYqAZHhX1aaEvQ6v8t3ys0ar9Z4eiGtYQ6YHTwWdf0350ibMUTZO2B1J6pj+5msP1kgKlrYJaB5fb4Zf3DtoMH8JQ1yOH1wKMvNUMY8puqUspsb3v28Jk0Ep3tFEGV8FTjlHr8HsZleWDbFtsLJAL79BuFE9KRdUdznKJh8MhuUssmuDMzZ00Td+r/sjD99yFqVm+2pz+KoE4MO/FU+aKfpe9ZlZRemOPSK7GAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01UqFVWDx2NhJ5jW4bEJazgE",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited passages show a functional deficit: the patient cannot stand more than 10 minutes or walk more than a block. They give no score on a pain or disability scale such as the ODI. The NRS 7/10 in n4 was not cited, so it gets no credit here."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

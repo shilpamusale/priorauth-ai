@@ -1,0 +1,50 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "ebb719e230872eb6",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01EqsKgZ5q5fRxoLc75bvu6x",
+      "name": "grade_request",
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request describes the chart accurately: axial pain, facet loading positive on both sides, facet hypertrophy at L4-L5 and L5-S1 on MRI, and no neurological exam or statement about radicular symptoms. It asks only for the neurological exam and the radiculopathy, claudication and treatment status the criterion requires, and it names the next pain management pre-procedure note as the place to record them."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1665,
+     "output_tokens": 522
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS8gkKEAgTGAI4AUIIdGhpbmtpbmcSDE4yvXRMQI59q3o07hoMV0ogW8Saxh9A6yMgIjCKsz464vi/TwIfEIi6jELvudzU+ybvLPPgwO578HmEip+7n1NMynP9401iONJhxJoqjwkurVMWU/i+FPvYgM8IrF22OlGnN+HXhaNPiwVBDF1rdx/SN54JRZ0tQy0Lv4m/jqvR+XJjpIBvoh8MFeomQPxNvt+2XuIb+KMfpWj3BtYjx1caB50Gaz0kLGM/qmG9Dz4Dbn4f7PbxPG50ht5QulMeiSyG7JKLkHEO/BMLplZfs3l1Q7ZIkqZFx36HVFbnjKzUFjEXkDnq3nzi+5GUB2LSiP1e6iu8CZLLA9v9qXJ6sRPR/dDfwWyUNu/bMSm6OfDhayR83wzdKvpQuHIC5OT3BRxMQ9aThyDUkyuf+5yBLMeovzmMOsJKXMhnaB2VLXCo8T7VuDkkXQrz11JCsPMTiFfzKSJWh9fDBWtMnsC2woJOcLVpc+uHEr5ZjHBT86gJr0rxZOKDnoYtdEXPPtRzwgD5Ejhz9YkXJlN8IJeczmREAdhEDtezgBuudp4jJlrh/7vaVR3LZIwLdpXZr65Yap8DFMM69fWs6zxTJTwRhVosMywT+jT+IKJ9lIwN3k5LDJoYs5GP6ibDDw4twzvrUEA8IzPyIvXoOE2k2Y8xCW9AQrzj6M1EY0kt0aeC9banTJIxpJcUXklkKz+V4ACsQgHRFbiK6U45wb8JcPydlfDc+6IOyW9tIKV9DaNxbwqveLRt4VoGGCJ7zlEBf3jJM8RBcFBniGDNbzXsEI9T1dMoqFs56ln2bF6SsKLVAX9bBjXcTA6xlRA1PGg3qxxSQ60vV4mzYV2P10yNaew7jZiLRB/7kgt4b/p+AcxeGQj3xBIkYLNPZR1VWWBsUOu37Tfun58dCG96HMOkHORawhCu9t93TNRnqoq5b/wtSZpyet6ghVIZlrpc7dgdi5QbpfM6+IMFi1r6lA9Y50KFumkk42xFJdM/ei6wYXmpC6ZwxLqFxNt7W1GwAt8K2nlEB5YbLCS+4wO7TZudbDTl2pboSqzge23b4YRuxty7gbQcb0OJHkKfTFf1Jywr3ZzuG5C2Rlh6O/zq5fXLoDxClY8W01qBYu0rZkaeb/1rf/K+RSj1laALn93YvuoZDhB8EX+MIW/xW2H3tTdbkymetcBWtMiNltjDuwlBEFflhFa0TeIFTMTQn0xzaGiQUATkoBev/n1J1eTRJ9GF60G8Kb0CkefRdTaY9k7ofSe/aCH2GX94Rsirjcx6L6Bja/a5R6E+My+8xYyYS2nKSPm9NvpFztxlOjwarNKx3TAZnQIF8Y1dMKnPim3jUExP6vWBUIXvznnuGX2w0Q/SFso4SzfjGMmdjtTMQRVQauEzVeCKv5ifNwNGjqVKnWponciQwqz5WB3lQv2WNRm2KPBYU5qGpFvEqVb7OUE2uIX+c0AuHuyy/Cj6L1iIgOJKrXJ6/NQw4r1Ofa5mOP1KRYZa5ILmqjxhQr6JG6kQQ6FIsFnaKME+kaGKOGSkWqxYm3jHLGRKe60bqViMCzsRHxaCWDjMHsA8CZUVqu73u/wfRGMZNlgJUp6/wEfRHxNczGC08d7HdkwXhd+DdESFtmQhWw+CImQ1WNmGI5gWM60aGaDVQ81ZE8mzSaTBsFAvIIEYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01EqsKgZ5q5fRxoLc75bvu6x",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "specific": true,
+       "asks_only_what_is_needed": true,
+       "invents_nothing": true,
+       "says_where": true,
+       "reasoning": "The request describes the chart accurately: axial pain, facet loading positive on both sides, facet hypertrophy at L4-L5 and L5-S1 on MRI, and no neurological exam or statement about radicular symptoms. It asks only for the neurological exam and the radiculopathy, claudication and treatment status the criterion requires, and it names the next pain management pre-procedure note as the place to record them."
+      },
+      "name": "grade_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

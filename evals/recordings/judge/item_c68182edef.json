@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "4226ec4388b18e23",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01E7ZQop2qVjdnsgko2RPPXz",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited normal bilateral leg neuro exam and \"No radicular symptoms\" show there is no radiculopathy. The note describes axial pain with no radiation and records no neurogenic claudication, so the chart documents neither condition. The L1 fracture matters for other criteria, not this one."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1264,
+     "output_tokens": 457
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSnQsKEAgTGAI4AUIIdGhpbmtpbmcSDHc6TwHCtqhaja7GHhoMtKN8cFZwFcONEXIdIjDW+45NzGZNgNpr0mVbCZkcTgRzrEVZ22NnPrx0laHDvsAFzYZxV0xfM/s9J4XTVwMqugrhCg/4hrzY4zOYWU1bZ9SmdnHhlRCPF+KO4z5jm1SB/p/CRzkH2l0vQnw36N2ImMhOiAb9u/e2JSq+Y6p5g21qsJCOpbLPQ9voZKHnmQkEyiodhSX8vMD/nDmvHe++7qYwYsxJD//HUZTLpDL3asAV37hamZouCL1HWXEmbAYxPy6hpytOl+jL/r1p4r7vvRjCcLSFPlIpy7jkilt0PMgrb0rzCDqNZX36qbitHGX19vXp900pdCtvuWKcHMBvQLSxR/hcPYAbuZcz82xAZynwY6x4YZSSSOPyZ2mJGSil12rv9ntOWkrd2Y84q3AeFMEeu7OKQRGA9Cc0krbyDnznsUOdt637ckniweI0yqM0kubM3OebpF7XFMZv2p5Cuoj+Iw+yFTNzyP9b85kwYJ8K1FX+2SxUkmFRKLoWY7D7+HBIwiR6xkl4/vjHcslybU/IP8VbSiscNY1mUboxqchfUDuAmV6lYXVpfpad28qXTe78QaKXuOOLEliyNUs82YDNc4lbmfDHIpWMGXjvmIwB1UeL4LEdDrBEU/DFDExt/vi6fGAqzo5XwVuOAAE6kJ8A3U2t44D+R7hrFPnvdQFg8+khSabTsmmELSYgNDCCYiLhUIaMytdnL3FhYGtC0JHZOaa3BCSCW/vVa7Ug6TLcaX2aa7pBST41Btk1W1w8vh9IG8Ro0T0jswpyh+BLCfhRi0uSgoYnBhu4hgoADhnC5xzKvNZXyEPIbofnWIja8FAAaisNcYQDsaveHsfXQRtsZ9lYc875Eg96Br+jIKbCGbjUCw9+U+HbCa3RUjQBjVyqXYiYIZVzipfK5JiDrt7CmaGuXVOJuC+fEA8oNaIUo6J1YZKlUBkAHMSzpMXTDfIZyGi9YnmwskkYEg/kuVCdy5Rot5mM0xWNVbKSrWB+MlCzlF6de/HT+2lAn4IZQm68NmUpqh35eq3RMtDsdiDZk651YFh3F+ZRRDb0XOirlW4doSadXNa8gTuzqovS6eVUuusN5BnTOhTRwiet9pJgf0bVEVMUnJwVor50fU7yLY9SqonO7X8hZx8BcXzZnOh+r+FFJw2nmOVPPyJY2zk7iA82iLSv1mwpiHCSgTKijrFRkPQzx9U4NAhTrrMrxE6KUM05P7a36IZHqomPMWFjocSBFLtkhSHA6l+Zdz/Y2JMy7gShS/uY/OUowh6yeG5JEhDLLZBzR48jkqF6qOPiHLAdO8l48wfi5FCchNxKVj8v1fOo6nHy+uodNHA9zc87xExMo0quZ9cKgYi9DPPyX7UzmyZ2wR+EQR2nYRxJJozUxj4mXCNDn20ct5ymZOKQesH03Y9/RLKTDKNvmMhAjb6pJz9ElhwaMeosaXaki3Dy5jpzP0qquHRygMMvsQPJKWUMB2Fr5+HYI7cmyWAf8p5QNbj8ImweL9gF4IpYtjCpbMx8b4n4LGklwWh1qduqrjr3c8KppJUZkK4VZyfISDUg9Cym4EI2qJvtKB1PzEmeBHVEsBCV3u3QGVNFBl8mZIt+dykN0nRuCO3HCte/PWyiKq6yNwBwICTKVnq+z+2OUQH/NhRuMVG9Jbn3QdCzg8F/IGKX+mw5LYx1UZ8QktvyftQGd7FKXOSDdErr39YTiFW/M4hBXFRxF9dTM0RnTcCc8V1y5fQKvfVfOIJEXTdwCU91OLMICmKX+ysIuFaigsAT9xJABhT4lvWu06jWqheaNAeOEdm8qywrCTEnrQAezObbCmEb40Y3c4JsmO5nfXgnBujNHB4TmYy04YGB1IeCA2QMP2EYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01E7ZQop2qVjdnsgko2RPPXz",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited normal bilateral leg neuro exam and \"No radicular symptoms\" show there is no radiculopathy. The note describes axial pain with no radiation and records no neurogenic claudication, so the chart documents neither condition. The L1 fracture matters for other criteria, not this one."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

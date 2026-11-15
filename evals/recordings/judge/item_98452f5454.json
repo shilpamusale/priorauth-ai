@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "4c83ed232ffa7d2b",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_016kWHsmbTd15BcFovTEsynM",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The MRI report rules out each listed alternative cause: no fracture, no findings of tumor or infection, and normal alignment (no deformity). The note's only finding is facet arthropathy, with no significant canal stenosis."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1138,
+     "output_tokens": 321
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS0QgKEAgTGAI4AUIIdGhpbmtpbmcSDLa4yauz0bneoJ/eSRoMau5p6M9VdVldv+RzIjBU3ObvowyXdkOiOMNGPcn3Qr8jCfzQh/gKgW88gLyoEYnuVqemmLmwiOnX4yh0vusq7gf+dH06pbnOy756sMnrDLhSILRkVdHnmRWvIoJxAkv50/m6AIZ41zYtRfc05Z3KWQqF53Vhr/RPEiw40ELKW1tVpGjcsQmwL7APN1AooMRTa0ioRLYNeNOFyRZ9OprkPhjN9jXTUJEEKLElaC2eF5EfsxiOrYhCPflDlmAyV2UaHy40OGbBkbDWq1dqxgEmPWIXdBE9Z0v2iT/tjQbIK6CMEgL/N4vgO2QRb/07X4JlhFdUrQ9FI4E51G1S4sDbeHOR7jAr8afA1m0YPr6E6zx8p4FlReus+yk7mdVTLAUGvlVcl+ghggJWMNZUyaPnSuscEcbzE7Hx6WIL6erwSncwCOLa6kbuRbHVtPoL6Cqtu+ieso/9tAO/DoZG8i4CorsTFNAqHncckHjKKukhz7n8Ij7kZr7i5j/M+sKJJQK7P6pDINV2IzcagO8IIoBvuNEjvAASLZiZY4KDFX+UnfIy5y2yKEAyPAbo1ZOp5r6ZG2RTYYtDf4qFV7x3c83jajrEEkGx2aOC1tct29wJKE+IYJHGMDXxLA2BA8/rRpUrqNaerWy51Th22j25QApdKkNvfi/ZDh04NAfZZH/pu4rAGWfosxBl9U+M3nbQQVmC21txxIGeLvCaB67vsetFhV838+FdDujCwwHChFcoc0jpJt6I+vbhKL9qPbcmKiymlsRxC0ft8+Wa+UWyzlcBclK2Xu1VqepQEHrOQfuzL75eWxnFTGo6PaoCrzyJs2F0A6dKkVDBaiW+HDCu/hoRYKQPxP8mwhfIcpNlHtqQ2l/KEhPYnQ0cYV5U4S/wOFQE4nlOoZ/iUcNK3jtRaStzo/jNoh62NaxlhrcpQIi4tcVC70Zr8mJyNwLamC7GSdC7zwuGQmzGWLa/KBgNIeMSyka1aNKKR3nazr1N2F1H1C0MC4z1p8bHrJGaDPczVpZAj9uHNrjLiERxE2DvAICLz2YWqFbX3WtZ3PXpF5GO7+xMZXlNyu00AIBM7BR7cP++WUJFWViGOUr2VkcAg+oaWcwS1ZsHlCSsh3X3mkNgpuuCwYcMiSikO+HpaB6wOEeFeevXVngvAAZ7ROJD3NtzflECiGpN66BiY1gTiQoexYmNndXAZk050wYgGabVgsqmqFgJV5UwHK2AG6B1JX15cE7Sb7RjKz9nsa5TWOVmojipumnxdn9xp3S6o2MNngla13Nyqjhau5ExanpfvlbdXlbzWySLQM4nthhkbzeD4RGmN9FFPQiDmOBWHpLDXkzdtGkYE7jKs0aSLLQmk/ESC72HSu6D4wgH2c21ivaG4XKGL+m26VR2AvzYyvm0urvdoXB1o6q4Pq8KK7rIwrd+GAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_016kWHsmbTd15BcFovTEsynM",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The MRI report rules out each listed alternative cause: no fracture, no findings of tumor or infection, and normal alignment (no deformity). The note's only finding is facet arthropathy, with no significant canal stenosis."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "9248acb51a114be1",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01SQYu9BKg5f1JMvaHpXEgMg",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited X-ray rules out each listed type of non-facet pathology: \"No fracture\" covers fracture, \"Normal alignment\" rules out significant deformity, and \"No destructive lesion\" covers tumor and bony infection. The report's only finding is facet arthropathy at L4-S1."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1110,
+     "output_tokens": 391
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQStgkKEAgTGAI4AUIIdGhpbmtpbmcSDJYFAmNQxfTCrR9LDxoMfavP6opsAun0cB0aIjB5BcuJTQbi8jL4IRzXodRI4UreP5sUtGbYMq9lgL4wJEKCsNHF0lxBWMZsv0Q+Xi4q0wgiI0/6eYqEQexih/gwkZ1dRVtP0ZZhLaaet9gUf+4rvphG9DaqiuYpEyfNwXvaJCcm3NzcrjdkR8qtqBdD5ZeFc3wiEUzwwOG3HjYx81LM6io6yNPSj+TFz5cvvE2r+eyu3dFUle8Spklh+5LUHrtxhV+kmFxN9vA4Pr88lAphZpw5qkln1DOQa5+sm+J0Pi59XPZJG9t0KfYeZ4ftyWVOxr4oOO4LpqNP6rBI+z08Vpnp9mUnubyucl8o0ja5yBM12jS8uMngy7otdjALLiKJ5jGaeatCuB6foRNGLZ3AQ+Z8TKbodv/bzT/T1gCo9q1MAHeEZLGVy0sv4oK0fHQ6yitMqRDmMrqsHli0JxDjL3zCB3GidhiTlNFEbEpXdwFVn3EF6ibWyhvTHbvJbYmsbtUx1ieerqYBYRWpQM5lorp9PFz+pqA1oNrSacFfel0oHyiszvYqFJwSKYrb8hfseMHx+Xu+WP+9R4j2vLYoKt+TCZlzEf9Nk5l+lpCojr3bXtbpWCRZhJsIzk768aXni9AVhTc6qW7vmB4X8iPNUI/7/7IweNnmWiHoPJ6fnwyTUgqbFE5z7bCC5CJbfF8K3+wmPcg5Amrqt0qiBCUfznjlAzv35YD3OCer3VIucs5B0htBl4p7D6zjY1LFi46NE0S36XW26ydIlM3g8v2YS7G0slxCq88Zyi4VjyaMO2ECQ78KOALQPkhy3mauqyg4sZVQPVMzs535IQYgaoB6yH5CfjdMxyuizaR3qY7yTjPZxS/vFSxVeGCcxYowmh9bgnaJmfN/uyniyVUUFJStIqjZDDsyRiLyTCTprQ5aSqTH5gDOKfEroD59mK4dd8HTePxMLgBndSMbliFYCIhKP6BZvbeFIfVCkhLrubH7AyvpWiCOs1OFq3Jpd0Gq5s5WCG2btl94JhvpS49fdZ1/uhcWEiY0EexIftZhQP4lMLx7fsR+LUxd+yQSFNkoLBZQiK5lX97DrraCseiAG7UPPfRUhg3MbQnFQ5l7ngFNarYCBkdHJuyasOD/qDxdud4QAzm6oXW2lfz19VGIbRvpTgJluMs6Up1A1YZjzefVhwQfgGzoYPoBfez5NeSaNFDk8EdaXUaRYyJKLb7Bas1dX3mqPXzn7e96K/kWMt8PZsc4KS3QaZpWEDI3UwdBuVv+oAJFdqEIuKTSQ0ygu+RfIi4pNTzyX9j5jOYdH7rUibs/0GQZsWhm7oLSkbSWHQIgfQzZwNmegaSMWjY7hGrPyR0q3Nwkf4NT9IFl0JUX99ZPmbY1ghF8+46AcMGlELBSUJRQGTWcghhqVYzlWsywTYP3fsoFylR/zGKilm4CgN3TdIZcknMdqJjGCwtv3ondN8VfkLT8hIXvxsg5udWZsyr0GLM0QEuCE0ez0KRf+gxad+UXfvpJX4eVwYCv1FQyqdffquB7x33r09Db5Qydeld8fqg584qO60sSK+0h3SUIC+cYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01SQYu9BKg5f1JMvaHpXEgMg",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "The cited X-ray rules out each listed type of non-facet pathology: \"No fracture\" covers fracture, \"Normal alignment\" rules out significant deformity, and \"No destructive lesion\" covers tumor and bony infection. The report's only finding is facet arthropathy at L4-S1."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "0de27c61cdfa5263",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01REwDKwT5ESyDD7W9Fp88zN",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited PT note does record an Oswestry Disability Index (42% at intake and 42% on 2026-09-15). Nothing cited shows when the first diagnostic block happened, so it isn't shown that this score was taken at baseline before the block."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1105,
+     "output_tokens": 304
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSlAgKEAgTGAI4AUIIdGhpbmtpbmcSDI9rSDjEbdMnAachThoMxffQtSx2vxboaAZLIjDwiXNQUeQsDd+9X9mrQehX+t8Yd6gKfEgusZbwYUNzfaA/q925hmZYm/DzgGdolckqsQeLktvPJkXoymoAamb5Zs9f/rPLWUQwTafRyWX5YkbGJQi3w/mVeOKPvhXnw8fcQbjDod7Hmy7GlQ95KZ7taH6iBYKImxmGv0uQ/pI93+28Di+F3C62SyTnZDZ8hFKTx1RmIOOC0A2pdWhFq3m83boOfUgXN5TInioffK+eP53AWoPSPB+yxeD45OJ8iSfNBppJWSFunaiEjeMm6PBynDwpwRwdMX/YxY81hPgJafnEa8h0dEUQEkdnf7Qdo5d6sknMnecZUw3Nv9xOKhMwXmK67ihi4uOsVdkTAw2RaJatL6gMfIPNnZ7SCOyZl75RZaM8oRos9mpqmEziUkj7EhDzuCOBMgz93RFZrj734pGpK/0Z0C3DL7Zy78CjjLbn5NgOJ1u4q8dS/sna5b7pJrkEWO9QYriTQgWEcWniYvnJIzRyWKTHYef+0X3WrY4EUBIjGea1OIcBCXf1duV2Qhg0F0rCH8NgfDbl3pnqk5bn9/7y/KC0xStnQFChSf3ezLRLPKOPWGTZmSmYqwQC6VuX3p7MRzUDokzLGfKv/h4Cqm+iOyuQtwEOxUCncbAmB49A6l22YpAVuXfIu+ktHA0NXp2HZe3HdYPh++nW74kOW10KgVFZR6QM1DJFeJlhhyaMu5gfCybNZ21MxZT6Dc0DtRRaKgJzHkKo2zudHRuWPxCmcV3fC1f8fZPlEo2s/DenWZFTMwvlL8Fbmy7fENP/alqRGrsseIW9oy96eJppg7wY6UUvJTLJUej0yEOgf24V5jdmdeS8lKMMonEYSjrGz7Uthu/40I2fvhDqlwuOVLoUoHCB/Cnff+KPIYmGEBopOYOL60mo4atZti+5bQIqrwyZ2QW+puQPPY8gsBWA/vfVpglBnWNpaA5dvZ3MjcJ7EZYBk3qHxnh3Z0gjwzXWtjQrBylws8L9YY7RpCFrmSCFWWOr5B2UuWG8Ru5m0TvYKpq40dsFeaYVMB0OoauUzJLmnf3ad98EdhZA6gn8bEwT9UAx0FaxzbK3OWXScL8lWeTbIyVMlUwojTOoSBvqcUcQFiYQp+3biMXyEPaLL7zkFORexmJ3+WRJyJk626XXm8uBB9HID2c5IPloMtMbzzdLTp4qcdaFFM9D0XEZIhn/MwNws+OLpS3r3GWuso/YavTNO373sWGNfV0kQRA9kKMBGmbse/Vcx8SlA0FScde7Mxuq1gDjnfJBOMxGDTMWYUCz29GGCPHVJvP3SiYTizJekYhqfrt9386PHX9B1ecYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01REwDKwT5ESyDD7W9Fp88zN",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "partly",
+       "reasoning": "The cited PT note does record an Oswestry Disability Index (42% at intake and 42% on 2026-09-15). Nothing cited shows when the first diagnostic block happened, so it isn't shown that this score was taken at baseline before the block."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

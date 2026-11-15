@@ -1,0 +1,39 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "7f3bb3f2156e2a21",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01JT3z7ei25p2qWr45df6QFR",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "n1 describes the low back pain as \"Axial, no radiation to LE,\" and n5 again calls it axial. The rest of n5 notes no radicular symptoms, so the pain sits mainly in the low back rather than the legs."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1295,
+     "output_tokens": 148
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01JT3z7ei25p2qWr45df6QFR",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "n1 describes the low back pain as \"Axial, no radiation to LE,\" and n5 again calls it axial. The rest of n5 notes no radicular symptoms, so the pain sits mainly in the low back rather than the legs."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

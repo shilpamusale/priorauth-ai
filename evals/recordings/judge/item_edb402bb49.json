@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "68e115560e4e510e",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01DPcPUqYbKSjLdiPFcMHqMq",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "n1 dates the onset to early February 2026. n4, written 2026-08-20, records the pain as still present (\"chronic... since February 2026\"), so it has lasted about 6 months, well over 3."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1370,
+     "output_tokens": 188
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSwAUKEAgTGAI4AUIIdGhpbmtpbmcSDFIT/Fsz0iheEkQduxoMh335Sl0CwkwmpkLsIjAzJ76BS/UC0B8wHD/Uw2TtlyX8dYP6jJRN1OEmJmm41iS28ecS9v14cr2UG6Jx+Aoq3QTUidxambbgq9bWWr05AI4wYyGTq8dRfymV92uXOQCDxiPbtXFzmy1QtEO/omOACr47fUAJ7/u6wg6j/+AMmEOzxMg58SZ/a8H5hBsz9kVbT5w8APXS4jBAKu2C3EOthf6PgqLE4FaSHPX/VOQkL+t6S18LKGfS+63ieK+rL7O88KVI3GTMQIdhmTAbjUQZCbx0pmmEhqBS+1ASJ7Wy37i6BVmP1ML0D5hpq82yKYrMCvUNpiPxz3ge9leTrGSxT3zzpsKd7VmC80+UWJkmW0f4IxtNyD55bdfTOe+3BFRJddTqfwAgJzMtWgxppjJg/KcdbdBtG2Ttq9xjg9AzdEcDrI0DHJKqC4yjammcbhPXGPXkZY8VpZ89kwey87baL5JAikmfq6jN849qIxEWKaW+VmtWHehCW4RD3e5gkMKA0Be7FiszDAK882Nzn+iVBnslbGby0SDcwsTrS7PC4hJTYZgIsA6nOKnMcDCsJK6N2ACSU/7ljva2ObBq/SAFZqKHE3+U+w3nvCGT/HzWuIsnFxSnRuxMChEbbXSL4FcqszhTh5Y0n5z5H+vCqExMLoYk/BVZzOS3SqOwDs66fIznDPVLqbU5SrL/E8hMJCfxquL0jKllm+ihd0cogZf1maV3dj9jkQ8ncYjAGkHJB++lhI4FsHsPXwYNR1+YnxcVgd25+gLP/dMU0CGNqEZQFW7PUzacxrZQJSPVgGHl4iJRR7XyU/xwtcZ2BltExviFfksQYAZyFSQmot5i4b4LKhIzGkuBZ0NHE/oIjDsFFC3kOaFphETgsTEWky6XGBgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01DPcPUqYbKSjLdiPFcMHqMq",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "n1 dates the onset to early February 2026. n4, written 2026-08-20, records the pain as still present (\"chronic... since February 2026\"), so it has lasted about 6 months, well over 3."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

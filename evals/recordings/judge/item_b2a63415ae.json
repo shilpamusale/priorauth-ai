@@ -1,0 +1,43 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "c4a23df0c0f0ef8f",
+   "response": {
+    "text": "Both cited passages are about failed conservative treatment, not where the pain is located. The note n4 does say the pain is axial and does not radiate, but that sentence was not cited.",
+    "tool_calls": [
+     {
+      "id": "toolu_01AV7JA8vCjUgCJ3dK9aDQi3",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "Both cited passages describe failed conservative treatment (meloxicam and PT with minimal improvement), not where the pain is located. They show a different criterion. The axial, non-radiating description in n4 was not cited."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1308,
+     "output_tokens": 202
+    },
+    "provider_blocks": [
+     {
+      "text": "Both cited passages are about failed conservative treatment, not where the pain is located. The note n4 does say the pain is axial and does not radiate, but that sentence was not cited.",
+      "type": "text"
+     },
+     {
+      "id": "toolu_01AV7JA8vCjUgCJ3dK9aDQi3",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "does_not_support",
+       "reasoning": "Both cited passages describe failed conservative treatment (meloxicam and PT with minimal improvement), not where the pain is located. They show a different criterion. The axial, non-radiating description in n4 was not cited."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

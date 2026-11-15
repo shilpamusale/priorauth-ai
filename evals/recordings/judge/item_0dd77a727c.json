@@ -1,0 +1,44 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "deb2a065476b9f1a",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_0134QW7A5BmSZzh7jVwY8aJ7",
+      "name": "grade_evidence",
+      "input": {
+       "grade": "supports",
+       "reasoning": "Both passages record an ODI score of 36%. The 2026-09-15 consult that plans the medial branch blocks records the ODI as part of the pre-procedure assessment, and the June PT discharge summary also predates the block, so a baseline disability scale is documented before the first diagnostic block."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1287,
+     "output_tokens": 259
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQS1QYKEAgTGAI4AUIIdGhpbmtpbmcSDPVITAyZw1JRfQZmsRoM2dFkqo5fzjYr8gxyIjDk/ugi92ZOPmx6MFs9lbCso60JcLv2xq8QSV+hk7yvD5Wfm/SCDFniGP1ysQrqWwoq8gWSlPjtJm5DWSDKJib/SImkEdiCroDzb+2pJOd5LqF4j/kCZnnCA5Tt4yB6JJ8/Cx7qR1CJQIkvgIBnF3KxmTIF2X/UYvzssl2pzdRFKZGw1xpaU1Bc9NZR3+DfTbR53Sv1I0do+FkzlRVBYOxjKOrXvU6pmUGQmArph4eVaAB/vABMUscBllejcUWR9RNqZQfrbHi6lBCY10lNyoLtqfXA3/Dpr92QlF9wQRsr9e+GTNUUIuO+YWdYkdGpn3NU8j6WhJdlld8tf62/MRrahPma9kUZe3ZIG/CqQXdE7rCV7AZJhtZnuwg1nC77NMIxtuoPcFSWg/xJIR+chAwiHSlcVXKhrHyRAeq8HOeK93j8/2oQ23MNh/9SXxIgdx3xcxA4egajUoEmUDCPv3pEdyvLD/MVRXb20Bo7SnpC6/MU5jbtloQLYzm0j7e68oTNb3tMggp5WspOgagJSYRJ/5pRcZNvEIDe0YLBaY0HUvBvA3hMd7eKqypT75sCF4O8FmiJnOiphT4fx3J4iUP37FHeJB916mRwKsFiJYX7BF7r4rLMAZk9j3KTQDMvKTfpUDgMENzzecnq6EKVK9/aN/YnjOn8E9scfOmjvPaMOL5LOHkx7UZ4xyi/WhiIi16oQcxjVzXFn8Ui9MsRsRAt4RtgkoENH5Gf5IqzsdAo9+Tu0OByx7UTGxGmGuJ7ySjpNHDeB2g9QVCETUglYfS3artVw6ojSK4fRjzB4dZrSaaYnQCcBngcK15quCfkOglXjD5RM+njiSE/lJdWEYpFqGouZVbuMcym+ouak31oNGmqVyMRuUX1LHtuW6u+XwDRsdqnVJNtZJFBr4y89rKTx+nEVYm/u5Ni2JQ9gv8E5B/2zl899ZBqEocQnDfej4XbFleEJmJpy8t8b75BMiZ5T2E50bnGFgXsGOItv7SoPRc2hT5gMAFU2VTp+TQsAphmEWeE4fnKTiLnZcrYb1TiyO0auixZPBJkjbmktZCYJmnTJ2yrGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_0134QW7A5BmSZzh7jVwY8aJ7",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "grade": "supports",
+       "reasoning": "Both passages record an ODI score of 36%. The 2026-09-15 consult that plans the medial branch blocks records the ODI as part of the pre-procedure assessment, and the June PT discharge summary also predates the block, so a baseline disability scale is documented before the first diagnostic block."
+      },
+      "name": "grade_evidence",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}
