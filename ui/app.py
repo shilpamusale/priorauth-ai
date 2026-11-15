@@ -14,12 +14,14 @@ import streamlit as st
 from evals.gaps import TRIAL as DOCUMENTED_TRIAL
 from evals.gaps import run_gaps
 from evals.gold import load_split
+from evals.judge import JUDGE_MODEL
+from evals.judge_items import ItemKind
 from evals.runner import Mode
 from evals.scoring import cost_usd, summarize
 from priorauth.pipeline import Pipeline
 from priorauth.policies import load_policies
 from priorauth.schemas import CriterionStatus, Decision
-from ui.data import SPLIT, brief, folders, highlight, replay_all
+from ui.data import SPLIT, brief, calibration, folders, highlight, judge_grades, judge_note, replay_all
 
 REPO = "https://github.com/shilpamusale/priorauth-ai"
 DECISION_BOX = {
@@ -40,12 +42,14 @@ STATUS_ICON = {
 
 @st.cache_resource
 def load(gold: Path, policy_dir: Path, recordings: Path):
-    """Policies, gold cases and every recorded trial of each pipeline replayed and scored, once per server."""
+    """Policies, gold cases, every recorded trial of each pipeline replayed and scored, the documentation agent's
+    requests and the judge's grades, once per server."""
     policies = load_policies(policy_dir)
     cases = load_split(gold, SPLIT, policies)
     replays = {pipeline: replay_all(policies, cases, recordings, pipeline) for pipeline in Pipeline}
     requests = {r.case_id: r.run for r in run_gaps(Mode.REPLAY, policies, gold=gold, recordings=recordings) if r.run}
-    return policies, cases, {pipeline: results for pipeline, results in replays.items() if results}, requests
+    grades = judge_grades(policies, gold, recordings)
+    return policies, cases, {pipeline: results for pipeline, results in replays.items() if results}, requests, grades
 
 
 def cost_per_run(summary) -> float | None:
@@ -55,7 +59,7 @@ def cost_per_run(summary) -> float | None:
 
 st.set_page_config(page_title="PriorAuth-AI", page_icon="🩺", layout="wide")
 gold, recordings, policy_dir = folders()
-policies, cases, by_pipeline, requests = load(gold, policy_dir, recordings)
+policies, cases, by_pipeline, requests, grades = load(gold, policy_dir, recordings)
 sources = " · ".join(f"[{p.title}]({p.source})" for p in policies.values())
 
 st.title("PriorAuth-AI")
@@ -119,13 +123,20 @@ st.caption(
     f"Request date {request.request_date} · {request.payer} · {len(request.notes)} notes in the chart"
 )
 DECISION_BOX[determination.decision](determination.rationale)
-documented = requests.get(case_id) if pipeline is Pipeline.SINGLE_AGENT and trial == DOCUMENTED_TRIAL else None
+# The documentation agent and the LLM judge both worked from the single agent's first trial.
+first_trial = pipeline is Pipeline.SINGLE_AGENT and trial == DOCUMENTED_TRIAL
+graded = {(kind, cid): g for (kind, c, cid), g in grades.items() if c == case_id} if first_trial else {}
+documented = requests.get(case_id) if first_trial else None
 if documented and documented.requests:
     st.markdown("**Requests to the clinic before submitting**")
-    st.caption("Written by the documentation agent from this trial's gaps and the chart.")
+    st.caption("Written by the documentation agent from this trial's gaps and the chart, and graded by the LLM judge.")
     for written in documented.requests:
         name = written.criterion_id.split(".", 1)[-1].replace("_", " ")
-        st.text(f"{name} · {written.note_type}\n{written.request}")
+        lines = [f"{name} · {written.note_type}", written.request]
+        if grade := graded.get((ItemKind.REQUEST, written.criterion_id)):
+            failed = ", ".join(check.replace("_", " ") for check, passed in grade.checks.items() if not passed)
+            lines.append(f"Judge: {grade.grade.replace('_', ' ')}" + (f" (fails: {failed})" if failed else ""))
+        st.text("\n".join(lines))
 elif determination.missing_documentation:
     st.markdown("**Documentation to add before submitting**")
     st.text("\n".join(f"• {gap}" for gap in determination.missing_documentation))
@@ -133,6 +144,10 @@ elif determination.missing_documentation:
 left, right = st.columns([3, 2])
 with left:
     st.subheader("Criteria")
+    if any(kind is ItemKind.EVIDENCE for kind, _ in graded):
+        st.caption(judge_note(calibration(), JUDGE_MODEL) + f" [How it was calibrated]({REPO}#evaluation)")
+    elif grades and not first_trial:
+        st.caption("Pick trial 1 of the single agent to see the LLM judge's grade for each met criterion.")
     findings = {r.criterion_id: r for r in determination.criteria}
     for criterion in policy.criteria:
         finding = findings.get(criterion.criterion_id)
@@ -140,7 +155,10 @@ with left:
         status = finding.status if finding else None
         agrees = "matches the gold label" if status is expected else f"gold label: {expected}"
         name = criterion.criterion_id.split(".", 1)[1].replace("_", " ")
-        with st.expander(f"{STATUS_ICON.get(status, '⚠️')} {name}: {status or 'no finding'} ({agrees})"):
+        label = f"{STATUS_ICON.get(status, '⚠️')} {name}: {status or 'no finding'} ({agrees})"
+        if grade := graded.get((ItemKind.EVIDENCE, criterion.criterion_id)):
+            label += f" · judge: {grade.grade.replace('_', ' ')}"
+        with st.expander(label):
             st.markdown(f"**Policy:** {criterion.text}")
             if criterion.source_quotes:
                 st.caption("From the LCD")
@@ -154,6 +172,9 @@ with left:
             if finding.evidence:
                 st.markdown("**Evidence**")
                 st.text("\n".join(f'{item.note_id}: "{item.quote}"' for item in finding.evidence))
+            if grade:
+                st.markdown(f"**LLM judge: {grade.grade.replace('_', ' ')}**")
+                st.text(grade.reasoning)
 
 with right:
     st.subheader("Against the gold label")

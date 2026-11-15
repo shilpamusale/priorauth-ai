@@ -173,6 +173,8 @@ numbers in a step that is allowed to fail, because the judge informs a review an
 - **Public demo** ([link](https://priorauth-ai-140535548045.us-central1.run.app)): replays recorded runs and
   never calls a model. Every recording is a real Claude run, replayed through the same code CI tests, so a
   visitor sees exactly what was evaluated, cannot run up a bill, and the image holds no API key or model SDK.
+  On the single agent's first trial it also shows the LLM judge's grade and reasoning for each met criterion
+  and each request to the clinic, false alarms included.
 - **Private API** (FastAPI on Cloud Run, Google sign-in required): runs the live pipeline.
   `POST /determinations` takes a policy ID and a request and returns the determination with its audit
   record; `GET /policies` lists policies with their fingerprints; interactive docs are at `/docs`. A daily
