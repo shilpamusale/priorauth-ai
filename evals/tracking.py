@@ -41,6 +41,7 @@ def run_params(
         "mode": mode,
         "cases": str(len(scored)),
         "trials": str(len(results)),
+        "pipeline": joined({r.pipeline.value for r in records}),
         "model": joined({r.model for r in records}),
         "prompt_version": joined({r.prompt_version for r in records}),
         "prompt_fingerprint": joined({r.prompt_fingerprint for r in records}),
@@ -81,8 +82,9 @@ def log_run(
 
     mlflow.set_tracking_uri(tracking_uri)
     mlflow.set_experiment(EXPERIMENT)
-    with mlflow.start_run(run_name=f"{split}-{mode}") as run:
-        mlflow.log_params(run_params(results, cases, policies, split, mode))
+    params = run_params(results, cases, policies, split, mode)
+    with mlflow.start_run(run_name=f"{split}-{mode}-{params['pipeline']}") as run:
+        mlflow.log_params(params)
         mlflow.log_metrics(run_metrics(summary))
         mlflow.log_dict(summary.model_dump(mode="json"), "summary.json")
         mlflow.log_text("\n".join(summary_line(result) for result in results) + "\n", "trials.txt")

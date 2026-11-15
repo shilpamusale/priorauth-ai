@@ -12,6 +12,7 @@ from evals.runner import Mode, TrialResult, main, recording_path, run_split, sum
 from evals.scoring import Summary
 from priorauth.llm.base import ModelResponse, StopReason, ToolCall, Usage
 from priorauth.llm.scripted import ScriptedClient
+from priorauth.pipeline import Pipeline
 from priorauth.policies import load_policies
 from priorauth.schemas import ClinicalNote, CriterionStatus, Decision, PARequest, Policy, PolicyCriterion
 
@@ -249,3 +250,45 @@ def test_the_real_dev_split_loads(tmp_path):
     """With no recordings yet, every dev case is reported, none crashes."""
     results = run_split("dev", Mode.REPLAY, load_policies(Path("policies")), recordings=tmp_path, trials=1)
     assert len(results) == 14 and all(r.error.startswith("no recording at") for r in results)
+
+
+class EvidenceModel:
+    """Answers each evidence agent for the one criterion its tools allow, so parallel call order does not matter."""
+
+    QUOTES = {"demo.duration": ("n1", "Low back pain since March 2026"), "demo.scale": ("n2", "ODI 44% at discharge")}
+
+    def complete(self, request):
+        tool = next(t for t in request.tools if t.name == "submit_finding")
+        [criterion_id] = tool.input_schema["properties"]["criterion_id"]["enum"]
+        note_id, quote = self.QUOTES[criterion_id]
+        finding = {
+            "criterion_id": criterion_id,
+            "status": "met",
+            "evidence": [{"note_id": note_id, "quote": quote}],
+            "reasoning": "Documented.",
+        }
+        call = ToolCall(id=f"toolu_{criterion_id}", name="submit_finding", input=finding)
+        return ModelResponse(tool_calls=[call], stop_reason=StopReason.TOOL_USE, usage=Usage(input_tokens=500))
+
+
+def test_the_multi_agent_pipeline_records_in_its_own_folder_and_replays(gold, tmp_path):
+    recordings = tmp_path / "rec"
+    common = {"gold": gold, "recordings": recordings, "trials": 1, "pipeline": Pipeline.MULTI_AGENT}
+    recorded = run_split("dev", Mode.RECORD, POLICIES, client=EvidenceModel(), **common)
+    assert all(r.record.pipeline is Pipeline.MULTI_AGENT and all(c.passed for c in r.checks) for r in recorded)
+    assert recording_path(recordings / "multi_agent", "dev", "dev_900", 1).exists()
+    assert not (recordings / "dev").exists()  # the single agent's recordings are untouched
+    replayed = run_split("dev", Mode.REPLAY, POLICIES, **common)
+    assert [r.record.determination for r in replayed] == [r.record.determination for r in recorded]
+    single = run_split("dev", Mode.REPLAY, POLICIES, gold=gold, recordings=recordings, trials=1)
+    assert all(r.error.startswith("no recording at") for r in single)  # each pipeline replays only its own
+
+
+def test_command_line_chooses_the_pipeline(gold, tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr("evals.runner.load_policies", lambda directory: POLICIES)
+    common = {"gold": gold, "recordings": tmp_path / "rec", "trials": 1, "pipeline": Pipeline.MULTI_AGENT}
+    run_split("dev", Mode.RECORD, POLICIES, client=EvidenceModel(), **common)
+    args = ["replay", "--gold", str(gold), "--recordings", str(tmp_path / "rec"), "--trials", "1"]
+    assert main([*args, "--pipeline", "multi_agent"]) == 0
+    assert main(args) == 1  # the single agent has no recordings here
+    assert "dev_900 trial 1: ERROR no recording" in capsys.readouterr().out
