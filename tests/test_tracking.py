@@ -27,6 +27,7 @@ def test_params_record_what_was_run(replayed):
     assert params["split"] == "dev" and params["mode"] == "replay"
     assert (params["cases"], params["trials"]) == ("2", "2")
     assert params["model"] == "claude-sonnet-5-5" and params["prompt_version"] == "matcher_v1"
+    assert params["pipeline"] == "single_agent"
     assert params["policy_fingerprints"] == fingerprint(policies["l38773_first_mbb"])
     assert params["gold_fingerprint"] == gold_fingerprint({c: cases[c] for c in ["dev_001", "dev_003"]})
 
@@ -62,7 +63,7 @@ def test_log_run_writes_params_metrics_and_artifacts(replayed, tmp_path, monkeyp
     client = mlflow.tracking.MlflowClient(tracking_uri=uri)
     run = client.get_run(run_id)
     assert client.get_experiment(run.info.experiment_id).name == EXPERIMENT
-    assert run.info.run_name == "dev-replay"
+    assert run.info.run_name == "dev-replay-single_agent"
     assert run.data.params == run_params(results, cases, policies, "dev", "replay")
     assert run.data.metrics == run_metrics(summary)
     assert sorted(a.path for a in client.list_artifacts(run_id)) == ["summary.json", "trials.txt"]
