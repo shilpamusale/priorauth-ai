@@ -171,3 +171,53 @@ def test_fingerprint_ignores_dict_order_but_not_content():
 def test_both_clients_satisfy_the_interface():
     assert isinstance(RecordingClient(ScriptedClient([])), ModelClient)
     assert isinstance(ReplayClient(recorded()[0]), ModelClient)
+
+
+def test_parallel_callers_get_their_own_replies_in_any_order():
+    """Agents running in parallel send requests in no fixed order; each still gets the reply recorded for it."""
+    first, second = (
+        ModelRequest(model="claude-sonnet-5-5", system="s", turns=[Turn(role="user", text=text)])
+        for text in ("criterion A", "criterion B")
+    )
+    replies = {text: ModelResponse(text=f"reply to {text}", stop_reason=StopReason.END_TURN) for text in ("A", "B")}
+    live = RecordingClient(ScriptedClient([replies["A"], replies["B"]]))
+    live.complete(first)
+    live.complete(second)
+    replay = ReplayClient(live.recording)
+    assert replay.complete(second).text == "reply to B"  # asked in the opposite order
+    assert replay.complete(first).text == "reply to A"
+    replay.check_finished()
+
+
+def test_a_repeated_request_gets_its_replies_in_recorded_order_and_no_more():
+    request = ModelRequest(model="claude-sonnet-5-5", system="s", turns=[Turn(role="user", text="same")])
+    live = RecordingClient(ScriptedClient([ModelResponse(text=t, stop_reason=StopReason.END_TURN) for t in "12"]))
+    live.complete(request)
+    live.complete(request)
+    replay = ReplayClient(live.recording)
+    assert [replay.complete(request).text, replay.complete(request).text] == ["1", "2"]
+    with pytest.raises(StaleRecording, match="more than the 2 recorded"):
+        replay.complete(request)
+
+
+def test_both_clients_are_safe_to_share_between_threads():
+    from concurrent.futures import ThreadPoolExecutor
+
+    requests = [
+        ModelRequest(model="claude-sonnet-5-5", system="s", turns=[Turn(role="user", text=f"criterion {i}")])
+        for i in range(50)
+    ]
+
+    class Echo:
+        def complete(self, request):
+            return ModelResponse(text=request.turns[0].text, stop_reason=StopReason.END_TURN)
+
+    live = RecordingClient(Echo())
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        list(pool.map(live.complete, requests))
+    assert len(live.recording.exchanges) == 50
+    replay = ReplayClient(live.recording)
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        answers = list(pool.map(replay.complete, requests))
+    assert [a.text for a in answers] == [r.turns[0].text for r in requests]
+    replay.check_finished()
