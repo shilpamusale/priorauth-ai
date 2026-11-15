@@ -9,8 +9,8 @@ an ordered service and a patient's clinical notes, decide whether the request is
 payer, which documentation is missing, or whether a human needs to look at it.
 
 > **Status: in progress.** The agent, its verification and decision steps, the evaluation harness, a
-> multi-agent comparison, a public demo and a private API are live and tested in CI. A documentation agent,
-> LLM-as-judge grading and policy retrieval come next (see [Roadmap](#roadmap)). All patients are
+> multi-agent comparison, a documentation agent, a public demo and a private API are live and tested in
+> CI. LLM-as-judge grading and policy retrieval come next (see [Roadmap](#roadmap)). All patients are
 > synthetic; no PHI is used anywhere.
 
 ## Why provider-side
@@ -44,6 +44,8 @@ flowchart LR
    final call.
 4. **The audit record** keeps the determination, the policy and prompt fingerprints, the model, every
    tool call and result, token use, and anything skipped or rejected.
+5. **The documentation agent** turns each gap into a request to the clinic: what this chart already
+   records, what it lacks, and which note should carry it. It never changes a finding or the decision.
 
 ## Design decisions
 
@@ -122,6 +124,13 @@ Its other miss is a judgment call worth a second look: on dev_011 the only pain 
 mostly in the buttock and thigh, and the agent would not treat it as a low-back score. Both recordings
 replay in CI, and the demo can show either pipeline.
 
+**Documentation agent** (on the single agent's first trial of each dev case): 7 dev cases had
+documentation gaps, and the agent wrote 8 requests, one per gap, for $0.04 in total. Each says what the
+chart already records and what it lacks, and names the note that should carry it, for example on dev_004:
+"Please document a lower-extremity neurological exam (strength, sensation, reflexes, straight leg raise)."
+None invents a result or asks for a particular score. CI replays the requests and fails if a gap is left
+without one; the LLM judge in the next phase grades their quality.
+
 ## Demo and API
 
 - **Public demo** ([link](https://priorauth-ai-140535548045.us-central1.run.app)): replays recorded runs and
@@ -141,6 +150,7 @@ make install
 make test                                      # unit tests, no API key needed
 python -m evals.runner replay                  # score the committed recordings, no API key needed
 python -m evals.runner replay --track          # ...and log the run to MLflow (local mlflow.db)
+python -m evals.gaps replay                    # the documentation agent's requests, replayed
 python -m streamlit run ui/app.py              # the demo, locally
 uvicorn priorauth.api:app --port 8000          # the API, locally (live runs need ANTHROPIC_API_KEY)
 
@@ -164,6 +174,7 @@ src/priorauth/
   verify.py       final grounding check
   decision.py     deterministic decision rule
   orchestrator.py multi-agent matching: one evidence agent per criterion, in parallel
+  documentation.py  documentation agent: a request to the clinic for each gap
   pipeline.py     match, verify, decide, and the audit record
   api.py          FastAPI service with a daily run limit
 policies/         LCD L38773 policy and the extracted LCD text its criteria quote
@@ -172,6 +183,7 @@ evals/
   recordings/     recorded live runs, replayed in CI and in the demo
   checks.py, runner.py, scoring.py   checks, record/replay runner, metrics and the CI gate
   tracking.py     MLflow logging of each evaluation run
+  gaps.py         runs the documentation agent on the dev cases with gaps
 ui/               Streamlit demo
 tests/            unit tests for every module, policy and gold case
 ```
@@ -187,7 +199,7 @@ tests/            unit tests for every module, policy and gold case
 - [x] MLflow tracking of evaluation runs (params, metrics, fingerprints of the policy, prompt and gold set)
 - [x] FastAPI service, deployed privately, with a daily run limit and the key in Secret Manager
 - [x] Multi-agent orchestration: one evidence agent per criterion, compared with the single agent
-- [ ] Documentation agent: a request to the clinic for each documentation gap
+- [x] Documentation agent: a request to the clinic for each documentation gap
 - [ ] LLM-as-judge grading, calibrated against human labels
 - [ ] Policy retrieval with ChromaDB, and a second policy added with no code changes
 - [ ] Reviewer screen with overrides feeding the gold set

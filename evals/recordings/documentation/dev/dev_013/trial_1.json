@@ -1,0 +1,41 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "28103c94738e5774",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_013oPPF4imoWrhNEoWkggc2C",
+      "name": "write_request",
+      "input": {
+       "criterion_id": "l38773_first_mbb.duration",
+       "request": "The chart doesn't record when Mr. Lee's low back pain began. The earliest note is the 2026-08-17 primary care visit, about 5 weeks before the request, and the 2026-09-19 pain management consult says he is unsure of the onset. Please document his best-established onset date or the total duration of the axial low back pain. Use any supporting history, such as earlier visits, prior records or his own account with approximate timing, so the record shows whether the pain has lasted at least 3 months.",
+       "note_type": "Next pain management visit note (or addendum to the 2026-09-19 consult), including history of present illness with pain onset and duration"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1487,
+     "output_tokens": 300
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_013oPPF4imoWrhNEoWkggc2C",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.duration",
+       "request": "The chart doesn't record when Mr. Lee's low back pain began. The earliest note is the 2026-08-17 primary care visit, about 5 weeks before the request, and the 2026-09-19 pain management consult says he is unsure of the onset. Please document his best-established onset date or the total duration of the axial low back pain. Use any supporting history, such as earlier visits, prior records or his own account with approximate timing, so the record shows whether the pain has lasted at least 3 months.",
+       "note_type": "Next pain management visit note (or addendum to the 2026-09-19 consult), including history of present illness with pain onset and duration"
+      },
+      "name": "write_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

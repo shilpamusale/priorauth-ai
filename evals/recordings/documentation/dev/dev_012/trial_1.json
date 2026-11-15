@@ -1,0 +1,41 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "b0569cd7c039c8d7",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_016HcoYT2TNcYxx2kTuiLp2s",
+      "name": "write_request",
+      "input": {
+       "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+       "request": "The chart records pain NRS 7/10 and some functional limits (standing tolerance of 15 minutes, no long-distance driving) in the 09/03/2026 pain management consult. It has no standardized disability scale, such as the Oswestry Disability Index. Please administer and record a validated disability scale with its score and the date before the first medial branch block is done.",
+       "note_type": "Pre-procedure pain management visit note, or a scored disability questionnaire attached to the note"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1321,
+     "output_tokens": 255
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_016HcoYT2TNcYxx2kTuiLp2s",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+       "request": "The chart records pain NRS 7/10 and some functional limits (standing tolerance of 15 minutes, no long-distance driving) in the 09/03/2026 pain management consult. It has no standardized disability scale, such as the Oswestry Disability Index. Please administer and record a validated disability scale with its score and the date before the first medial branch block is done.",
+       "note_type": "Pre-procedure pain management visit note, or a scored disability questionnaire attached to the note"
+      },
+      "name": "write_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

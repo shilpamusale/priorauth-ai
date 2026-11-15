@@ -1,0 +1,41 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "7e5759cb0d32c3ae",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01BhZtRomnpND75zRoqErjC5",
+      "name": "write_request",
+      "input": {
+       "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+       "request": "The chart describes functional limits (the 9/24 pain consult notes pain NRS 7/10, standing limited to 10 minutes, walking limited to one block, and needing help with groceries). It has no standardized disability scale score, such as the Oswestry Disability Index, recorded for this patient. Please have a validated disability scale completed and documented with its score and date. This must be done before the first L4-L5 and L5-S1 medial branch block is performed.",
+       "note_type": "pain management pre-procedure visit note (or standalone scored Oswestry Disability Index form)"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1466,
+     "output_tokens": 287
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01BhZtRomnpND75zRoqErjC5",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+       "request": "The chart describes functional limits (the 9/24 pain consult notes pain NRS 7/10, standing limited to 10 minutes, walking limited to one block, and needing help with groceries). It has no standardized disability scale score, such as the Oswestry Disability Index, recorded for this patient. Please have a validated disability scale completed and documented with its score and date. This must be done before the first L4-L5 and L5-S1 medial branch block is performed.",
+       "note_type": "pain management pre-procedure visit note (or standalone scored Oswestry Disability Index form)"
+      },
+      "name": "write_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

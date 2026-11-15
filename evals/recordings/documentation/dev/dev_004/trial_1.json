@@ -1,0 +1,41 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "134604168b32e4f2",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01PyHxCrhjBQpQsVqoRkip6X",
+      "name": "write_request",
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_untreated_radiculopathy",
+       "request": "The chart records axial low back pain with positive bilateral facet loading and an MRI showing facet hypertrophy at L4-L5 and L5-S1. It has no neurological exam and no statement about radicular symptoms or neurogenic claudication. Please document a lower-extremity neurological exam (strength, sensation, reflexes, straight leg raise). Also document whether the patient has any radicular symptoms or neurogenic claudication, and whether any such finding was treated.",
+       "note_type": "next pain management visit note (pre-procedure evaluation)"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1432,
+     "output_tokens": 286
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01PyHxCrhjBQpQsVqoRkip6X",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l38773_first_mbb.no_untreated_radiculopathy",
+       "request": "The chart records axial low back pain with positive bilateral facet loading and an MRI showing facet hypertrophy at L4-L5 and L5-S1. It has no neurological exam and no statement about radicular symptoms or neurogenic claudication. Please document a lower-extremity neurological exam (strength, sensation, reflexes, straight leg raise). Also document whether the patient has any radicular symptoms or neurogenic claudication, and whether any such finding was treated.",
+       "note_type": "next pain management visit note (pre-procedure evaluation)"
+      },
+      "name": "write_request",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}
