@@ -10,15 +10,22 @@ and prompt fingerprints, the model, every tool call and result, and what was ski
 
 import datetime
 import hashlib
+from enum import StrEnum
 
 from pydantic import Field
 
 from priorauth.decision import decide
 from priorauth.llm.base import ModelClient, Turn, Usage
-from priorauth.matcher import DEFAULT_MODEL, MAX_STEPS, StopCause, load_prompt, match
+from priorauth.matcher import DEFAULT_MODEL, MAX_STEPS, MatchRun, StopCause, load_prompt, match
+from priorauth.orchestrator import run_agents
 from priorauth.policies import fingerprint
 from priorauth.schemas import Contract, CriterionResult, CriterionStatus, Decision, Determination, PARequest, Policy
 from priorauth.verify import verify
+
+
+class Pipeline(StrEnum):
+    SINGLE_AGENT = "single_agent"  # one matcher checks every criterion
+    MULTI_AGENT = "multi_agent"  # one evidence agent per criterion, run in parallel by the orchestrator
 
 
 class AuditRecord(Contract):
@@ -33,6 +40,7 @@ class AuditRecord(Contract):
     skipped: list[str]  # criteria with no finding when the matcher stopped
     rejected_quotes: list[str]  # quotes that failed verification, one line each
     turns: list[Turn]
+    pipeline: Pipeline = Pipeline.SINGLE_AGENT
     recorded_at: datetime.datetime = Field(default_factory=lambda: datetime.datetime.now(datetime.UTC))
 
 
@@ -71,10 +79,23 @@ def prompt_fingerprint(version: str) -> str:
 
 
 def run_case(
-    client: ModelClient, policy: Policy, request: PARequest, model: str = DEFAULT_MODEL, max_steps: int = MAX_STEPS
+    client: ModelClient,
+    policy: Policy,
+    request: PARequest,
+    model: str = DEFAULT_MODEL,
+    max_steps: int = MAX_STEPS,
+    pipeline: Pipeline = Pipeline.SINGLE_AGENT,
 ) -> AuditRecord:
-    """Match, verify and decide one case, and return its audit record."""
-    run = match(client, policy, request, model=model, max_steps=max_steps)
+    """Match, verify and decide one case, and return its audit record. Both pipelines share verify and decide."""
+    if pipeline is Pipeline.MULTI_AGENT:
+        run = run_agents(client, policy, request, model=model, max_steps=max_steps)
+    else:
+        run = match(client, policy, request, model=model, max_steps=max_steps)
+    return audit(run, policy, request, pipeline)
+
+
+def audit(run: MatchRun, policy: Policy, request: PARequest, pipeline: Pipeline) -> AuditRecord:
+    """Verify the run's findings, decide from the grounded ones, and record everything."""
     checked = verify(request, run.findings)
     kept = {r.criterion_id for r in checked.grounded}
     rejected = [r.criterion_id for r in run.findings if r.criterion_id not in kept]
@@ -99,4 +120,5 @@ def run_case(
         skipped=run.skipped,
         rejected_quotes=checked.problems,
         turns=run.turns,
+        pipeline=pipeline,
     )
