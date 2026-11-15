@@ -28,6 +28,9 @@ jobs:
         run: python -m evals.runner replay --pipeline multi_agent --trials 1 --min-decision-accuracy 0.95
       - name: Documentation agent gate (every gap gets a request)
         run: python -m evals.gaps replay
+      - name: LLM judge calibration (informs a review, never blocks a merge)
+        continue-on-error: true
+        run: python -m evals.calibration
 
   image:
     runs-on: ubuntu-latest

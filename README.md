@@ -9,9 +9,9 @@ an ordered service and a patient's clinical notes, decide whether the request is
 payer, which documentation is missing, or whether a human needs to look at it.
 
 > **Status: in progress.** The agent, its verification and decision steps, the evaluation harness, a
-> multi-agent comparison, a documentation agent, a public demo and a private API are live and tested in
-> CI. LLM-as-judge grading and policy retrieval come next (see [Roadmap](#roadmap)). All patients are
-> synthetic; no PHI is used anywhere.
+> multi-agent comparison, a documentation agent, an LLM judge calibrated against hand labels, a public
+> demo and a private API are live and tested in CI. Policy retrieval comes next (see [Roadmap](#roadmap)).
+> All patients are synthetic; no PHI is used anywhere.
 
 ## Why provider-side
 
@@ -129,7 +129,44 @@ documentation gaps, and the agent wrote 8 requests, one per gap, for $0.04 in to
 chart already records and what it lacks, and names the note that should carry it, for example on dev_004:
 "Please document a lower-extremity neurological exam (strength, sensation, reflexes, straight leg raise)."
 None invents a result or asks for a particular score. CI replays the requests and fails if a gap is left
-without one; the LLM judge in the next phase grades their quality.
+without one; the LLM judge below grades their quality.
+
+**LLM judge** (claude-opus-5-5, prompt `judge_v1`): the string match proves a quote is in the chart, not
+that it supports the criterion. The judge reads each met finding's quotes, and only the notes they cite,
+and grades the evidence `supports`, `partly` or `does_not_support`. For each documentation request it
+answers four yes/no checks (specific, asks only for what is needed, invents nothing, says where to put
+it), and code turns them into `acceptable` or `needs_revision`. To measure how far to trust it, I
+labelled 40 items blind on a local page before the judge ran: 24 of the agent's evidence findings,
+8 planted mismatches (a criterion paired with another criterion's evidence) and the 8 requests. The page
+never shows which kind an item is.
+
+| Judge vs. my labels | Agreed | Cohen's kappa |
+|---|---|---|
+| Evidence and planted, three grades | 27 of 32 (84%) | 0.71 |
+| Evidence and planted, supports or not | 28 of 32 (88%) | 0.74 |
+| Planted mismatches caught | judge 8 of 8, me 8 of 8 | |
+| Documentation requests | 8 of 8 | undefined: both of us found every request acceptable |
+
+What the disagreements show:
+
+- **The judge is more lenient on `partly`.** Four of the five disagreements are evidence I graded
+  `partly` and the judge graded `supports`: two baseline disability scores with nothing showing they came
+  before the block, and two "no untreated radiculopathy" findings that say nothing about neurogenic
+  claudication.
+- **It applies its rubric unevenly.** On the unlabelled items it graded those same gaps `partly`
+  (baseline timing on dev_002 and dev_013, claudication on dev_008).
+- **It lacks one piece of context.** The judge is not shown the request date, so on dev_008 and dev_010
+  it measured pain duration to the note date and graded the evidence `does_not_support`. That is a
+  judge bug, not an agent error, and the first change for a `judge_v2`.
+- **It raises the same question on dev_011** that the multi-agent pipeline did: it graded the single
+  agent's pain score `partly` because most of that pain is in the buttock and thigh, as I did.
+- **The request sample cannot measure it.** With no bad request in the sample, kappa is undefined;
+  planted bad requests would be needed.
+
+Over all 99 evidence findings the judge graded 91 `supports`, 6 `partly` and 2 `does_not_support` (the two
+duration false alarms), for $1.13 across 115 items. I have not tuned the judge on these 40 labels: a
+`judge_v2` would need fresh labels to be measured fairly. CI replays the judge and recomputes these
+numbers in a step that is allowed to fail, because the judge informs a review and never blocks a merge.
 
 ## Demo and API
 
@@ -151,6 +188,7 @@ make test                                      # unit tests, no API key needed
 python -m evals.runner replay                  # score the committed recordings, no API key needed
 python -m evals.runner replay --track          # ...and log the run to MLflow (local mlflow.db)
 python -m evals.gaps replay                    # the documentation agent's requests, replayed
+python -m evals.calibration                    # the LLM judge against the hand labels, replayed
 python -m streamlit run ui/app.py              # the demo, locally
 uvicorn priorauth.api:app --port 8000          # the API, locally (live runs need ANTHROPIC_API_KEY)
 
@@ -184,7 +222,9 @@ evals/
   checks.py, runner.py, scoring.py   checks, record/replay runner, metrics and the CI gate
   tracking.py     MLflow logging of each evaluation run
   gaps.py         runs the documentation agent on the dev cases with gaps
-ui/               Streamlit demo
+  judge_items.py, judge.py, calibration.py   items to grade, the LLM judge, and its agreement with hand labels
+  judge/          the blind-labelled sample
+ui/               Streamlit demo, and the local labelling page for the judge sample
 tests/            unit tests for every module, policy and gold case
 ```
 
@@ -200,7 +240,7 @@ tests/            unit tests for every module, policy and gold case
 - [x] FastAPI service, deployed privately, with a daily run limit and the key in Secret Manager
 - [x] Multi-agent orchestration: one evidence agent per criterion, compared with the single agent
 - [x] Documentation agent: a request to the clinic for each documentation gap
-- [ ] LLM-as-judge grading, calibrated against human labels
+- [x] LLM-as-judge grading, calibrated against blind hand labels
 - [ ] Policy retrieval with ChromaDB, and a second policy added with no code changes
 - [ ] Reviewer screen with overrides feeding the gold set
 - [ ] Error analysis and the final held-out run

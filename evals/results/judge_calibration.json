@@ -1,0 +1,79 @@
+{
+ "judge_model": "claude-opus-5-5",
+ "prompt_version": "judge_v1",
+ "evidence": {
+  "items": 32,
+  "agreed": 27,
+  "kappa": 0.711
+ },
+ "evidence_supports_or_not": {
+  "items": 32,
+  "agreed": 28,
+  "kappa": 0.738
+ },
+ "requests": {
+  "items": 8,
+  "agreed": 8,
+  "kappa": null
+ },
+ "planted": 8,
+ "planted_caught_by_judge": 8,
+ "planted_caught_by_person": 8,
+ "disagreements": [
+  {
+   "item_id": "item_cce08fa715",
+   "kind": "evidence",
+   "case_id": "dev_005",
+   "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+   "person": "partly",
+   "judge": "supports",
+   "person_note": "The cited text gives the Oswestry score (46%) but not when it was taken relative to a diagnostic block. Baseline timing would need the rest of the chart, which the cited passage doesn’t show on its own.",
+   "judge_reasoning": "n4 is the initial pain management consult and records an Oswestry Disability Index of 46%. No block has been done yet at this visit, so the score is a baseline taken before the first diagnostic block."
+  },
+  {
+   "item_id": "item_40151d1d10",
+   "kind": "evidence",
+   "case_id": "dev_009",
+   "criterion_id": "l38773_first_mbb.baseline_disability_scale",
+   "person": "partly",
+   "judge": "supports",
+   "person_note": "The 38% “at intake” score is a baseline, but it’s a physical therapy intake, and the cited passages don’t tie it to a diagnostic block. The 40% score is from the pain consult where the blocks are planned, so it doesn’t clearly come before them.",
+   "judge_reasoning": "The n4 pain management consult records ODI 40% in the same note that plans the first medial branch blocks, so a disability scale is documented at baseline before any block. The n2 PT summary gives earlier ODI values (38%), which also come before any block."
+  },
+  {
+   "item_id": "item_c88744d801",
+   "kind": "evidence",
+   "case_id": "dev_014",
+   "criterion_id": "l38773_first_mbb.no_untreated_radiculopathy",
+   "person": "partly",
+   "judge": "supports",
+   "person_note": "The cited passages show no current radicular symptoms and a normal neuro exam, which speaks to radiculopathy. They say nothing about neurogenic claudication, which the criterion also covers. The earlier left L5 radiculopathy and its steroid treatment are in the chart but not in the cited text.",
+   "judge_reasoning": "The cited neuro exam is normal: full strength, intact sensation, symmetric reflexes and a negative straight-leg raise on both sides. The note also states there are no current radicular symptoms. The note mentions no neurogenic claudication, and the earlier leg pain was treated and has resolved, so the chart records no untreated radiculopathy or claudication."
+  },
+  {
+   "item_id": "item_6c5923907c",
+   "kind": "planted",
+   "case_id": "dev_002",
+   "criterion_id": "l38773_first_mbb.pain_severity",
+   "person": "does_not_support",
+   "judge": "partly",
+   "person_note": "Both cited passages give only the onset or duration of the back pain (“since 4/1/26,” “x 5 mo”). Neither includes a pain rating. The NRS 6/10 in the 09/22 note would address the criterion, but it wasn’t cited.",
+   "judge_reasoning": "The cited passages show that the patient has low back pain and how long it has lasted. Neither passage gives a pain-scale rating or a severity level. Note n5 does record \"NRS 6/10\", but the assistant did not cite that part."
+  },
+  {
+   "item_id": "item_d509ab4a46",
+   "kind": "evidence",
+   "case_id": "dev_005",
+   "criterion_id": "l38773_first_mbb.no_untreated_radiculopathy",
+   "person": "partly",
+   "judge": "supports",
+   "person_note": "The cited passages cover radiculopathy: a normal neuro exam in both legs, a negative straight-leg raise, and no radicular symptoms. They don’t mention neurogenic claudication, which the criterion also rules out.",
+   "judge_reasoning": "In n4, the leg neuro exam is normal, straight-leg raise is negative and the note says \"No radicular symptoms,\" so the chart documents no radiculopathy. Neurogenic claudication is not named, but the pain is axial with no radiation and the exam is normal, so nothing suggests claudication."
+  }
+ ],
+ "judge_grades_all_evidence": {
+  "supports": 91,
+  "partly": 6,
+  "does_not_support": 2
+ }
+}
