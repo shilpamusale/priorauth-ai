@@ -7,8 +7,9 @@ skipped, and decide() escalates a case whose required criteria were not all chec
 
 from enum import StrEnum
 from importlib import resources
+from typing import Protocol
 
-from priorauth.llm.base import ModelClient, ModelRequest, StopReason, Turn, Usage
+from priorauth.llm.base import ModelClient, ModelRequest, StopReason, ToolCall, ToolResult, ToolSpec, Turn, Usage
 from priorauth.schemas import Contract, CriterionResult, PARequest, Policy
 from priorauth.tools import ChartTools
 
@@ -19,7 +20,7 @@ MAX_TOKENS = 16_000  # per reply: room for the model's thinking as well as its t
 
 
 class StopCause(StrEnum):
-    COMPLETE = "complete"  # every criterion has a finding
+    COMPLETE = "complete"  # everything was submitted: every criterion has a finding
     STEP_LIMIT = "step_limit"
     CUT_OFF = "cut_off"  # a reply hit max_tokens; its tool calls may be incomplete, so none are run
     MODEL_STOPPED = "model_stopped"  # the model stopped for another reason, such as a refusal
@@ -53,13 +54,36 @@ def case_message(policy: Policy, request: PARequest, tools: ChartTools) -> str:
     )
 
 
-def match(
-    client: ModelClient, policy: Policy, request: PARequest, model: str = DEFAULT_MODEL, max_steps: int = MAX_STEPS
-) -> MatchRun:
-    """Run the tool loop on one case."""
-    tools = ChartTools(policy, request)
-    system = load_prompt()
-    turns = [Turn(role="user", text=case_message(policy, request, tools))]
+class LoopTools(Protocol):
+    """What tool_loop needs from a set of tools."""
+
+    def specs(self) -> list[ToolSpec]: ...
+    def run(self, call: ToolCall) -> ToolResult: ...
+    def remaining(self) -> list[str]: ...
+
+
+class Loop(Contract):
+    stop: StopCause
+    steps: int
+    usage: Usage
+    turns: list[Turn]
+
+
+def tool_loop(
+    client: ModelClient,
+    *,
+    model: str,
+    system: str,
+    first_message: str,
+    tools: LoopTools,
+    max_steps: int,
+    reminder: str,
+) -> Loop:
+    """Ask the model, run its tool calls, and repeat until nothing remains to submit or the loop must stop.
+
+    If the model ends its turn with items still open, it is sent the reminder ({open} lists them).
+    """
+    turns = [Turn(role="user", text=first_message)]
     usage = Usage()
     steps, stop = 0, StopCause.STEP_LIMIT
     while steps < max_steps:
@@ -80,21 +104,37 @@ def match(
         if response.tool_calls:
             turns.append(Turn(role="user", tool_results=[tools.run(call) for call in response.tool_calls]))
         elif response.stop_reason is StopReason.END_TURN and response.text:
-            reminder = f"Submit a finding for each criterion still open: {', '.join(tools.remaining())}."
-            turns.append(Turn(role="user", text=reminder))
+            turns.append(Turn(role="user", text=reminder.format(open=", ".join(tools.remaining()))))
         else:
             stop = StopCause.MODEL_STOPPED
             break
         if not tools.remaining():
             stop = StopCause.COMPLETE
             break
+    return Loop(stop=stop, steps=steps, usage=usage, turns=turns)
+
+
+def match(
+    client: ModelClient, policy: Policy, request: PARequest, model: str = DEFAULT_MODEL, max_steps: int = MAX_STEPS
+) -> MatchRun:
+    """Run the tool loop on one case."""
+    tools = ChartTools(policy, request)
+    loop = tool_loop(
+        client,
+        model=model,
+        system=load_prompt(),
+        first_message=case_message(policy, request, tools),
+        tools=tools,
+        max_steps=max_steps,
+        reminder="Submit a finding for each criterion still open: {open}.",
+    )
     return MatchRun(
         model=model,
         prompt_version=PROMPT_VERSION,
         findings=[tools.findings[c.criterion_id] for c in policy.criteria if c.criterion_id in tools.findings],
         skipped=tools.remaining(),
-        stop=stop,
-        steps=steps,
-        usage=usage,
-        turns=turns,
+        stop=loop.stop,
+        steps=loop.steps,
+        usage=loop.usage,
+        turns=loop.turns,
     )
