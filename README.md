@@ -241,7 +241,11 @@ the agent's own trial-to-trial disagreements on dev_006 and dev_009 are the same
 review made, which suggests the functional-deficit criterion is worded ambiguously. Each review is saved
 in `evals/reviews/`, and `python -m evals.reviews` turns it into a candidate gold case in
 `evals/gold/candidates/` and lists where it differs from the gold label. Candidates are never scored; a
-label changes only when a person promotes one, which the error analysis will decide.
+label changes only when a person promotes one.
+
+**Error analysis** ([docs/error_analysis.md](docs/error_analysis.md)), written and committed before the
+held-out run: the dev misses and their causes, what the review says about them, and what will change
+after the held-out run. Nothing in the system changes before it.
 
 ## Demo and API
 
@@ -334,7 +338,8 @@ tests/            unit tests for every module, policy and gold case
 - [x] LLM-as-judge grading, calibrated against blind hand labels
 - [x] Policy retrieval with ChromaDB, and a second policy (LCD L33944) added with no engine change
 - [x] Reviewer screen with overrides feeding candidate gold cases
-- [ ] Error analysis and the final held-out run
+- [x] Error analysis, written before the held-out run
+- [ ] Final held-out run
 
 ## Limitations
 
