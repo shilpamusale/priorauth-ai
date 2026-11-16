@@ -10,9 +10,21 @@ payer, which documentation is missing, or whether a human needs to look at it.
 
 > **Status: in progress.** Policy retrieval, the agent, its verification and decision steps, the evaluation
 > harness, a multi-agent comparison, a documentation agent, an LLM judge calibrated against hand labels, a
-> second policy added with no engine change, a public demo and a private API are live and tested in CI. A
-> reviewer screen and the final held-out run come next (see [Roadmap](#roadmap)). All patients are
-> synthetic; no PHI is used anywhere.
+> second policy added with no engine change, human review of the cases that need it, a public demo and a
+> private API are live and tested in CI. Error analysis and the final held-out run come next (see
+> [Roadmap](#roadmap)). All patients are synthetic; no PHI is used anywhere.
+
+## At a glance
+
+| | Result (dev set; the held-out set runs once, at the end) |
+|---|---|
+| Decisions | 51 of 51 runs right (17 cases × 3 trials), 0 hard-gate failures, about $0.03 a run |
+| Criteria | 370 of 372 statuses match the gold labels |
+| Retrieval | 23 of 24 requests routed right, 0 sent to a policy they should not reach |
+| Second policy | Added with no change to the engine; 9 of 9 runs right on the first recording |
+| Multi-agent | One agent per criterion: about 3.5 times the cost per run, no gain in accuracy, so not deployed |
+| LLM judge | Agrees with blind hand labels on 27 of 32 evidence items (Cohen's kappa 0.71) |
+| Human review | 7 queued cases reviewed: 3 agree with the gold labels, 4 question a criterion label |
 
 ## Why provider-side
 
@@ -53,6 +65,9 @@ flowchart LR
    tool call and result, token use, and anything skipped or rejected.
 5. **The documentation agent** turns each gap into a request to the clinic: what this chart already
    records, what it lacks, and which note should carry it. It never changes a finding or the decision.
+6. **Human review** takes every case the agent escalated or whose trials disagree. The reviewer corrects
+   facts, one criterion at a time with a reason (and a quote checked against the note for anything marked
+   met), and `decide()` runs again. Reviews become candidate gold cases.
 
 ## Design decisions
 
@@ -61,6 +76,7 @@ flowchart LR
 | The decision is computed in code, not generated | Auditable, reproducible, and an instruction hidden in a note cannot change it |
 | Retrieval proposes the policy; code checks it | The requested code must be one the policy covers, so a close-sounding order cannot send a request to the wrong policy |
 | Anything not clearly met goes to a human | A wrong "ready to submit" becomes a denial; a wrong escalation costs a reviewer a few minutes |
+| A reviewer corrects facts, not the decision | Reviews have no decision field; `decide()` runs on the reviewed findings, so a person and the agent are held to the same rule |
 | A skipped or unverified required criterion escalates | The pipeline never assumes a criterion it did not check |
 | Every quote is checked twice: when the model submits it, and again before deciding | Grounding is enforced by string match, not by trusting the model |
 | Criterion and note IDs are enums in strict tool schemas | The API itself stops the model from citing another policy's criterion or a note that does not exist |
@@ -205,6 +221,28 @@ duration false alarms), for $1.13 across 115 items. I have not tuned the judge o
 `judge_v2` would need fresh labels to be measured fairly. CI replays the judge and recomputes these
 numbers in a step that is allowed to fail, because the judge informs a review and never blocks a merge.
 
+**Human review** (`ui/review.py`, a local screen; it writes files, so it is never deployed): the queue holds
+every dev case the single agent escalated or whose three trials disagree, 7 of the 17. I reviewed each one
+from the chart, keeping or correcting each criterion with a reason; the screen never shows the gold label.
+The comparison with the gold labels runs afterwards. After it, I corrected one status that contradicted
+the chart (dev_005) and two whose status did not match the reason I had written (dev_006, dev_012); the
+reasons themselves were written before any comparison.
+
+| Case | What the review found | Gold label | Review |
+|---|---|---|---|
+| dev_005, dev_010, dev_017 | Agrees with the agent and the gold label | | |
+| dev_006, dev_012 | Functional limits are described but measured on no scale: a documentation gap | met | insufficient evidence |
+| dev_011 | The NRS 7/10 rates mostly buttock and thigh pain, not the low back pain the criterion is about | met | not met |
+| dev_009 | The MRI predates the new leg symptoms, so it cannot rule out a disc cause for them | met | not met |
+
+Only dev_006's decision would change, and the review decides it the same way the gold label does
+(needs documentation), for a different reason. The findings point at the gold set rather than the agent:
+the agent's own trial-to-trial disagreements on dev_006 and dev_009 are the same two judgment calls the
+review made, which suggests the functional-deficit criterion is worded ambiguously. Each review is saved
+in `evals/reviews/`, and `python -m evals.reviews` turns it into a candidate gold case in
+`evals/gold/candidates/` and lists where it differs from the gold label. Candidates are never scored; a
+label changes only when a person promotes one, which the error analysis will decide.
+
 ## Demo and API
 
 - **Public demo** ([link](https://priorauth-ai-140535548045.us-central1.run.app)): replays recorded runs and
@@ -234,6 +272,8 @@ python -m evals.gaps replay                    # the documentation agent's reque
 python -m evals.calibration                    # the LLM judge against the hand labels, replayed
 python -m evals.routing --min-accuracy 0.95    # retrieval on the dev requests (downloads the embedding model)
 python -m streamlit run ui/app.py              # the demo, locally
+python -m streamlit run ui/review.py           # the reviewer screen (local; saves to evals/reviews/)
+python -m evals.reviews                        # the review queue, and candidate gold cases from reviews
 uvicorn priorauth.api:app --port 8000          # the API, locally (live runs need ANTHROPIC_API_KEY)
 
 # live runs need ANTHROPIC_API_KEY
@@ -259,11 +299,13 @@ src/priorauth/
   documentation.py  documentation agent: a request to the clinic for each gap
   pipeline.py     match, verify, decide, and the audit record
   retrieval.py    ChromaDB index over the LCD texts, and the route: a policy, or why not
+  review.py       human review: overrides with reasons and checked quotes, then decide() again
   api.py          FastAPI service with a daily run limit
 policies/         the facet (LCD L38773) and blepharoplasty (LCD L33944) policies; sources/ holds the
                   extracted text of every indexed LCD, which criteria quote and retrieval searches
 evals/
-  gold/           dev and held-out cases; routing/ holds the routing-only requests
+  gold/           dev and held-out cases; routing/ holds the routing-only requests; candidates/ holds
+                  candidate gold cases from reviews, never scored
   recordings/     recorded live runs, replayed in CI and in the demo
   checks.py, runner.py, scoring.py   checks, record/replay runner, metrics and the CI gate
   tracking.py     MLflow logging of each evaluation run
@@ -271,7 +313,9 @@ evals/
   routing.py      scores retrieval: each request reaches its policy or goes to a person for the stated reason
   judge_items.py, judge.py, calibration.py   items to grade, the LLM judge, and its agreement with hand labels
   judge/          the blind-labelled sample
-ui/               Streamlit demo, and the local labelling page for the judge sample
+  reviews.py      the review queue, saved reviews, and the candidate gold cases they become
+  reviews/        the saved reviews
+ui/               Streamlit demo; local pages for labelling the judge sample and for review
 tests/            unit tests for every module, policy and gold case
 ```
 
@@ -289,8 +333,26 @@ tests/            unit tests for every module, policy and gold case
 - [x] Documentation agent: a request to the clinic for each documentation gap
 - [x] LLM-as-judge grading, calibrated against blind hand labels
 - [x] Policy retrieval with ChromaDB, and a second policy (LCD L33944) added with no engine change
-- [ ] Reviewer screen with overrides feeding the gold set
+- [x] Reviewer screen with overrides feeding candidate gold cases
 - [ ] Error analysis and the final held-out run
+
+## Limitations
+
+- **The numbers are dev-set numbers.** The dev cases were written and used while building, so they show the
+  pipeline works, not how well it generalizes. The 7 held-out cases and 3 held-out routing requests run
+  once, in the final evaluation.
+- **The data is small and synthetic.** 24 charts written by one person, on two policies. Real charts are
+  longer, messier and scanned; nothing here measures OCR, EHR integration or volume.
+- **One person labelled, reviewed and calibrated.** The gold labels, the judge's 40 hand labels and the 7
+  reviews are mine. The reviews already question four gold labels; a second reviewer would measure how
+  much of that is my judgment.
+- **Retrieval has a thin margin and misses shorthand.** The distance limit sits between 0.597 (the farthest
+  order that should match) and 0.617 (the closest that should not), chosen on 24 dev requests. A general
+  embedding model does not know clinic abbreviations such as "MBB"; those requests escalate.
+- **The judge has known blind spots.** It is lenient on partial evidence and is not shown the request date.
+  Its agreement was measured on one policy.
+- **Policies change.** Each policy is pinned to one LCD version; a new version means a new extraction and
+  a re-check of every quote, which the loader enforces but a person must start.
 
 ## Out of scope
 

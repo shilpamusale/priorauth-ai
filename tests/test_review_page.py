@@ -103,3 +103,14 @@ def test_a_criterion_the_agent_left_unchecked_needs_a_status():
     checked = answers | {"c:p.a:status": "insufficient_evidence", "c:p.a:reason": "Nothing in the chart."}
     overrides, problems = overrides_from_answers("c", criteria, {}, checked)
     assert problems == [] and overrides["p.a"].status == "insufficient_evidence"
+
+
+def test_statuses_are_offered_in_plain_words_with_what_they_do(screen):
+    app, _ = screen
+    options = app.selectbox(key=f"{DURATION}:status").options
+    assert options == [
+        "keep the agent's finding",
+        "met",
+        "not met: the chart shows it fails (escalates)",
+        "insufficient evidence: a documentation gap",
+    ]

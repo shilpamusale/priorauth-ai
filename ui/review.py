@@ -23,6 +23,12 @@ from priorauth.schemas import CriterionStatus
 from ui.data import KEEP, folders, highlight, overrides_from_answers
 
 CHOICES = [KEEP, *(status.value for status in CriterionStatus)]
+CHOICE_LABELS = {  # plain words, so a reviewer sees what each status means for the decision
+    KEEP: KEEP,
+    CriterionStatus.MET.value: "met",
+    CriterionStatus.NOT_MET.value: "not met: the chart shows it fails (escalates)",
+    CriterionStatus.INSUFFICIENT_EVIDENCE.value: "insufficient evidence: a documentation gap",
+}
 
 
 @st.cache_resource
@@ -85,11 +91,12 @@ with left, st.form(f"review:{item.case_id}"):
             lines += [f'{e.note_id}: "{e.quote}"' for e in finding.evidence]
         st.text("\n".join(lines))
         earlier = previous.overrides.get(cid) if previous else None
-        status, reason, note, quote = st.columns([2, 3, 1.2, 3])
+        status, reason, note, quote = st.columns([3, 3, 1.2, 3])
         status.selectbox(
             "Your status",
             CHOICES,
             index=CHOICES.index(earlier.status.value) if earlier else 0,
+            format_func=CHOICE_LABELS.get,
             key=f"{item.case_id}:{cid}:status",
         )
         reason.text_input(
