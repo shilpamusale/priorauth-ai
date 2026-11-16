@@ -17,6 +17,7 @@ POLICY = Policy(
     policy_id="demo",
     title="Demo policy",
     source="illustrative",
+    service_codes=["64493"],
     criteria=[
         PolicyCriterion(criterion_id="demo.duration", text="Pain has lasted at least 3 months."),
         PolicyCriterion(criterion_id="demo.scale", text="A disability scale is recorded."),
@@ -32,6 +33,7 @@ def case(case_id, scale_status, decision):
         payer="Medicare",
         request_date=datetime.date(2026, 10, 1),
         service_code="64493",
+        ordered_service="Lumbar medial branch blocks",
         icd10_codes=["M54.50"],
         notes=[ClinicalNote(note_id="n1", date=datetime.date(2026, 6, 1), note_type="visit", text=NOTE_TEXT)],
     )

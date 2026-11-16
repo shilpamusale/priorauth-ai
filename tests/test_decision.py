@@ -10,6 +10,7 @@ POLICY = Policy(
     policy_id = "p",
     title="t",
     source="illustrative",
+    service_codes=["64493"],
     criteria=[
         PolicyCriterion(criterion_id="a", text="A"),
         PolicyCriterion(criterion_id="b", text="B"),
@@ -69,6 +70,7 @@ def test_policy_without_required_criteria_escalates():
         policy_id="p",
         title="t",
         source="illustrative",
+        service_codes=["64493"],
         criteria=[PolicyCriterion(criterion_id="optional", text="C", required=False)],
     )
     assert decide(policy, [result("optional", MET)]) is Decision.ESCALATE

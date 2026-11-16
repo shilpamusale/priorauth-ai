@@ -10,6 +10,7 @@ POLICY = Policy(
     policy_id="p",
     title="t",
     source="illustrative",
+    service_codes=["64493"],
     criteria=[
         PolicyCriterion(criterion_id="p.duration", text="A"),
         PolicyCriterion(criterion_id="p.imaging", text="B"),
@@ -27,6 +28,7 @@ def case_data(case_id="case_ready_01", **changes):
             "payer": "Medicare",
             "request_date": "2026-09-01",
             "service_code": "64493",
+            "ordered_service": "Lumbar medial branch blocks, L4-L5 and L5-S1",
             "icd10_codes": ["M47.816"],
             "notes": [
                 {"note_id": "n1", "date": "2026-05-02", "note_type": "progress note", "text": "Pain since January."},
@@ -125,3 +127,17 @@ def test_unknown_split_is_rejected(tmp_path):
 def test_empty_split_is_an_error(tmp_path):
     with pytest.raises(GoldError, match="no gold cases"):
         load_split(tmp_path, "dev", POLICIES)
+
+
+def test_every_gold_case_needs_an_ordered_service(tmp_path):
+    data = case_data()
+    del data["request"]["ordered_service"]
+    with pytest.raises(GoldError, match="needs an ordered_service"):
+        load_case(write(tmp_path, data), POLICIES)
+
+
+def test_the_service_code_must_be_one_the_policy_covers(tmp_path):
+    data = case_data()
+    data["request"]["service_code"] = "15823"
+    with pytest.raises(GoldError, match="15823 is not one p covers"):
+        load_case(write(tmp_path, data), POLICIES)
