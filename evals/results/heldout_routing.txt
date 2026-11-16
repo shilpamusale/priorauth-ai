@@ -1,0 +1,12 @@
+ok     heldout_001        want l38773_first_mbb   got l38773_first_mbb   closest LCD L38773 v32 at 0.514
+ok     heldout_002        want l38773_first_mbb   got l38773_first_mbb   closest LCD L38773 v32 at 0.506
+ok     heldout_003        want l38773_first_mbb   got l38773_first_mbb   closest LCD L38773 v32 at 0.452
+ok     heldout_004        want l38773_first_mbb   got l38773_first_mbb   closest LCD L38773 v32 at 0.418
+ok     heldout_005        want l38773_first_mbb   got l38773_first_mbb   closest LCD L38773 v32 at 0.545
+ok     heldout_006        want l38773_first_mbb   got l38773_first_mbb   closest LCD L38773 v32 at 0.538
+ok     heldout_007        want l33944_upper_bleph got l33944_upper_bleph closest LCD L33944 v28 at 0.478
+ok     route_heldout_001  want unsupported        got unsupported        closest LCD L34082 v31 at 0.428
+WRONG  route_heldout_002  want no_match           got code_not_covered   closest LCD L38773 v32 at 0.514
+ok     route_heldout_003  want no_match           got no_match           closest LCD L38773 v32 at 0.677
+Routed correctly: 9 of 10 (90%)
+Unsafe routes (reached a policy they should not): 0
