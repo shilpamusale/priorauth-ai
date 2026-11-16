@@ -1,0 +1,47 @@
+# Candidate gold case from Shilpa Musale's review on 2026-11-16.
+# Check it, then promote it by hand; candidates are never scored.
+policy_id: l33944_upper_bleph
+tags:
+- candidate
+- reviewed-by-shilpa-musale
+request:
+  case_id: dev_017
+  payer: Medicare
+  request_date: '2026-08-28'
+  service_code: '15823'
+  ordered_service: Functional blepharoplasty, both upper eyelids
+  icd10_codes:
+  - H02.831
+  - H02.834
+  notes:
+  - note_id: n1
+    date: '2026-07-08'
+    note_type: ophthalmology visit
+    text: '74-year-old who would like her upper lids done. She feels they make her
+      look tired, and says they get in the way when she reads in the evening. Exam:
+      redundant upper eyelid skin resting on the lashes in both eyes; lid margins
+      in normal position. Visual field testing ordered.'
+  - note_id: n2
+    date: '2026-07-22'
+    note_type: visual field test report
+    text: 'Superior visual field, both eyes. Untaped: superior field loss of 8 degrees
+      in the right eye and 6 degrees in the left, about 15 percent of the upper field.
+      Taped: loss of 2 degrees in each eye.'
+labels:
+  l33944_upper_bleph.excess_skin:
+    status: met
+    evidence_notes:
+    - n1
+  l33944_upper_bleph.functional_complaint:
+    status: met
+    evidence_notes:
+    - n1
+  l33944_upper_bleph.field_loss:
+    status: not_met
+    evidence_notes:
+    - n2
+  l33944_upper_bleph.field_improves_taped:
+    status: met
+    evidence_notes:
+    - n2
+expected_decision: escalate

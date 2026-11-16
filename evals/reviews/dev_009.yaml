@@ -1,0 +1,19 @@
+case_id: dev_009
+policy_id: l38773_first_mbb
+trial: 1
+reviewer: Shilpa Musale
+reviewed_at: '2026-11-16T03:26:51.675321Z'
+overrides:
+  l38773_first_mbb.no_other_pathology:
+    status: not_met
+    reason: "The MRI is dated 7/30, but the leg pain began about six weeks before\
+      \ the 9/18 consult, so roughly 8/7. The MRI came before the new radicular symptoms.\
+      \ It also doesn\u2019t address nerve root compression or disc herniation, which\
+      \ is the structural cause the criterion needs ruled out for the S1 radiculopathy.\
+      \ So a non-facet cause of the leg pain isn\u2019t excluded."
+    evidence: []
+comment: "Escalation stands: untreated left S1 radiculopathy (n4) fails the radiculopathy\
+  \ criterion. \u201CNo other pathology\u201D changed to not met: the 7/30 MRI predates\
+  \ the new leg symptoms (onset about 8/7) and doesn\u2019t address nerve root compression\
+  \ or disc herniation. All other criteria confirmed. The outcome is unchanged because\
+  \ the radiculopathy finding alone fails the case."
