@@ -1,0 +1,492 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "612f4719cd86404a",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01T2ULqQayaB27JJ1xNb62KW",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01L5pNkNotAvB52VTcwBMZUt",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01LSHEHVdii37iECx4eLN7iV",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1748,
+     "output_tokens": 144
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01T2ULqQayaB27JJ1xNb62KW",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01L5pNkNotAvB52VTcwBMZUt",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01LSHEHVdii37iECx4eLN7iV",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "cd1938047c00df8d",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_015iSfX2Rs3Wy9DaoBYm3jpG",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_01PeCKDekcrQ1ZfYc3yVss5p",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_014rfKHbDhUTeSTF3tqsNXHT",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1737,
+     "output_tokens": 144
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_015iSfX2Rs3Wy9DaoBYm3jpG",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01PeCKDekcrQ1ZfYc3yVss5p",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_014rfKHbDhUTeSTF3tqsNXHT",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "3f6a3884b0538362",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01AL8dyrhCDM9rPta8ZaLv5Q",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01HaXLxKgfW3JedK3wt4eXc2",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01Cggqg4xutCVPgf73mMWvtV",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1754,
+     "output_tokens": 144
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01AL8dyrhCDM9rPta8ZaLv5Q",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01HaXLxKgfW3JedK3wt4eXc2",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01Cggqg4xutCVPgf73mMWvtV",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "f5f907658d219fe8",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01CLqJ84FEVUshhBapwCTmCs",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01YWU27evecZWSXPYMLQS59T",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_015QyMwFXXYZKgKr1S8LUVGb",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1734,
+     "output_tokens": 144
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01CLqJ84FEVUshhBapwCTmCs",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01YWU27evecZWSXPYMLQS59T",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_015QyMwFXXYZKgKr1S8LUVGb",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "3f5cb4ae181b6f6b",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_0151eUX1qoz4jZCd3dBKVBCJ",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Taped, with the upper lids elevated: superior field loss reduced to 4 degrees in the right eye and 3 degrees in the left."
+        }
+       ],
+       "reasoning": "Visual field testing with lids taped showed superior field loss improving from 32/30 degrees to 4/3 degrees in the right and left eyes, so surgery can be expected to correct the loss."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2411,
+     "output_tokens": 260
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_0151eUX1qoz4jZCd3dBKVBCJ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Taped, with the upper lids elevated: superior field loss reduced to 4 degrees in the right eye and 3 degrees in the left."
+        }
+       ],
+       "reasoning": "Visual field testing with lids taped showed superior field loss improving from 32/30 degrees to 4/3 degrees in the right and left eyes, so surgery can be expected to correct the loss."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "9e1848b4e161f4f0",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_012hgjoD5tV3LFkSWXFSLhGT",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "bilateral upper eyelid dermatochalasis, with redundant skin resting on the lashes and covering the lid margin in both eyes"
+        },
+        {
+         "note_id": "n1",
+         "quote": "Upper lid skin overhangs the lash line in both eyes."
+        }
+       ],
+       "reasoning": "The oculoplastic exam documents bilateral upper eyelid dermatochalasis with skin resting on the lashes and covering the lid margin, and the optometry exam corroborates this."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2422,
+     "output_tokens": 292
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_012hgjoD5tV3LFkSWXFSLhGT",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "bilateral upper eyelid dermatochalasis, with redundant skin resting on the lashes and covering the lid margin in both eyes"
+        },
+        {
+         "note_id": "n1",
+         "quote": "Upper lid skin overhangs the lash line in both eyes."
+        }
+       ],
+       "reasoning": "The oculoplastic exam documents bilateral upper eyelid dermatochalasis with skin resting on the lashes and covering the lid margin, and the optometry exam corroborates this."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "4b5c5fd5c56da89b",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01HypAiTDqJkww3bqCgEk1Dj",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "Reports that her eyelids block her view when driving and reading, and that she sees the skin of her upper lids."
+        },
+        {
+         "note_id": "n1",
+         "quote": "has trouble seeing traffic lights while driving because the skin of her upper eyelids is in the way"
+        }
+       ],
+       "reasoning": "The patient reported that her eyelids block her view while driving and reading and that she sees her lid skin. The optometry note records similar complaints."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2428,
+     "output_tokens": 276
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01HypAiTDqJkww3bqCgEk1Dj",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "Reports that her eyelids block her view when driving and reading, and that she sees the skin of her upper lids."
+        },
+        {
+         "note_id": "n1",
+         "quote": "has trouble seeing traffic lights while driving because the skin of her upper eyelids is in the way"
+        }
+       ],
+       "reasoning": "The patient reported that her eyelids block her view while driving and reading and that she sees her lid skin. The optometry note records similar complaints."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "e20007596e76b004",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01MSuYd5bhapdkxKgMho7yKU",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Untaped, with the upper lids in their natural position: superior field loss of 32 degrees in the right eye and 30 degrees in the left."
+        }
+       ],
+       "reasoning": "Untaped visual field testing with lids in natural position shows superior field loss of 32 degrees (right) and 30 degrees (left), exceeding the 12-degree threshold."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2408,
+     "output_tokens": 252
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01MSuYd5bhapdkxKgMho7yKU",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Untaped, with the upper lids in their natural position: superior field loss of 32 degrees in the right eye and 30 degrees in the left."
+        }
+       ],
+       "reasoning": "Untaped visual field testing with lids in natural position shows superior field loss of 32 degrees (right) and 30 degrees (left), exceeding the 12-degree threshold."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

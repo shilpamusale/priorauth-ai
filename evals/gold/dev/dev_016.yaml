@@ -1,0 +1,38 @@
+# Needs documentation, second policy: the field was tested only with the lids at rest. The taped test that
+# shows surgery would help was never done, so the clinic must send it.
+policy_id: l33944_upper_bleph
+tags: [needs-documentation, gap-taped-field, blepharoplasty]
+request:
+  case_id: dev_016
+  payer: Medicare
+  request_date: 2026-09-02
+  service_code: "15822"
+  ordered_service: Upper lid blepharoplasty OU
+  icd10_codes: [H02.831, H02.834]
+  notes:
+    - note_id: n1
+      date: 2026-06-30
+      note_type: primary care visit
+      text: >-
+        68-year-old who says she has to tilt her head back to read and feels like she is looking through her
+        eyelashes. Asked about her eyelids; referred to ophthalmology.
+    - note_id: n2
+      date: 2026-08-05
+      note_type: ophthalmology visit
+      text: >-
+        Visual acuity 20/30 in each eye. External exam: upper eyelid skin hangs over the lid margin in both
+        eyes and touches the lashes. Brow position normal. No ptosis of the lid margin itself. Visual field
+        testing ordered to assess for upper eyelid blepharoplasty.
+    - note_id: n3
+      date: 2026-08-19
+      note_type: visual field test report
+      text: >-
+        Superior visual field, upper lids in their natural position: loss of 26 degrees in the right eye and
+        24 degrees in the left. Taped testing was not performed; the patient could not stay for the second
+        test.
+labels:
+  l33944_upper_bleph.excess_skin: {status: met, evidence_notes: [n2]}
+  l33944_upper_bleph.functional_complaint: {status: met, evidence_notes: [n1]}
+  l33944_upper_bleph.field_loss: {status: met, evidence_notes: [n3]}
+  l33944_upper_bleph.field_improves_taped: {status: insufficient_evidence}
+expected_decision: needs_documentation

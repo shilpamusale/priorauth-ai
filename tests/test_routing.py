@@ -25,14 +25,16 @@ LANDS = {
     "route_dev_004": (FACET, 0.9),
     "route_dev_005": (EYELID, 0.8),
     "route_dev_006": (EYELID, 0.2),
+    "route_dev_007": (EYELID, 0.25),
 }
 
 
 class CaseIndex:
-    """Sends gold orders to the facet LCD and routing-only orders where LANDS says."""
+    """Sends each gold order to its policy's LCD, and routing-only orders where LANDS says."""
 
     def __init__(self, cases, lands=LANDS):
-        self.by_order = {c.ordered_service: lands.get(c.case_id, (FACET, 0.25)) for c in cases}
+        home = {c.case_id: (POLICIES[c.policy_id].source, 0.25) for c in cases if c.policy_id}
+        self.by_order = {c.ordered_service: lands.get(c.case_id, home.get(c.case_id, (FACET, 0.25))) for c in cases}
 
     def search(self, text):
         source, distance = self.by_order[text]
@@ -45,15 +47,17 @@ def dev():
 
 
 def test_dev_cases_are_the_gold_cases_then_the_routing_cases(dev):
-    matched = [c for c in dev if c.expected is Outcome.MATCHED]
-    assert len(matched) == 14 and {c.policy_id for c in matched} == {"l38773_first_mbb"}
-    assert [c.case_id for c in dev[14:]] == list(LANDS)
+    gold = sorted(path.stem for path in (GOLD / "dev").glob("*.yaml"))
+    assert [c.case_id for c in dev[: len(gold)]] == gold
+    assert [c.case_id for c in dev[len(gold) :]] == list(LANDS)
+    assert {c.policy_id for c in dev if c.expected is Outcome.MATCHED} == set(POLICIES)  # every policy is reached
 
 
 def test_held_out_cases_need_the_final_evaluation():
     with pytest.raises(ValueError, match="final evaluation"):
         routing_cases(GOLD, "heldout", POLICIES)
-    assert len(routing_cases(GOLD, "heldout", POLICIES, allow_heldout=True)) == 6 + 3
+    gold = len(list((GOLD / "heldout").glob("*.yaml")))
+    assert len(routing_cases(GOLD, "heldout", POLICIES, allow_heldout=True)) == gold + 3
 
 
 @pytest.mark.parametrize(
@@ -95,7 +99,7 @@ def test_every_route_right_with_the_expected_distances(dev):
     results = run(dev, CaseIndex(dev), POLICIES)
     assert all(r.correct for r in results), report(results)
     assert report(results).endswith(
-        "Routed correctly: 20 of 20 (100%)\nUnsafe routes (reached a policy they should not): 0"
+        f"Routed correctly: {len(dev)} of {len(dev)} (100%)\nUnsafe routes (reached a policy they should not): 0"
     )
 
 
@@ -112,7 +116,8 @@ def test_a_wrong_escalation_reason_is_marked_with_the_closest_lcd(dev):
     assert (
         line.split() == "WRONG route_dev_004 want no_match got code_not_covered closest LCD L38773 v32 at 0.500".split()
     )
-    assert "Routed correctly: 19 of 20 (95%)" in text
+    n = len(dev)
+    assert f"Routed correctly: {n - 1} of {n} ({(n - 1) / n:.0%})" in text
 
 
 def test_reaching_a_policy_it_should_not_is_unsafe():
@@ -128,7 +133,7 @@ def test_the_gate_takes_a_safe_miss_but_not_below_the_threshold(dev, capsys):
     assert main(["--min-accuracy", "0.95"], make_index=one_miss) == 0
     assert main(["--min-accuracy", "1.0"], make_index=one_miss) == 1
     assert main(["--min-accuracy", "0.95"], make_index=lambda sources: FakeIndex((VEINS, 0.9))) == 1
-    assert "Routed correctly: 2 of 20 (10%)" in capsys.readouterr().out  # only the two no-match cases
+    assert f"Routed correctly: 2 of {len(dev)} " in capsys.readouterr().out  # only the two no-match cases
 
 
 def test_any_unsafe_route_fails_the_gate_whatever_the_accuracy(tmp_path):

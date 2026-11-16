@@ -251,7 +251,8 @@ def test_command_line_applies_the_accuracy_threshold(gold, tmp_path, capsys, mon
 def test_the_real_dev_split_loads(tmp_path):
     """With no recordings yet, every dev case is reported, none crashes."""
     results = run_split("dev", Mode.REPLAY, load_policies(Path("policies")), recordings=tmp_path, trials=1)
-    assert len(results) == 14 and all(r.error.startswith("no recording at") for r in results)
+    assert len(results) == len(list(Path("evals/gold/dev").glob("*.yaml")))
+    assert all(r.error.startswith("no recording at") for r in results)
 
 
 class EvidenceModel:

@@ -1,0 +1,224 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "11448c3feda104c6",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01QaWn5vKy4hM6sTR3fHtQCu",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01CW2AC5hDSH5L51ezDACQsC",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01V8ZsDo5ptpfwwVJSzw7hsi",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2001,
+     "output_tokens": 144
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01QaWn5vKy4hM6sTR3fHtQCu",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01CW2AC5hDSH5L51ezDACQsC",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01V8ZsDo5ptpfwwVJSzw7hsi",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "241cacc5a82a2f8a",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01H18VtMJvRVj3K7ty1gcuxA",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "upper eyelid skin hangs over the lid margin in both eyes and touches the lashes"
+        }
+       ],
+       "reasoning": "Ophthalmology exam documents skin hanging over lid margin and touching lashes bilaterally."
+      }
+     },
+     {
+      "id": "toolu_016Gxh5e172cqkerSFvWXS1b",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "feels like she is looking through her eyelashes"
+        }
+       ],
+       "reasoning": "Patient reports looking through her lashes and tilting head back to read."
+      }
+     },
+     {
+      "id": "toolu_01K3mzrUYV2cPWkkonxo5FFP",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "loss of 26 degrees in the right eye and 24 degrees in the left"
+        }
+       ],
+       "reasoning": "Natural-position superior field loss exceeds 12 degrees in both eyes."
+      }
+     },
+     {
+      "id": "toolu_01Dzd7GgrFfqKDtvfJaUGB8M",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "insufficient_evidence",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Taped testing was not performed"
+        }
+       ],
+       "reasoning": "Taped visual field testing was not done; a repeat field with lids taped showing improvement is needed."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2502,
+     "output_tokens": 795
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01H18VtMJvRVj3K7ty1gcuxA",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "upper eyelid skin hangs over the lid margin in both eyes and touches the lashes"
+        }
+       ],
+       "reasoning": "Ophthalmology exam documents skin hanging over lid margin and touching lashes bilaterally."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_016Gxh5e172cqkerSFvWXS1b",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "feels like she is looking through her eyelashes"
+        }
+       ],
+       "reasoning": "Patient reports looking through her lashes and tilting head back to read."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01K3mzrUYV2cPWkkonxo5FFP",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "loss of 26 degrees in the right eye and 24 degrees in the left"
+        }
+       ],
+       "reasoning": "Natural-position superior field loss exceeds 12 degrees in both eyes."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01Dzd7GgrFfqKDtvfJaUGB8M",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "insufficient_evidence",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Taped testing was not performed"
+        }
+       ],
+       "reasoning": "Taped visual field testing was not done; a repeat field with lids taped showing improvement is needed."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

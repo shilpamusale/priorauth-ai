@@ -1,0 +1,40 @@
+# Ready to submit, second policy, held out: clinic shorthand, the field loss reported in percent rather than
+# degrees, and the evidence spread across four notes.
+policy_id: l33944_upper_bleph
+tags: [ready, shorthand, percent-field, blepharoplasty]
+request:
+  case_id: heldout_007
+  payer: Medicare
+  request_date: 2026-07-20
+  service_code: "15823"
+  ordered_service: Bilat upper bleph for dermatochalasis
+  icd10_codes: [H02.831, H02.834]
+  notes:
+    - note_id: n1
+      date: 2026-05-12
+      note_type: optometry visit
+      text: >-
+        Pt c/o droopy lids blocking upper vision, worse when driving; sees lid skin in upper field. Ext:
+        dermatochalasis OU w/ skin overhanging lash line. Refer oculoplastics.
+    - note_id: n2
+      date: 2026-06-02
+      note_type: oculoplastic surgery consultation
+      text: >-
+        Bilat upper lid dermatochalasis, skin resting on lashes OU. Levator fxn good, MRD1 normal, brows ok.
+        Plan VF untaped and taped.
+    - note_id: n3
+      date: 2026-06-16
+      note_type: visual field test report
+      text: >-
+        Superior field. Untaped: 38% loss OD, 35% loss OS. Taped: 6% loss OD, 5% loss OS.
+    - note_id: n4
+      date: 2026-07-01
+      note_type: primary care letter
+      text: >-
+        I support her eyelid surgery. She has given up driving at night because her upper vision is blocked.
+labels:
+  l33944_upper_bleph.excess_skin: {status: met, evidence_notes: [n1, n2]}
+  l33944_upper_bleph.functional_complaint: {status: met, evidence_notes: [n1, n4]}
+  l33944_upper_bleph.field_loss: {status: met, evidence_notes: [n3]}
+  l33944_upper_bleph.field_improves_taped: {status: met, evidence_notes: [n3]}
+expected_decision: ready_to_submit

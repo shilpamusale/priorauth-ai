@@ -43,8 +43,7 @@ def test_health():
 
 
 def test_policies_are_listed_with_their_fingerprints():
-    [listed] = service()[0].get("/policies").json()
-    assert listed["policy_id"] == "l38773_first_mbb"
+    listed = {p["policy_id"]: p for p in service()[0].get("/policies").json()}["l38773_first_mbb"]
     assert listed["fingerprint"] == fingerprint(POLICY)
     assert listed["criteria"] == [c.criterion_id for c in POLICY.criteria]
 

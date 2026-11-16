@@ -1,0 +1,52 @@
+# Upper eyelid blepharoplasty for visual impairment, Traditional Medicare hospital outpatient prior
+# authorization, CGS Administrators (Jurisdiction 15: Kentucky and Ohio).
+#
+# Source: LCD L33944 "Blepharoplasty", version 28. Its coverage text is extracted to sources/l33944_v28.txt,
+# and every source quote below must appear there (checked on load).
+#
+# Choices made here (Nov 15, 2026):
+# - Covers the LCD's first group of indications: visual impairment from excess upper eyelid skin
+#   (dermatochalasis, blepharochalasis, pseudoptosis). Ptosis repair, brow lift, lower lids, repair after
+#   trauma or tumor surgery, and blepharospasm are not covered here.
+# - The visual field requirement is split in two: the loss with the lids at rest, and the improvement with
+#   the lids taped up. Each can be missing on its own, and each gap names one test to send.
+# - Photographs are not a criterion: the LCD says they may be used but are not required.
+# - Added with no change to the engine: retrieval, the agent, verification and the decision rule are the
+#   ones built for the facet policy.
+
+policy_id: l33944_upper_bleph
+title: "Blepharoplasty (LCD L33944 v28, CGS J15): upper eyelid blepharoplasty for visual impairment"
+source: https://www.cms.gov/medicare-coverage-database/view/lcd.aspx?lcdid=33944&ver=28
+# Upper eyelid blepharoplasty, and its code for excess skin weighting down the lid.
+service_codes: ["15822", "15823"]
+
+criteria:
+  - criterion_id: l33944_upper_bleph.excess_skin
+    text: >-
+      An eyelid exam documents excess upper eyelid skin (dermatochalasis or blepharochalasis) that hangs over
+      the lid margin or rests on the lashes.
+    source_quotes:
+      - Dermatochalasis, including symptomatic redundant skin weighing down on the upper eyelashes
+      - excess skin that hangs over the edge of the eyelid
+  - criterion_id: l33944_upper_bleph.functional_complaint
+    text: >-
+      The patient reports that the eyelids interfere with vision, such as trouble seeing above or to the
+      side, difficulty reading, or looking through the lashes or seeing the eyelid skin.
+    source_quotes:
+      - must be supported by documented patient complaints which justify functional surgery
+      - Significant interference with vision or superior or lateral visual field
+      - Difficulty reading due to superior visual field loss
+      - Looking through the eyelashes or seeing the upper eyelid skin
+  - criterion_id: l33944_upper_bleph.field_loss
+    text: >-
+      Visual field testing with the upper lids in their natural position shows a loss of at least 12 degrees
+      or 30 percent of the upper field.
+    source_quotes:
+      - A minimum 12 degree or 30 percent loss of upper field of vision with upper lid skin and/or upper lid margin in repose
+  - criterion_id: l33944_upper_bleph.field_improves_taped
+    text: >-
+      Visual field testing repeated with the upper lids taped up shows the field improves, so surgery can be
+      expected to correct the loss.
+    source_quotes:
+      - elevated (by taping of the lid) to demonstrate potential correction by the proposed procedure or procedures is required
+      - The visual fields should demonstrate a significant loss of superior visual field and potential correction
