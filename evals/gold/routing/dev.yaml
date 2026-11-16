@@ -1,0 +1,26 @@
+# Routing-only cases: requests that must not reach a policy, and why. No chart and no model: retrieval
+# and the code check decide them. The dev gold cases add the positives, each reaching its own policy.
+- case_id: route_dev_001
+  ordered_service: Endovenous radiofrequency ablation, right great saphenous vein
+  service_code: "36475"
+  expected: unsupported  # the varicose vein LCD is indexed, but no policy is built on it
+- case_id: route_dev_002
+  ordered_service: Radiofrequency ablation of the lumbar medial branch nerves, L4-L5 and L5-S1
+  service_code: "64635"
+  expected: code_not_covered  # the facet LCD, but the facet policy decides first diagnostic blocks only
+- case_id: route_dev_003
+  ordered_service: Diagnostic lumbar medial branch blocks, L4-L5 and L5-S1
+  service_code: "15823"
+  expected: code_not_covered  # the order and the code describe different services
+- case_id: route_dev_004
+  ordered_service: Total knee arthroplasty, right knee
+  service_code: "27447"
+  expected: no_match
+- case_id: route_dev_005
+  ordered_service: Cataract extraction with intraocular lens implant, left eye
+  service_code: "66984"
+  expected: no_match  # an eye procedure that is not eyelid surgery
+- case_id: route_dev_006
+  ordered_service: Bilateral upper eyelid blepharoplasty for visual field obstruction
+  service_code: "15823"
+  expected: unsupported  # until a blepharoplasty policy is added

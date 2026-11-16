@@ -1,0 +1,118 @@
+# source: https://www.cms.gov/medicare-coverage-database/view/lcd.aspx?lcdid=34082&ver=31
+# section: Coverage Indications, Limitations, and/or Medical Necessity
+
+Coverage Indications, Limitations, and/or Medical Necessity
+Abstract:
+Varicose veins are caused by venous insufficiency as a result of valve reflux (incompetence).
+The venous insufficiency results in dilated, tortuous, superficial vessels that protrude from
+the skin of the lower extremities. Spider veins (telangiectases) are dilated capillary veins that
+are most often treated for cosmetic purposes. Treatment of telangiectases CPT code 36468)
+is not covered by Medicare.
+Ligation and stripping of varicose veins is a treatment option that aims to eliminate reflux at
+the saphenofemoral junction. The treatment of choice for moderate to large symptomatic
+varicose veins, ligation and stripping of the saphenous vein, has the lowest failure rate.
+Sclerotherapy, injecting sclerosing solutions directly into the abnormal veins, is an alternative
+occasionally selected for the treatment of varicose veins without significant saphenofemoral
+or saphenopopliteal incompetence. However, it is not considered to be as reliable and
+effective as surgical ligation and stripping.
+Sclerotherapy for cosmetic purposes is considered not medically necessary. Sclerotherapy is
+considered medically necessary for the treatment of small to medium sized vessels (less
+than or equal to 4 mm in diameter.) Sclerotherapy is not considered medically necessary for
+vessels larger than 4 mm in diameter.
+Foam sclerotherapy of the saphenous vein at its junction with the deep venous system has
+been proposed as an alternative to ligation or saphenectomy, but its efficacy lacks
+significant scientific evidence to support its widespread use. The current consensus is that
+most recommendations for conventional sclerotherapy also apply to foam sclerotherapy.
+Sclerotherapy of the saphenous vein at its junction with the deep system is not a covered
+procedure.
+Non-compressive sclerotherapy involves injection of a sclerosant into a vein without the
+application of a compressive dressing. Because it is not effective in producing long-term
+obliteration of the incompetent veins, noncompressive sclerotherapy is not covered by
+Medicare.
+Compressive sclerotherapy is the injection of the sclerosant into an empty vein (elevated
+limb) followed by application of a compressive bandage or dressing. This is the most
+commonly performed sclerotherapy procedure for varicose veins of the lower extremity.
+Compressive sclerotherapy is indicated for local small to medium symptomatic varices,
+isolated incompetent perforators, or recurrence of symptomatic varices after adequate
+surgical removal of varices. It is not considered an appropriate option for large, extensive or
+truncal varicosities.
+High ligation and compression sclerotherapy refers to ligation of a truncal junction
+(saphenofemoral or saphenopopliteal) followed by compressive sclerotherapy of one or
+more veins.
+Endovenous radiofrequency ablation (EFRA) and laser ablation are minimally invasive
+alternatives to vein ligation and stripping. Endovenous radiofrequency ablation is FDA-
+approved for treatment of the greater saphenous vein, perforators and tributary veins.
+Endovenous laser ablation is FDA-approved for the treatment of varicose veins and
+varicosities associated with superficial reflux of the greater saphenous vein.
+Indications:
+Medicare will consider interventional treatment of varicose veins (sclerotherapy, ligation with
+or without stripping, and endovenous radiofrequency or laser ablation) medically necessary
+if the patient remains symptomatic after a six-week trial of conservative therapy. The
+components of the conservative therapy include, but are not limited to:
+weight reduction,
+a daily exercise plan,
+periodic leg elevation, and
+the use of graduated compression stockings.
+The conservative therapy must be documented in the medical record.
+The patient is considered symptomatic if any of the following signs and symptoms of
+significantly diseased vessels of the lower extremities are documented in the medical record:
+stasis ulcer of the lower leg, as above,
+significant pain and significant edema that interferes with activities of daily living,
+bleeding associated with the diseased vessels of the lower extremities,
+recurrent episodes of superficial phlebitis,
+stasis dermatitis, or
+refractory dependent edema.
+Additional indications and limitations are discussed according to type of treatment.
+In addition to the requirement for failure of a six-week trial of conservative treatment and
+the symptoms described above, coverage of endovenous ablation therapy is limited to
+patients with:
+a maximum vein diameter of 20 mm for laser ablation;
+absence of thrombosis or vein tortuosity, which would impair catheter advancement; and
+absence of significant peripheral artery disease.
+Radiofrequency/laser ablation is covered only for treatment of the lesser or greater
+saphenous veins to improve symptoms attributable to saphenofemoral or saphenopopliteal
+reflux. Coverage is only for FDA devices specifically approved for these procedures.
+Non-cosmetic sclerotherapy will also be covered if performed in conjunction with surgical
+ligation or stripping procedures in appropriately selected patients.
+Limitations:
+Duplex ultrasound is often used in conjunction with other non-invasive physiologic testing to
+define the anatomy and physiology of the varicose vein network prior to injection or surgical
+intervention. There is adequate evidence that the pre-procedural ultrasound is helpful, and
+Medicare will cover a pre procedure Duplex scan CPT code 93970 or 93971) used in
+conjunction with other non-invasive physiologic testing CPT code to determine the extent
+and configuration of the varicosities. CGS expects that these studies will be performed by
+the provider planning to provide the therapy. CGS will allow this study once per provider or
+provider group. Clinical experience supports the use of ultrasound during the sclerotherapy
+procedure, and evidence shows that the outcomes may be improved and complication rates
+may be minimized when ultrasound guidance is used.
+Medicare will cover intraoperative ultrasonic guidance in situations when it is medically
+necessary.
+Medicare includes payment for the ultrasound in the payment for the ERFA and laser
+ablation procedures.
+Cosmetic surgery is statutorily excluded from coverage by Medicare. The following
+interventional treatments are considered to be cosmetic and will be denied as such:
+Interventional treatment of asymptomatic varicosities.
+Treatment of telangiectases (36468).
+Sclerotherapy for cosmetic purposes.
+Medicare cannot cover services which are not reasonable and necessary for the treatment
+of illness or injury or to improve the functioning of a malformed body member. The following
+interventional treatments are not considered medically reasonable or necessary and are
+denied as such:
+Interventional treatment of symptomatic varicosities without documentation of a failed six week trial
+of conservative therapy.
+Sclerotherapy for vessels larger than 4 mm in diameter.
+Reinjection following recanalization or failure of vein closure without recurrent signs or symptoms.
+Sclerotherapy of the saphenous vein at its junction with the deep system.
+Noncompressive sclerotherapy.
+Compressive sclerotherapy for large, extensive or truncal varicosities.
+Sclerotherapy, ligation and/or stripping of varicose veins, or endovenous ablation therapy are not
+covered for pregnant women, or patients with the inability to tolerate compressive bandages or
+stockings; severe distal arterial occlusive disease; obliteration of deep venous system; an allergy to
+the sclerosant; or a hypercoaguable state.
+Any interventional treatment that uses equipment or sclerosants not approved for such purposes by
+the FDA.
+Laser ablation of veins with a diameter greater than 20 mm.
+Endovenous ablation therapy in the presence of thrombosis or venous tortuosity which would impair
+catheter advancement.
+CPT codes 37760 and 37761 should not be reported in conjunction with CPT codes 76937,
+76942, 76998 or 93971.

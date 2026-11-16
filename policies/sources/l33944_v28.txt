@@ -1,0 +1,136 @@
+# source: https://www.cms.gov/medicare-coverage-database/view/lcd.aspx?lcdid=33944&ver=28
+# section: Coverage Indications, Limitations, and/or Medical Necessity
+
+Coverage Indications, Limitations, and/or Medical Necessity
+Abstract:
+Medicare does not cover cosmetic surgery or expenses incurred in connection with such
+surgery. Cosmetic surgery is defined by Medicare as: “any surgical procedure directed at
+improving appearance, except when required for the prompt [i.e., as soon as medically
+feasible] repair of accidental injury or for the improvement of the functioning of a malformed
+body member. For example, this exclusion does not apply to surgery in connection with
+treatment of severe burns or repair of the face following a serious automobile accident, or to
+surgery for therapeutic purposes which coincidentally also serves some cosmetic purpose”
+(CMS Publication 100-2; Medicare Benefit Policy Manual, Chapter 16, Section 120). This
+local coverage determination provides additional guidance on CGS covered indications and
+limitations of coverage for blepharoplasty surgery
+The American Society of Plastic and Reconstructive Surgeons has published the following
+definitions:
+1. Blepharoplasty may be defined as any eyelid surgery that improves abnormal function, reconstructs
+deformities, or enhances appearance. It may be either reconstructive or cosmetic (aesthetic).
+2. Cosmetic Blepharoplasty: When blepharoplasty is performed to improve a patient’s appearance in
+the absence of any signs or symptoms of functional abnormalities, the procedure is considered
+cosmetic.
+3. Reconstructive Blepharoplasty: When blepharoplasty is performed to correct visual impairment
+caused by drooping of the eyelids (ptosis); repair defects caused by trauma or tumor-ablative
+surgery (ectropion/entropion corneal exposure); treat periorbital sequelae of thyroid disease and
+nerve palsy; or relieve the painful symptoms of blepharospasm, the procedure should be considered
+reconstructive. This may involve rearrangement or excision of the structures with the eyelids and/or
+tissues of the cheek, forehead and nasal areas. Occasionally a graft of skin or other distant tissues is
+transplanted to replace deficient eyelid components.
+Based upon the above definitions, surgery of the upper eyelids is reconstructive when it
+provides functional vision and/or visual field benefits or improves the functioning of a
+malformed or degenerated body member, but cosmetic when done to enhance aesthetic
+appearance. The goal of functional restorative surgery is to restore significant function to a
+structure that has been altered by trauma, infection, inflammation, degeneration (e.g., from
+aging), neoplasia, or developmental errors.
+Upper blepharoplasty and/or repair of blepharoptosis may be considered functional in
+nature when excess upper eyelid tissue or the upper lid position produces functional
+complaints. Those functional complaints are usually related to visual field impairment in
+primary gaze and/or down gaze (e.g., reading position). The visual impairment is commonly
+related to a lower than normal position of the eyelid relative to the pupil and/or to excess
+skin that hangs over the edge of the eyelid. Upper blepharoplasty may also be indicated for
+chronic dermatitis due to redundant skin and for patients with an anophthalmic socket who
+are experiencing prosthesis difficulties. Brow ptosis may also produce or contribute to
+functional visual field impairment. Either or both of these procedures may be required in
+some situations when a blepharoplasty would not result in a satisfactory functional repair.
+Similarly, surgery of the lower eyelids is reconstructive when poor eyelid tone (with or
+without entropion or ectropion) causes dysfunction of the “lacrimal pump,” lid retraction,
+and/or exposure keratoconjunctivitis that often results in epiphora (tearing).
+The following are terms used to describe conditions which may require repair of the
+eyelids(s):
+1. Dermatochalasis: excess skin with loss of elasticity that is usually the result of the aging process.
+2. Blepharochalasis: excess skin associated with chronic recurrent eyelid edema that physically
+stretches the skin.
+3. Blepharoptosis: drooping of the upper eyelid which relates to the position of the eyelid margin with
+respect to the eyeball and visual axis.
+4. Pseudoptosis: “false ptosis,” for the purposes of this policy, describes the specific circumstance when
+the eyelid margin is usually in an appropriate anatomic position with respect to the eyeball and
+visual axis but the amount of excessive skin from dermatochalasis or blepharochalasis is so great as
+to overhang the eyelid margin and create its own ptosis. Other causes of pseudoptosis, such as
+hypotropia and globe malposition, are managed differently and do not apply to this policy.
+Pseudoptosis resulting from insufficient posterior support of the eyelid, as in phthisis bulbi,
+microphthalmos, congenital or acquired anophthalmos, or enophthalmos is often correctable by
+prosthesis modification when a prosthesis is present, although persistent ptosis may be corrected by
+surgical ptosis repair.
+5. Brow Ptosis: drooping of the eyebrows to such an extent that excess tissue is pushed into the upper
+eyelid. It is recognized that in some instances the brow ptosis may contribute to significant superior
+visual field loss. It may coexist with clinically significant dermatochalasis and/or lid ptosis.
+6. Horizontal Eyelid Laxity: poor eyelid tone, usually a result of the aging process, that causes (1) lid
+retraction without frank ectropion formation but with corneal exposure and irritation (foreign body
+sensation) and (2) dysfunction of the eyelid “lacrimal pump,” both of which result in symptomatic
+tearing (epiphora).
+Indications and Limitations:
+The conditions listed under “2” and “3” below are generally considered reconstructive and
+not subject to the medical review of conditions listed under “1” which have the potential of
+being considered cosmetic
+Blepharoplasty may be considered reconstructive when performed for one of the following
+conditions that may affect both upper and lower eyelids.
+To correct visual impairment caused by:
+1. Dermatochalasis, including symptomatic redundant skin weighing down on the upper
+eyelashes (i.e., pseudoptosis) and surgically induced dermatochalasis after ptosis repair.
+2. Blepharochalasis.
+3. Blepharoptosis, including dehiscence of the aponeurosis of the levator palpebrae superioris
+muscle after trauma or cataract extraction, causing ptosis that may obstruct the superior visual
+field as well as the visual axis in downgaze (reading position).
+4. Brow ptosis.
+It is recognized that brow ptosis repair, in addition to blepharoplasty and/or blepharoptosis
+repair, may be necessary in some cases to provide an adequate functional result.
+Any procedure(s) involving blepharoplasty and billed to this contractor must be supported by
+documented patient complaints which justify functional surgery. This documentation must address
+the signs and symptoms commonly found in association with ptosis, pseudoptosis, blepharochalasis
+and/or dermatochalasis. These include (but are not limited to):
+1. Significant interference with vision or superior or lateral visual field, (e.g., difficulty seeing
+objects approaching from the periphery);
+2. Difficulty reading due to superior visual field loss; or,
+3. Looking through the eyelashes or seeing the upper eyelid skin.
+The visual fields should demonstrate a significant loss of superior visual field and potential correction
+of the visual field by the proposed procedures(s). A minimum 12 degree or 30 percent loss of upper
+field of vision with upper lid skin and/or upper lid margin in repose and elevated (by taping of the lid)
+to demonstrate potential correction by the proposed procedure or procedures is required.
+Photographs may be used to demonstrate the eyelid abnormality(ies) necessitating the
+procedures(s), but are not required. (Photography for purposes of documentation is not seperately
+reportable or reimbursed.) (Please see “Documentation Requirements.”)
+Please note that in the case of prosthetic difficulties associated with an anophthalmic,
+microphthalmic, or enophthalmic socket, subjective complaints, examination findings (signs), and
+failure of prosthesis modification (when indicated) must be documented, along with photographic
+documentation demonstrating the contribution of one of the above mentioned orbital and/or globe
+abnormalities as they relate to the abnormal upper and/or lower eyelid position and intolerance of
+prosthesis wear. (Please see “Documentation Requirements.”)
+Repair of anatomical or pathological defects, including those caused by disease (including thyroid
+dysfunction and cranial nerve palsies), trauma, or tumor-ablative surgery. Surgery is performed to
+reconstruct the normal structure of the eyelid, using local or distant tissue. Reconstruction may be
+necessary to protect the eye and/or improve visual function. Conditions that may require
+blepharoplasty, ptosis repair, ectropion repair, or entropion repair are:
+1. Ectropion and entropion
+2. Epiblepharon
+3. Post-traumatic defects of the eyelid
+4. Post-surgical defects after excision of neoplasm(s)
+5. Lagophthalmos
+6. Congenital lagophthalmos
+7. Congenital ectropion, entropion
+8. Congenital ptosis
+9. Lid retraction or lag (due to horizontal lower eyelid laxity without ectropion or entropion,
+causing exposure keratopathy and/or epiphora; due to horizontal upper eyelid laxity, causing
+floppy eyelid syndrome; or due to orbital thyroid disease).
+10. Chronic symptomatic dermatitis of pretarsal skin caused by redundant upper eyelid skin.
+The medical record must contain documented patient complaints and pertinent examination findings
+to justify the medical necessity for functional, restorative procedures(s) for the treatment of any of
+the above conditions. (Please see “Documentation Requirements.”) (Photography for purposes of
+documentation is not separately reportable or reimbursed.)
+Relief of eye symptoms associated with blepharospasm. Primary essential (idiopathic)
+blepharospasm is characterized by severe squinting, secondary to uncontrollable spasms the peri-
+ocular facial muscles. Occasionally, it can be debilitating. If other treatments have failed or are
+contraindicated, a blepharoplasty combined with limited myectomy may be necessary.
+Patient complaints and relevant medical history (e.g., failure to respond to botulinum toxin therapy,
+botulinum toxin therapy is contraindicated, etc.) must be documented and available upon request.
+Please see “Documentation Requirements.”

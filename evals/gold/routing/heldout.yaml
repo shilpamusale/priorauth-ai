@@ -1,0 +1,13 @@
+# Held out until the final evaluation, like the held-out gold cases.
+- case_id: route_heldout_001
+  ordered_service: Stab phlebectomy of varicose veins, left calf
+  service_code: "37765"
+  expected: unsupported
+- case_id: route_heldout_002
+  ordered_service: Anterior cervical discectomy and fusion, C5-C6
+  service_code: "22551"
+  expected: no_match  # spine, but not a facet procedure
+- case_id: route_heldout_003
+  ordered_service: Septorhinoplasty for nasal airway obstruction
+  service_code: "30420"
+  expected: no_match

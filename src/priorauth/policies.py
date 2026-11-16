@@ -86,7 +86,17 @@ def load_policies(directory: Path) -> dict[str, Policy]:
     for policy in map(load_policy, paths):
         check_quotes(policy, sources)
         policies[policy.policy_id] = policy
+    check_codes(policies.values())
     return policies
+
+
+def check_codes(policies) -> None:
+    """Two policies built on one LCD may not cover the same service code, so a route is never ambiguous."""
+    owner: dict[tuple[str, str], str] = {}
+    for policy in policies:
+        for code in policy.service_codes:
+            if (other := owner.setdefault((policy.source, code), policy.policy_id)) != policy.policy_id:
+                raise PolicyError(f"{policy.policy_id} and {other} are both built on {policy.source} and cover {code}")
 
 
 def fingerprint(policy: Policy) -> str:
