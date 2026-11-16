@@ -1,12 +1,12 @@
 {
- "cases": 14,
- "trials": 14,
+ "cases": 17,
+ "trials": 17,
  "errors": 0,
  "decision_accuracy": 1.0,
- "criterion_accuracy": 0.9821428571428571,
+ "criterion_accuracy": 0.9838709677419355,
  "check_pass_rates": {
   "decision_correct": 1.0,
-  "criteria_correct": 0.8571428571428571,
+  "criteria_correct": 0.8823529411764706,
   "evidence_notes_match": 1.0,
   "evidence_grounded": 1.0,
   "ready_requires_all_met": 1.0,
@@ -14,7 +14,7 @@
  },
  "hard_gate_failures": [],
  "unstable_cases": [],
- "input_tokens": 502803,
- "output_tokens": 52705,
- "cost_usd": 1.5327
+ "input_tokens": 552259,
+ "output_tokens": 57275,
+ "cost_usd": 1.6773
 }

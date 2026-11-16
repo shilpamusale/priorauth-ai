@@ -1,0 +1,232 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "df6d65a46c37399d",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01NmLnEE1PTaAt5F7t6ABFqv",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01BB6aNsCLXNNbc5Wuy4GvMG",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01AUiyho9kZthyr8bz5i27LP",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2005,
+     "output_tokens": 144
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01NmLnEE1PTaAt5F7t6ABFqv",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01BB6aNsCLXNNbc5Wuy4GvMG",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01AUiyho9kZthyr8bz5i27LP",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "2e356091dfad66d9",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01DuRuu8jNK9kCNhsaxRKavZ",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "redundant skin resting on the lashes and covering the lid margin in both eyes"
+        }
+       ],
+       "reasoning": "Oculoplastic exam documents bilateral dermatochalasis with skin on lashes and covering lid margin."
+      }
+     },
+     {
+      "id": "toolu_01MykwwpKYnZscodhZxQrVWd",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "Reports that her eyelids block her view when driving and reading"
+        },
+        {
+         "note_id": "n1",
+         "quote": "has trouble seeing traffic lights while driving because the skin of her upper eyelids is in the way"
+        }
+       ],
+       "reasoning": "Patient reports eyelids interfering with vision when driving and reading."
+      }
+     },
+     {
+      "id": "toolu_01NZuVP68UiTdsC5Fi39M3SL",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "superior field loss of 32 degrees in the right eye and 30 degrees in the left"
+        }
+       ],
+       "reasoning": "Untaped superior field loss is 30+ degrees in both eyes, exceeding the 12-degree threshold."
+      }
+     },
+     {
+      "id": "toolu_01EmqVqF4YnHeCvcrTXy5u55",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "superior field loss reduced to 4 degrees in the right eye and 3 degrees in the left"
+        }
+       ],
+       "reasoning": "Taped testing shows marked improvement in superior field in both eyes."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2679,
+     "output_tokens": 866
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01DuRuu8jNK9kCNhsaxRKavZ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "redundant skin resting on the lashes and covering the lid margin in both eyes"
+        }
+       ],
+       "reasoning": "Oculoplastic exam documents bilateral dermatochalasis with skin on lashes and covering lid margin."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01MykwwpKYnZscodhZxQrVWd",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "Reports that her eyelids block her view when driving and reading"
+        },
+        {
+         "note_id": "n1",
+         "quote": "has trouble seeing traffic lights while driving because the skin of her upper eyelids is in the way"
+        }
+       ],
+       "reasoning": "Patient reports eyelids interfering with vision when driving and reading."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01NZuVP68UiTdsC5Fi39M3SL",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "superior field loss of 32 degrees in the right eye and 30 degrees in the left"
+        }
+       ],
+       "reasoning": "Untaped superior field loss is 30+ degrees in both eyes, exceeding the 12-degree threshold."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01EmqVqF4YnHeCvcrTXy5u55",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "superior field loss reduced to 4 degrees in the right eye and 3 degrees in the left"
+        }
+       ],
+       "reasoning": "Taped testing shows marked improvement in superior field in both eyes."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

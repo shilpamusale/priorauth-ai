@@ -1,0 +1,417 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "ded65183bbde3597",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01YN992BTbLGJpXP4ZbBw57y",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01BdQZcQHuJynTHtXRA4A7uf",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1706,
+     "output_tokens": 97
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01YN992BTbLGJpXP4ZbBw57y",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01BdQZcQHuJynTHtXRA4A7uf",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "b603d9f9164ee792",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01YYCLpRmKmEqbeqHGE5GQwX",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_0192BBURVfQoaGJV51n9FWDN",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1723,
+     "output_tokens": 97
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01YYCLpRmKmEqbeqHGE5GQwX",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_0192BBURVfQoaGJV51n9FWDN",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "a95d2c0fb4ef5223",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_014wmtxn5iseTE1Jt33m5EB2",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01JmBjr8oQehAgRuDAaY3ohx",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1703,
+     "output_tokens": 97
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_014wmtxn5iseTE1Jt33m5EB2",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01JmBjr8oQehAgRuDAaY3ohx",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "7a0380033bf30d58",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01YZR7ZFNZLxdCwRBt1yZPvh",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_015wDBg7UsGUYGV6rKcmcrNn",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 1717,
+     "output_tokens": 97
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01YZR7ZFNZLxdCwRBt1yZPvh",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_015wDBg7UsGUYGV6rKcmcrNn",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "ca28319504d25b03",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_011f18QRHMCnGYRTctayQBcd",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "they get in the way when she reads in the evening"
+        }
+       ],
+       "reasoning": "The patient reports her upper lids interfere with reading in the evening, which is a functional vision complaint."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2080,
+     "output_tokens": 198
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_011f18QRHMCnGYRTctayQBcd",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "they get in the way when she reads in the evening"
+        }
+       ],
+       "reasoning": "The patient reports her upper lids interfere with reading in the evening, which is a functional vision complaint."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "281d2ded2c00d9d4",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01FWHg3Tsd32JE9WE4Z1PFUY",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "not_met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "Untaped: superior field loss of 8 degrees in the right eye and 6 degrees in the left, about 15 percent of the upper field."
+        }
+       ],
+       "reasoning": "Untaped (natural position) superior field loss was 8° right and 6° left, about 15%, below the thresholds of at least 12° or 30%."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2060,
+     "output_tokens": 244
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01FWHg3Tsd32JE9WE4Z1PFUY",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "not_met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "Untaped: superior field loss of 8 degrees in the right eye and 6 degrees in the left, about 15 percent of the upper field."
+        }
+       ],
+       "reasoning": "Untaped (natural position) superior field loss was 8° right and 6° left, about 15%, below the thresholds of at least 12° or 30%."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "5a16edb480b42093",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01MKtwBy1TzPxfmJRQgZDQGe",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "redundant upper eyelid skin resting on the lashes in both eyes"
+        }
+       ],
+       "reasoning": "The eyelid exam documents redundant upper eyelid skin resting on the lashes in both eyes."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2074,
+     "output_tokens": 208
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01MKtwBy1TzPxfmJRQgZDQGe",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "redundant upper eyelid skin resting on the lashes in both eyes"
+        }
+       ],
+       "reasoning": "The eyelid exam documents redundant upper eyelid skin resting on the lashes in both eyes."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "cecbc489e7e4bdd1",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01NivPv8CfE5FgsbxvdiqUQh",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "Untaped: superior field loss of 8 degrees in the right eye and 6 degrees in the left"
+        },
+        {
+         "note_id": "n2",
+         "quote": "Taped: loss of 2 degrees in each eye."
+        }
+       ],
+       "reasoning": "Superior field testing was repeated with lids taped and showed less loss in both eyes (8 to 2 degrees on the right, 6 to 2 on the left), so the field improves."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2063,
+     "output_tokens": 307
+    },
+    "provider_blocks": [
+     {
+      "signature": "CAQSoQUKEAgTGAI4AUIIdGhpbmtpbmcSDNI2oX0vHeiKsfGTERoMDmZ1h7HkluM9nnubIjAXI7HEMOtlmaNJ73QVaAd2FGznwRP+p1i9oGmQ8qD6b9RXz/0hoKxOe1UdT13vCV4qvgTpAW2mjH9PyjnLt/u8NouAxhBAOpN/23ueZiyfhh08ahgujno+XXOEkS+a9PGaAnuMFSCdZvIWjfzHITGS9rEkX477exS0j7YmofyXfWiZIzvYbUdLaFAKgrThbwqohIFHkmxNGFDvX4Em+5tnjaWeziv3Rq2xKGAn4H6ffyviRPQMhd6ePEi94UXnSBXMK4r4Tfn5xlxZXqR4KM4vgGW+ANF3QLwd7xQxfeelaGNTbsCf60sQ+xidkT0CwVbb8rWOfJceYPqUZc804m0apY+ZTbjFP0fY53OFPmR9l24RsVOlHalSWQnz7D+JtTQS2EJ0RbxGvAW/hZdsHf9NytecE3mFMb6pnQ76uNmZmo6r/IExZE0WUyLrOnEioWrs2TQXJ5Ex0x7UdvxdpYxPJHG9RIAIUd3n+Du3P6EY/MBHhNOopV0fhf/K+04pjYWlbhfEFDa3szhJRVsowZTJqL2x1tRcM9e52DsniDaINmwOYLnUReW/IWR1u7GKG83y4H0RYNrr3eMJ0V65Jaz7K0e289W++B3qaxldPo9T1TdK1+A9QDKPL/edKoLT6CF7x75VII8mosZfrE7POqiQSRonBb7oA+V2HbSY38RnYL8Mc2bKBN991HIUAyVoHbzivpjdd3/KmkAFop5Mzlh0vL7mwjw8QC94Ot/ZXMbjTemFkFWLOCOKiRWXsx2mP2j356mvjbjWTqVDixGmnluWFOyeZ9sQMtvweLv7tJQgW/eURiCa0tfkbTWSMG61+4gWGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01NivPv8CfE5FgsbxvdiqUQh",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n2",
+         "quote": "Untaped: superior field loss of 8 degrees in the right eye and 6 degrees in the left"
+        },
+        {
+         "note_id": "n2",
+         "quote": "Taped: loss of 2 degrees in each eye."
+        }
+       ],
+       "reasoning": "Superior field testing was repeated with lids taped and showed less loss in both eyes (8 to 2 degrees on the right, 6 to 2 on the left), so the field improves."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}
