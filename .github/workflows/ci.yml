@@ -56,3 +56,12 @@ jobs:
           docker run -d -p 8081:8080 --name api priorauth-api
           for i in $(seq 1 30); do curl -sf localhost:8081/health && break; sleep 2; done
           curl -sf localhost:8081/policies | grep -q l38773_first_mbb || { docker logs api; exit 1; }
+      - name: The API routes a request with its baked-in embedding model, without a key
+        run: |
+          cat > knee.json <<'EOF'
+          {"case_id": "smoke", "payer": "Medicare", "request_date": "2026-11-01", "service_code": "27447",
+           "ordered_service": "Total knee arthroplasty, right knee", "icd10_codes": ["M17.11"],
+           "notes": [{"note_id": "n1", "date": "2026-10-01", "note_type": "orthopedic visit", "text": "Knee pain."}]}
+          EOF
+          curl -sf -X POST localhost:8081/requests -H 'content-type: application/json' -d @knee.json | tee routed.json
+          grep -q '"no_match"' routed.json || { docker logs api; exit 1; }
