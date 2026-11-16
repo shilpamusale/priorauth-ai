@@ -3,10 +3,10 @@
  "trials": 51,
  "errors": 0,
  "decision_accuracy": 1.0,
- "criterion_accuracy": 0.9946236559139785,
+ "criterion_accuracy": 0.9865591397849462,
  "check_pass_rates": {
   "decision_correct": 1.0,
-  "criteria_correct": 0.9607843137254902,
+  "criteria_correct": 0.9019607843137255,
   "evidence_notes_match": 1.0,
   "evidence_grounded": 1.0,
   "ready_requires_all_met": 1.0,

@@ -30,6 +30,10 @@ jobs:
         run: python -m evals.gaps replay
       - name: Retrieval gate (each dev request reaches its policy or escalates for the stated reason)
         run: python -m evals.routing --min-accuracy 0.95  # downloads the embedding model on first use
+      - name: The final held-out run, replayed (it was recorded once; this keeps it from silently breaking)
+        run: |
+          python -m evals.runner replay --split heldout --allow-heldout --min-decision-accuracy 0.95
+          python -m evals.routing --split heldout --allow-heldout  # fails only on an unsafe route
       - name: LLM judge calibration (informs a review, never blocks a merge)
         continue-on-error: true
         run: python -m evals.calibration

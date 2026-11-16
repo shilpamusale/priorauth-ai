@@ -84,3 +84,20 @@ says, and the gold set is less certain than its labels look.
 For the 7 held-out cases, 3 trials each: decisions, criterion statuses, hard-gate failures, trials that
 disagree and cost. For the 3 held-out routing requests and the 7 held-out orders: routes right, and any
 unsafe route. Every held-out miss will be placed in one of the categories above, or named as a new one.
+
+## Result, appended after the held-out run
+
+Recorded once, on Nov 15, 2026, with the system frozen as above.
+
+- **Agent:** 21 of 21 runs reached the expected decision and all 156 criterion statuses match the gold
+  labels. No hard gate failed and no case's trials disagreed. Cost $0.61.
+- **Retrieval:** 9 of 10 routed right and none unsafe. Both shorthand orders routed. The miss was the thin
+  margin of section 4 on a new order: "Anterior cervical discectomy and fusion, C5-C6" came within the
+  distance limit of the facet LCD (0.514), and the code check stopped it, so it escalated as
+  `code_not_covered` instead of `no_match`. A new category is not needed: it is the margin problem, caught
+  by the code check the design puts after retrieval.
+- **Done after the run, as decided in section 3:** dev_011's pain severity label became insufficient
+  evidence. The dev criterion score moves from 370 to 367 of 372; no decision changes.
+- **Still to do:** the functional-deficit wording (a policy change that needs re-recorded runs), the
+  question on "no other pathology" and imaging dates, keyword search alongside the embedding search, and
+  `judge_v2`.
