@@ -10,13 +10,16 @@ WORKDIR /app
 
 COPY pyproject.toml README.md ./
 COPY src ./src
-RUN pip install ".[api,agent]"
+RUN pip install ".[api,agent,retrieval]"
 
 # Policies load and their LCD quotes are checked when the service starts.
 COPY policies ./policies
 
 RUN useradd --create-home api
 USER api
+
+# Bake ChromaDB's embedding model into the image, so retrieval never downloads at run time.
+RUN python -c "from chromadb.utils.embedding_functions import DefaultEmbeddingFunction as E; E()(['warm up'])"
 
 # Cloud Run sets PORT, 8080 by default.
 CMD ["sh", "-c", "exec uvicorn priorauth.api:app --host 0.0.0.0 --port ${PORT:-8080}"]
