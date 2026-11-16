@@ -8,7 +8,10 @@ from its recordings in the same way.
 
 import html
 import os
+from collections.abc import Mapping
 from pathlib import Path
+
+from pydantic import ValidationError
 
 from evals.calibration import CalibrationReport
 from evals.checks import run_checks
@@ -25,9 +28,11 @@ from priorauth.matcher import DEFAULT_MODEL
 from priorauth.pipeline import Pipeline
 from priorauth.policies import load_sources
 from priorauth.retrieval import PolicyIndex, lcd_name
-from priorauth.schemas import Policy
+from priorauth.review import Override
+from priorauth.schemas import CriterionResult, Evidence, Policy, PolicyCriterion
 
 SPLIT = "dev"
+KEEP = "keep the agent's finding"  # the review form's first choice for each criterion
 CALIBRATION = Path("evals/results/judge_calibration.json")
 
 
@@ -38,6 +43,31 @@ def folders() -> tuple[Path, Path, Path]:
         Path(os.environ.get("PRIORAUTH_RECORDINGS", RECORDINGS)),
         Path(os.environ.get("PRIORAUTH_POLICIES", POLICIES)),
     )
+
+
+def overrides_from_answers(
+    case_id: str, criteria: list[PolicyCriterion], findings: dict[str, CriterionResult], answers: Mapping[str, str]
+) -> tuple[dict[str, Override], list[str]]:
+    """The reviewer's changes from the review form's answers (keyed case:criterion:field), and what is wrong."""
+    overrides, problems = {}, []
+    for criterion in criteria:
+        cid = criterion.criterion_id
+        choice = answers[f"{case_id}:{cid}:status"]
+        reason = answers[f"{case_id}:{cid}:reason"].strip()
+        note, quote = answers[f"{case_id}:{cid}:note"], answers[f"{case_id}:{cid}:quote"].strip()
+        if choice == KEEP:
+            if cid not in findings:
+                problems.append(f"{cid}: the agent left this unchecked, so give it a status")
+            continue
+        if not reason:
+            problems.append(f"{cid}: say why you changed it")
+            continue
+        evidence = [Evidence(note_id=note, quote=quote)] if note and quote else []
+        try:
+            overrides[cid] = Override(status=choice, reason=reason, evidence=evidence)
+        except ValidationError:
+            problems.append(f"{cid}: marking it met needs a quote from a note")
+    return overrides, problems
 
 
 def build_index(policy_dir: Path) -> PolicyIndex:
