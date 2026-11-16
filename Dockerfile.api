@@ -15,6 +15,9 @@ RUN pip install ".[api,agent,retrieval]"
 # Policies load and their LCD quotes are checked when the service starts.
 COPY policies ./policies
 
+# COPY keeps each file's permissions from the machine that built the image; make everything readable.
+RUN chmod -R a+rX /app
+
 RUN useradd --create-home api
 USER api
 

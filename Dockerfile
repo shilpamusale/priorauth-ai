@@ -20,6 +20,10 @@ COPY evals ./evals
 COPY ui ./ui
 COPY .streamlit ./.streamlit
 
+# COPY keeps each file's permissions from the machine that built the image. Make everything readable, so a
+# file that is private on a laptop cannot stop the demo user from importing it.
+RUN chmod -R a+rX /app
+
 RUN useradd --create-home demo
 USER demo
 
