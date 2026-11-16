@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 import streamlit as st
+from pydantic import TypeAdapter, ValidationError
 
 from evals.gaps import TRIAL as DOCUMENTED_TRIAL
 from evals.gaps import run_gaps
@@ -19,11 +20,25 @@ from evals.judge_items import ItemKind
 from evals.runner import Mode
 from evals.scoring import cost_usd, summarize
 from priorauth.pipeline import Pipeline
-from priorauth.policies import load_policies
-from priorauth.schemas import CriterionStatus, Decision
-from ui.data import SPLIT, brief, calibration, folders, highlight, judge_grades, judge_note, replay_all
+from priorauth.policies import load_policies, load_sources
+from priorauth.retrieval import MAX_DISTANCE, lcd_name, route
+from priorauth.schemas import CriterionStatus, Decision, ServiceCode
+from ui.data import (
+    SPLIT,
+    brief,
+    build_index,
+    calibration,
+    dev_routes,
+    folders,
+    highlight,
+    judge_grades,
+    judge_note,
+    replay_all,
+    route_rows,
+)
 
 REPO = "https://github.com/shilpamusale/priorauth-ai"
+MAX_ORDER_CHARS = 300
 DECISION_BOX = {
     Decision.READY_TO_SUBMIT: st.success,
     Decision.NEEDS_DOCUMENTATION: st.warning,
@@ -43,13 +58,16 @@ STATUS_ICON = {
 @st.cache_resource
 def load(gold: Path, policy_dir: Path, recordings: Path):
     """Policies, gold cases, every recorded trial of each pipeline replayed and scored, the documentation agent's
-    requests and the judge's grades, once per server."""
+    requests, the judge's grades, and the retrieval index with every dev request routed, once per server."""
     policies = load_policies(policy_dir)
     cases = load_split(gold, SPLIT, policies)
     replays = {pipeline: replay_all(policies, cases, recordings, pipeline) for pipeline in Pipeline}
     requests = {r.case_id: r.run for r in run_gaps(Mode.REPLAY, policies, gold=gold, recordings=recordings) if r.run}
     grades = judge_grades(policies, gold, recordings)
-    return policies, cases, {pipeline: results for pipeline, results in replays.items() if results}, requests, grades
+    index = build_index(policy_dir)
+    routes = dev_routes(policies, gold, index)
+    replayed = {pipeline: results for pipeline, results in replays.items() if results}
+    return policies, cases, replayed, requests, grades, index, routes
 
 
 def cost_per_run(summary) -> float | None:
@@ -59,15 +77,15 @@ def cost_per_run(summary) -> float | None:
 
 st.set_page_config(page_title="PriorAuth-AI", page_icon="🩺", layout="wide")
 gold, recordings, policy_dir = folders()
-policies, cases, by_pipeline, requests, grades = load(gold, policy_dir, recordings)
+policies, cases, by_pipeline, requests, grades, index, routes = load(gold, policy_dir, recordings)
 sources = " · ".join(f"[{p.title}]({p.source})" for p in policies.values())
 
 st.title("PriorAuth-AI")
 st.markdown(
-    "Is this prior authorization request **ready to submit** to the payer? An agent reads the patient's chart "
-    "with tools and checks each criterion of the coverage policy, quoting the chart as evidence. The decision "
-    "is then computed in code, never by the model. Patients are synthetic; the policy is a public Medicare "
-    f"coverage document: {sources}. [Source code]({REPO})"
+    "Is this prior authorization request **ready to submit** to the payer? Retrieval first finds the coverage "
+    "policy from the order. An agent then reads the patient's chart with tools and checks each criterion of that "
+    "policy, quoting the chart as evidence. The decision is computed in code, never by the model. Patients are "
+    f"synthetic; the policies are public Medicare coverage documents: {sources}. [Source code]({REPO})"
 )
 if not by_pipeline:
     st.info("No recorded runs yet. Record one with: `python -m evals.runner record --cases dev_001 --trials 1`")
@@ -96,6 +114,34 @@ if single and multi:
 st.caption(note + " Held-out cases stay unseen until the final evaluation.")
 if summary.errors:
     st.warning(f"{summary.errors} recordings no longer match the code and are not counted.")
+
+with st.expander("How a request finds its policy: retrieval, then a code check, with no model"):
+    unsafe = sum(r.unsafe for r in routes)
+    st.caption(
+        f"ChromaDB ranks passages of {len(load_sources(policy_dir))} Medicare LCDs by how close they are to the "
+        f"order. The closest LCD must be within distance {MAX_DISTANCE}, a policy must be built on it, and that "
+        "policy must cover the requested code. Otherwise the request goes to a person, before any model call. "
+        f"Dev requests: {sum(r.correct for r in routes)} of {len(routes)} routed right; {unsafe} reached a policy "
+        "they should not."
+    )
+    st.dataframe(route_rows(routes), hide_index=True, width="stretch")
+    with st.form("try_retrieval"):
+        st.markdown("**Try it.** Retrieval runs here on this server; no model is called.")
+        order = st.text_input("Order, in the clinician's words", placeholder="Bilateral upper eyelid blepharoplasty")
+        code = st.text_input("Service code (CPT or HCPCS)", placeholder="15823")
+        submitted = st.form_submit_button("Find the policy")
+    if submitted:
+        order, code = order.strip()[:MAX_ORDER_CHARS], code.strip().upper()
+        try:
+            TypeAdapter(ServiceCode).validate_python(code)
+        except ValidationError:
+            st.error("A service code has five characters: a CPT code such as 15823, or a HCPCS code such as J3490.")
+        else:
+            found = route(index, policies.values(), order, code)
+            st.text(f"{found.outcome.value}{': ' + found.policy_id if found.policy_id else ''}\n{found.reason}")
+            if found.candidates:
+                closest = [{"LCD": lcd_name(c.source), "distance": c.distance} for c in found.candidates]
+                st.dataframe(closest, hide_index=True)
 trials = {}
 for case_id, trial in results:
     trials.setdefault(case_id, []).append(trial)
@@ -122,6 +168,14 @@ st.caption(
     f"Service {request.service_code} · Diagnoses {', '.join(request.icd10_codes)} · "
     f"Request date {request.request_date} · {request.payer} · {len(request.notes)} notes in the chart"
 )
+routed = {r.case.case_id: r for r in routes}.get(case_id)
+if routed:
+    st.text(f"Order: {request.ordered_service}\nRetrieval: {routed.route.reason}")
+    if not routed.correct:
+        st.warning(
+            "Retrieval would send this request to a person before any model call. The run below names the gold "
+            "case's policy directly, so the agent's work on it can still be reviewed."
+        )
 DECISION_BOX[determination.decision](determination.rationale)
 # The documentation agent and the LLM judge both worked from the single agent's first trial.
 first_trial = pipeline is Pipeline.SINGLE_AGENT and trial == DOCUMENTED_TRIAL

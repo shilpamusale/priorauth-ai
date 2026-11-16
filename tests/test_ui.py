@@ -4,8 +4,10 @@ import shutil
 from pathlib import Path
 
 import pytest
+import yaml
 from streamlit.testing.v1 import AppTest
 
+import ui.data
 from evals.gaps import run_gaps
 from evals.gold import load_split
 from evals.judge import REQUEST_CHECKS, run_judge
@@ -15,7 +17,8 @@ from priorauth.llm.base import ModelResponse, StopReason, ToolCall, ToolResult, 
 from priorauth.llm.scripted import ScriptedClient
 from priorauth.matcher import DEFAULT_MODEL
 from priorauth.pipeline import Pipeline
-from priorauth.policies import load_policies
+from priorauth.policies import load_policies, load_sources
+from priorauth.retrieval import Candidate
 from ui.data import SPLIT, brief, calibration, highlight, judge_grades, recorded_trials, replay, replay_all
 
 APP = Path(__file__).resolve().parents[1] / "ui" / "app.py"
@@ -131,6 +134,34 @@ def test_replay_reports_a_missing_recording(real, tmp_path):
     policies, cases = real
     case = cases["dev_002"]
     assert replay(case, policies[case.policy_id], tmp_path, 1).error.startswith("no recording at")
+
+
+class KeywordIndex:
+    """Stands in for the embedding model on the page: an order lands on an LCD by its keywords.
+
+    Like the real model, it does not know the shorthand "MBB", so dev_002 escalates at retrieval.
+    """
+
+    LCDS = {
+        "lcdid=33944": ("eyelid", "blepharoplasty"),
+        "lcdid=34082": ("vein", "saphenous", "phlebectomy"),
+        "lcdid=38773": ("medial branch", "facet", "lumbar"),
+    }
+
+    def __init__(self, sources):
+        self.sources = sorted(sources)
+
+    def search(self, text):
+        for key, words in self.LCDS.items():
+            if any(word in text.lower() for word in words):
+                source = next(s for s in self.sources if key in s)
+                return [Candidate(source=source, distance=0.3)]
+        return [Candidate(source=self.sources[0], distance=0.9)]
+
+
+@pytest.fixture(autouse=True)
+def keyword_index(monkeypatch):
+    monkeypatch.setattr(ui.data, "build_index", lambda policy_dir: KeywordIndex(load_sources(policy_dir)))
 
 
 def page(monkeypatch, recordings):
@@ -322,3 +353,67 @@ def test_the_judges_grade_shows_under_each_request(judged, monkeypatch):
     app.selectbox[0].set_value("dev_004").run()
     shown = [t.value for t in app.text if "\nJudge: " in t.value]
     assert shown and all(t.endswith("\nJudge: needs revision (fails: says where)") for t in shown)
+
+
+def test_every_dev_request_is_routed_in_a_table(monkeypatch):
+    app = page(monkeypatch, RECORDINGS)
+    [expander] = [e for e in app.expander if e.label.startswith("How a request finds its policy")]
+    rows = app.dataframe[0].value
+    assert len(rows) == len(list((GOLD / "dev").glob("*.yaml"))) + len(
+        yaml.safe_load((GOLD / "routing" / "dev.yaml").read_text())
+    )
+    assert any(f"Dev requests: {len(rows) - 1} of {len(rows)} routed right; 0 reached" in c.value for c in app.caption)
+    assert list(rows[rows["case"] == "dev_002"]["right"]) == ["no, escalated"]
+
+
+def test_the_selected_case_shows_its_order_and_route(monkeypatch):
+    app = page(monkeypatch, RECORDINGS)
+    route_text = [t.value for t in app.text if t.value.startswith("Order: ")]
+    assert route_text == [
+        "Order: Diagnostic lumbar medial branch blocks, L4-L5 and L5-S1\nRetrieval: The order matches "
+        "LCD L38773 v32 and l38773_first_mbb covers code 64493."
+    ]
+    assert not any("Retrieval would send this request" in w.value for w in app.warning)
+
+
+def test_a_case_retrieval_would_escalate_says_so(monkeypatch):
+    app = page(monkeypatch, RECORDINGS)
+    app.selectbox[0].set_value("dev_002").run()
+    assert any(w.value.startswith("Retrieval would send this request to a person") for w in app.warning)
+
+
+def try_route(app, order, code):
+    app.text_input[0].set_value(order)
+    app.text_input[1].set_value(code)
+    app.button[0].click().run()
+    return app
+
+
+def test_a_visitor_can_try_retrieval(monkeypatch):
+    app = try_route(page(monkeypatch, RECORDINGS), "Upper eyelid blepharoplasty, both eyes", "15823")
+    [answer] = [t.value for t in app.text if t.value.startswith("matched")]
+    assert answer.startswith("matched: l33944_upper_bleph\nThe order matches LCD L33944 v28")
+
+
+def test_a_tried_order_is_never_rendered_as_markdown(monkeypatch):
+    app = try_route(page(monkeypatch, RECORDINGS), "![x](https://example.com/a.png) **knee** replacement", "27447")
+    assert any(t.value.startswith("no_match\nNo coverage document is close enough") for t in app.text)
+    assert not any("example.com" in m.value for m in [*app.markdown, *app.caption])
+
+
+def test_a_malformed_service_code_is_refused(monkeypatch):
+    app = try_route(page(monkeypatch, RECORDINGS), "Upper eyelid blepharoplasty", "123")
+    assert app.error and "five characters" in app.error[0].value
+
+
+def test_route_rows_mark_an_unsafe_route_apart_from_a_safe_miss():
+    from evals.routing import RoutingCase, RoutingResult
+    from priorauth.retrieval import Outcome, Route
+    from ui.data import route_rows
+
+    case = RoutingCase(case_id="c", ordered_service="Knee", service_code="64493", expected="no_match")
+    reached = Route(outcome=Outcome.MATCHED, policy_id="l38773_first_mbb", reason="r")
+    escalated = Route(outcome=Outcome.UNSUPPORTED, reason="r")
+    rows = route_rows([RoutingResult(case=case, route=reached), RoutingResult(case=case, route=escalated)])
+    assert [row["right"] for row in rows] == ["UNSAFE", "no, escalated"]
+    assert rows[0]["closest LCD"] == "" and rows[0]["distance"] is None
