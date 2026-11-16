@@ -8,6 +8,7 @@ request:
   payer: Medicare
   request_date: 2026-09-22
   service_code: "64493"
+  ordered_service: Lumbar facet injections, medial branch, L4-S1
   icd10_codes: [M47.816]
   notes:
     - note_id: n1

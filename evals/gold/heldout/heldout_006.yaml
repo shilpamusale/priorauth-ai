@@ -8,6 +8,7 @@ request:
   payer: Medicare
   request_date: 2026-10-09
   service_code: "64493"
+  ordered_service: L4-L5 and L5-S1 medial branch blocks, first diagnostic
   icd10_codes: [M47.816]
   notes:
     - note_id: n1

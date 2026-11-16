@@ -7,6 +7,7 @@ request:
   payer: Medicare
   request_date: 2026-10-06
   service_code: "64493"
+  ordered_service: L4-5 and L5-S1 medial branch blocks under fluoroscopy
   icd10_codes: [M47.816]
   notes:
     - note_id: n1

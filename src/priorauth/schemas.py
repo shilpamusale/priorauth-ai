@@ -59,6 +59,8 @@ class PARequest(Contract):
     payer: str
     request_date: datetime.date  # durations such as "pain for 3 months" are measured up to this date
     service_code: ServiceCode
+    # The service in the ordering clinician's words. Retrieval matches it to a policy; the agent never sees it.
+    ordered_service: NonBlank | None = None
     icd10_codes: list[ICD10Code] = Field(min_length=1)
     notes: list[ClinicalNote] = Field(min_length=1)
 
@@ -87,6 +89,7 @@ class Policy(Contract):
     policy_id: str
     title: str
     source: str  # URL of the coverage document, or "illustrative" for test fixtures
+    service_codes: list[ServiceCode] = Field(min_length=1)  # the requests this policy decides; checked before it runs
     criteria: list[PolicyCriterion] = Field(min_length=1)
 
 

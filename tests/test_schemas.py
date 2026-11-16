@@ -75,6 +75,7 @@ def test_malformed_notes_are_rejected(field, value):
     with pytest.raises(ValidationError):
         ClinicalNote(**{**NOTE, field: value})
 
+
 def test_note_dated_after_the_request_is_rejected():
     with pytest.raises(ValidationError, match="after the request"):
         PARequest(**{**REQUEST, "notes": [NOTE | {"date": "2026-09-02"}]})
@@ -82,6 +83,7 @@ def test_note_dated_after_the_request_is_rejected():
 
 def test_note_on_the_request_date_is_accepted():
     assert PARequest(**{**REQUEST, "notes": [NOTE | {"date": "2026-09-01"}]}).notes[0].date == datetime.date(2026, 9, 1)
+
 
 def test_duplicate_note_ids_are_rejected():
     with pytest.raises(ValidationError, match="unique"):
@@ -92,9 +94,24 @@ def test_criterion_is_required_by_default():
     assert PolicyCriterion(criterion_id="a", text="A").required is True
 
 
+def test_ordered_service_is_optional_but_never_blank():
+    assert PARequest(**REQUEST).ordered_service is None
+    order = "Lumbar medial branch blocks, L4-L5 and L5-S1"
+    assert PARequest(**REQUEST, ordered_service=order).ordered_service == order
+    with pytest.raises(ValidationError):
+        PARequest(**REQUEST, ordered_service="  ")
+
+
+@pytest.mark.parametrize("codes", [[], ["6449"], ["Z9999"]])
+def test_policy_needs_valid_service_codes(codes):
+    criterion = PolicyCriterion(criterion_id="p.a", text="A")
+    with pytest.raises(ValidationError):
+        Policy(policy_id="p", title="t", source="illustrative", service_codes=codes, criteria=[criterion])
+
+
 def test_policy_needs_at_least_one_criterion():
     with pytest.raises(ValidationError):
-        Policy(policy_id="p", title="t", source="illustrative", criteria=[])
+        Policy(policy_id="p", title="t", source="illustrative", service_codes=["64493"], criteria=[])
 
 
 def test_met_without_evidence_is_rejected():

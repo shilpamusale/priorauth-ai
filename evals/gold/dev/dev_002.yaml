@@ -6,6 +6,7 @@ request:
   payer: Medicare
   request_date: 2026-10-01
   service_code: "64493"
+  ordered_service: Dx MBB L4-5, L5-S1
   icd10_codes: [M47.816, M54.50]
   notes:
     - note_id: n1

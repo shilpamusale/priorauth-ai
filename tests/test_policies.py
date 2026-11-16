@@ -19,6 +19,7 @@ def policy_data(pid="facet", criteria=None, source=URL):
         "policy_id": pid,
         "title": "Test policy",
         "source": source,
+        "service_codes": ["64493"],
         "criteria": criteria or [CRITERION | {"criterion_id": f"{pid}.duration"}],
     }
 
@@ -173,3 +174,18 @@ def test_fingerprint_changes_when_required_flag_changes(tmp_path):
     optional = CRITERION | {"required": False}
     edited = load_policy(write(tmp_path, "facet", policy_data(criteria=[optional])))
     assert fingerprint(edited) != fingerprint(original)
+
+
+def test_a_policy_must_list_the_service_codes_it_decides(tmp_path):
+    write_source(tmp_path)
+    data = policy_data()
+    del data["service_codes"]
+    write(tmp_path, "facet", data)
+    with pytest.raises(PolicyError, match="service_codes"):
+        load_policies(tmp_path)
+
+
+def test_the_facet_policy_decides_the_first_and_second_level_codes():
+    from pathlib import Path
+
+    assert load_policies(Path("policies"))["l38773_first_mbb"].service_codes == ["64493", "64494"]

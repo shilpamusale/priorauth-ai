@@ -68,6 +68,10 @@ def load_case(path: Path, policies: dict[str, Policy]) -> GoldCase:
 
     if (policy:= policies.get(case.policy_id)) is None:
         raise GoldError(f"{path.name}: unknown policy {case.policy_id!r}")
+    if case.request.ordered_service is None:
+        raise GoldError(f"{path.name}: every gold case needs an ordered_service, so retrieval can be scored on it")
+    if case.request.service_code not in policy.service_codes:
+        raise GoldError(f"{path.name}: service code {case.request.service_code} is not one {policy.policy_id} covers")
 
     criteria = {c.criterion_id for c in policy.criteria}
     if missing := sorted(criteria - case.labels.keys()):

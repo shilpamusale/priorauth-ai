@@ -21,6 +21,7 @@ POLICY = Policy(
     policy_id="demo",
     title="Demo policy",
     source="illustrative",
+    service_codes=["64493"],
     criteria=[
         PolicyCriterion(criterion_id="demo.duration", text="Pain has lasted at least 3 months."),
         PolicyCriterion(criterion_id="demo.scale", text="A disability scale is recorded."),

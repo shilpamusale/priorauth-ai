@@ -18,6 +18,9 @@
 policy_id: l38773_first_mbb
 title: "Facet joint interventions (LCD L38773 v32, CGS J15): first diagnostic lumbar medial branch block"
 source: https://www.cms.gov/medicare-coverage-database/view/lcd.aspx?lcdid=38773&ver=32
+# Lumbar or sacral facet injection with image guidance: first level, and the add-on for a second level.
+# The third-level code is left out because the LCD allows at most two levels in a session.
+service_codes: ["64493", "64494"]
 
 criteria:
   # LCD indication 1
