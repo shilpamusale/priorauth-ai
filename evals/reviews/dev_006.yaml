@@ -1,0 +1,19 @@
+case_id: dev_006
+policy_id: l38773_first_mbb
+trial: 1
+reviewer: Shilpa Musale
+reviewed_at: '2026-11-16T03:24:08.130605Z'
+overrides:
+  l38773_first_mbb.functional_deficit:
+    status: not_met
+    reason: "The functional limits are documented in narrative (cannot stand more\
+      \ than 10 minutes, stopped gardening, needs help with groceries), but none is\
+      \ measured on a pain or disability scale. The NRS 7/10 measures pain intensity,\
+      \ not function. This matches how I labelled the similar pain-only cases earlier.\
+      \ If the form has an \u201Cinsufficient evidence\u201D option, that fits better\
+      \ than \u201Cnot met.\u201D"
+    evidence: []
+comment: 'Decision stays needs_documentation: no baseline disability scale is in any
+  note. Functional deficit changed to not met because the limits are narrative only
+  and no score measures them. All other criteria confirmed. The outcome is unchanged
+  because the baseline scale is still missing.'

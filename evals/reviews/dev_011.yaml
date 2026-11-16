@@ -1,0 +1,19 @@
+case_id: dev_011
+policy_id: l38773_first_mbb
+trial: 1
+reviewer: Shilpa Musale
+reviewed_at: '2026-11-16T03:30:56.444174Z'
+overrides:
+  l38773_first_mbb.pain_severity:
+    status: not_met
+    reason: "The NRS 7/10 rates her overall pain, which is mostly in the buttock and\
+      \ thigh, not the low back pain the criterion addresses. I labelled this same\
+      \ consult as partly met earlier. The outcome doesn\u2019t change, because the\
+      \ axial criterion already fails."
+    evidence: []
+comment: "Escalation stands. Pain is predominantly in the right buttock and posterior\
+  \ thigh (about 80% per the 9/28 consult), so the axial criterion is not met. Pain\
+  \ severity changed to not met, because the 7/10 rating covers overall pain, mostly\
+  \ buttock and thigh, not the low back pain. All other criteria confirmed. The radiculopathy\
+  \ finding doesn\u2019t mention neurogenic claudication, which is the same gap as\
+  \ earlier cases. This doesn\u2019t change the outcome."
