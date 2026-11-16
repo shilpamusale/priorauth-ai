@@ -30,6 +30,7 @@ from ui.data import (
     calibration,
     dev_routes,
     folders,
+    heldout_note,
     highlight,
     judge_grades,
     judge_note,
@@ -119,7 +120,7 @@ if single and multi:
         f"{accuracy[Pipeline.MULTI_AGENT]} at {multi / single:.1f} times the cost per run. "
         "The single agent is the one deployed."
     )
-st.caption(note + " Held-out cases stay unseen until the final evaluation.")
+st.caption(note + heldout_note())
 if summary.errors:
     st.warning(f"{summary.errors} recordings no longer match the code and are not counted.")
 

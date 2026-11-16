@@ -430,3 +430,14 @@ def test_try_it_asks_for_an_order_instead_of_searching_with_none(monkeypatch):
     assert app.error and app.error[0].value.startswith("Type the order first")
     assert not any(t.value.startswith(("no_order", "matched", "no_match")) for t in app.text)
     assert any(h.value == "Criteria" for h in app.subheader)  # the rest of the page still renders
+
+
+def test_the_held_out_result_is_shown_from_its_committed_summary(monkeypatch, tmp_path):
+    from ui.data import heldout_note
+
+    assert heldout_note() == (
+        " Held-out set, run once at the end: 21 of 21 runs reached the expected decision, criterion accuracy 100%."
+    )
+    assert heldout_note(tmp_path / "missing.json") == " Held-out cases stay unseen until the final evaluation."
+    app = page(monkeypatch, RECORDINGS)
+    assert any("Held-out set, run once at the end: 21 of 21" in c.value for c in app.caption)

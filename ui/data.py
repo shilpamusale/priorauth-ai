@@ -21,6 +21,7 @@ from evals.judge_items import ItemKind, build_items
 from evals.routing import RoutingResult, routing_cases
 from evals.routing import run as run_routing
 from evals.runner import GOLD, POLICIES, RECORDINGS, Mode, TrialResult, pipeline_root, recording_path, replay_trial
+from evals.scoring import Summary
 from priorauth.ingest import normalize
 from priorauth.llm.base import ToolResult
 from priorauth.llm.replay import StaleRecording
@@ -34,6 +35,7 @@ from priorauth.schemas import CriterionResult, Evidence, Policy, PolicyCriterion
 SPLIT = "dev"
 KEEP = "keep the agent's finding"  # the review form's first choice for each criterion
 CALIBRATION = Path("evals/results/judge_calibration.json")
+HELDOUT_SUMMARY = Path("evals/results/heldout_summary.json")
 
 
 def folders() -> tuple[Path, Path, Path]:
@@ -162,6 +164,19 @@ def calibration(path: Path = CALIBRATION) -> CalibrationReport | None:
         return CalibrationReport.model_validate_json(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return None
+
+
+def heldout_note(path: Path = HELDOUT_SUMMARY) -> str:
+    """The final held-out run's result, from its committed summary, or that it has not run yet."""
+    try:
+        summary = Summary.model_validate_json(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return " Held-out cases stay unseen until the final evaluation."
+    ran = summary.trials - summary.errors
+    return (
+        f" Held-out set, run once at the end: {round(summary.decision_accuracy * ran)} of {ran} runs reached "
+        f"the expected decision, criterion accuracy {summary.criterion_accuracy:.0%}."
+    )
 
 
 def judge_note(report: CalibrationReport | None, model: str) -> str:
