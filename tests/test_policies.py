@@ -14,12 +14,12 @@ CRITERION = {
 SOURCE = "Coverage\nPain present for minimum of 3\nmonths. The patient\u2019s pain is axial."
 
 
-def policy_data(pid="facet", criteria=None, source=URL):
+def policy_data(pid="facet", criteria=None, source=URL, codes=("64493",)):
     return {
         "policy_id": pid,
         "title": "Test policy",
         "source": source,
-        "service_codes": ["64493"],
+        "service_codes": list(codes),
         "criteria": criteria or [CRITERION | {"criterion_id": f"{pid}.duration"}],
     }
 
@@ -44,7 +44,7 @@ def test_valid_policy_loads(tmp_path):
 def test_directory_loads_keyed_by_policy_id_and_ignores_other_files(tmp_path):
     write_source(tmp_path)
     write(tmp_path, "facet", policy_data("facet"))
-    write(tmp_path, "mri", policy_data("mri"))
+    write(tmp_path, "mri", policy_data("mri", codes=["72148"]))
     (tmp_path / "README.md").write_text("notes")
     assert sorted(load_policies(tmp_path)) == ["facet", "mri"]
 
@@ -189,3 +189,20 @@ def test_the_facet_policy_decides_the_first_and_second_level_codes():
     from pathlib import Path
 
     assert load_policies(Path("policies"))["l38773_first_mbb"].service_codes == ["64493", "64494"]
+
+
+def test_two_policies_on_one_lcd_may_not_cover_the_same_code(tmp_path):
+    write_source(tmp_path)
+    write(tmp_path, "facet", policy_data("facet"))
+    write(tmp_path, "other", policy_data("other"))
+    with pytest.raises(PolicyError, match="other and facet are both built on .* and cover 64493"):
+        load_policies(tmp_path)
+
+
+def test_the_same_code_under_two_lcds_is_allowed(tmp_path):
+    second = "https://example.org/lcd?ver=2"
+    write_source(tmp_path)
+    write_source(tmp_path, name="lcd_v2", url=second)
+    write(tmp_path, "facet", policy_data("facet"))
+    write(tmp_path, "other", policy_data("other", source=second))
+    assert set(load_policies(tmp_path)) == {"facet", "other"}
