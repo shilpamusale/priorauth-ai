@@ -39,6 +39,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
+      - name: Make one source file private, as it can be on a laptop, so the build must still work
+        run: chmod 600 evals/__init__.py src/priorauth/__init__.py
       - run: docker build -t priorauth-ai .
       - name: The image has no model SDK, and the app's imports and prompt load
         run: |
