@@ -8,23 +8,26 @@ An agentic prior-authorization workflow with an evaluation harness, built from t
 an ordered service and a patient's clinical notes, decide whether the request is ready to submit to the
 payer, which documentation is missing, or whether a human needs to look at it.
 
-> **Status: in progress.** Policy retrieval, the agent, its verification and decision steps, the evaluation
-> harness, a multi-agent comparison, a documentation agent, an LLM judge calibrated against hand labels, a
-> second policy added with no engine change, human review of the cases that need it, a public demo and a
-> private API are live and tested in CI. Error analysis and the final held-out run come next (see
-> [Roadmap](#roadmap)). All patients are synthetic; no PHI is used anywhere.
+> **Status:** every planned phase is built and tested in CI, and the final held-out run is done (Nov 15,
+> 2026). Next steps are in the [error analysis](docs/error_analysis.md) and the [Roadmap](#roadmap). All
+> patients are synthetic; no PHI is used anywhere.
 
 ## At a glance
 
-| | Result (dev set; the held-out set runs once, at the end) |
-|---|---|
-| Decisions | 51 of 51 runs right (17 cases × 3 trials), 0 hard-gate failures, about $0.03 a run |
-| Criteria | 370 of 372 statuses match the gold labels |
-| Retrieval | 23 of 24 requests routed right, 0 sent to a policy they should not reach |
-| Second policy | Added with no change to the engine; 9 of 9 runs right on the first recording |
-| Multi-agent | One agent per criterion: about 3.5 times the cost per run, no gain in accuracy, so not deployed |
-| LLM judge | Agrees with blind hand labels on 27 of 32 evidence items (Cohen's kappa 0.71) |
-| Human review | 7 queued cases reviewed: 3 agree with the gold labels, 4 question a criterion label |
+| | Dev set (used while building) | Held-out set (run once, at the end) |
+|---|---|---|
+| Decisions | 51 of 51 runs right (17 cases × 3 trials) | 21 of 21 runs right (7 cases × 3 trials) |
+| Criteria | 367 of 372 statuses match the gold labels | 156 of 156 |
+| Hard-gate failures | 0 | 0 |
+| Retrieval | 23 of 24 routed right, none to a policy it should not reach | 9 of 10 routed right, none unsafe |
+| Cost | about $0.03 a run | $0.61 for 21 runs |
+
+- **Second policy:** added with no change to the engine; 9 of 9 dev runs and 3 of 3 held-out runs right.
+- **Multi-agent:** one agent per criterion cost about 3.5 times as much per run and was not more accurate,
+  so the single agent is deployed.
+- **LLM judge:** agrees with blind hand labels on 27 of 32 evidence items (Cohen's kappa 0.71).
+- **Human review:** of the 7 dev cases queued for a person, 3 agree with the gold labels and 4 question a
+  criterion label; one label was changed as a result.
 
 ## Why provider-side
 
@@ -113,18 +116,21 @@ the current code with no API key and fails the build on any hard-gate failure.
 | Metric | Value |
 |---|---|
 | Decision accuracy | 1.00 (51 of 51 trials) |
-| Criterion accuracy | 0.99 (370 of 372 criterion labels) |
+| Criterion accuracy | 0.99 (367 of 372 criterion labels) |
 | Hard-gate failures | 0 |
 | Cases whose trials reached different decisions | 0 of 17 |
 | Cost | $1.42 for 51 runs, about $0.03 per run |
 | Model calls per run | 2: read the notes, then submit every finding |
 
 These are dev cases, written and used while building, so they show the pipeline works rather than how
-well it generalizes. The 7 held-out cases run once, in the final evaluation. Both criterion misses were
-about where one criterion ends and another begins, not about grounding: in one trial the model asked for
-a scored disability scale before calling a functional deficit met (the policy accepts a pain score with
-described limits), and in another it counted an untreated radiculopathy against "no other pathology",
-although radiculopathy has its own criterion. Neither changed a decision.
+well it generalizes; the held-out results are further down. Every criterion miss is about where one
+criterion ends and another begins, not about grounding. In one trial the model asked for a scored
+disability scale before calling a functional deficit met (the policy accepts a pain score with described
+limits), and in another it counted an untreated radiculopathy against "no other pathology", although
+radiculopathy has its own criterion. The other three are dev_011's pain severity, which the agent called
+met in every trial; after the held-out run that label became insufficient evidence, on the doubts of the
+human review, the multi-agent pipeline and the judge (370 of 372 before the change). No miss changed a
+decision.
 
 CI replays these recordings on every pull request and fails below 0.95 decision accuracy or on any
 hard-gate failure.
@@ -135,7 +141,7 @@ the blepharoplasty cases, added later, are 3 of 3 for both):
 | | Single agent | Multi-agent: one evidence agent per criterion, in parallel |
 |---|---|---|
 | Decisions correct | 42 of 42 (14 of 14 on trial 1) | 14 of 14 |
-| Cases with every criterion right | 40 of 42 (14 of 14 on trial 1) | 12 of 14 |
+| Cases with every criterion right | 37 of 42 (13 of 14 on trial 1) | 13 of 14 |
 | Hard-gate failures | 0 | 0 |
 | Model calls per case | 2 | 16 to 19 |
 | Tokens per case | about 5.3k in, 1.9k out | about 36k in, 3.8k out |
@@ -146,9 +152,9 @@ deployed. Each evidence agent uses the single agent's prompt and tools on a one-
 policy, so the comparison measures the orchestration alone. The multi-agent pipeline repeated the single
 agent's radiculopathy slip on dev_009 (counting it against "no other pathology", which has its own
 criterion), which points to how the criteria are worded rather than to one agent handling eight criteria.
-Its other miss is a judgment call worth a second look: on dev_011 the only pain score covers pain that is
-mostly in the buttock and thigh, and the agent would not treat it as a low-back score. Both recordings
-replay in CI, and the demo can show either pipeline.
+On dev_011 it would not treat a pain score that covers mostly buttock and thigh pain as a low-back score;
+that reading later became the gold label, so it counts as right and the single agent's trials as wrong.
+Both recordings replay in CI, and the demo can show either pipeline.
 
 **Documentation agent** (on the single agent's first trial of each dev case): 7 dev cases had
 documentation gaps, and the agent wrote 8 requests, one per gap, for $0.04 in total. Each says what the
@@ -245,7 +251,28 @@ label changes only when a person promotes one.
 
 **Error analysis** ([docs/error_analysis.md](docs/error_analysis.md)), written and committed before the
 held-out run: the dev misses and their causes, what the review says about them, and what will change
-after the held-out run. Nothing in the system changes before it.
+after the held-out run. Nothing in the system changed before it.
+
+**Final held-out run** (recorded once on Nov 15, 2026, after the error analysis was committed; the system
+frozen as the error analysis lists):
+
+| Held-out result | Value |
+|---|---|
+| Decisions | 21 of 21 runs right: 7 cases (6 facet, 1 blepharoplasty) × 3 trials |
+| Criteria | 156 of 156 statuses match the gold labels |
+| Hard-gate failures, cases whose trials disagree | 0, 0 |
+| Cost | $0.61 for 21 runs |
+| Retrieval | 9 of 10 routed right, none to a policy it should not reach |
+
+The cases expected to be hardest held in every trial: a radiculopathy the policy excuses because a facet
+synovial cyst causes it, a latest note that copies forward an earlier note's scores, and a blepharoplasty
+chart in clinic shorthand with the field loss in percent. Both held-out orders in shorthand ("Lumbar MBB",
+"Bilat upper bleph") routed correctly. The routing miss is the thin margin the error analysis predicted:
+"Anterior cervical discectomy and fusion, C5-C6" came within the distance limit of the facet LCD (0.514),
+and only the code check stopped it, as `code_not_covered` rather than `no_match`. It escalated, which is
+the safe outcome, and it is why retrieval only proposes and code decides. Seven cases is a small set: a
+clean result shows the dev numbers were not an artifact of building on them, not how the pipeline would do
+on real charts. CI replays the held-out recordings and routes too.
 
 ## Demo and API
 
@@ -271,6 +298,7 @@ python -m venv .venv && source .venv/bin/activate
 make install
 make test                                      # unit tests, no API key needed
 python -m evals.runner replay                  # score the committed recordings, no API key needed
+python -m evals.runner replay --split heldout --allow-heldout   # the final held-out run, replayed
 python -m evals.runner replay --track          # ...and log the run to MLflow (local mlflow.db)
 python -m evals.gaps replay                    # the documentation agent's requests, replayed
 python -m evals.calibration                    # the LLM judge against the hand labels, replayed
@@ -339,13 +367,21 @@ tests/            unit tests for every module, policy and gold case
 - [x] Policy retrieval with ChromaDB, and a second policy (LCD L33944) added with no engine change
 - [x] Reviewer screen with overrides feeding candidate gold cases
 - [x] Error analysis, written before the held-out run
-- [ ] Final held-out run
+- [x] Final held-out run: 21 of 21 decisions and every criterion right; routing 9 of 10, none unsafe
+
+Next, from the [error analysis](docs/error_analysis.md):
+
+- [ ] Say in the functional-deficit criterion whether described limits without a scale count (a new policy
+  version, re-recorded runs)
+- [ ] Keyword search over the LCD passages alongside the embedding search, for shorthand and a wider margin
+- [ ] `judge_v2` shown the request date, measured on new hand labels
+- [ ] A second reviewer, to measure how much of the review is one person's judgment
 
 ## Limitations
 
-- **The numbers are dev-set numbers.** The dev cases were written and used while building, so they show the
-  pipeline works, not how well it generalizes. The 7 held-out cases and 3 held-out routing requests run
-  once, in the final evaluation.
+- **The held-out set is small.** 7 cases and 3 routing requests, run once. A clean result there shows the
+  dev numbers were not an artifact of building on them; it does not show how the pipeline would do on real
+  charts.
 - **The data is small and synthetic.** 24 charts written by one person, on two policies. Real charts are
   longer, messier and scanned; nothing here measures OCR, EHR integration or volume.
 - **One person labelled, reviewed and calibrated.** The gold labels, the judge's 40 hand labels and the 7
@@ -353,7 +389,9 @@ tests/            unit tests for every module, policy and gold case
   much of that is my judgment.
 - **Retrieval has a thin margin and misses shorthand.** The distance limit sits between 0.597 (the farthest
   order that should match) and 0.617 (the closest that should not), chosen on 24 dev requests. A general
-  embedding model does not know clinic abbreviations such as "MBB"; those requests escalate.
+  embedding model does not know clinic abbreviations such as "MBB"; those requests escalate. The held-out
+  run confirmed the margin is thin: a cervical fusion order came within the limit of the facet LCD, and
+  only the code check stopped it.
 - **The judge has known blind spots.** It is lenient on partial evidence and is not shown the request date.
   Its agreement was measured on one policy.
 - **Policies change.** Each policy is pinned to one LCD version; a new version means a new extraction and

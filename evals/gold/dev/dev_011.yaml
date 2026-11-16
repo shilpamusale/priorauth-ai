@@ -1,5 +1,8 @@
 # Escalate: most of the pain is in the right buttock and back of the thigh, not the low back, so it is
 # not predominantly axial. The neuro exam is normal, so this is not radiculopathy.
+# Relabelled Nov 15, after the held-out run, as docs/error_analysis.md committed to beforehand: pain severity
+# was met. The human review, the multi-agent pipeline and the LLM judge each doubted it: the NRS 7/10 rates
+# pain that is mostly in the buttock and thigh, so the chart does not show moderate to severe low back pain.
 policy_id: l38773_first_mbb
 tags: [escalate, not-axial]
 request:
@@ -38,7 +41,7 @@ request:
         strength, sensation and reflexes normal in both legs; straight-leg raise negative on both sides. No
         radicular symptoms. Plan: right L4-L5 and L5-S1 medial branch blocks.
 labels:
-  l38773_first_mbb.pain_severity: {status: met, evidence_notes: [n4]}
+  l38773_first_mbb.pain_severity: {status: insufficient_evidence}
   l38773_first_mbb.axial_pain: {status: not_met, evidence_notes: [n1, n4]}
   l38773_first_mbb.functional_deficit: {status: met, evidence_notes: [n2, n4]}
   l38773_first_mbb.baseline_disability_scale: {status: met, evidence_notes: [n2, n4]}
