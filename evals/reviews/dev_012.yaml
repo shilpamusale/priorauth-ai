@@ -5,7 +5,7 @@ reviewer: Shilpa Musale
 reviewed_at: '2026-11-16T03:32:45.042588Z'
 overrides:
   l38773_first_mbb.functional_deficit:
-    status: not_met
+    status: insufficient_evidence
     reason: "The chart documents limits (cannot stand more than 15 minutes, stopped\
       \ driving long distances), but they\u2019re narrative only. The only measure\
       \ is the NRS 7/10, which rates pain, not function. I made the same change on\
@@ -15,4 +15,7 @@ comment: "Escalation stands. Conservative care is not met: the patient declined 
   \ and PT (n1) and hadn\u2019t tried either by the 9/03 consult (n3), so there\u2019\
   s no documented failure. Baseline disability scale is also missing. Functional deficit\
   \ changed to not met, because the limits are narrative only and no disability scale\
-  \ measures them. All other criteria confirmed. The outcome is unchanged."
+  \ measures them. All other criteria confirmed. The outcome is unchanged. [Nov 15:\
+  \ status set to insufficient_evidence to match the reason given for this criterion:\
+  \ the limits are documented but not measured on a scale, which is a documentation\
+  \ gap.]"
