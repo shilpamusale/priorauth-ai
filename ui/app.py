@@ -70,6 +70,14 @@ def load(gold: Path, policy_dir: Path, recordings: Path):
     return policies, cases, replayed, requests, grades, index, routes
 
 
+def is_service_code(code: str) -> bool:
+    try:
+        TypeAdapter(ServiceCode).validate_python(code)
+    except ValidationError:
+        return False
+    return True
+
+
 def cost_per_run(summary) -> float | None:
     ran = summary.trials - summary.errors
     return None if summary.cost_usd is None or not ran else summary.cost_usd / ran
@@ -127,14 +135,15 @@ with st.expander("How a request finds its policy: retrieval, then a code check, 
     st.dataframe(route_rows(routes), hide_index=True, width="stretch")
     with st.form("try_retrieval"):
         st.markdown("**Try it.** Retrieval runs here on this server; no model is called.")
-        order = st.text_input("Order, in the clinician's words", placeholder="Bilateral upper eyelid blepharoplasty")
-        code = st.text_input("Service code (CPT or HCPCS)", placeholder="15823")
+        # Filled with an example, not a grey placeholder, so pressing the button shows a route at once.
+        order = st.text_input("Order, in the clinician's words", value="Bilateral upper eyelid blepharoplasty")
+        code = st.text_input("Service code (CPT or HCPCS)", value="15823")
         submitted = st.form_submit_button("Find the policy")
     if submitted:
         order, code = order.strip()[:MAX_ORDER_CHARS], code.strip().upper()
-        try:
-            TypeAdapter(ServiceCode).validate_python(code)
-        except ValidationError:
+        if not order:
+            st.error("Type the order first: the procedure as the clinician wrote it.")
+        elif not is_service_code(code):
             st.error("A service code has five characters: a CPT code such as 15823, or a HCPCS code such as J3490.")
         else:
             found = route(index, policies.values(), order, code)

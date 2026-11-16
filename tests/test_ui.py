@@ -417,3 +417,16 @@ def test_route_rows_mark_an_unsafe_route_apart_from_a_safe_miss():
     rows = route_rows([RoutingResult(case=case, route=reached), RoutingResult(case=case, route=escalated)])
     assert [row["right"] for row in rows] == ["UNSAFE", "no, escalated"]
     assert rows[0]["closest LCD"] == "" and rows[0]["distance"] is None
+
+
+def test_try_it_starts_filled_with_an_example_that_matches(monkeypatch):
+    app = page(monkeypatch, RECORDINGS)
+    app.button[0].click().run()
+    assert any(t.value.startswith("matched: l33944_upper_bleph") for t in app.text)
+
+
+def test_try_it_asks_for_an_order_instead_of_searching_with_none(monkeypatch):
+    app = try_route(page(monkeypatch, RECORDINGS), "   ", "J3490")
+    assert app.error and app.error[0].value.startswith("Type the order first")
+    assert not any(t.value.startswith(("no_order", "matched", "no_match")) for t in app.text)
+    assert any(h.value == "Criteria" for h in app.subheader)  # the rest of the page still renders
