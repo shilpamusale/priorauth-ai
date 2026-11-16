@@ -43,7 +43,7 @@ labels:
     evidence_notes:
     - n3
   l38773_first_mbb.functional_deficit:
-    status: not_met
+    status: insufficient_evidence
   l38773_first_mbb.baseline_disability_scale:
     status: insufficient_evidence
   l38773_first_mbb.duration:
