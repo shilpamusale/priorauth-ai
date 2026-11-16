@@ -1,0 +1,250 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "654bddd30b86d0d6",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01D33MA1Bw8XuHAwqLsqAbZF",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01FyygCXtuz3h45YGG9cf1xE",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01EZZx6kgKZbPT1AJ7NxECTf",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_01KXgBja1W8ZV169AhfUEfwF",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2032,
+     "output_tokens": 191
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01D33MA1Bw8XuHAwqLsqAbZF",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01FyygCXtuz3h45YGG9cf1xE",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01EZZx6kgKZbPT1AJ7NxECTf",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01KXgBja1W8ZV169AhfUEfwF",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "3905d606a7e986ed",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01ChEBKHbExN8wSGZYTNkHoc",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "dermatochalasis OU w/ skin overhanging lash line"
+        },
+        {
+         "note_id": "n2",
+         "quote": "skin resting on lashes OU"
+        }
+       ],
+       "reasoning": "Exams by optometry and oculoplastics document dermatochalasis with skin overhanging the lash line/resting on lashes."
+      }
+     },
+     {
+      "id": "toolu_01Lf8YrCJvVFD4452Mt1pda3",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "droopy lids blocking upper vision, worse when driving"
+        }
+       ],
+       "reasoning": "Patient reports lids block upper vision and she sees lid skin in the upper field."
+      }
+     },
+     {
+      "id": "toolu_01JCrmHtxMCg9DAY9hruAvTt",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Untaped: 38% loss OD, 35% loss OS."
+        }
+       ],
+       "reasoning": "Untaped superior field loss of 38% and 35% exceeds the 30% threshold in both eyes."
+      }
+     },
+     {
+      "id": "toolu_0162C5JdRVxWG7nWx1xrcJyR",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Taped: 6% loss OD, 5% loss OS."
+        }
+       ],
+       "reasoning": "Taped testing shows loss falls from 38%/35% to 6%/5%, so the field improves substantially."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2620,
+     "output_tokens": 841
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01ChEBKHbExN8wSGZYTNkHoc",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "dermatochalasis OU w/ skin overhanging lash line"
+        },
+        {
+         "note_id": "n2",
+         "quote": "skin resting on lashes OU"
+        }
+       ],
+       "reasoning": "Exams by optometry and oculoplastics document dermatochalasis with skin overhanging the lash line/resting on lashes."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01Lf8YrCJvVFD4452Mt1pda3",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "droopy lids blocking upper vision, worse when driving"
+        }
+       ],
+       "reasoning": "Patient reports lids block upper vision and she sees lid skin in the upper field."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01JCrmHtxMCg9DAY9hruAvTt",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Untaped: 38% loss OD, 35% loss OS."
+        }
+       ],
+       "reasoning": "Untaped superior field loss of 38% and 35% exceeds the 30% threshold in both eyes."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_0162C5JdRVxWG7nWx1xrcJyR",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Taped: 6% loss OD, 5% loss OS."
+        }
+       ],
+       "reasoning": "Taped testing shows loss falls from 38%/35% to 6%/5%, so the field improves substantially."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}

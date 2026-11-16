@@ -1,0 +1,250 @@
+{
+ "exchanges": [
+  {
+   "request_fingerprint": "654bddd30b86d0d6",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_011haGo2PfZxDbsorTXjcmVu",
+      "name": "read_note",
+      "input": {
+       "note_id": "n1"
+      }
+     },
+     {
+      "id": "toolu_01HC78Pc2pC4w8rqTv46766u",
+      "name": "read_note",
+      "input": {
+       "note_id": "n2"
+      }
+     },
+     {
+      "id": "toolu_01DpKAwDxVfz7mqfFT4TuBsa",
+      "name": "read_note",
+      "input": {
+       "note_id": "n3"
+      }
+     },
+     {
+      "id": "toolu_013iwa81yaQXddjKmy5nGUhH",
+      "name": "read_note",
+      "input": {
+       "note_id": "n4"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2032,
+     "output_tokens": 191
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_011haGo2PfZxDbsorTXjcmVu",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n1"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01HC78Pc2pC4w8rqTv46766u",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n2"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01DpKAwDxVfz7mqfFT4TuBsa",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n3"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_013iwa81yaQXddjKmy5nGUhH",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "note_id": "n4"
+      },
+      "name": "read_note",
+      "type": "tool_use"
+     }
+    ]
+   }
+  },
+  {
+   "request_fingerprint": "fc283d8c1bbafc53",
+   "response": {
+    "text": "",
+    "tool_calls": [
+     {
+      "id": "toolu_01BkJibzWzVj9hZb8Ka1938r",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "dermatochalasis OU w/ skin overhanging lash line"
+        },
+        {
+         "note_id": "n2",
+         "quote": "skin resting on lashes OU"
+        }
+       ],
+       "reasoning": "Exams document dermatochalasis with skin overhanging the lash line and resting on lashes."
+      }
+     },
+     {
+      "id": "toolu_01QfViHxS6SfUPP2Rn6pJhaW",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "droopy lids blocking upper vision, worse when driving"
+        }
+       ],
+       "reasoning": "Patient reports lids block upper vision and sees lid skin in upper field."
+      }
+     },
+     {
+      "id": "toolu_01TN7SXqUPCu3u3hyuVzbjMz",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Untaped: 38% loss OD, 35% loss OS"
+        }
+       ],
+       "reasoning": "Untaped superior field loss of 38% and 35% exceeds the 30% threshold."
+      }
+     },
+     {
+      "id": "toolu_01M7M84SCGJADRJM3Y1Ncq4u",
+      "name": "submit_finding",
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Taped: 6% loss OD, 5% loss OS"
+        }
+       ],
+       "reasoning": "Taped testing shows loss falls markedly from 38%/35% to 6%/5%."
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 2620,
+     "output_tokens": 817
+    },
+    "provider_blocks": [
+     {
+      "id": "toolu_01BkJibzWzVj9hZb8Ka1938r",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.excess_skin",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "dermatochalasis OU w/ skin overhanging lash line"
+        },
+        {
+         "note_id": "n2",
+         "quote": "skin resting on lashes OU"
+        }
+       ],
+       "reasoning": "Exams document dermatochalasis with skin overhanging the lash line and resting on lashes."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01QfViHxS6SfUPP2Rn6pJhaW",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.functional_complaint",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n1",
+         "quote": "droopy lids blocking upper vision, worse when driving"
+        }
+       ],
+       "reasoning": "Patient reports lids block upper vision and sees lid skin in upper field."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01TN7SXqUPCu3u3hyuVzbjMz",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_loss",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Untaped: 38% loss OD, 35% loss OS"
+        }
+       ],
+       "reasoning": "Untaped superior field loss of 38% and 35% exceeds the 30% threshold."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01M7M84SCGJADRJM3Y1Ncq4u",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "criterion_id": "l33944_upper_bleph.field_improves_taped",
+       "status": "met",
+       "evidence": [
+        {
+         "note_id": "n3",
+         "quote": "Taped: 6% loss OD, 5% loss OS"
+        }
+       ],
+       "reasoning": "Taped testing shows loss falls markedly from 38%/35% to 6%/5%."
+      },
+      "name": "submit_finding",
+      "type": "tool_use"
+     }
+    ]
+   }
+  }
+ ]
+}
