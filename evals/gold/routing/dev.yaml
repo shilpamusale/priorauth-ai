@@ -23,4 +23,9 @@
 - case_id: route_dev_006
   ordered_service: Bilateral upper eyelid blepharoplasty for visual field obstruction
   service_code: "15823"
-  expected: unsupported  # until a blepharoplasty policy is added
+  expected: matched  # unsupported until the blepharoplasty policy was added, with no code change
+  policy_id: l33944_upper_bleph
+- case_id: route_dev_007
+  ordered_service: Upper eyelid blepharoplasty, both eyes
+  service_code: "64493"
+  expected: code_not_covered  # the eyelid LCD, with a facet code

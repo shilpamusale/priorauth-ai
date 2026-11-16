@@ -32,6 +32,9 @@ SPLIT = "dev"
 SAMPLE = Path("evals/judge/sample.yaml")
 LABELS = Path("evals/judge/labels.yaml")
 SEED = 7
+# The judge was calibrated against hand labels on this policy's cases only. Its agreement there says nothing
+# about another policy's criteria, so a new policy needs its own labels before the judge grades it.
+JUDGED_POLICY = "l38773_first_mbb"
 SAMPLE_SIZE = {"evidence": 24, "planted": 8}  # plus every documentation request
 
 
@@ -71,10 +74,12 @@ def item_id(kind: ItemKind, case_id: str, criterion_id: str) -> str:
 def build_items(
     policies: dict[str, Policy], gold: Path = GOLD, recordings: Path = RECORDINGS
 ) -> tuple[list[JudgeItem], dict[str, GoldCase]]:
-    """Every item, from the committed recordings: no model is called."""
-    cases = load_split(gold, SPLIT, policies)
+    """Every item for the judged policy's dev cases, from the committed recordings: no model is called."""
+    cases = {cid: case for cid, case in load_split(gold, SPLIT, policies).items() if case.policy_id == JUDGED_POLICY}
     items = []
-    for result in run_split(SPLIT, Mode.REPLAY, policies, gold=gold, recordings=recordings, trials=1):
+    for result in run_split(
+        SPLIT, Mode.REPLAY, policies, gold=gold, recordings=recordings, trials=1, cases=list(cases)
+    ):
         if result.error:
             raise ValueError(f"{result.case_id}: {result.error}")
         policy = policies[cases[result.case_id].policy_id]
@@ -87,7 +92,7 @@ def build_items(
             target = order[(index + len(order) // 2) % len(order)]
             if source in met and target != source:
                 items.append(_item(ItemKind.PLANTED, result.case_id, target, texts, quotes=met[source].evidence))
-    for gap in run_gaps(Mode.REPLAY, policies, gold=gold, recordings=recordings):
+    for gap in run_gaps(Mode.REPLAY, policies, gold=gold, recordings=recordings, cases=list(cases)):
         if gap.error:
             raise ValueError(f"{gap.case_id}: {gap.error}")
         texts = {c.criterion_id: c.text for c in policies[cases[gap.case_id].policy_id].criteria}

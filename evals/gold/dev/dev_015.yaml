@@ -1,0 +1,42 @@
+# Ready to submit, second policy: upper eyelid skin blocks the patient's view, the exam documents it, and the
+# visual field test shows the loss with the lids at rest and the improvement with them taped up.
+policy_id: l33944_upper_bleph
+tags: [ready, clean, blepharoplasty]
+request:
+  case_id: dev_015
+  payer: Medicare
+  request_date: 2026-09-21
+  service_code: "15823"
+  ordered_service: Bilateral upper eyelid blepharoplasty
+  icd10_codes: [H02.831, H02.834]
+  notes:
+    - note_id: n1
+      date: 2026-07-14
+      note_type: optometry visit
+      text: >-
+        71-year-old with upper vision that has been getting worse for about two years. She bumps into door
+        frames on her right and has trouble seeing traffic lights while driving because the skin of her upper
+        eyelids is in the way. She lifts her brows with her fingers to read. Upper lid skin overhangs the lash
+        line in both eyes. Referred to oculoplastics.
+    - note_id: n2
+      date: 2026-08-20
+      note_type: oculoplastic surgery consultation
+      text: >-
+        Reports that her eyelids block her view when driving and reading, and that she sees the skin of her
+        upper lids. Exam: bilateral upper eyelid dermatochalasis, with redundant skin resting on the lashes and
+        covering the lid margin in both eyes. Lid margin position and levator function are normal. Brows are
+        in normal position. Assessment: dermatochalasis with functional visual impairment. Plan: visual field
+        testing untaped and taped, then bilateral upper eyelid blepharoplasty if the fields support it.
+    - note_id: n3
+      date: 2026-09-03
+      note_type: visual field test report
+      text: >-
+        Superior visual field testing, both eyes. Untaped, with the upper lids in their natural position:
+        superior field loss of 32 degrees in the right eye and 30 degrees in the left. Taped, with the upper
+        lids elevated: superior field loss reduced to 4 degrees in the right eye and 3 degrees in the left.
+labels:
+  l33944_upper_bleph.excess_skin: {status: met, evidence_notes: [n1, n2]}
+  l33944_upper_bleph.functional_complaint: {status: met, evidence_notes: [n1, n2]}
+  l33944_upper_bleph.field_loss: {status: met, evidence_notes: [n3]}
+  l33944_upper_bleph.field_improves_taped: {status: met, evidence_notes: [n3]}
+expected_decision: ready_to_submit
