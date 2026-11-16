@@ -15,12 +15,16 @@ from evals.checks import run_checks
 from evals.gold import GoldCase
 from evals.judge import Grade, run_judge
 from evals.judge_items import ItemKind, build_items
+from evals.routing import RoutingResult, routing_cases
+from evals.routing import run as run_routing
 from evals.runner import GOLD, POLICIES, RECORDINGS, Mode, TrialResult, pipeline_root, recording_path, replay_trial
 from priorauth.ingest import normalize
 from priorauth.llm.base import ToolResult
 from priorauth.llm.replay import StaleRecording
 from priorauth.matcher import DEFAULT_MODEL
 from priorauth.pipeline import Pipeline
+from priorauth.policies import load_sources
+from priorauth.retrieval import PolicyIndex, lcd_name
 from priorauth.schemas import Policy
 
 SPLIT = "dev"
@@ -34,6 +38,37 @@ def folders() -> tuple[Path, Path, Path]:
         Path(os.environ.get("PRIORAUTH_RECORDINGS", RECORDINGS)),
         Path(os.environ.get("PRIORAUTH_POLICIES", POLICIES)),
     )
+
+
+def build_index(policy_dir: Path) -> PolicyIndex:
+    """The retrieval index over every LCD text in policy_dir/sources. Tests replace it, so they never need the
+    embedding model; the demo image has the model built in."""
+    return PolicyIndex(load_sources(policy_dir))
+
+
+def dev_routes(policies: dict[str, Policy], gold: Path, index: PolicyIndex) -> list[RoutingResult]:
+    """Retrieval and the code check on every dev request: the gold cases and the routing-only cases."""
+    return run_routing(routing_cases(gold, SPLIT, policies), index, policies)
+
+
+def route_rows(results: list[RoutingResult]) -> list[dict]:
+    """One table row per routed request: what it should reach, what it reached, and how close the LCD was."""
+    rows = []
+    for r in results:
+        best = r.route.candidates[0] if r.route.candidates else None
+        rows.append(
+            {
+                "case": r.case.case_id,
+                "order": r.case.ordered_service,
+                "code": r.case.service_code,
+                "should reach": r.case.policy_id or r.case.expected.value,
+                "reached": r.route.policy_id or r.route.outcome.value,
+                "right": "yes" if r.correct else "UNSAFE" if r.unsafe else "no, escalated",
+                "closest LCD": lcd_name(best.source) if best else "",
+                "distance": round(best.distance, 3) if best else None,
+            }
+        )
+    return rows
 
 
 def recorded_trials(recordings: Path, case_ids: list[str]) -> dict[str, list[int]]:
