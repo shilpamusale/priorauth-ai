@@ -36,65 +36,6 @@ different job: get the request right before it is submitted, because a request m
 comes back as a denial and costs days of rework. That is the workflow this project automates, and the
 one I worked on at R1 RCM.
 
-## Business case
-
-A projection, not a measurement: the project has no real users. It is built in three layers so each
-number can be checked: what the project measures today, an estimate with every assumption written out,
-and how the real value would be measured with a client.
-
-**1. What the project measures today**
-
-| Measure | Value | Notes |
-|---|---|---|
-| Model cost per request | $0.028 (dev, 51 runs, $1.42); $0.029 (held-out, 21 runs, $0.61) | Model tokens only: no hosting, integration or review time |
-| Time per request | Not measured | The recordings keep no wall-clock time; it is the first metric to add (see layer 3) |
-| Documentation gaps caught | Dev: 9 of 10 gold-label gaps on the first trial, each with a drafted request to the clinic. Held-out: 2 of 2 in every trial | The dev miss is dev_011's pain severity, relabelled after the held-out run. Requests were drafted on the dev set only |
-| Decision mix | Dev: 4 ready to submit, 7 need documentation, 6 escalate (of 17). Held-out: 3, 2, 2 (of 7) | The agent matched every one. The mix was designed to cover each decision, so it says nothing about real traffic |
-| Requests stopped before the agent | 6 dev and 3 held-out routing-only requests: no LCD close enough, an LCD with no policy here, or a code the policy does not cover | They go to a person with the reason and no model call. dev_002 is stopped too, a safe miss on clinic shorthand |
-
-The documentation gaps are the impact lever. A request missing required documentation is the kind
-that comes back denied and gets reworked; catching the gap before submission, with the request to the
-clinic already written, is what this workflow is for.
-
-**2. A projected annual value, labelled as an estimate**
-
-```
-annual value ≈ in-scope requests × minutes saved ÷ 60 × loaded staff cost per hour
-             + in-scope requests × denial rate × missing-documentation share × gaps caught × rework cost per denial
-             − in-scope requests × model cost per request
-```
-
-| Input | Value used | Source or status |
-|---|---|---|
-| Requests per year | 100,000 for a 50-physician group | About 40 prior authorizations per physician per week ([AMA 2025 survey of 1,000 physicians](https://www.ama-assn.org/press-center/ama-press-releases/ama-survey-prior-authorization-reform-pledge-falls-short-physicians)) × 50 physicians × 50 weeks. Covers drugs as well as procedures |
-| Share of requests in scope | 10% / 25% / 50% | **Assumption.** Only services with a policy here are in scope; today that is two procedures |
-| Minutes saved per request | 2 / 5 / 10 | **Assumption.** For scale, CAQH estimates that moving to the electronic prior authorization standard saves providers 14 minutes per authorization ([CAQH Index 2024](https://caqh.org/hubfs/Index/2024%20Index%20Report/CAQH%202024%20Index%20Report%20Key%20Takeaways%20FINAL.pdf)) |
-| Loaded staff cost per hour | $35 | **Assumption** |
-| Denial rate | 7.7% | Medicare Advantage prior authorization requests denied in full or in part in 2024 ([KFF](https://www.kff.org/medicare/issue-brief/medicare-advantage-insurers-made-nearly-53-million-prior-authorization-determinations-in-2024/)) |
-| Share of denials from missing documentation | 20% / 35% / 50% | **Assumption.** KFF notes that 80.7% of appealed denials were overturned, and that one possible reason is an initial request missing the required documentation |
-| Share of gaps caught | 90% | The dev result above (9 of 10) |
-| Rework cost per denial | $57.23 | Average cost to fight a claim denial in 2023 ([Premier](https://premierinc.com/newsroom/blog/claims-adjudication-costs-providers-25-7-billion)); a proxy, since it covers claim denials rather than prior authorization denials |
-| Model cost per request | $0.03 | Measured above |
-
-| Scenario (scope, minutes, documentation share) | Staff hours freed | Denials avoided | Estimated annual value |
-|---|---|---|---|
-| Low (10%, 2 min, 20%) | 333 | 139 | about $19,000 |
-| Middle (25%, 5 min, 35%) | 2,083 | 606 | about $107,000 |
-| High (50%, 10 min, 50%) | 8,333 | 1,732 | about $389,000 |
-
-At full coverage, each minute saved per request is about 1,667 staff hours a year for a 50-physician
-group: that number makes the scale concrete without claiming how many minutes the agent saves. Freed
-hours are capacity, not cash, unless they change staffing or overtime. The avoided denials matter for
-another reason too: each is a patient whose care was not delayed by a resubmission. Every assumption is
-meant to be replaced by a client's own numbers.
-
-**3. How it would be measured with a client**
-
-Run it in shadow mode first: the agent sees each request the staff work, and its decisions are compared
-with theirs before anyone acts on them. Then track first-pass approval rate, denials for missing
-documentation, staff minutes per request and turnaround time, against the period before. Start with
-the services the policies cover, and add policies as the comparison earns trust.
-
 ## How it works
 
 ```mermaid
@@ -349,6 +290,11 @@ on real charts. CI replays the held-out recordings and routes too.
   code. `GET /policies` lists policies with their fingerprints; interactive docs are at `/docs`. A daily
   run limit caps spending, the Anthropic workspace's monthly limit is the hard backstop, and the API key
   is read from Secret Manager at run time.
+- **Claude API or Amazon Bedrock.** The same client runs on either: Bedrock serves Claude at an
+  Anthropic-compatible endpoint, so only the URL, the key and the model ID change (`priorauth/llm/providers.py`).
+  Requests keep the model's own name, so recordings, fingerprints and costs do not depend on the provider.
+  `PRIORAUTH_PROVIDER=bedrock` serves the API from Bedrock; `--provider bedrock` records an evaluation there,
+  under `evals/recordings/bedrock/`, and `python -m evals.providers` scores both sets of recordings side by side.
 
 ## Quickstart
 
@@ -370,6 +316,11 @@ uvicorn priorauth.api:app --port 8000          # the API, locally (live runs nee
 # live runs need ANTHROPIC_API_KEY
 python -m evals.runner record --cases dev_001 --trials 1
 
+# the same run on Amazon Bedrock: needs AWS_BEARER_TOKEN_BEDROCK (a Bedrock API key), or AWS credentials
+# and `pip install -e ".[bedrock]"` to make a short-lived key; AWS_REGION defaults to us-east-1
+python -m evals.runner record --provider bedrock --cases dev_001 --trials 1
+python -m evals.providers                      # Claude API and Bedrock recordings, scored side by side
+
 # extract a new LCD version (the PDF stays out of the repo)
 python -m priorauth.ingest path/to/LCD.pdf policies/sources/l38773_v32.txt
 ```
@@ -381,7 +332,8 @@ src/priorauth/
   schemas.py      typed contracts for every handoff (Pydantic)
   policies.py     policy loader: ID rules, quotes checked against the LCD, fingerprint
   ingest.py       extracts the coverage section of an LCD PDF
-  llm/            model interface, Claude adapter, scripted and record/replay clients
+  llm/            model interface, Claude adapter, providers (Claude API or Bedrock), scripted and
+                  record/replay clients
   tools.py        the agent's chart tools and quote checks at submission
   matcher.py      bounded tool loop; prompts/ holds the versioned prompt
   verify.py       final grounding check
@@ -400,6 +352,7 @@ evals/
   recordings/     recorded live runs, replayed in CI and in the demo
   checks.py, runner.py, scoring.py   checks, record/replay runner, metrics and the CI gate
   tracking.py     MLflow logging of each evaluation run
+  providers.py    the same evaluation on the Claude API and on Bedrock, compared
   gaps.py         runs the documentation agent on the dev cases with gaps
   routing.py      scores retrieval: each request reaches its policy or goes to a person for the stated reason
   judge_items.py, judge.py, calibration.py   items to grade, the LLM judge, and its agreement with hand labels

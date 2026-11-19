@@ -82,9 +82,10 @@ def seconds_until_tomorrow() -> int:
 
 
 def claude_client() -> ModelClient:
-    from priorauth.llm.claude import ClaudeClient  # needs the agent extra and ANTHROPIC_API_KEY
+    """The live client for PRIORAUTH_PROVIDER: the Claude API (the default) or Amazon Bedrock."""
+    from priorauth.llm.providers import Provider, make_client  # needs the agent extra and the provider's key
 
-    return ClaudeClient()
+    return make_client(Provider(os.environ.get("PRIORAUTH_PROVIDER", Provider.ANTHROPIC.value)))
 
 
 def create_app(
