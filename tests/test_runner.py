@@ -7,10 +7,12 @@ from pathlib import Path
 import pytest
 import yaml
 
+import priorauth.llm.providers as providers
 from evals.gold import GoldCase, Label
 from evals.runner import Mode, TrialResult, main, recording_path, run_split, summary_line
 from evals.scoring import Summary
 from priorauth.llm.base import ModelResponse, StopReason, ToolCall, Usage
+from priorauth.llm.providers import Provider
 from priorauth.llm.scripted import ScriptedClient
 from priorauth.pipeline import Pipeline
 from priorauth.policies import load_policies
@@ -295,3 +297,17 @@ def test_command_line_chooses_the_pipeline(gold, tmp_path, monkeypatch, capsys):
     assert main([*args, "--pipeline", "multi_agent"]) == 0
     assert main(args) == 1  # the single agent has no recordings here
     assert "dev_900 trial 1: ERROR no recording" in capsys.readouterr().out
+
+
+def test_the_command_line_records_and_replays_each_provider_in_its_own_folder(gold, tmp_path, monkeypatch, capsys):
+    built = []
+    monkeypatch.setattr("evals.runner.load_policies", lambda directory: POLICIES)
+    monkeypatch.setattr(providers, "make_client", lambda p: built.append(p) or ScriptedClient(live_replies(2)))
+    common = ["--gold", str(gold), "--recordings", str(tmp_path / "rec"), "--trials", "1"]
+    assert main(["record", "--provider", "bedrock", *common]) == 0
+    assert built == [Provider.BEDROCK]
+    recorded = [p.relative_to(tmp_path / "rec") for p in (tmp_path / "rec").rglob("*.json")]
+    assert recorded and all(p.parts[0] == "bedrock" for p in recorded)
+    assert main(["replay", "--provider", "bedrock", *common]) == 0
+    assert main(["replay", *common]) == 1  # nothing recorded on the Claude API
+    assert "ERROR no recording" in capsys.readouterr().out

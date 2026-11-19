@@ -4,6 +4,7 @@ This is the only module that imports the SDK. By default the SDK reads ANTHROPIC
 environment; tests pass in a fake SDK client instead, so CI never needs a key.
 """
 
+from collections.abc import Mapping
 from typing import Any
 
 import anthropic
@@ -68,11 +69,25 @@ def from_message(message: anthropic.types.Message) -> ModelResponse:
     )
 
 
-class ClaudeClient:
-    """A ModelClient backed by Claude."""
+def anthropic_sdk(base_url: str | None = None, api_key: str | None = None) -> anthropic.Anthropic:
+    """The SDK client: the Claude API by default, or another provider's Anthropic-compatible endpoint."""
+    return anthropic.Anthropic() if base_url is None else anthropic.Anthropic(base_url=base_url, api_key=api_key)
 
-    def __init__(self, sdk_client: anthropic.Anthropic | None = None) -> None:
+
+class ClaudeClient:
+    """A ModelClient backed by Claude, on the Claude API or on another provider's Anthropic endpoint.
+
+    model_ids maps a model's own name to the provider's ID for it (Bedrock's, say); requests keep the name.
+    """
+
+    def __init__(self, sdk_client: anthropic.Anthropic | None = None, model_ids: Mapping[str, str] | None = None):
         self._sdk = sdk_client or anthropic.Anthropic()
+        self._model_ids = dict(model_ids) if model_ids is not None else None
 
     def complete(self, request: ModelRequest) -> ModelResponse:
-        return from_message(self._sdk.messages.create(**to_params(request)))
+        params = to_params(request)
+        if self._model_ids is not None:
+            if request.model not in self._model_ids:
+                raise ValueError(f"no provider model ID for {request.model!r}")
+            params["model"] = self._model_ids[request.model]
+        return from_message(self._sdk.messages.create(**params))

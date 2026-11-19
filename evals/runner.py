@@ -25,6 +25,7 @@ from pydantic import model_validator
 from evals.checks import CheckResult, run_checks
 from evals.gold import SPLITS, GoldCase, load_split
 from priorauth.llm.base import ModelClient
+from priorauth.llm.providers import Provider
 from priorauth.llm.replay import RecordingClient, ReplayClient, StaleRecording, load_recording, save_recording
 from priorauth.matcher import DEFAULT_MODEL
 from priorauth.pipeline import AuditRecord, Pipeline, run_case
@@ -58,6 +59,11 @@ class TrialResult(Contract):
 
 def recording_path(root: Path, split: str, case_id: str, trial: int) -> Path:
     return root / split / case_id / f"trial_{trial}.json"
+
+
+def provider_root(recordings: Path, provider: Provider) -> Path:
+    """Where a provider's recordings live. The Claude API's stay where they have always been."""
+    return recordings if provider is Provider.ANTHROPIC else recordings / provider.value
 
 
 def pipeline_root(recordings: Path, pipeline: Pipeline) -> Path:
@@ -155,6 +161,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--pipeline", default=Pipeline.SINGLE_AGENT.value, choices=[p.value for p in Pipeline])
     parser.add_argument("--allow-heldout", action="store_true", help="only for the final evaluation")
+    parser.add_argument("--provider", default=Provider.ANTHROPIC.value, choices=[p.value for p in Provider])
     parser.add_argument("--gold", type=Path, default=GOLD)
     parser.add_argument("--recordings", type=Path, default=RECORDINGS)
     parser.add_argument("--policies", type=Path, default=POLICIES)
@@ -162,11 +169,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--summary", type=Path, help="also write the summary as JSON to this file")
     parser.add_argument("--track", action="store_true", help="log the run to MLflow (needs the track extra)")
     args = parser.parse_args(argv)
+    provider = Provider(args.provider)
     client = None
     if args.mode == Mode.RECORD:
-        from priorauth.llm.claude import ClaudeClient  # needs the agent extra and ANTHROPIC_API_KEY
+        from priorauth.llm.providers import make_client  # needs the agent extra and the provider's key
 
-        client = ClaudeClient()
+        client = make_client(provider)
     policies = load_policies(args.policies)
     results = run_split(
         args.split,
@@ -174,7 +182,7 @@ def main(argv: list[str] | None = None) -> int:
         policies,
         client=client,
         gold=args.gold,
-        recordings=args.recordings,
+        recordings=provider_root(args.recordings, provider),
         trials=args.trials,
         cases=args.cases,
         model=args.model,
