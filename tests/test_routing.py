@@ -11,10 +11,10 @@ import yaml
 from pydantic import ValidationError
 from test_retrieval import EYELID, FACET, VEINS, FakeIndex
 
-from evals.routing import RoutingCase, RoutingResult, main, report, routing_cases, run
+from evals.routing import RoutingCase, RoutingResult, compare_report, main, report, routing_cases, run
 from evals.runner import GOLD
-from priorauth.policies import load_policies
-from priorauth.retrieval import Candidate, Outcome, Route
+from priorauth.policies import load_policies, load_sources
+from priorauth.retrieval import MIN_KEYWORD, Candidate, KeywordIndex, Outcome, Retrieval, Route
 
 POLICIES = load_policies(Path("policies"))
 # where each routing-only dev case's order lands, and how close: the outcomes then follow from the code check
@@ -170,3 +170,51 @@ def test_reaching_another_policy_is_wrong():
     case = RoutingCase(case_id="c", ordered_service="o", service_code="64493", expected="matched", policy_id="a")
     reached = Route(outcome=Outcome.MATCHED, policy_id="b", reason="r")
     assert not RoutingResult(case=case, route=reached).correct
+
+
+class WordsIndex(CaseIndex):
+    """CaseIndex, with a keyword score for each order's LCD: zero unless words gives one by case ID."""
+
+    def __init__(self, cases, lands=LANDS, words=None):
+        super().__init__(cases, lands)
+        self.words = {c.ordered_service: (words or {}).get(c.case_id, 0.0) for c in cases}
+
+    def search(self, text):
+        return [c.model_copy(update={"keyword": self.words[text]}) for c in super().search(text)]
+
+
+def test_the_keyword_minimum_sits_between_the_dev_orders_it_was_chosen_on(dev):
+    keywords = KeywordIndex(load_sources(Path("policies")))
+    best = {c.case_id: round(max(keywords.scores(c.ordered_service).values()), 2) for c in dev}
+    assert (best["route_dev_005"], best["dev_002"]) == (0.27, 0.43)  # cataract surgery; the shorthand miss
+    must_not_match = [best[c.case_id] for c in dev if c.expected is Outcome.NO_MATCH]
+    assert max(must_not_match) == 0.27 and MIN_KEYWORD == round((0.27 + 0.43) / 2, 2)
+
+
+FAR = LANDS | {"dev_002": (FACET, 0.68), "route_dev_004": (FACET, 0.9)}
+PROBE = {"case_id": "probe", "ordered_service": "Epidural injection", "service_code": "64493", "expected": "no_match"}
+
+
+def test_compare_lists_what_hybrid_fixes_breaks_and_makes_unsafe(dev):
+    probe = RoutingCase.model_validate(PROBE)
+    cases = [*dev, probe]
+    index = WordsIndex(cases, FAR | {"probe": (FACET, 0.7)}, {"dev_002": 0.43, "route_dev_004": 0.5, "probe": 0.6})
+    embedding, hybrid = (run(cases, index, POLICIES, r) for r in Retrieval)
+    text = compare_report(embedding, hybrid)
+    n = len(cases)
+    # embedding misses dev_002; hybrid fixes it but breaks route_dev_004 and reaches the probe
+    assert text.splitlines()[1].split() == ["Routed", "correctly", str(n - 1), "of", str(n), str(n - 2), "of", str(n)]
+    assert text.splitlines()[2].split() == ["Unsafe", "routes", "0", "1"]
+    assert "fixed  dev_002" in text and "broke  route_dev_004" in text and "UNSAFE probe" in text
+    assert "  dev_002            LCD L38773 v32 0.43  Dx MBB L4-5, L5-S1" in text.splitlines()
+    assert "(reached by keyword, 0.43)" in report(hybrid) and "reached by keyword" not in report(embedding)
+
+
+def test_the_comparison_fails_on_an_unsafe_route_in_either_mode(tmp_path, capsys):
+    gold = copy_gold(tmp_path, PROBE)
+    cases = routing_cases(gold, "dev", POLICIES)
+    make = lambda words: lambda sources: WordsIndex(cases, FAR | {"probe": (FACET, 0.7)}, words)  # noqa: E731
+    assert main(["--gold", str(gold), "--compare"], make_index=make({"probe": 0.6})) == 1
+    assert main(["--gold", str(gold), "--compare"], make_index=make({"probe": 0.2})) == 0
+    assert main(["--gold", str(gold), "--retrieval", "hybrid"], make_index=make({"probe": 0.6})) == 1
+    assert main(["--gold", str(gold)], make_index=make({"probe": 0.6})) == 0  # embedding-only never reaches it

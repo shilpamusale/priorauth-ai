@@ -10,6 +10,7 @@ have matched is a safe miss: a person sees it, and it counts against accuracy.
 
     python -m evals.routing --min-accuracy 0.95
     python -m evals.routing --split fresh
+    python -m evals.routing --split fresh --compare     # embedding-only and hybrid retrieval, side by side
 """
 
 import argparse
@@ -23,7 +24,7 @@ from pydantic import model_validator
 from evals.gold import load_split
 from evals.runner import GOLD, POLICIES
 from priorauth.policies import load_policies, load_sources
-from priorauth.retrieval import Outcome, PolicyIndex, Route, lcd_name, route
+from priorauth.retrieval import MIN_KEYWORD, Outcome, PolicyIndex, Retrieval, Route, lcd_name, route
 from priorauth.schemas import Contract, NonBlank, Policy, ServiceCode
 
 SETS = ("dev", "heldout", "fresh")  # fresh has no gold cases, only routing-only requests
@@ -86,10 +87,22 @@ def routing_cases(
     return cases
 
 
-def run(cases: list[RoutingCase], index: PolicyIndex, policies: dict[str, Policy]) -> list[RoutingResult]:
+def run(
+    cases: list[RoutingCase],
+    index: PolicyIndex,
+    policies: dict[str, Policy],
+    retrieval: Retrieval = Retrieval.EMBEDDING,
+) -> list[RoutingResult]:
     return [
-        RoutingResult(case=c, route=route(index, policies.values(), c.ordered_service, c.service_code)) for c in cases
+        RoutingResult(
+            case=c, route=route(index, policies.values(), c.ordered_service, c.service_code, retrieval=retrieval)
+        )
+        for c in cases
     ]
+
+
+def label(result: RoutingResult) -> str:
+    return result.route.policy_id or result.route.outcome.value
 
 
 def report(results: list[RoutingResult]) -> str:
@@ -98,13 +111,39 @@ def report(results: list[RoutingResult]) -> str:
     for r in results:
         best = r.route.candidates[0] if r.route.candidates else None
         closest = f"{lcd_name(best.source)} at {best.distance:.3f}" if best else "-"
-        got = r.route.policy_id or r.route.outcome.value
         want = r.case.policy_id or r.case.expected.value
         mark = "ok    " if r.correct else "UNSAFE" if r.unsafe else "WRONG "
-        lines.append(f"{mark} {r.case.case_id:<18} want {want:<18} got {got:<18} closest {closest}")
+        by_keyword = (
+            f" (reached by keyword, {max(c.keyword for c in r.route.candidates):.2f})" if r.route.by_keyword else ""
+        )
+        lines.append(f"{mark} {r.case.case_id:<18} want {want:<18} got {label(r):<18} closest {closest}{by_keyword}")
     correct = sum(r.correct for r in results)
     lines.append(f"Routed correctly: {correct} of {len(results)} ({correct / len(results):.0%})")
     lines.append(f"Unsafe routes (reached a policy they should not): {sum(r.unsafe for r in results)}")
+    return "\n".join(lines)
+
+
+def compare_report(embedding: list[RoutingResult], hybrid: list[RoutingResult]) -> str:
+    """Both modes' totals, every route hybrid changes, and the keyword score of each order the embeddings reject."""
+    n = len(embedding)
+    correct = [sum(r.correct for r in rs) for rs in (embedding, hybrid)]
+    unsafe = [sum(r.unsafe for r in rs) for rs in (embedding, hybrid)]
+    lines = [
+        f"{'':<20}{'embedding':>12}{'hybrid':>12}",
+        f"{'Routed correctly':<20}{f'{correct[0]} of {n}':>12}{f'{correct[1]} of {n}':>12}",
+        f"{'Unsafe routes':<20}{unsafe[0]:>12}{unsafe[1]:>12}",
+    ]
+    changed = [(e, h) for e, h in zip(embedding, hybrid, strict=True) if label(e) != label(h)]
+    lines.append(f"Routes hybrid changes: {len(changed)}")
+    for e, h in changed:
+        mark = "fixed " if h.correct else "UNSAFE" if h.unsafe else "broke " if e.correct else "wrong "
+        want = e.case.policy_id or e.case.expected.value
+        lines.append(f"  {mark} {e.case.case_id:<18} want {want:<18} embedding {label(e):<18} hybrid {label(h)}")
+    rejected = [h for e, h in zip(embedding, hybrid, strict=True) if e.route.outcome is Outcome.NO_MATCH]
+    lines.append(f"Orders the embeddings find too far, with their best keyword match (minimum {MIN_KEYWORD}):")
+    for h in rejected:
+        words = max(h.route.candidates, key=lambda c: c.keyword)
+        lines.append(f"  {h.case.case_id:<18} {lcd_name(words.source)} {words.keyword:.2f}  {h.case.ordered_service}")
     return "\n".join(lines)
 
 
@@ -115,11 +154,18 @@ def main(argv: list[str] | None = None, make_index: Callable[[dict[str, str]], P
     parser.add_argument("--gold", type=Path, default=GOLD)
     parser.add_argument("--policies", type=Path, default=POLICIES)
     parser.add_argument("--min-accuracy", type=float, default=0.0, help="CI gate threshold")
+    parser.add_argument("--retrieval", default=Retrieval.EMBEDDING.value, choices=[r.value for r in Retrieval])
+    parser.add_argument("--compare", action="store_true", help="run both retrieval modes and compare them")
     args = parser.parse_args(argv)
 
     policies = load_policies(args.policies)
     cases = routing_cases(args.gold, args.split, policies, allow_heldout=args.allow_heldout)
-    results = run(cases, make_index(load_sources(args.policies)), policies)
+    index = make_index(load_sources(args.policies))
+    if args.compare:
+        embedding, hybrid = (run(cases, index, policies, retrieval) for retrieval in Retrieval)
+        print(compare_report(embedding, hybrid))
+        return 1 if any(r.unsafe for r in embedding + hybrid) else 0
+    results = run(cases, index, policies, Retrieval(args.retrieval))
     print(report(results))
     accuracy = sum(r.correct for r in results) / len(results)
     return 1 if any(r.unsafe for r in results) or accuracy < args.min_accuracy else 0
