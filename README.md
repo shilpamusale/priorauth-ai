@@ -320,8 +320,15 @@ make install                                   # includes the mcp extra
 # Claude Code: add the server, check it connected, then run the prompt on a case
 claude mcp add --transport stdio priorauth -- "$(pwd)/.venv/bin/python" -m priorauth.mcp_server
 claude mcp list
-# in a session: /priorauth:review_case dev_004
+# in a session (Claude Code lists the prompt as /priorauth:review_case; this spelling runs it):
+#   /mcp__priorauth__review_case dev_004
 ```
+
+![Claude Code reviewing dev_004 through the MCP server](docs/images/mcp_review_dev_004.png)
+
+Claude Code (Opus 5.5) reviewing dev_004 through the server: four tool calls, every quote verified on the first
+try, and code decided `needs_documentation`. All 8 criterion statuses and the decision match the gold label
+and the agent's three recorded trials. This is one case and one run, so it is a demo, not an evaluation.
 
 For Claude Desktop, add the server under Settings → Developer → Edit Config, with absolute paths, and restart:
 

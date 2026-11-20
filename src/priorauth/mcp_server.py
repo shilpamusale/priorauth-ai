@@ -191,7 +191,8 @@ def create_server(root: Path = ROOT, index_factory: Callable[[dict[str, str]], P
     def review_case(case_id: str) -> str:
         """Review one synthetic case end to end: find the policy, judge each criterion, let code decide."""
         return (
-            f"Review prior authorization case {case_id} with the priorauth tools.\n"
+            f"Review prior authorization case {case_id} with the priorauth tools only: do not open other files, "
+            "which may hold the answers.\n"
             f"1. get_case {case_id}, then find_policy with its ordered_service and service_code. If no policy "
             "matches, report the reason and stop.\n"
             "2. get_policy, then judge every criterion from the chart alone: met, not_met or "

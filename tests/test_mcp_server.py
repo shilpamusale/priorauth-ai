@@ -201,6 +201,7 @@ def test_the_prompt_walks_the_client_through_one_case(server):
 
     text = anyio.run(go).messages[0].content.text
     assert "get_case dev_004" in text and "check_findings" in text and "Do not change" in text
+    assert "priorauth tools only: do not open other files" in text
 
 
 def test_the_server_starts_over_stdio_from_any_folder(tmp_path):
