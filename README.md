@@ -28,6 +28,9 @@ payer, which documentation is missing, or whether a human needs to look at it.
 - **LLM judge:** agrees with blind hand labels on 27 of 32 evidence items (Cohen's kappa 0.71).
 - **Human review:** of the 7 dev cases queued for a person, 3 agree with the gold labels and 4 question a
   criterion label; one label was changed as a result.
+- **Fresh routing requests:** 13 of 19 routed right, with 2 unsafe routes where the order and the code
+  disagree. Hybrid keyword search did not fix them and is not adopted; see
+  [Hybrid retrieval and the fresh routing requests](#hybrid-retrieval-and-the-fresh-routing-requests).
 
 ## Why provider-side
 
@@ -274,6 +277,44 @@ the safe outcome, and it is why retrieval only proposes and code decides. Seven 
 clean result shows the dev numbers were not an artifact of building on them, not how the pipeline would do
 on real charts. CI replays the held-out recordings and routes too.
 
+### Hybrid retrieval and the fresh routing requests
+
+The error analysis proposed keyword search for the shorthand miss. Before writing it, I wrote 19 new routing
+requests (`evals/gold/routing/fresh.yaml`, Nov 19, 2026) and scored them with embedding-only retrieval as the
+baseline. The keyword setting was chosen on the dev requests alone.
+
+Hybrid retrieval adds BM25 over the same LCD passages and changes only the orders the embeddings find too far.
+One of those can reach an LCD if a passage holds at least 0.35 of the order's words, weighted by rarity. That
+is the midpoint between the highest dev order that must not match (cataract surgery, 0.27) and dev_002 (0.43).
+The policy and code checks follow as before.
+
+| Routed right, unsafe routes | Dev (24) | Held-out (10) | Fresh (19) |
+|---|---|---|---|
+| Embedding only | 23, 0 | 9, 0 | 13, 2 |
+| Hybrid | 24, 0 | 9, 0 | 13, 2 |
+
+- **Hybrid fixed dev_002's "Dx MBB" and changed nothing else.** The only fresh order the embeddings rejected,
+  carpal tunnel release, has no keyword match (0.15).
+- **It is not adopted, because keywords cannot tell what an LCD governs from what it mentions.** On the fresh
+  requests, orders the facet LCD does not govern outscore one it does: sacroiliac joint injection 0.64 and
+  epidural steroid injection 0.61, against 0.24 for "Dx lumbar MBB". A keyword path into a policy would rest
+  on a signal that cannot separate them. It stays available as `--retrieval hybrid` and
+  `python -m evals.routing --compare`.
+
+**What the fresh requests found.** The dev set's unrelated orders were far from every LCD: a knee replacement
+and cataract surgery. The fresh set adds procedures close to the facet LCD, and embedding retrieval accepted
+four of the five that no indexed LCD governs: an epidural injection (at 0.318, closer than most facet orders),
+a sacroiliac joint injection, a genicular nerve ablation and a spinal fusion. They escalated as
+`code_not_covered`, which is safe. Two requests whose order and code disagree did not escalate:
+
+- an epidural order with facet code 64493 reached the facet policy;
+- cataract surgery with eyelid code 15823 reached the blepharoplasty policy, at 0.608, inside the limit by
+  0.002.
+
+The held-out cervical fusion order was the first sign: the code check stopped it only because its code was not
+covered. When the code is covered, nothing checks that the order describes the service the policy decides.
+That check comes next, measured on requests written after it, since these have now been seen.
+
 ## Demo and API
 
 - **Public demo** ([link](https://priorauth-ai-140535548045.us-central1.run.app)): replays recorded runs and
@@ -349,6 +390,7 @@ python -m evals.runner replay --track          # ...and log the run to MLflow (l
 python -m evals.gaps replay                    # the documentation agent's requests, replayed
 python -m evals.calibration                    # the LLM judge against the hand labels, replayed
 python -m evals.routing --min-accuracy 0.95    # retrieval on the dev requests (downloads the embedding model)
+python -m evals.routing --split fresh --compare   # embedding-only and hybrid retrieval on the fresh requests
 python -m streamlit run ui/app.py              # the demo, locally
 python -m streamlit run ui/review.py           # the reviewer screen (local; saves to evals/reviews/)
 python -m evals.reviews                        # the review queue, and candidate gold cases from reviews
@@ -389,8 +431,8 @@ src/priorauth/
 policies/         the facet (LCD L38773) and blepharoplasty (LCD L33944) policies; sources/ holds the
                   extracted text of every indexed LCD, which criteria quote and retrieval searches
 evals/
-  gold/           dev and held-out cases; routing/ holds the routing-only requests; candidates/ holds
-                  candidate gold cases from reviews, never scored
+  gold/           dev and held-out cases; routing/ holds the routing-only requests (dev, held-out, fresh);
+                  candidates/ holds candidate gold cases from reviews, never scored
   recordings/     recorded live runs, replayed in CI and in the demo
   checks.py, runner.py, scoring.py   checks, record/replay runner, metrics and the CI gate
   tracking.py     MLflow logging of each evaluation run
@@ -423,12 +465,14 @@ tests/            unit tests for every module, policy and gold case
 - [x] Error analysis, written before the held-out run
 - [x] Final held-out run: 21 of 21 decisions and every criterion right; routing 9 of 10, none unsafe
 - [x] MCP server: policy lookup and code-made decisions as tools for Claude Code and Claude Desktop
+- [x] Hybrid retrieval (BM25 plus embeddings), measured on fresh routing requests: not adopted
 
 Next, from the [error analysis](docs/error_analysis.md):
 
 - [ ] Say in the functional-deficit criterion whether described limits without a scale count (a new policy
   version, re-recorded runs)
-- [ ] Keyword search over the LCD passages alongside the embedding search, for shorthand and a wider margin
+- [ ] A scope check before a request reaches a policy: the order must describe the service the policy decides
+  (two unsafe routes on the fresh routing requests), measured on new requests
 - [ ] `judge_v2` shown the request date, measured on new hand labels
 - [ ] A second reviewer, to measure how much of the review is one person's judgment
 
@@ -442,11 +486,11 @@ Next, from the [error analysis](docs/error_analysis.md):
 - **One person labelled, reviewed and calibrated.** The gold labels, the judge's 40 hand labels and the 7
   reviews are mine. The reviews already question four gold labels; a second reviewer would measure how
   much of that is my judgment.
-- **Retrieval has a thin margin and misses shorthand.** The distance limit sits between 0.597 (the farthest
-  order that should match) and 0.617 (the closest that should not), chosen on 24 dev requests. A general
-  embedding model does not know clinic abbreviations such as "MBB"; those requests escalate. The held-out
-  run confirmed the margin is thin: a cervical fusion order came within the limit of the facet LCD, and
-  only the code check stopped it.
+- **Retrieval accepts orders close to an LCD that it does not govern.** The distance limit sits between 0.597
+  (the farthest dev order that should match) and 0.617 (the closest that should not), chosen on 24 dev
+  requests whose unrelated orders were far from every LCD. On the fresh requests, four of five nearby spine
+  and joint procedures landed inside it, and two requests whose order and code disagree reached a policy.
+  Until a scope check exists, an order/code mismatch with a covered code can reach the wrong policy.
 - **The judge has known blind spots.** It is lenient on partial evidence and is not shown the request date.
   Its agreement was measured on one policy.
 - **Policies change.** Each policy is pinned to one LCD version; a new version means a new extraction and

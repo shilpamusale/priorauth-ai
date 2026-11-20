@@ -3,7 +3,19 @@
 import pytest
 from embedding import WordHashEmbedding
 
-from priorauth.retrieval import CHUNK_WORDS, Candidate, Outcome, PolicyIndex, lcd_name, passages, route
+from priorauth.retrieval import (
+    CHUNK_WORDS,
+    MIN_KEYWORD,
+    Candidate,
+    KeywordIndex,
+    Outcome,
+    PolicyIndex,
+    Retrieval,
+    lcd_name,
+    passages,
+    route,
+    terms,
+)
 from priorauth.schemas import Policy, PolicyCriterion
 
 FACET = "https://www.cms.gov/medicare-coverage-database/view/lcd.aspx?lcdid=38773&ver=32"
@@ -120,3 +132,70 @@ def test_only_the_closest_lcd_is_considered():
     # the facet policy covers the code, but the order is closest to the vein LCD: a person must look
     found = route(FakeIndex((VEINS, 0.2), (FACET, 0.21)), [FIRST_BLOCK], "Vein ablation", "64493")
     assert found.outcome is Outcome.UNSUPPORTED
+
+
+def test_terms_are_lowercase_words_and_codes_without_stopwords():
+    assert terms("Dx MBB L4-5, L5-S1 of the lumbar spine") == ["dx", "mbb", "l4", "l5", "s1", "lumbar", "spine"]
+    assert terms("a 5 of") == []
+
+
+def test_keyword_scores_weigh_rare_words_and_stay_between_zero_and_one():
+    keywords = KeywordIndex(SOURCES)
+    scores = keywords.scores("medial branch blocks of the lumbar nerves")
+    assert scores[FACET] > 0.5 and scores[VEINS] == scores[EYELID] == 0.0
+    assert keywords.idf("ablation") < keywords.idf("dermatochalasis")  # in two LCDs, against one
+    assert all(0.0 <= v <= 1.0 for v in keywords.scores("eyelid eyelid eyelid skin").values())
+    assert keywords.scores("total knee arthroplasty") == dict.fromkeys(sorted(SOURCES), 0.0)
+    assert keywords.scores("of the") == dict.fromkeys(sorted(SOURCES), 0.0)
+
+
+def test_words_the_lcd_lacks_lower_the_score():
+    keywords = KeywordIndex(SOURCES)
+    assert keywords.scores("medial branch blocks, right knee")[FACET] < keywords.scores("medial branch blocks")[FACET]
+
+
+def test_search_gives_every_lcd_its_distance_and_keyword_score(index):
+    found = index.search("upper eyelid blepharoplasty")
+    assert {c.source for c in found} == set(SOURCES)
+    keyword = {c.source: c.keyword for c in found}
+    assert keyword[EYELID] > 0.5 and keyword[FACET] == keyword[VEINS] == 0.0
+
+
+class Scored:
+    """Fixed candidates with keyword scores: (source, distance, keyword)."""
+
+    def __init__(self, *candidates):
+        self.candidates = [Candidate(source=s, distance=d, keyword=k) for s, d, k in candidates]
+
+    def search(self, text):
+        return self.candidates
+
+
+def both(index, code="64493"):
+    return [route(index, [FIRST_BLOCK], "an order", code, retrieval=r) for r in Retrieval]
+
+
+def test_hybrid_keeps_every_route_the_embeddings_accept():
+    embedding, hybrid = both(Scored((FACET, 0.3, 0.0), (EYELID, 0.8, 0.9)))
+    assert embedding == hybrid and hybrid.policy_id == "first_block" and not hybrid.by_keyword
+
+
+def test_hybrid_reaches_the_best_keyword_match_when_nothing_is_close_enough():
+    embedding, hybrid = both(Scored((EYELID, 0.7, 0.1), (FACET, 0.75, 0.43)))
+    assert embedding.outcome is Outcome.NO_MATCH and "keyword" not in embedding.reason
+    assert hybrid.outcome is Outcome.MATCHED and hybrid.policy_id == "first_block" and hybrid.by_keyword
+    assert hybrid.reason.startswith("The order's words match LCD L38773 v32 (keyword score 0.43)")
+
+
+def test_a_keyword_score_below_the_minimum_still_escalates():
+    assert both(Scored((FACET, 0.7, MIN_KEYWORD)))[1].outcome is Outcome.MATCHED  # the minimum itself is enough
+    _, hybrid = both(Scored((FACET, 0.7, MIN_KEYWORD - 0.01)))
+    assert hybrid.outcome is Outcome.NO_MATCH and not hybrid.by_keyword
+    assert hybrid.reason.endswith(f"scores {MIN_KEYWORD - 0.01:.2f} and the minimum is {MIN_KEYWORD}.")
+
+
+def test_a_keyword_route_still_passes_the_policy_and_code_checks():
+    _, unsupported = both(Scored((VEINS, 0.7, 0.8)))
+    _, uncovered = both(Scored((FACET, 0.7, 0.5)), code="15823")
+    assert unsupported.outcome is Outcome.UNSUPPORTED and unsupported.by_keyword
+    assert uncovered.outcome is Outcome.CODE_NOT_COVERED and uncovered.by_keyword
