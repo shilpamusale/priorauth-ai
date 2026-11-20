@@ -60,6 +60,23 @@ def test_held_out_cases_need_the_final_evaluation():
     assert len(routing_cases(GOLD, "heldout", POLICIES, allow_heldout=True)) == gold + 3
 
 
+def test_the_fresh_set_is_new_routing_only_requests_with_every_outcome():
+    fresh = routing_cases(GOLD, "fresh", POLICIES)
+    assert [c.case_id for c in fresh] == [f"fresh_{n:03d}" for n in range(1, 20)]
+    outcomes = [c.expected for c in fresh]
+    assert {o: outcomes.count(o) for o in Outcome} == {
+        Outcome.MATCHED: 6,
+        Outcome.NO_ORDER: 0,
+        Outcome.NO_MATCH: 7,
+        Outcome.UNSUPPORTED: 1,
+        Outcome.CODE_NOT_COVERED: 5,
+    }
+    seen = routing_cases(GOLD, "dev", POLICIES) + routing_cases(GOLD, "heldout", POLICIES, allow_heldout=True)
+    assert not {c.ordered_service for c in fresh} & {c.ordered_service for c in seen}  # nothing reused
+    with pytest.raises(ValueError, match="unknown routing set"):
+        routing_cases(GOLD, "test", POLICIES)
+
+
 @pytest.mark.parametrize(
     "fields",
     [{"expected": "matched"}, {"expected": "no_match", "policy_id": "l38773_first_mbb"}],

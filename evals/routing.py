@@ -3,11 +3,13 @@
 The cases are the gold cases of a split, each of which must reach its own policy, plus the routing-only
 cases in evals/gold/routing/<split>.yaml: no LCD close enough, an LCD with no policy here, or a code its
 policies do not cover. No model is called. Held-out cases are refused unless the final evaluation asks.
+The fresh set is routing-only: requests written after the held-out run, the test for any change to retrieval.
 
 The hard gate is that no request reaches a policy it should not. A request that escalates when it could
 have matched is a safe miss: a person sees it, and it counts against accuracy.
 
     python -m evals.routing --min-accuracy 0.95
+    python -m evals.routing --split fresh
 """
 
 import argparse
@@ -23,6 +25,8 @@ from evals.runner import GOLD, POLICIES
 from priorauth.policies import load_policies, load_sources
 from priorauth.retrieval import Outcome, PolicyIndex, Route, lcd_name, route
 from priorauth.schemas import Contract, NonBlank, Policy, ServiceCode
+
+SETS = ("dev", "heldout", "fresh")  # fresh has no gold cases, only routing-only requests
 
 
 class RoutingCase(Contract):
@@ -57,8 +61,11 @@ def routing_cases(
     gold: Path, split: str, policies: dict[str, Policy], allow_heldout: bool = False
 ) -> list[RoutingCase]:
     """The split's gold cases as matched routes, then its routing-only cases."""
+    if split not in SETS:
+        raise ValueError(f"unknown routing set {split!r}; use one of {SETS}")
     if split == "heldout" and not allow_heldout:
         raise ValueError("held-out cases run only in the final evaluation; pass allow_heldout=True for that run")
+    gold_cases = {} if split == "fresh" else load_split(gold, split, policies)
     cases = [
         RoutingCase(
             case_id=case.case_id,
@@ -67,7 +74,7 @@ def routing_cases(
             expected=Outcome.MATCHED,
             policy_id=case.policy_id,
         )
-        for case in load_split(gold, split, policies).values()
+        for case in gold_cases.values()
     ]
     for data in yaml.safe_load((gold / "routing" / f"{split}.yaml").read_text(encoding="utf-8")):
         case = RoutingCase.model_validate(data)
@@ -103,7 +110,7 @@ def report(results: list[RoutingResult]) -> str:
 
 def main(argv: list[str] | None = None, make_index: Callable[[dict[str, str]], PolicyIndex] = PolicyIndex) -> int:
     parser = argparse.ArgumentParser(description="Score policy retrieval on the gold and routing cases.")
-    parser.add_argument("--split", default="dev", choices=["dev", "heldout"])
+    parser.add_argument("--split", default="dev", choices=SETS)
     parser.add_argument("--allow-heldout", action="store_true", help="only for the final evaluation")
     parser.add_argument("--gold", type=Path, default=GOLD)
     parser.add_argument("--policies", type=Path, default=POLICIES)

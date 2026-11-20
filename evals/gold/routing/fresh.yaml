@@ -1,0 +1,100 @@
+# New routing requests, written Nov 19, 2026, after the held-out run and before keyword or hybrid search
+# existed. They are first scored with embedding-only retrieval, the baseline, and are never used to choose a
+# setting: keyword settings are chosen on the dev requests alone. The held-out requests have been run, so
+# this is the fresh test for any change to retrieval.
+#
+# The expected outcome comes from the LCD that governs the ordered service. If that LCD is indexed, the request
+# reaches its policy, or escalates as unsupported or code_not_covered. If it is not indexed, the outcome is
+# no_match. Each group below tests one thing.
+
+# Orders a policy here decides, in shorthand or plain words.
+- case_id: fresh_001
+  ordered_service: Dx lumbar MBB, L3-L4 and L4-L5
+  service_code: "64493"
+  expected: matched
+  policy_id: l38773_first_mbb
+- case_id: fresh_002
+  ordered_service: Bilateral lumbar facet MBBs, first diagnostic block
+  service_code: "64493"
+  expected: matched
+  policy_id: l38773_first_mbb
+- case_id: fresh_003
+  ordered_service: Medial branch nerve block, L5-S1, additional level
+  service_code: "64494"
+  expected: matched
+  policy_id: l38773_first_mbb
+- case_id: fresh_004
+  ordered_service: Upper lid bleph OU for superior visual field loss
+  service_code: "15823"
+  expected: matched
+  policy_id: l33944_upper_bleph
+- case_id: fresh_005
+  ordered_service: Functional upper eyelid surgery for dermatochalasis obstructing vision
+  service_code: "15822"
+  expected: matched
+  policy_id: l33944_upper_bleph
+- case_id: fresh_006
+  ordered_service: Excision of excess upper eyelid skin, both sides
+  service_code: "15823"
+  expected: matched
+  policy_id: l33944_upper_bleph
+
+# The governing LCD is indexed, but its policy here does not decide this code.
+- case_id: fresh_007
+  ordered_service: Cervical medial branch block, C5-C6
+  service_code: "64490"
+  expected: code_not_covered  # the facet LCD covers cervical blocks; the policy decides lumbar ones
+- case_id: fresh_008
+  ordered_service: Thoracic medial branch block, T10-T11
+  service_code: "64490"
+  expected: code_not_covered
+- case_id: fresh_009
+  ordered_service: Brow lift for brow ptosis obstructing vision
+  service_code: "67900"
+  expected: code_not_covered  # the eyelid LCD covers brow lifts; the policy decides upper blepharoplasty
+- case_id: fresh_010
+  ordered_service: Lower eyelid blepharoplasty, right
+  service_code: "15820"
+  expected: code_not_covered
+- case_id: fresh_011
+  ordered_service: Upper eyelid ptosis repair by levator advancement
+  service_code: "67904"
+  expected: code_not_covered
+
+# The governing LCD is indexed, with no policy built on it.
+- case_id: fresh_012
+  ordered_service: Ultrasound-guided foam sclerotherapy of left leg varicose veins
+  service_code: "36471"
+  expected: unsupported
+
+# Not governed by any indexed LCD. Several share words with one, which is what keyword search could confuse.
+- case_id: fresh_013
+  ordered_service: Lumbar transforaminal epidural steroid injection, L4-L5
+  service_code: "64483"
+  expected: no_match  # the facet LCD mentions epidural injections, but does not govern them
+- case_id: fresh_014
+  ordered_service: Sacroiliac joint injection, left
+  service_code: "27096"
+  expected: no_match
+- case_id: fresh_015
+  ordered_service: Genicular nerve radiofrequency ablation, right knee
+  service_code: "64624"
+  expected: no_match
+- case_id: fresh_016
+  ordered_service: Carpal tunnel release, right wrist
+  service_code: "64721"
+  expected: no_match
+- case_id: fresh_017
+  ordered_service: Lumbar spinal fusion, L4-L5
+  service_code: "22612"
+  expected: no_match
+
+# The order and the code disagree, and the code is one a policy decides. Reaching that policy is unsafe.
+- case_id: fresh_018
+  ordered_service: Lumbar epidural steroid injection, L4-L5
+  service_code: "64493"
+  expected: no_match
+- case_id: fresh_019
+  ordered_service: Cataract extraction with lens implant, left eye
+  service_code: "15823"
+  expected: no_match
