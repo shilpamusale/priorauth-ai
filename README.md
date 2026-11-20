@@ -296,6 +296,40 @@ on real charts. CI replays the held-out recordings and routes too.
   `PRIORAUTH_PROVIDER=bedrock` serves the API from Bedrock; `--provider bedrock` records an evaluation there,
   under `evals/recordings/bedrock/`, and `python -m evals.providers` scores both sets of recordings side by side.
 
+## MCP server
+
+`python -m priorauth.mcp_server` offers PriorAuth-AI's code-side steps as tools to any MCP client, such as
+Claude Code or Claude Desktop. The split stays the same as in the agent: the client's model reads the chart
+and judges each criterion with verbatim quotes, and `check_findings` checks every quote and makes the
+decision with the same verify-and-decide code the agent's runs go through (`pipeline.determine`). A test sends
+it the findings from all 51 recorded dev runs and gets back the recorded decision every time.
+
+| Tool | What it does |
+|---|---|
+| `list_policies`, `get_policy` | The policies, their LCD versions and fingerprints, and each criterion with the LCD's words |
+| `find_policy` | Retrieval and the code check: the policy for an order and a code, or why the request needs a person |
+| `list_cases`, `get_case` | The synthetic dev charts, without their gold labels (held-out cases are not served) |
+| `check_findings` | Verifies every quote against its note, then decides: the same code as the pipeline |
+
+The `review_case` prompt runs the whole workflow on one case. Every tool is read-only: the server calls no
+model, needs no API key and saves nothing, and a chart passed to `check_findings` stays in memory. Use synthetic
+charts only, because the client's model reads every chart it is given.
+
+```bash
+make install                                   # includes the mcp extra
+# Claude Code: add the server, check it connected, then run the prompt on a case
+claude mcp add --transport stdio priorauth -- "$(pwd)/.venv/bin/python" -m priorauth.mcp_server
+claude mcp list
+# in a session: /priorauth:review_case dev_004
+```
+
+For Claude Desktop, add the server under Settings → Developer → Edit Config, with absolute paths, and restart:
+
+```json
+{"mcpServers": {"priorauth": {"command": "/path/to/priorauth-ai/.venv/bin/python",
+                              "args": ["-m", "priorauth.mcp_server"]}}}
+```
+
 ## Quickstart
 
 ```bash
@@ -344,6 +378,7 @@ src/priorauth/
   retrieval.py    ChromaDB index over the LCD texts, and the route: a policy, or why not
   review.py       human review: overrides with reasons and checked quotes, then decide() again
   api.py          FastAPI service with a daily run limit
+  mcp_server.py   MCP server: policy lookup, synthetic charts and check_findings, decided in code
 policies/         the facet (LCD L38773) and blepharoplasty (LCD L33944) policies; sources/ holds the
                   extracted text of every indexed LCD, which criteria quote and retrieval searches
 evals/
@@ -380,6 +415,7 @@ tests/            unit tests for every module, policy and gold case
 - [x] Reviewer screen with overrides feeding candidate gold cases
 - [x] Error analysis, written before the held-out run
 - [x] Final held-out run: 21 of 21 decisions and every criterion right; routing 9 of 10, none unsafe
+- [x] MCP server: policy lookup and code-made decisions as tools for Claude Code and Claude Desktop
 
 Next, from the [error analysis](docs/error_analysis.md):
 

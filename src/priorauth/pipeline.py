@@ -94,11 +94,16 @@ def run_case(
     return audit(run, policy, request, pipeline)
 
 
-def audit(run: MatchRun, policy: Policy, request: PARequest, pipeline: Pipeline) -> AuditRecord:
-    """Verify the run's findings, decide from the grounded ones, and record everything."""
-    checked = verify(request, run.findings)
+def determine(
+    policy: Policy, request: PARequest, findings: list[CriterionResult], skipped: list[str]
+) -> tuple[Determination, list[str]]:
+    """Verify the findings and decide from the grounded ones. Returns the determination and every bad quote.
+
+    Every path to a decision goes through here: both pipelines and the MCP server's check_findings.
+    """
+    checked = verify(request, findings)
     kept = {r.criterion_id for r in checked.grounded}
-    rejected = [r.criterion_id for r in run.findings if r.criterion_id not in kept]
+    rejected = [r.criterion_id for r in findings if r.criterion_id not in kept]
     decision = decide(policy, checked.grounded)
     determination = Determination(
         case_id=request.case_id,
@@ -106,8 +111,14 @@ def audit(run: MatchRun, policy: Policy, request: PARequest, pipeline: Pipeline)
         decision=decision,
         criteria=checked.grounded,
         missing_documentation=missing_documentation(policy, checked.grounded),
-        rationale=rationale(decision, policy, checked.grounded, run.skipped, rejected),
+        rationale=rationale(decision, policy, checked.grounded, skipped, rejected),
     )
+    return determination, checked.problems
+
+
+def audit(run: MatchRun, policy: Policy, request: PARequest, pipeline: Pipeline) -> AuditRecord:
+    """Verify the run's findings, decide from the grounded ones, and record everything."""
+    determination, problems = determine(policy, request, run.findings, run.skipped)
     return AuditRecord(
         determination=determination,
         policy_fingerprint=fingerprint(policy),
@@ -118,7 +129,7 @@ def audit(run: MatchRun, policy: Policy, request: PARequest, pipeline: Pipeline)
         steps=run.steps,
         usage=run.usage,
         skipped=run.skipped,
-        rejected_quotes=checked.problems,
+        rejected_quotes=problems,
         turns=run.turns,
         pipeline=pipeline,
     )
